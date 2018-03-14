@@ -54,14 +54,71 @@
 		353B47C4205690B3008281B0 /* My budget */ = {
 			isa = PBXGroup;
 			children = (
-				353B47C5205690B3008281B0 /* AppDelegate.swift */,
-				353B47C7205690B3008281B0 /* ViewController.swift */,
-				353B47C9205690B3008281B0 /* Main.storyboard */,
+				353B47D720593084008281B0 /* Source */,
+				353B47D8205930A6008281B0 /* Storyboards */,
+				353B47D9205930B6008281B0 /* Resources */,
 				353B47CC205690B3008281B0 /* Assets.xcassets */,
-				353B47CE205690B3008281B0 /* LaunchScreen.storyboard */,
 				353B47D1205690B3008281B0 /* Info.plist */,
 			);
 			path = "My budget";
+			sourceTree = "<group>";
+		};
+		353B47D720593084008281B0 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				353B47DD20593123008281B0 /* Models */,
+				353B47DC20593113008281B0 /* Views */,
+				353B47DB20593106008281B0 /* Controllers */,
+				353B47DA205930F8008281B0 /* Application */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		353B47D8205930A6008281B0 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				353B47C9205690B3008281B0 /* Main.storyboard */,
+				353B47CE205690B3008281B0 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		353B47D9205930B6008281B0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		353B47DA205930F8008281B0 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				353B47C5205690B3008281B0 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		353B47DB20593106008281B0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				353B47C7205690B3008281B0 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		353B47DC20593113008281B0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		353B47DD20593123008281B0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +334,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M64J2FC2KN;
 				INFOPLIST_FILE = "My budget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bobkexit.My-budget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,6 +350,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M64J2FC2KN;
 				INFOPLIST_FILE = "My budget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bobkexit.My-budget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
