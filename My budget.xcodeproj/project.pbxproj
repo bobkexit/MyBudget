@@ -7,15 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		351E3E88205A3257004A3414 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E87205A3257004A3414 /* RealmRepository.swift */; };
 		353B47C6205690B3008281B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47C5205690B3008281B0 /* AppDelegate.swift */; };
 		353B47C8205690B3008281B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47C7205690B3008281B0 /* ViewController.swift */; };
 		353B47CB205690B3008281B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 353B47C9205690B3008281B0 /* Main.storyboard */; };
 		353B47CD205690B3008281B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 353B47CC205690B3008281B0 /* Assets.xcassets */; };
 		353B47D0205690B3008281B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 353B47CE205690B3008281B0 /* LaunchScreen.storyboard */; };
+		353B47E1205940DF008281B0 /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47E0205940DF008281B0 /* BaseRepository.swift */; };
+		353B47EC205949BF008281B0 /* RealmCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47EB205949BF008281B0 /* RealmCurrency.swift */; };
+		353B47EE20594B63008281B0 /* RealmAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47ED20594B63008281B0 /* RealmAccount.swift */; };
+		353B47F6205958B6008281B0 /* RealmCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F5205958B6008281B0 /* RealmCategory.swift */; };
+		353B47F820595ACD008281B0 /* RealmTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F720595ACD008281B0 /* RealmTransaction.swift */; };
+		353B47FA20596E2B008281B0 /* CurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F920596E2B008281B0 /* CurrencyRepository.swift */; };
+		353B47FC20596F28008281B0 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47FB20596F28008281B0 /* Currency.swift */; };
+		353B47FE20596FD0008281B0 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47FD20596FD0008281B0 /* Account.swift */; };
+		353B48002059725E008281B0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47FF2059725E008281B0 /* Category.swift */; };
+		353B4802205976ED008281B0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B4801205976ED008281B0 /* Transaction.swift */; };
 		615AA698DB21FF966812962E /* Pods_My_budget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DEC8F5A04C9758775ECEB6 /* Pods_My_budget.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		351E3E87205A3257004A3414 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		353B47C2205690B3008281B0 /* My budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My budget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		353B47C5205690B3008281B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		353B47C7205690B3008281B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,6 +35,16 @@
 		353B47CC205690B3008281B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		353B47CF205690B3008281B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		353B47D1205690B3008281B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		353B47E0205940DF008281B0 /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
+		353B47EB205949BF008281B0 /* RealmCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCurrency.swift; sourceTree = "<group>"; };
+		353B47ED20594B63008281B0 /* RealmAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAccount.swift; sourceTree = "<group>"; };
+		353B47F5205958B6008281B0 /* RealmCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategory.swift; sourceTree = "<group>"; };
+		353B47F720595ACD008281B0 /* RealmTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransaction.swift; sourceTree = "<group>"; };
+		353B47F920596E2B008281B0 /* CurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepository.swift; sourceTree = "<group>"; };
+		353B47FB20596F28008281B0 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		353B47FD20596FD0008281B0 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		353B47FF2059725E008281B0 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		353B4801205976ED008281B0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		4888D73EADFA49F664FD0830 /* Pods-My budget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My budget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My budget/Pods-My budget.debug.xcconfig"; sourceTree = "<group>"; };
 		69DEC8F5A04C9758775ECEB6 /* Pods_My_budget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_budget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE55D91628C8CD8C214428C4 /* Pods-My budget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My budget.release.xcconfig"; path = "Pods/Target Support Files/Pods-My budget/Pods-My budget.release.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +95,8 @@
 		353B47D720593084008281B0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				353B47DF20594087008281B0 /* Repositories */,
+				353B47DE20593F71008281B0 /* DataModels */,
 				353B47DD20593123008281B0 /* Models */,
 				353B47DC20593113008281B0 /* Views */,
 				353B47DB20593106008281B0 /* Controllers */,
@@ -123,9 +147,34 @@
 		353B47DD20593123008281B0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				353B47FB20596F28008281B0 /* Currency.swift */,
+				353B47FD20596FD0008281B0 /* Account.swift */,
+				353B47FF2059725E008281B0 /* Category.swift */,
+				353B4801205976ED008281B0 /* Transaction.swift */,
 			);
 			name = Models;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		353B47DE20593F71008281B0 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				353B47EB205949BF008281B0 /* RealmCurrency.swift */,
+				353B47ED20594B63008281B0 /* RealmAccount.swift */,
+				353B47F5205958B6008281B0 /* RealmCategory.swift */,
+				353B47F720595ACD008281B0 /* RealmTransaction.swift */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
+		353B47DF20594087008281B0 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				353B47E0205940DF008281B0 /* BaseRepository.swift */,
+				353B47F920596E2B008281B0 /* CurrencyRepository.swift */,
+				351E3E87205A3257004A3414 /* RealmRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		BBE7EB3DA86593D62296FA15 /* Frameworks */ = {
@@ -278,8 +327,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				353B47FC20596F28008281B0 /* Currency.swift in Sources */,
+				353B47E1205940DF008281B0 /* BaseRepository.swift in Sources */,
+				353B4802205976ED008281B0 /* Transaction.swift in Sources */,
+				353B47F6205958B6008281B0 /* RealmCategory.swift in Sources */,
+				353B47F820595ACD008281B0 /* RealmTransaction.swift in Sources */,
 				353B47C8205690B3008281B0 /* ViewController.swift in Sources */,
+				353B47FE20596FD0008281B0 /* Account.swift in Sources */,
+				353B47EC205949BF008281B0 /* RealmCurrency.swift in Sources */,
+				351E3E88205A3257004A3414 /* RealmRepository.swift in Sources */,
+				353B47EE20594B63008281B0 /* RealmAccount.swift in Sources */,
+				353B47FA20596E2B008281B0 /* CurrencyRepository.swift in Sources */,
 				353B47C6205690B3008281B0 /* AppDelegate.swift in Sources */,
+				353B48002059725E008281B0 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
