@@ -1,20 +1,19 @@
 //
-//  TransactionsNC.swift
+//  DictionaryVC.swift
 //  My budget
 //
-//  Created by Николай Маторин on 16.03.2018.
+//  Created by Николай Маторин on 19.03.2018.
 //  Copyright © 2018 Николай Маторин. All rights reserved.
 //
 
 import UIKit
 
-class TransactionsNC: BaseNC {
+class DictionaryVC: BaseTableVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
     }
 
     override func didReceiveMemoryWarning() {

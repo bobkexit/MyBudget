@@ -9,8 +9,15 @@
 import UIKit
 
 class TransactionsVC: BaseVC {
-
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
 }
+
+//extension TransactionsVC: UITableViewDelegate, UITableViewDataSource {
+//    
+//}
+

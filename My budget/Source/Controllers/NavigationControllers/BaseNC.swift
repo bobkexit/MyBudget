@@ -17,16 +17,14 @@ class BaseNC: UINavigationController {
     }
     
     func setupView() {
+        // Colors
+        navigationBar.tintColor = UIColor.white
         navigationBar.barTintColor = UIColor.clear
         navigationBar.isTranslucent = true
         
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         
-        //let colors = [#colorLiteral(red: 0.1215686275, green: 0.1568627451, blue: 0.1764705882, alpha: 1), #colorLiteral(red: 0.03137254902, green: 0.03137254902, blue: 0.03529411765, alpha: 1)]
-        //navigationBar.setGradientBackground(colors: colors)
-        
         dropShadow()
-        
     }
     
     func dropShadow() {
