@@ -1,14 +1,14 @@
 //
-//  SettingsCell.swift
+//  CategoryCell.swift
 //  My budget
 //
-//  Created by Николай Маторин on 19.03.2018.
+//  Created by Николай Маторин on 20.03.2018.
 //  Copyright © 2018 Николай Маторин. All rights reserved.
 //
 
 import UIKit
 
-class SettingsCell: BaseCell {
+class CategoryCell: BaseCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,9 +20,5 @@ class SettingsCell: BaseCell {
 
         // Configure the view for the selected state
     }
-    
-    func configure(with text: String) {
-       self.textLabel?.text = text.capitalized
-    }
-    
+
 }

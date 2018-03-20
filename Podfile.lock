@@ -1,9 +1,9 @@
 PODS:
-  - Realm (3.2.0):
-    - Realm/Headers (= 3.2.0)
-  - Realm/Headers (3.2.0)
-  - RealmSwift (3.2.0):
-    - Realm (= 3.2.0)
+  - Realm (3.3.0):
+    - Realm/Headers (= 3.3.0)
+  - Realm/Headers (3.3.0)
+  - RealmSwift (3.3.0):
+    - Realm (= 3.3.0)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
@@ -11,8 +11,8 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Realm: ae552b9b9eca3a12374a589fa842f220e286a80a
-  RealmSwift: 05727129547dcab3fe828bd87bc30be903736b9c
+  Realm: 7d74ad6c5020432f58fe5e1df90bb6d97b2c7fef
+  RealmSwift: b2fa31a09c22e246026766557405505eeaad2b01
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
 PODFILE CHECKSUM: cbc087d0572507cbcc8e3d392444e7f18945a464

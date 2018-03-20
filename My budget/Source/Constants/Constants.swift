@@ -12,12 +12,14 @@ struct Constants {
     struct UI {
         struct TableViewCells {
             static let settingsCell = "SettingsCell"
-            static let dictionaryCell = "DictionaryCell"
+            static let accountCell = "AccountCell"
+            static let categoryCell = "CategoryCell"
         }
     }
     
     struct Segues {
-        static let toDictionaryVC = "toDictionaryVC"
+        static let toAccountsVC = "toAccountsVC"
+        static let toCategoriesVC = "toCategoriesVC"
     }
 }
 

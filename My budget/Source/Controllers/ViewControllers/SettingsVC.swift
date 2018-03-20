@@ -9,10 +9,9 @@
 import UIKit
 
 class SettingsVC: BaseTableVC {
-    
-    //@IBOutlet weak var tableView: UITableView!
-    
-    var settings = ["Accounts", "Incoming", "Expenses"]
+        
+    fileprivate var settings = Array(AppDictionary.cases())
+    fileprivate var selectedSetting: AppDictionary?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,20 +22,7 @@ class SettingsVC: BaseTableVC {
         self.tableView.dataSource = self
         
         self.tableView.reloadData()
-        
-        
     }
- 
-//    override func setupView() {
-//        super.setupView()
-//
-//        self.tableView.backgroundColor = UIColor.clear
-//        self.tableView.separatorStyle = .none
-//    }
-
-}
-
-extension SettingsVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
@@ -46,13 +32,52 @@ extension SettingsVC {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.UI.TableViewCells.settingsCell, for: indexPath) as? SettingsCell else {
             return UITableViewCell()
         }
-    
-        cell.configure(with: settings[indexPath.row])
+        
+        cell.configure(with: settings[indexPath.row].rawValue)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: Constants.Segues.toDictionaryVC, sender: self)
+        
+        selectedSetting = settings[indexPath.row]
+       
+        switch selectedSetting! {
+        case .accounts:
+            performSegue(withIdentifier: Constants.Segues.toAccountsVC, sender: self)
+        case .expenses, .incomings:
+            performSegue(withIdentifier: Constants.Segues.toCategoriesVC, sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let selectedSetting = selectedSetting  else {
+            return
+        }
+        
+        switch selectedSetting {
+        case .accounts:
+            return
+        case .incomings:
+            set(categoryType: .income, to: segue)
+        case .expenses:
+            set(categoryType: .expense, to: segue)
+        }
+    }
+    
+    func set(categoryType type:  Category.TypeCategory, to segue: UIStoryboardSegue) {
+        
+        if segue.identifier != Constants.Segues.toCategoriesVC {
+            return
+        }
+        
+        guard let destinationVC = segue.destination as? CategoriesVC else {
+            fatalError("Can't cast destinationVC to IncomingAndExpensesVC")
+        }
+        
+        destinationVC.categoryType = type
     }
 }
+    
+

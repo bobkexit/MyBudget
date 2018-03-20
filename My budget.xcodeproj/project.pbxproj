@@ -28,7 +28,7 @@
 		353B47FE20596FD0008281B0 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47FD20596FD0008281B0 /* Account.swift */; };
 		353B48002059725E008281B0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47FF2059725E008281B0 /* Category.swift */; };
 		353B4802205976ED008281B0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B4801205976ED008281B0 /* Transaction.swift */; };
-		3563FF03205FD28C00B05E82 /* DictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563FF02205FD28C00B05E82 /* DictionaryVC.swift */; };
+		3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563FF02205FD28C00B05E82 /* AccountsVC.swift */; };
 		3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563FF04205FD77900B05E82 /* BaseTableVC.swift */; };
 		3567746F205C0D6E00743FCA /* BaseNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3567746E205C0D6E00743FCA /* BaseNC.swift */; };
 		35677471205C0E0800743FCA /* ReportsNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35677470205C0E0800743FCA /* ReportsNC.swift */; };
@@ -37,6 +37,12 @@
 		35677478205C0FB900743FCA /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35677477205C0FB900743FCA /* BaseVC.swift */; };
 		3567747C205FA8EC00743FCA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3567747B205FA8EC00743FCA /* Constants.swift */; };
 		3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3567747E205FA9D200743FCA /* SettingsCell.swift */; };
+		35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3011206108FE0041F195 /* CategoriesVC.swift */; };
+		35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3015206111230041F195 /* EnumCollectionExt.swift */; };
+		35EE30182061115C0041F195 /* AppDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE30172061115C0041F195 /* AppDictionary.swift */; };
+		35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE30192061188A0041F195 /* CategoryCell.swift */; };
+		35EE301C206118AC0041F195 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE301B206118AC0041F195 /* AccountCell.swift */; };
+		35EE301E206118BA0041F195 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE301D206118BA0041F195 /* BaseCell.swift */; };
 		615AA698DB21FF966812962E /* Pods_My_budget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DEC8F5A04C9758775ECEB6 /* Pods_My_budget.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +70,7 @@
 		353B47FD20596FD0008281B0 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		353B47FF2059725E008281B0 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		353B4801205976ED008281B0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		3563FF02205FD28C00B05E82 /* DictionaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryVC.swift; sourceTree = "<group>"; };
+		3563FF02205FD28C00B05E82 /* AccountsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsVC.swift; sourceTree = "<group>"; };
 		3563FF04205FD77900B05E82 /* BaseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableVC.swift; sourceTree = "<group>"; };
 		3567746E205C0D6E00743FCA /* BaseNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNC.swift; sourceTree = "<group>"; };
 		35677470205C0E0800743FCA /* ReportsNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsNC.swift; sourceTree = "<group>"; };
@@ -73,6 +79,12 @@
 		35677477205C0FB900743FCA /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		3567747B205FA8EC00743FCA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3567747E205FA9D200743FCA /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		35EE3011206108FE0041F195 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
+		35EE3015206111230041F195 /* EnumCollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollectionExt.swift; sourceTree = "<group>"; };
+		35EE30172061115C0041F195 /* AppDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDictionary.swift; sourceTree = "<group>"; };
+		35EE30192061188A0041F195 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		35EE301B206118AC0041F195 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
+		35EE301D206118BA0041F195 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		4888D73EADFA49F664FD0830 /* Pods-My budget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My budget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My budget/Pods-My budget.debug.xcconfig"; sourceTree = "<group>"; };
 		69DEC8F5A04C9758775ECEB6 /* Pods_My_budget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_budget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE55D91628C8CD8C214428C4 /* Pods-My budget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My budget.release.xcconfig"; path = "Pods/Target Support Files/Pods-My budget/Pods-My budget.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +135,7 @@
 		353B47D720593084008281B0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				35EE3013206110DA0041F195 /* Utilities */,
 				3567747A205FA8C500743FCA /* Constants */,
 				353B47DF20594087008281B0 /* Repositories */,
 				353B47DE20593F71008281B0 /* DataModels */,
@@ -185,6 +198,7 @@
 				353B47FD20596FD0008281B0 /* Account.swift */,
 				353B47FF2059725E008281B0 /* Category.swift */,
 				353B4801205976ED008281B0 /* Transaction.swift */,
+				35EE30172061115C0041F195 /* AppDictionary.swift */,
 			);
 			name = Models;
 			path = "New Group";
@@ -230,7 +244,8 @@
 				353B47C7205690B3008281B0 /* ReportsVC.swift */,
 				351E3E89205BDB95004A3414 /* TransactionsVC.swift */,
 				351E3E8B205BDBB4004A3414 /* SettingsVC.swift */,
-				3563FF02205FD28C00B05E82 /* DictionaryVC.swift */,
+				3563FF02205FD28C00B05E82 /* AccountsVC.swift */,
+				35EE3011206108FE0041F195 /* CategoriesVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -246,9 +261,28 @@
 		3567747D205FA9A500743FCA /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				35EE301D206118BA0041F195 /* BaseCell.swift */,
 				3567747E205FA9D200743FCA /* SettingsCell.swift */,
+				35EE30192061188A0041F195 /* CategoryCell.swift */,
+				35EE301B206118AC0041F195 /* AccountCell.swift */,
 			);
 			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		35EE3013206110DA0041F195 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				35EE3014206111120041F195 /* Extentions */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		35EE3014206111120041F195 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				35EE3015206111230041F195 /* EnumCollectionExt.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 		BBE7EB3DA86593D62296FA15 /* Frameworks */ = {
@@ -405,24 +439,30 @@
 				353B47FC20596F28008281B0 /* Currency.swift in Sources */,
 				351E3E8A205BDB95004A3414 /* TransactionsVC.swift in Sources */,
 				35677478205C0FB900743FCA /* BaseVC.swift in Sources */,
+				35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */,
 				353B47E1205940DF008281B0 /* BaseRepository.swift in Sources */,
 				353B4802205976ED008281B0 /* Transaction.swift in Sources */,
+				35EE301E206118BA0041F195 /* BaseCell.swift in Sources */,
 				353B47F6205958B6008281B0 /* RealmCategory.swift in Sources */,
 				351E3E98205BED97004A3414 /* UINavigationBarExt.swift in Sources */,
 				35677476205C0E5400743FCA /* TransactionsNC.swift in Sources */,
 				353B47F820595ACD008281B0 /* RealmTransaction.swift in Sources */,
+				35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */,
 				3567746F205C0D6E00743FCA /* BaseNC.swift in Sources */,
 				353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */,
 				35677471205C0E0800743FCA /* ReportsNC.swift in Sources */,
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
 				353B47FE20596FD0008281B0 /* Account.swift in Sources */,
-				3563FF03205FD28C00B05E82 /* DictionaryVC.swift in Sources */,
+				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
 				3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */,
 				351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */,
 				353B47EC205949BF008281B0 /* RealmCurrency.swift in Sources */,
+				35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */,
 				351E3E88205A3257004A3414 /* RealmRepository.swift in Sources */,
 				353B47EE20594B63008281B0 /* RealmAccount.swift in Sources */,
 				353B47FA20596E2B008281B0 /* CurrencyRepository.swift in Sources */,
+				35EE301C206118AC0041F195 /* AccountCell.swift in Sources */,
+				35EE30182061115C0041F195 /* AppDictionary.swift in Sources */,
 				3567747C205FA8EC00743FCA /* Constants.swift in Sources */,
 				35677474205C0E4100743FCA /* SettingsNC.swift in Sources */,
 				353B47C6205690B3008281B0 /* AppDelegate.swift in Sources */,

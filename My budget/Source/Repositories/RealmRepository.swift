@@ -40,6 +40,10 @@ class RealmRepository<T>: Repository where T: RealmEntity, T: Object, T.EntityTy
         return realm.object(ofType: T.self, forPrimaryKey: id)?.entity
     }
     
+    func get(filteredBy filter: String) -> [T.EntityType] {
+        return realm.objects(T.self).filter(filter).flatMap { $0.entity }
+    }
+    
     func clean(completion: (Error?) -> Void) {
         do {
             try realm.write {

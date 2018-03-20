@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DictionaryVC: BaseTableVC {
+class AccountsVC: BaseTableVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
