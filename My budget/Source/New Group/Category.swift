@@ -8,18 +8,9 @@
 
 import Foundation
 
-class Category: Entity {
-    let categoryId: String?
+struct Category: Entity {
     let name: String
     let type: TypeCategory
-    weak var parent: Category?
-    
-    init(categoryId: String?, name: String, type: TypeCategory, parent: Category?) {
-        self.categoryId = categoryId
-        self.name = name
-        self.type = type
-        self.parent = parent
-    }
 }
 
 extension Category {

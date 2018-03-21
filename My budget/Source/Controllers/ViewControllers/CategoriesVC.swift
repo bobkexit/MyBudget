@@ -16,12 +16,10 @@ class CategoriesVC: BaseTableVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-        
-        print(categoryType)
-        categories = repository.get(filteredBy: "typeId = \(categoryType.rawValue)")
-        print(categories)
+        tableView.register(CategoryCell.self, forCellReuseIdentifier: Constants.UI.TableViewCells.categoryCell)
+    
+        reloadData()
     }
     
     override func setup() {
@@ -30,24 +28,75 @@ class CategoriesVC: BaseTableVC {
     }
     
     func setViewTitle() {
+        
         switch categoryType {
         case .expense:
             title = AppDictionary.expenses.rawValue.capitalized
         case .income:
-             title = AppDictionary.incomings.rawValue.capitalized
+            title = AppDictionary.incomings.rawValue.capitalized
         default:
             return
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return categories.count
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.UI.TableViewCells.categoryCell, for: indexPath) as? CategoryCell else {
+            return UITableViewCell()
+        }
+        
+        let category = categories[indexPath.row]
+        cell.configure(with: category.name)
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Add new item", message: "", preferredStyle: .alert)
+        let createAction = UIAlertAction(title: "Create", style: .default) { (action) in
+            guard let name = textField.text, !name.isEmpty else {
+                return
+            }
+            
+            let category = Category(name: name, type: self.categoryType)
+            self.repository.insert(item: category, completion: { (error) in
+                if let error = error {
+                    print("Unable insert new catergory: \(error)")
+                    return
+                }
+                self.reloadData()
+            })
+        }
+        
+        alert.addTextField { (alertTextField) in
+            //alertTextField.placeholder = "Create new item"
+            textField = alertTextField
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    
+        alert.addAction(createAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func reloadData() {
+        DispatchQueue.main.async {
+    
+            self.categories = self.repository.getAll().filter { $0.type == self.categoryType }
+            
+            self.tableView.reloadData()
+        }
+    }    
 }

@@ -23,7 +23,6 @@
 		353B47EE20594B63008281B0 /* RealmAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47ED20594B63008281B0 /* RealmAccount.swift */; };
 		353B47F6205958B6008281B0 /* RealmCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F5205958B6008281B0 /* RealmCategory.swift */; };
 		353B47F820595ACD008281B0 /* RealmTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F720595ACD008281B0 /* RealmTransaction.swift */; };
-		353B47FA20596E2B008281B0 /* CurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F920596E2B008281B0 /* CurrencyRepository.swift */; };
 		353B47FC20596F28008281B0 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47FB20596F28008281B0 /* Currency.swift */; };
 		353B47FE20596FD0008281B0 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47FD20596FD0008281B0 /* Account.swift */; };
 		353B48002059725E008281B0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47FF2059725E008281B0 /* Category.swift */; };
@@ -65,7 +64,6 @@
 		353B47ED20594B63008281B0 /* RealmAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAccount.swift; sourceTree = "<group>"; };
 		353B47F5205958B6008281B0 /* RealmCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategory.swift; sourceTree = "<group>"; };
 		353B47F720595ACD008281B0 /* RealmTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransaction.swift; sourceTree = "<group>"; };
-		353B47F920596E2B008281B0 /* CurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepository.swift; sourceTree = "<group>"; };
 		353B47FB20596F28008281B0 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		353B47FD20596FD0008281B0 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		353B47FF2059725E008281B0 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				353B47E0205940DF008281B0 /* BaseRepository.swift */,
-				353B47F920596E2B008281B0 /* CurrencyRepository.swift */,
 				351E3E87205A3257004A3414 /* RealmRepository.swift */,
 			);
 			path = Repositories;
@@ -460,7 +457,6 @@
 				35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */,
 				351E3E88205A3257004A3414 /* RealmRepository.swift in Sources */,
 				353B47EE20594B63008281B0 /* RealmAccount.swift in Sources */,
-				353B47FA20596E2B008281B0 /* CurrencyRepository.swift in Sources */,
 				35EE301C206118AC0041F195 /* AccountCell.swift in Sources */,
 				35EE30182061115C0041F195 /* AppDictionary.swift in Sources */,
 				3567747C205FA8EC00743FCA /* Constants.swift in Sources */,

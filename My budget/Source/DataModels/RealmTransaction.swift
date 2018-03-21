@@ -12,6 +12,9 @@ import RealmSwift
 class RealmTransaction: Object, RealmEntity {
     typealias EntityType = Transaction
     
+    lazy var accountRepository = RealmRepository<RealmAccount>()
+    lazy var categoryRepository = RealmRepository<RealmCategory>()
+    
     @objc dynamic var transactionId = UUID().uuidString
     @objc dynamic var date = Date()
     @objc dynamic var account: RealmAccount?
@@ -22,13 +25,26 @@ class RealmTransaction: Object, RealmEntity {
     override static func primaryKey() -> String? {
         return "transactionId"
     }
+    
+    override static func ignoredProperties() -> [String] {
+        return ["accountRepository", "categoryRepository"]
+    }
 
     convenience required init(entity: EntityType) {
         self.init()
         
         self.date = entity.date
-        self.account = RealmAccount(entity: entity.account)
-        self.category = RealmCategory(entity: entity.category)
+        
+        guard let realmAccount = accountRepository.getRaw(byId: entity.account.name) else {
+            fatalError("Realm Error: account \(entity.account.name) not found")
+        }
+        
+        guard let realmCategory = categoryRepository.getRaw(byId: entity.category.name) else {
+            fatalError("Realm Error: category \(entity.category.name) not found")
+        }
+        
+        self.account = realmAccount
+        self.category = realmCategory
         self.sum = entity.sum
         self.comment = entity.comment
         

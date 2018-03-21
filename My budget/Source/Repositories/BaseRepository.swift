@@ -28,7 +28,7 @@ protocol Repository {
     func getAll() -> [EntityType]
     func get(byId id: String) -> EntityType?
     func get(filteredBy filter: String) -> [EntityType]
-    func insert(item: EntityType, update: Bool, completion: @escaping completionHandler)
+    func insert(item: EntityType, completion: @escaping completionHandler)
     func delete(by id: String, completion: @escaping completionHandler)
     func clean(completion: completionHandler)
     

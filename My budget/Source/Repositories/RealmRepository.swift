@@ -18,13 +18,13 @@ class RealmRepository<T>: Repository where T: RealmEntity, T: Object, T.EntityTy
         return T(entity: entity)
     }
     
-    func insert(item: T.EntityType, update: Bool, completion: @escaping Repository.completionHandler) {
+    func insert(item: T.EntityType, completion: @escaping Repository.completionHandler) {
         
         let realmEntity = createInstance(type: T.self, entity: item)
         
         do {
             try realm.write {
-                realm.add(realmEntity, update: update)
+                realm.add(realmEntity, update: false)
                 completion(nil)
             }
         } catch {
@@ -32,12 +32,31 @@ class RealmRepository<T>: Repository where T: RealmEntity, T: Object, T.EntityTy
         }
     }
     
+    func update(item: T.EntityType, completion: @escaping Repository.completionHandler) {
+        
+        let realmEntity = createInstance(type: T.self, entity: item)
+        
+        do {
+            try realm.write {
+                realm.add(realmEntity, update: true)
+                completion(nil)
+            }
+        } catch {
+            completion(error)
+        }
+    }
+    
+    
     func getAll() -> [T.EntityType] {
         return realm.objects(T.self).flatMap { $0.entity }
     }
     
     func get(byId id: String) -> T.EntityType? {
         return realm.object(ofType: T.self, forPrimaryKey: id)?.entity
+    }
+    
+    func getRaw(byId id: String) -> T? {
+        return realm.object(ofType: T.self, forPrimaryKey: id)
     }
     
     func get(filteredBy filter: String) -> [T.EntityType] {

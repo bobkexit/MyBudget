@@ -20,5 +20,14 @@ class CategoryCell: BaseCell {
 
         // Configure the view for the selected state
     }
+    
+    func configure(with text: String) {
+        self.textLabel?.text = text.capitalized
+    }
+    
+    override func setup() {
+        super.setup()
+        self.accessoryType = .none
+    }
 
 }
