@@ -29,114 +29,126 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDF-OP-iUx">
-                            <rect key="frame" x="8" y="36.5" width="311.5" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="c59-jv-dSV"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lak-py-3mo" customClass="CustomTextField" customModule="My_budget" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="65.5" width="328" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="ffL-CN-daC"/>
-                            </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                        </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkf-p9-0RP">
-                            <rect key="frame" x="8" y="103.5" width="311.5" height="20.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h30-cT-QBQ" customClass="CustomTextField" customModule="My_budget" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="132" width="328" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="fsG-mB-4cm"/>
-                            </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zte-4t-TnL">
-                            <rect key="frame" x="8" y="170" width="311.5" height="20.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vDt-RD-yZT" customClass="CustomTextField" customModule="My_budget" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="198.5" width="327.5" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="MQu-ir-sT9"/>
-                            </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
-                        </textField>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="q36-YI-68A">
-                            <rect key="frame" x="0.0" y="245" width="327.5" height="40"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cKt-8m-zwE">
+                            <rect key="frame" x="0.0" y="44" width="327.5" height="241"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coD-3g-SeQ" customClass="RoundedButton" customModule="My_budget" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="160.5" height="40"/>
-                                    <color key="backgroundColor" red="0.4823529412" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" title="Create">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomLeft" value="YES"/>
-                                    </userDefinedRuntimeAttributes>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mwi-Xx-eGJ" customClass="RoundedButton" customModule="My_budget" customModuleProvider="target">
-                                    <rect key="frame" x="160.5" y="0.0" width="167" height="40"/>
-                                    <color key="backgroundColor" red="0.94509803920000002" green="0.34509803919999998" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" title="Cancel">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomRight" value="YES"/>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="S6U-A9-Hl6"/>
-                                    </connections>
-                                </button>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="faZ-U2-pnR">
+                                    <rect key="frame" x="0.0" y="0.0" width="327.5" height="181"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="E8z-nz-0AR">
+                                            <rect key="frame" x="0.0" y="0.0" width="327.5" height="54"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDF-OP-iUx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="327.5" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="c59-jv-dSV"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lak-py-3mo" customClass="CustomTextField" customModule="My_budget" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="24" width="327.5" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="ffL-CN-daC"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                </textField>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="sLE-Hf-MrZ">
+                                            <rect key="frame" x="0.0" y="64" width="327.5" height="53.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkf-p9-0RP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="327.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h30-cT-QBQ" customClass="CustomTextField" customModule="My_budget" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="23.5" width="327.5" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="fsG-mB-4cm"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="vfu-XW-fZD">
+                                            <rect key="frame" x="0.0" y="127.5" width="327.5" height="53.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Balance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zte-4t-TnL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="327.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vDt-RD-yZT" customClass="CustomTextField" customModule="My_budget" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="23.5" width="327.5" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="MQu-ir-sT9"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                                </textField>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="E8z-nz-0AR" secondAttribute="trailing" id="ARC-pr-Yt9"/>
+                                        <constraint firstItem="E8z-nz-0AR" firstAttribute="top" secondItem="faZ-U2-pnR" secondAttribute="top" id="F3y-nm-fwW"/>
+                                        <constraint firstItem="E8z-nz-0AR" firstAttribute="leading" secondItem="faZ-U2-pnR" secondAttribute="leading" id="dtU-BW-ZdJ"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="q36-YI-68A">
+                                    <rect key="frame" x="0.0" y="201" width="327.5" height="40"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coD-3g-SeQ" customClass="RoundedButton" customModule="My_budget" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="160.5" height="40"/>
+                                            <color key="backgroundColor" red="0.4823529412" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="Create">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="bottomLeft" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mwi-Xx-eGJ" customClass="RoundedButton" customModule="My_budget" customModuleProvider="target">
+                                            <rect key="frame" x="160.5" y="0.0" width="167" height="40"/>
+                                            <color key="backgroundColor" red="0.94509803920000002" green="0.34509803919999998" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="Cancel">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="bottomRight" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="S6U-A9-Hl6"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="3bJ-Kv-xEz"/>
+                                        <constraint firstItem="mwi-Xx-eGJ" firstAttribute="height" secondItem="coD-3g-SeQ" secondAttribute="height" id="tSj-xM-AiW"/>
+                                    </constraints>
+                                </stackView>
                             </subviews>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="3bJ-Kv-xEz"/>
-                                <constraint firstItem="mwi-Xx-eGJ" firstAttribute="height" secondItem="coD-3g-SeQ" secondAttribute="height" id="tSj-xM-AiW"/>
-                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.2196078431372549" green="0.2196078431372549" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="q36-YI-68A" secondAttribute="trailing" id="3Dr-fq-Cuh"/>
-                        <constraint firstItem="zDF-OP-iUx" firstAttribute="top" secondItem="7Iu-32-QSp" secondAttribute="bottom" constant="8" id="5Eb-9r-Cml"/>
-                        <constraint firstItem="Lak-py-3mo" firstAttribute="leading" secondItem="3Yn-rg-P1i" secondAttribute="leading" id="B2H-RH-iKa"/>
-                        <constraint firstAttribute="trailing" secondItem="vkf-p9-0RP" secondAttribute="trailing" constant="8" id="Bh9-Qs-PXl"/>
-                        <constraint firstItem="q36-YI-68A" firstAttribute="leading" secondItem="3Yn-rg-P1i" secondAttribute="leading" id="E51-Jj-kyF"/>
-                        <constraint firstItem="zte-4t-TnL" firstAttribute="leading" secondItem="3Yn-rg-P1i" secondAttribute="leading" constant="8" id="Gic-k5-bjC"/>
                         <constraint firstItem="7Iu-32-QSp" firstAttribute="leading" secondItem="3Yn-rg-P1i" secondAttribute="leading" id="HC9-ED-Jua"/>
-                        <constraint firstItem="vDt-RD-yZT" firstAttribute="top" secondItem="zte-4t-TnL" secondAttribute="bottom" constant="8" id="If8-kt-XXd"/>
-                        <constraint firstAttribute="trailing" secondItem="vDt-RD-yZT" secondAttribute="trailing" id="IqE-Ub-OCb"/>
-                        <constraint firstItem="vDt-RD-yZT" firstAttribute="leading" secondItem="3Yn-rg-P1i" secondAttribute="leading" id="NQM-rY-O6O"/>
+                        <constraint firstItem="cKt-8m-zwE" firstAttribute="leading" secondItem="3Yn-rg-P1i" secondAttribute="leading" id="Mwj-NK-jxb"/>
                         <constraint firstAttribute="height" constant="285" id="SCj-CO-MJg"/>
                         <constraint firstAttribute="trailing" secondItem="7Iu-32-QSp" secondAttribute="trailing" id="STB-jt-07b"/>
-                        <constraint firstItem="vkf-p9-0RP" firstAttribute="top" secondItem="Lak-py-3mo" secondAttribute="bottom" constant="8" id="XWT-qt-rE5"/>
-                        <constraint firstAttribute="trailing" secondItem="zDF-OP-iUx" secondAttribute="trailing" constant="8" id="aDK-LN-AHa"/>
-                        <constraint firstItem="Lak-py-3mo" firstAttribute="top" secondItem="zDF-OP-iUx" secondAttribute="bottom" constant="8" id="ah0-4P-9mP"/>
-                        <constraint firstItem="h30-cT-QBQ" firstAttribute="leading" secondItem="3Yn-rg-P1i" secondAttribute="leading" id="dKi-73-OwL"/>
-                        <constraint firstAttribute="bottom" secondItem="q36-YI-68A" secondAttribute="bottom" id="edz-uZ-xq2"/>
-                        <constraint firstItem="h30-cT-QBQ" firstAttribute="top" secondItem="vkf-p9-0RP" secondAttribute="bottom" constant="8" id="hHC-tU-YHY"/>
-                        <constraint firstItem="zte-4t-TnL" firstAttribute="top" secondItem="h30-cT-QBQ" secondAttribute="bottom" constant="8" id="ifM-Zg-KAE"/>
+                        <constraint firstAttribute="trailing" secondItem="cKt-8m-zwE" secondAttribute="trailing" id="hvk-9Y-X3D"/>
                         <constraint firstItem="7Iu-32-QSp" firstAttribute="top" secondItem="3Yn-rg-P1i" secondAttribute="top" constant="8" id="ipw-7f-MFQ"/>
-                        <constraint firstItem="zDF-OP-iUx" firstAttribute="leading" secondItem="3Yn-rg-P1i" secondAttribute="leading" constant="8" id="kv1-AJ-Hkx"/>
-                        <constraint firstAttribute="trailing" secondItem="h30-cT-QBQ" secondAttribute="trailing" id="qnj-7K-aRx"/>
-                        <constraint firstAttribute="trailing" secondItem="Lak-py-3mo" secondAttribute="trailing" id="vSJ-3Q-RWR"/>
-                        <constraint firstItem="vkf-p9-0RP" firstAttribute="leading" secondItem="3Yn-rg-P1i" secondAttribute="leading" constant="8" id="xPY-fm-oFe"/>
-                        <constraint firstAttribute="trailing" secondItem="zte-4t-TnL" secondAttribute="trailing" constant="8" id="yJm-2n-ysu"/>
+                        <constraint firstAttribute="bottom" secondItem="cKt-8m-zwE" secondAttribute="bottom" id="l4Z-0y-Lri"/>
                     </constraints>
                 </view>
             </subviews>
