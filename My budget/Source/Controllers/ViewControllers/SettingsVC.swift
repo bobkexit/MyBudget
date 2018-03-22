@@ -66,7 +66,7 @@ class SettingsVC: BaseTableVC {
         }
     }
     
-    func set(categoryType type:  Category.TypeCategory, to segue: UIStoryboardSegue) {
+    func set(categoryType type:  RealmCategory.CategoryType, to segue: UIStoryboardSegue) {
         
         if segue.identifier != Constants.Segues.toCategoriesVC {
             return

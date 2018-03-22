@@ -21,5 +21,9 @@ struct Constants {
         static let toAccountsVC = "toAccountsVC"
         static let toCategoriesVC = "toCategoriesVC"
     }
+    
+    struct UserSettings {
+        static let firstLaunch = "FIRST_LAUNCH"
+    }
 }
 

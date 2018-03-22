@@ -29,20 +29,24 @@ protocol Repository {
     func get(byId id: String) -> EntityType?
     func get(filteredBy filter: String) -> [EntityType]
     func insert(item: EntityType, completion: @escaping completionHandler)
-    func delete(by id: String, completion: @escaping completionHandler)
+    func delete(item: EntityType, completion: @escaping completionHandler)
     func clean(completion: completionHandler)
     
 }
 
-protocol BaseRepository {
-    associatedtype T
-    
-    typealias completionHandler = (_ error: Error?) -> Void
-    
-    func getAll() -> [T]
-    func getById(id: String) -> T?
-    func create(item: T, completion: @escaping completionHandler)
-    func upadte(item: T, completion: @escaping completionHandler)
-    func delete(by id: String, completion: @escaping completionHandler)
-    func clean(completion: completionHandler)
-}
+//protocol BaseRepository {
+//    associatedtype T
+//    
+//    typealias completionHandler = (_ error: Error?) -> Void
+//    
+//    func getAll() -> [T]
+//    func getById(id: String) -> T?
+//    func create(item: T, completion: @escaping completionHandler)
+//    func upadte(item: T, completion: @escaping completionHandler)
+//    func delete(by id: String, completion: @escaping completionHandler)
+//    func clean(completion: completionHandler)
+//}
+
+
+
+

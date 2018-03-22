@@ -9,40 +9,32 @@
 import Foundation
 import RealmSwift
 
-class RealmAccount: Object, RealmEntity {
-    typealias EntityType = Account
+class RealmAccount: Object {
     
-    lazy var currencyRepository = RealmRepository<RealmCurrency>()
-    
+    @objc dynamic var accountId = UUID().uuidString
     @objc dynamic var name = ""
-    @objc dynamic var typeId = 0
+    @objc private dynamic var accountTypeId = 0
     @objc dynamic var currency: RealmCurrency?
     
-    override static func ignoredProperties() -> [String] {
-        return ["currencyRepository"]
+    var accountType: AccountType {
+        get {
+            return AccountType(rawValue: accountTypeId)!
+        }
+        set {
+            accountTypeId = newValue.rawValue
+        }
     }
     
-    convenience required init(entity: EntityType) {
-        self.init()
-        self.name = entity.name
-        self.typeId = entity.type.rawValue
-        
-        guard let realmCurrency = currencyRepository.getRaw(byId: entity.currency.code) else {
-            fatalError("Realm Error: account \(entity.currency.code) not found")
-        }
-        
-        self.currency = realmCurrency
+    override static func primaryKey() -> String? {
+        return "accountId"
     }
     
-    var entity: Account {
-        guard let type = Account.TypeAccount(rawValue: typeId) else {
-            fatalError("Type account not defined")
-        }
-        guard let currency = currency?.entity else {
-            fatalError("Currency not defined")
-        }
-        
-        return Account(name: name, currency: currency, type: type)
-    }
+}
 
+extension RealmAccount {
+    enum AccountType: Int {
+        case paymentCard = 1
+        case cash = 2
+        case web = 3
+    }
 }

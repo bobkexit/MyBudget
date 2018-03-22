@@ -9,28 +9,41 @@
 import Foundation
 import RealmSwift
 
-class RealmCategory: Object, RealmEntity {
-    typealias EntityType = Category
+class RealmCategory: Object {
     
+    @objc dynamic var categoryId = UUID().uuidString
     @objc dynamic var name = ""
-    @objc dynamic var typeId = 0
+    @objc private dynamic var categoryTypeId = 0
     
-    convenience required init(entity: EntityType) {
-        self.init()
-        
-        self.name = entity.name
-        self.typeId = entity.type.rawValue
-        
+    override static func primaryKey() -> String? {
+        return "categoryId"
     }
-
-    var entity: Category {
-        guard let type = Category.TypeCategory(rawValue: typeId) else {
-            fatalError("Type category is not defined")
+    
+//    @objc dynamic var parentCategory: RealmCategory?
+//    let subCategories = LinkingObjects(fromType: RealmCategory.self, property: "parentCategory")
+    
+    var categoryType: CategoryType {
+        get {
+            return CategoryType(rawValue: categoryTypeId)!
         }
-        
-        return Category(name: name, type: type)
+        set {
+            categoryTypeId = newValue.rawValue
+        }
     }
     
+    convenience init(name: String, categoryType: CategoryType ) {
+        self.init()
+        self.name = name
+        self.categoryType = categoryType
+    }
 }
+
+extension RealmCategory {
+    enum CategoryType: Int {
+        case income = 1
+        case expense = 2
+    }
+}
+
 
 

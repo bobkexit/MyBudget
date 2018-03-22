@@ -9,19 +9,17 @@
 import Foundation
 import RealmSwift
 
-class RealmCurrency: Object, RealmEntity {
-    typealias EntityType = Currency
-    
+class RealmCurrency: Object {
     @objc dynamic var code = ""
     @objc dynamic var symbol = ""
     
-    convenience required init(entity: EntityType) {
-        self.init()
-        self.code = entity.code
-        self.symbol = entity.symbol
+    override class func primaryKey() -> String? {
+        return "code"
     }
     
-    var entity: Currency {
-        return Currency(code: code, symbol: symbol)
+    convenience init(code: String, symbol: String) {
+        self.init()
+        self.code = code
+        self.symbol = symbol
     }
 }

@@ -9,22 +9,15 @@
 import Foundation
 import RealmSwift
 
-class RealmRepository<T>: Repository where T: RealmEntity, T: Object, T.EntityType: Entity {
+class RealmRepository<T>: Repository where T: Object {
     typealias RealmEntityType = T
     
     private let realm = try! Realm()
     
-    private func createInstance<T:RealmEntity>(type: T.Type, entity: T.EntityType) -> T {
-        return T(entity: entity)
-    }
-    
-    func insert(item: T.EntityType, completion: @escaping Repository.completionHandler) {
-        
-        let realmEntity = createInstance(type: T.self, entity: item)
-        
+    func insert(item: T, completion: @escaping Repository.completionHandler) {
         do {
             try realm.write {
-                realm.add(realmEntity, update: false)
+                realm.add(item, update: false)
                 completion(nil)
             }
         } catch {
@@ -32,35 +25,27 @@ class RealmRepository<T>: Repository where T: RealmEntity, T: Object, T.EntityTy
         }
     }
     
-    func update(item: T.EntityType, completion: @escaping Repository.completionHandler) {
-        
-        let realmEntity = createInstance(type: T.self, entity: item)
-        
+    func update(item: T, completion: @escaping Repository.completionHandler) {
         do {
             try realm.write {
-                realm.add(realmEntity, update: true)
+                realm.add(item, update: true)
                 completion(nil)
             }
         } catch {
             completion(error)
         }
     }
-    
-    
-    func getAll() -> [T.EntityType] {
-        return realm.objects(T.self).flatMap { $0.entity }
+
+    func getAll() -> [T] {
+        return realm.objects(T.self).flatMap { $0 }
     }
     
-    func get(byId id: String) -> T.EntityType? {
-        return realm.object(ofType: T.self, forPrimaryKey: id)?.entity
-    }
-    
-    func getRaw(byId id: String) -> T? {
+    func get(byId id: String) -> T? {
         return realm.object(ofType: T.self, forPrimaryKey: id)
     }
     
-    func get(filteredBy filter: String) -> [T.EntityType] {
-        return realm.objects(T.self).filter(filter).flatMap { $0.entity }
+    func get(filteredBy filter: String) -> [T] {
+        return realm.objects(T.self).filter(filter).flatMap { $0 }
     }
     
     func clean(completion: (Error?) -> Void) {
@@ -74,11 +59,7 @@ class RealmRepository<T>: Repository where T: RealmEntity, T: Object, T.EntityTy
         }
     }
     
-    func delete(by id: String, completion: @escaping Repository.completionHandler) {
-        guard let item = realm.object(ofType: T.self, forPrimaryKey: id) else {
-            return
-        }
-        
+    func delete(item: T, completion: @escaping Repository.completionHandler) {
         do {
             try realm.write {
                 realm.delete(item)

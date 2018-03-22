@@ -10,15 +10,12 @@ import UIKit
 
 class CategoriesVC: BaseTableVC {
     
-    var categoryType: Category.TypeCategory!
+    var categoryType: RealmCategory.CategoryType!
     var repository = RealmRepository<RealmCategory>()
-    var categories = [Category]()
+    var categories = [RealmCategory]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.register(CategoryCell.self, forCellReuseIdentifier: Constants.UI.TableViewCells.categoryCell)
-    
         reloadData()
     }
     
@@ -67,7 +64,8 @@ class CategoriesVC: BaseTableVC {
                 return
             }
             
-            let category = Category(name: name, type: self.categoryType)
+            let category = RealmCategory(name: name, categoryType: self.categoryType)
+           
             self.repository.insert(item: category, completion: { (error) in
                 if let error = error {
                     print("Unable insert new catergory: \(error)")
@@ -93,9 +91,7 @@ class CategoriesVC: BaseTableVC {
     
     func reloadData() {
         DispatchQueue.main.async {
-    
-            self.categories = self.repository.getAll().filter { $0.type == self.categoryType }
-            
+            self.categories = self.repository.getAll().filter { $0.categoryType == self.categoryType }
             self.tableView.reloadData()
         }
     }    
