@@ -25,5 +25,18 @@ class RoundedView: UIView {
     
     func customizeView() {
         self.layer.cornerRadius = cornerRadius
+        dropShadow()
     }
+    
+    func dropShadow(scale: Bool = true) {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 1
+        layer.shadowOffset = CGSize.zero
+        layer.shadowRadius = 1
+        
+        //layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+    
 }

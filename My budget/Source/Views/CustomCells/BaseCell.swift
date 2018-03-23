@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class BaseCell: UITableViewCell {
 
@@ -36,5 +37,8 @@ class BaseCell: UITableViewCell {
         self.accessoryType = .disclosureIndicator
         self.textLabel?.textColor = UIColor.white
     }
-
+    
+    func configureCell(_ data: Object) {
+        
+    }
 }

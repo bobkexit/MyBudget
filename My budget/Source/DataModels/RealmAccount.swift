@@ -29,12 +29,29 @@ class RealmAccount: Object {
         return "accountId"
     }
     
+    convenience init(name: String, accountType: RealmAccount.AccountType, currency: RealmCurrency) {
+        self.init()
+        self.name = name
+        self.accountType = accountType
+        self.currency = currency
+    }
 }
 
 extension RealmAccount {
-    enum AccountType: Int {
+    enum AccountType: Int, EnumCollection, CustomStringConvertible {
         case paymentCard = 1
         case cash = 2
         case web = 3
+        
+        var description: String {
+            switch self {
+            case .paymentCard:
+                return "payment card"
+            case .cash:
+                return "cash"
+            case .web:
+                return "web"
+            }
+        }
     }
 }
