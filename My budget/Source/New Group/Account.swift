@@ -19,5 +19,6 @@ extension Account {
         case paymentCard = 1
         case cash = 2
         case web = 3
+    
     }
 }

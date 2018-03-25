@@ -15,17 +15,10 @@ class AccountCell: BaseCell {
     @IBOutlet weak var accountType: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     
-    override func configureCell(_ data: Object) {
-        guard let account = data as? RealmAccount else {
-            return
-        }
-        
+    func configureCell(account: RealmAccount, balance: Double? = nil) {
+       
         accountTitle.text = account.name
         accountType.text = account.accountType.description
-    }
-    
-    func configureCell(account: RealmAccount, balance: Double? = nil) {
-        self.configureCell(account)
         
         if let balance = balance {
             balanceLabel.text = "\(balance) \(account.currency?.symbol ?? ""))"
@@ -34,19 +27,8 @@ class AccountCell: BaseCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
-    override func setup() {
-        super.setup()
+    override func setupView() {
+        super.setupView()
         accessoryType = .none
     }
 }

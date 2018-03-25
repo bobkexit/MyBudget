@@ -33,7 +33,8 @@ class SettingsVC: BaseTableVC {
             return UITableViewCell()
         }
         
-        cell.configure(with: settings[indexPath.row].rawValue)
+        cell.configure(settings[indexPath.row].rawValue)
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }

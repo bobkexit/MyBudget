@@ -14,12 +14,12 @@ protocol AddAccountVCDelegate {
 
 class AddAccountVC: UIViewController {
 
-    @IBOutlet weak var roundedView: RoundedView!
+    @IBOutlet weak var roundedView: CustomizedView!
     
-    @IBOutlet weak var titleTextField: CustomTextField!
-    @IBOutlet weak var accountTypeTextField: CustomTextField!
-    @IBOutlet weak var currencyTextField: CustomTextField!
-    @IBOutlet weak var balanceTextField: CustomTextField!
+    @IBOutlet weak var titleTextField: CustomizedTextField!
+    @IBOutlet weak var accountTypeTextField: CustomizedTextField!
+    @IBOutlet weak var currencyTextField: CustomizedTextField!
+    @IBOutlet weak var balanceTextField: CustomizedTextField!
     
     fileprivate let accountTypePicker = UIPickerView()
     fileprivate let currencyPicker = UIPickerView()

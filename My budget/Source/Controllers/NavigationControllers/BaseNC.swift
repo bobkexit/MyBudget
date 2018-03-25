@@ -18,13 +18,13 @@ class BaseNC: UINavigationController {
     
     func setupView() {
         // Colors
-        navigationBar.tintColor = UIColor.white
-        navigationBar.barTintColor = UIColor.clear
-        navigationBar.isTranslucent = true
+        //navigationBar.tintColor = UIColor.white
+        //navigationBar.barTintColor = UIColor.clear
+        //navigationBar.isTranslucent = true
         
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         
-        dropShadow()
+        //dropShadow()
     }
     
     func dropShadow() {

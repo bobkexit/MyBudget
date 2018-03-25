@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsNC: BaseNC {
+class SettingsNC: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

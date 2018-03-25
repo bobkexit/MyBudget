@@ -44,10 +44,9 @@ class AccountsVC: BaseTableVC {
         
         let account = accounts[indexPath.row]
         cell.configureCell(account: account, balance: nil)
-        
+    
         return cell
-    }
-
+    }    
 }
 
 extension AccountsVC: AddAccountVCDelegate {

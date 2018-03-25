@@ -7,25 +7,22 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CategoriesVC: BaseTableVC {
     
     var categoryType: RealmCategory.CategoryType!
-    var repository = RealmRepository<RealmCategory>()
-    var categories = [RealmCategory]()
+    var categories: Results<RealmCategory>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //DataManager.shared.removeAllData(of: RealmCategory.self)
+        setViewTitle()
         reloadData()
     }
     
-    override func setup() {
-        super.setup()
-        setViewTitle()
-    }
-    
     func setViewTitle() {
-        
         switch categoryType {
         case .expense:
             title = AppDictionary.expenses.rawValue.capitalized
@@ -46,7 +43,8 @@ class CategoriesVC: BaseTableVC {
         }
         
         let category = categories[indexPath.row]
-        cell.configure(with: category.name)
+        cell.delegate = self
+        cell.configureCell(category)
         
         return cell
     }
@@ -56,43 +54,47 @@ class CategoriesVC: BaseTableVC {
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
-        var textField = UITextField()
         
-        let alert = UIAlertController(title: "Add new item", message: "", preferredStyle: .alert)
-        let createAction = UIAlertAction(title: "Create", style: .default) { (action) in
-            guard let name = textField.text, !name.isEmpty else {
-                return
-            }
-            
-            let category = RealmCategory(name: name, categoryType: self.categoryType)
-           
-            self.repository.insert(item: category, completion: { (error) in
-                if let error = error {
-                    print("Unable insert new catergory: \(error)")
-                    return
-                }
-                self.reloadData()
-            })
+        let newCategory =   RealmCategory(name: "", categoryType: categoryType)
+        DataManager.shared.createOrUpdate(data: newCategory)
+        reloadData()
+        
+        guard let visibleCells = tableView.visibleCells as? [CategoryCell] else {
+            fatalError("Can't get visible category cells")
         }
         
-        alert.addTextField { (alertTextField) in
-            //alertTextField.placeholder = "Create new item"
-            textField = alertTextField
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-    
-        alert.addAction(createAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true, completion: nil)
-        
+        let cell = visibleCells.first(where: {$0.category.categoryId == newCategory.categoryId })
+        cell?.categoryName.becomeFirstResponder()
     }
     
     func reloadData() {
-        DispatchQueue.main.async {
-            self.categories = self.repository.getAll().filter { $0.categoryType == self.categoryType }
-            self.tableView.reloadData()
+        let data = DataManager.shared.getData(of: RealmCategory.self).filter("categoryTypeId = \(self.categoryType.rawValue)")//.sorted(byKeyPath: "name")
+        
+        self.categories = data
+        self.tableView.reloadData()
+    }
+}
+
+extension CategoriesVC: UITableViewCellDelgate {
+    func cellDidBeginEditing(editingCell: CategoryCell) {
+        
+    }
+    
+    func cellDidEndEditing(editingCell: CategoryCell) {
+        
+        guard let indexPath = tableView.indexPath(for: editingCell) else { return }
+        
+        if let categoryName = editingCell.categoryName.text, !categoryName.isEmpty {
+            
+            let updatedCategory = RealmCategory()
+            updatedCategory.categoryId = categories[indexPath.row].categoryId
+            updatedCategory.name = categoryName.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
+            updatedCategory.categoryType = categoryType
+            
+            DataManager.shared.createOrUpdate(data: updatedCategory)
+        } else {
+            DataManager.shared.remove(data: categories[indexPath.row])
         }
-    }    
+        self.reloadData()
+    }
 }

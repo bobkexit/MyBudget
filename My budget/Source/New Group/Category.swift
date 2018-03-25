@@ -9,13 +9,6 @@
 import Foundation
 
 struct Category: Entity {
-    let name: String
-    let type: TypeCategory
-}
-
-extension Category {
-    enum TypeCategory: Int {
-        case income = 1
-        case expense = 2
-    }
+    var id: String
+    var name: String
 }

@@ -22,7 +22,7 @@ class DataService {
     
     func preinstallData()  {
         loadCurrencies()
-        userDefaults.set(true, forKey: Constants.UserSettings.firstLaunch)
+        userDefaults.set(true, forKey: Constants.UserDefaults.firstLaunch)
     }
     
     private func loadCurrencies() {

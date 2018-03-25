@@ -14,6 +14,7 @@ class BaseVC: UIViewController {
         super.viewDidLoad()
         
         title = tabBarController?.tabBar.selectedItem?.title
+        
         setupView()
     }
     

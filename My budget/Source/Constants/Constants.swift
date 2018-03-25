@@ -17,12 +17,18 @@ struct Constants {
         }
     }
     
+    struct Identifiers {
+        static let settingsCell = "SettingsCell"
+        static let accountCell = "AccountCell"
+        static let categoryCell = "CategoryCell"
+    }
+    
     struct Segues {
         static let toAccountsVC = "toAccountsVC"
         static let toCategoriesVC = "toCategoriesVC"
     }
     
-    struct UserSettings {
+    struct UserDefaults {
         static let firstLaunch = "FIRST_LAUNCH"
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class RoundedButton: UIButton {
+class CustomizedButton: UIButton {
 
     @IBInspectable
     var cornerRadius: CGFloat = 8 {
@@ -55,20 +55,18 @@ class RoundedButton: UIButton {
         customizeView()
     }
     
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         customizeView()
     }
     
-    func customizeView() {
-        
+    fileprivate func customizeView() {
         let corners = getCorners()
         roundCorners(corners, radius: cornerRadius)
         self.clipsToBounds = true
     }
     
-    func getCorners() -> UIRectCorner {
+    fileprivate func getCorners() -> UIRectCorner {
         
         var corners = UIRectCorner.ArrayLiteralElement()
         
@@ -89,13 +87,5 @@ class RoundedButton: UIButton {
         }
         
         return corners
-    }
-
-    func roundCorners(_ corners:UIRectCorner, radius: CGFloat) {
-        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        self.layer.mask = mask
-        self.layer.masksToBounds = true
-    }
+    }   
 }
