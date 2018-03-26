@@ -50,14 +50,14 @@ extension UIView {
         self.layer.masksToBounds = true
     }
     
-    func applyGradient(colors: [UIColor], bounds: CGRect, replacing prior: CALayer?) -> CALayer {
-        let gradientLayer = CAGradientLayer(frame: bounds, colors: colors)
-        if let prior = prior {
-            self.layer.replaceSublayer(prior, with: gradientLayer)
-        } else {
-            self.layer.insertSublayer(gradientLayer, at: 0)
-        }
-        return gradientLayer
-    }
+//    func applyGradient(colors: [UIColor], bounds: CGRect, replacing prior: CALayer?) -> CALayer {
+//        let gradientLayer = CAGradientLayer(frame: bounds, colors: colors)
+//        if let prior = prior {
+//            self.layer.replaceSublayer(prior, with: gradientLayer)
+//        } else {
+//            self.layer.insertSublayer(gradientLayer, at: 0)
+//        }
+//        return gradientLayer
+//    }
 }
 

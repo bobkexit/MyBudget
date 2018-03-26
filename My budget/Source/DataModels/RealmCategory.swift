@@ -13,7 +13,7 @@ class RealmCategory: Object {
     
     @objc dynamic var categoryId = UUID().uuidString
     @objc dynamic var name = ""
-    @objc private dynamic var categoryTypeId = 0
+    @objc dynamic var categoryTypeId = 0
     
     override static func primaryKey() -> String? {
         return "categoryId"
@@ -22,26 +22,14 @@ class RealmCategory: Object {
 //    @objc dynamic var parentCategory: RealmCategory?
 //    let subCategories = LinkingObjects(fromType: RealmCategory.self, property: "parentCategory")
     
-    var categoryType: CategoryType {
-        get {
-            return CategoryType(rawValue: categoryTypeId)!
-        }
-        set {
-            categoryTypeId = newValue.rawValue
-        }
-    }
-    
-    convenience init(name: String, categoryType: CategoryType ) {
+    convenience init(name: String, categoryType: CategoryType, categoryId: String? = nil ) {
         self.init()
         self.name = name
-        self.categoryType = categoryType
-    }
-}
-
-extension RealmCategory {
-    enum CategoryType: Int {
-        case income = 1
-        case expense = 2
+        self.categoryTypeId = categoryType.rawValue
+        
+        if let categoryId = categoryId {
+            self.categoryId = categoryId
+        }
     }
 }
 

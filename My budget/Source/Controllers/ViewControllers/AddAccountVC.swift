@@ -24,13 +24,10 @@ class AddAccountVC: UIViewController {
     fileprivate let accountTypePicker = UIPickerView()
     fileprivate let currencyPicker = UIPickerView()
     
-    fileprivate let currencyRepository = RealmRepository<RealmCurrency>()
-    fileprivate let accountRepository = RealmRepository<RealmAccount>()
+    fileprivate let currencies = DataManager.shared.getData(of: RealmCurrency.self)
+    fileprivate let accountTypes = Array(AccountType.cases())
     
-    fileprivate var currencies: [RealmCurrency]!
-    fileprivate var accountTypes: [RealmAccount.AccountType]!
-    
-    fileprivate var selectedAccountType: RealmAccount.AccountType?
+    fileprivate var selectedAccountType: AccountType?
     fileprivate var selectedCurrency: RealmCurrency?
     
     var delagate: AddAccountVCDelegate?
@@ -38,9 +35,6 @@ class AddAccountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        
-        currencies = currencyRepository.getAll()
-        accountTypes = Array(RealmAccount.AccountType.cases())
     }
 
     func setup() {
@@ -62,27 +56,43 @@ class AddAccountVC: UIViewController {
             return
         }
         
-        let newAccount = RealmAccount(name: titleTextField.text!, accountType: selectedAccountType!, currency: selectedCurrency!)
-        accountRepository.insert(item: newAccount) { (error) in
-            self.delagate?.newAccountHasBeenCreated()
-            self.dismiss(animated: true, completion: nil)
-        }
+        let accountName = titleTextField.text!.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        let account = RealmAccount(name: accountName, accountType: selectedAccountType!, currency: selectedCurrency!)
+        DataManager.shared.createOrUpdate(data: account)
+        delagate?.newAccountHasBeenCreated()
+        dismiss(animated: true, completion: nil)
     }
     
     func isValidData() -> Bool {
-        guard let accountTitle = titleTextField.text, !accountTitle.isEmpty else {
-            return false
+        var isValid = true
+        var invalidFields = [UITextField]()
+        
+        let emptyTitle = titleTextField.text?.isEmpty ?? true
+        
+        if emptyTitle   {
+            //titleTextField.backgroundColor = Constants.Colors.error
+            invalidFields.append(titleTextField)
+            isValid = false
         }
         
-        guard let _ = selectedCurrency else {
-            return false
+        if selectedCurrency == nil  {
+            invalidFields.append(currencyTextField)
+            isValid = false
         }
         
-        guard let _ = selectedAccountType else {
-            return false
+        if selectedAccountType == nil  {
+            invalidFields.append(accountTypeTextField)
+            isValid = false
         }
         
-        return true
+        invalidFields.forEach { textfield in
+            UIView.animate(withDuration: 1, animations: {
+                textfield.backgroundColor = Constants.Colors.error
+            })
+        }
+        
+        return isValid
     }
     
     func createToolbar() {
@@ -163,7 +173,7 @@ extension AddAccountVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == accountTypePicker {
             selectedAccountType = accountTypes[row]
-            accountTypeTextField.text = selectedAccountType?.description.capitalized
+            accountTypeTextField.text = selectedAccountType?.description
         } else if pickerView == currencyPicker {
             selectedCurrency = currencies[row]
             currencyTextField.text = selectedCurrency?.code

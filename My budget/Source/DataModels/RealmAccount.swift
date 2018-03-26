@@ -13,45 +13,29 @@ class RealmAccount: Object {
     
     @objc dynamic var accountId = UUID().uuidString
     @objc dynamic var name = ""
-    @objc private dynamic var accountTypeId = 0
+    @objc dynamic var accountTypeId = 0
     @objc dynamic var currency: RealmCurrency?
     
-    var accountType: AccountType {
-        get {
-            return AccountType(rawValue: accountTypeId)!
-        }
-        set {
-            accountTypeId = newValue.rawValue
-        }
-    }
     
     override static func primaryKey() -> String? {
         return "accountId"
     }
     
-    convenience init(name: String, accountType: RealmAccount.AccountType, currency: RealmCurrency) {
+    convenience init(name: String, accountType: AccountType, currency: RealmCurrency) {
         self.init()
         self.name = name
-        self.accountType = accountType
+        self.accountTypeId = accountType.rawValue
         self.currency = currency
     }
-}
-
-extension RealmAccount {
-    enum AccountType: Int, EnumCollection, CustomStringConvertible {
-        case paymentCard = 1
-        case cash = 2
-        case web = 3
+    
+    convenience init(name: String, accountTypeId: Int, currency: RealmCurrency, accountId: String?) {
+        self.init()
+        self.name = name
+        self.accountTypeId = accountTypeId
+        self.currency = currency
         
-        var description: String {
-            switch self {
-            case .paymentCard:
-                return "payment card"
-            case .cash:
-                return "cash"
-            case .web:
-                return "web"
-            }
+        if let accountId = accountId {
+            self.accountId = accountId
         }
     }
 }

@@ -8,12 +8,6 @@
 
 import UIKit
 
-//protocol CategoryCellDelgate {
-//    //func categoryDeleted(category: RealmCategory)
-//    func cellDidBeginEditing(editingCell: CategoryCell)
-//    func cellDidEndEditing(editingCell: CategoryCell)
-//}
-
 class CategoryCell: BaseCell {
     
     @IBOutlet weak var categoryName: UITextField!
@@ -24,15 +18,6 @@ class CategoryCell: BaseCell {
         setup()
         self.category = data
         self.categoryName.text = data.name
-    }
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
     
     fileprivate func setup() {
@@ -50,7 +35,7 @@ extension CategoryCell: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        delegate?.cellDidBeginEditing(editingCell: self)
+         delegate?.cellDidBeginEditing(editingCell: self)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

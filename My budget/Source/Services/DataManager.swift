@@ -32,6 +32,16 @@ final class DataManager {
         }
     }
     
+    func createOrUpdate(data: [Object]) {
+        do {
+            try realm.write {
+                realm.add(data, update: true)
+            }
+        } catch  {
+            print(error as Any)
+        }
+    }
+    
     func remove(data: Object) {
         do {
             try realm.write {

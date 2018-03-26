@@ -10,27 +10,10 @@ import UIKit
 import RealmSwift
 
 protocol UITableViewCellDelgate {
-    func cellDidBeginEditing(editingCell: CategoryCell)
-    func cellDidEndEditing(editingCell: CategoryCell)
+    func cellDidBeginEditing(editingCell: UITableViewCell)
+    func cellDidEndEditing(editingCell: UITableViewCell)
 }
 
 class BaseCell: UITableViewCell {
-    
     var delegate: UITableViewCellDelgate?
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
-    }
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupView()
-    }
-    
-    func setupView() {
-        self.backgroundColor = UIColor.clear
-        self.accessoryType = .none
-        self.textLabel?.textColor = UIColor.white
-    }
 }

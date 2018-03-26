@@ -11,23 +11,22 @@ import RealmSwift
 
 class CategoriesVC: BaseTableVC {
     
-    var categoryType: RealmCategory.CategoryType!
+    var categoryType: CategoryType!
     var categories: Results<RealmCategory>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //DataManager.shared.removeAllData(of: RealmCategory.self)
-        setViewTitle()
+        setTitle()
         reloadData()
     }
     
-    func setViewTitle() {
+    func setTitle() {
         switch categoryType {
-        case .expense:
-            title = AppDictionary.expenses.rawValue.capitalized
-        case .income:
-            title = AppDictionary.incomings.rawValue.capitalized
+        case .debit:
+            title = Settings.incomings.rawValue.capitalized
+        case .credit:
+            title = Settings.expenses.rawValue.capitalized
         default:
             return
         }
@@ -38,7 +37,7 @@ class CategoriesVC: BaseTableVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.UI.TableViewCells.categoryCell, for: indexPath) as? CategoryCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.categoryCell, for: indexPath) as? CategoryCell else {
             return UITableViewCell()
         }
         
@@ -53,17 +52,29 @@ class CategoriesVC: BaseTableVC {
         
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (row, indexPath) in
+            let category = self.categories[indexPath.row]
+            DataManager.shared.remove(data: category)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        deleteAction.backgroundColor = Constants.Colors.delete
+       
+        return [deleteAction]
+    }
+    
     @IBAction func addButtonPressed(_ sender: Any) {
         
-        let newCategory =   RealmCategory(name: "", categoryType: categoryType)
-        DataManager.shared.createOrUpdate(data: newCategory)
+        let category = RealmCategory(name: "", categoryType: categoryType)
+        DataManager.shared.createOrUpdate(data: category)
         reloadData()
         
         guard let visibleCells = tableView.visibleCells as? [CategoryCell] else {
             fatalError("Can't get visible category cells")
         }
         
-        let cell = visibleCells.first(where: {$0.category.categoryId == newCategory.categoryId })
+        let cell = visibleCells.first(where: {$0.category.categoryId == category.categoryId })
         cell?.categoryName.becomeFirstResponder()
     }
     
@@ -72,25 +83,30 @@ class CategoriesVC: BaseTableVC {
         
         self.categories = data
         self.tableView.reloadData()
+        
+        //print(data.count)
     }
 }
 
 extension CategoriesVC: UITableViewCellDelgate {
-    func cellDidBeginEditing(editingCell: CategoryCell) {
+    func cellDidBeginEditing(editingCell: UITableViewCell) {
         
     }
     
-    func cellDidEndEditing(editingCell: CategoryCell) {
+    func cellDidEndEditing(editingCell: UITableViewCell) {
+        
+        guard let editingCell = editingCell as? CategoryCell else {
+            fatalError("Cant cast cell to \(AccountCell.self)")
+        }
         
         guard let indexPath = tableView.indexPath(for: editingCell) else { return }
         
         if let categoryName = editingCell.categoryName.text, !categoryName.isEmpty {
             
-            let updatedCategory = RealmCategory()
-            updatedCategory.categoryId = categories[indexPath.row].categoryId
-            updatedCategory.name = categoryName.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
-            updatedCategory.categoryType = categoryType
-            
+            let categoryId = categories[indexPath.row].categoryId
+            let categoryName = categoryName.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
+            let updatedCategory = RealmCategory(name: categoryName, categoryType: categoryType, categoryId: categoryId)
+           
             DataManager.shared.createOrUpdate(data: updatedCategory)
         } else {
             DataManager.shared.remove(data: categories[indexPath.row])

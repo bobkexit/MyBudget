@@ -8,16 +8,10 @@
 
 import UIKit
 
-class TransactionsVC: BaseVC {
+class TransactionsVC: BaseTableVC {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
 }
-
-//extension TransactionsVC: UITableViewDelegate, UITableViewDataSource {
-//    
-//}
 

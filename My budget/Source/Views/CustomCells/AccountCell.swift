@@ -11,24 +11,38 @@ import RealmSwift
 
 class AccountCell: BaseCell {
     
-    @IBOutlet weak var accountTitle: UILabel!
-    @IBOutlet weak var accountType: UILabel!
-    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var accountTypeImg: UIImageView!
+    @IBOutlet weak var accountNameTxt: UITextField!
+    @IBOutlet weak var accountCurrencyLbl: UILabel!
+    
     
     func configureCell(account: RealmAccount, balance: Double? = nil) {
-       
-        accountTitle.text = account.name
-        accountType.text = account.accountType.description
+        accountNameTxt.delegate = self
         
-        if let balance = balance {
-            balanceLabel.text = "\(balance) \(account.currency?.symbol ?? ""))"
-        } else {
-            balanceLabel.text = ""
+        accountNameTxt.text = account.name
+        accountCurrencyLbl.text = account.currency?.code
+       
+        guard let accountType = AccountType(rawValue: account.accountTypeId) else {
+            fatalError("Can't get account type for raw value: \(account.accountTypeId)")
         }
+        
+        accountTypeImg.image = accountType.image
+    }
+}
+
+// MARK: - UITextFieldDelegate methods
+extension AccountCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // close the keyboard on Enter
+        textField.resignFirstResponder()
+        return true
     }
     
-    override func setupView() {
-        super.setupView()
-        accessoryType = .none
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        delegate?.cellDidBeginEditing(editingCell: self)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.cellDidEndEditing(editingCell: self)
     }
 }

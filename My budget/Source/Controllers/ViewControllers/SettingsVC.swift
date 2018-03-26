@@ -10,18 +10,16 @@ import UIKit
 
 class SettingsVC: BaseTableVC {
         
-    fileprivate var settings = Array(AppDictionary.cases())
-    fileprivate var selectedSetting: AppDictionary?
+    fileprivate let settings = Array(Settings.cases())
+    fileprivate var selectedSetting: Settings?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.tableView.register(SettingsCell.self, forCellReuseIdentifier: Constants.UI.TableViewCells.settingsCell)
+        tableView.delegate = self
+        tableView.dataSource = self
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,7 +27,7 @@ class SettingsVC: BaseTableVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.UI.TableViewCells.settingsCell, for: indexPath) as? SettingsCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.settingsCell, for: indexPath) as? SettingsCell else {
             return UITableViewCell()
         }
         
@@ -52,32 +50,22 @@ class SettingsVC: BaseTableVC {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+    
         guard let selectedSetting = selectedSetting  else {
             return
         }
         
-        switch selectedSetting {
-        case .accounts:
-            return
-        case .incomings:
-            set(categoryType: .income, to: segue)
-        case .expenses:
-            set(categoryType: .expense, to: segue)
+        if selectedSetting == .incomings || selectedSetting == .expenses {
+            guard let destinationVC = segue.destination as? CategoriesVC else {
+                fatalError("Can't cast destinationVC to \(CategoriesVC.self)")
+            }
+            
+            guard let categoryType = selectedSetting.gwtrRelatedCategoryType() else {
+                fatalError("Can't get related category type for setting = \(selectedSetting.rawValue)")
+            }
+            
+            destinationVC.categoryType = categoryType
         }
-    }
-    
-    func set(categoryType type:  RealmCategory.CategoryType, to segue: UIStoryboardSegue) {
-        
-        if segue.identifier != Constants.Segues.toCategoriesVC {
-            return
-        }
-        
-        guard let destinationVC = segue.destination as? CategoriesVC else {
-            fatalError("Can't cast destinationVC to IncomingAndExpensesVC")
-        }
-        
-        destinationVC.categoryType = type
     }
 }
     

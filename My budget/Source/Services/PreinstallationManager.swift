@@ -10,17 +10,16 @@ import Foundation
 import SwiftyJSON
 import RealmSwift
 
-class DataService {
-    public static let shared = DataService()
+final class PreinstallationManager {
+    public static let shared = PreinstallationManager()
     
-    private let realm = try! Realm()
     private let userDefaults = UserDefaults.standard
     
     private init() {
         
     }
     
-    func preinstallData()  {
+    func installData()  {
         loadCurrencies()
         userDefaults.set(true, forKey: Constants.UserDefaults.firstLaunch)
     }
@@ -35,7 +34,7 @@ class DataService {
             let json = try JSON(data: data)
             
             let parsedData = parseCurrenciesJson(json: json)
-            saveData(data: parsedData)
+            DataManager.shared.createOrUpdate(data: parsedData)
         } catch  {
             print(error as Any)
         }
@@ -49,15 +48,5 @@ class DataService {
         }
         
         return currencies
-    }
-    
-    private func saveData(data: [Object]) {
-        do {
-            try realm.write {
-                realm.add(data, update: true)
-            }
-        } catch  {
-            print(error as Any)
-        }
     }
 }

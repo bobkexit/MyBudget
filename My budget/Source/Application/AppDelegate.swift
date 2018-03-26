@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         if !userDefaults.bool(forKey: Constants.UserDefaults.firstLaunch) {
-            DataService.shared.preinstallData()
+            PreinstallationManager.shared.installData()
         }
         
         return true
