@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class CustomizedTextField: UITextField {
+class BorderedTextField: UITextField {
     
     @IBInspectable
     var borderTopSide: Bool = false
@@ -41,42 +41,37 @@ class CustomizedTextField: UITextField {
     @IBInspectable
     var paddingRight: CGFloat = 0 
     
-    override func prepareForInterfaceBuilder() {
-        customizeView()
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        customizeView()
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-        customizeView()
+        createBorder()
     }
     
-    
-    fileprivate func customizeView() {
+    fileprivate func createBorder() {
         borderStyle = .none
-        dropBorder()
-        self.layer.masksToBounds = true
-    }
-    
-    fileprivate func dropBorder() {
+        layer.masksToBounds = true
+        
         if borderTopSide {
             self.addBorder(toSide: .top, withColor: borderColor, andThickness: borderThickness)
+        } else {
+            self.removeBorder(fromSide: .top)
         }
         
         if borderBottomSide {
             self.addBorder(toSide: .bottom, withColor: borderColor, andThickness: borderThickness)
+        } else {
+            self.removeBorder(fromSide: .bottom)
         }
         
         if borderRightSide {
             self.addBorder(toSide: .right, withColor: borderColor, andThickness: borderThickness)
+        } else {
+            self.removeBorder(fromSide: .right)
         }
         
         if borderLeftSide {
             self.addBorder(toSide: .left, withColor: borderColor, andThickness: borderThickness)
+        } else {
+            self.removeBorder(fromSide: .left)
         }
     }
     

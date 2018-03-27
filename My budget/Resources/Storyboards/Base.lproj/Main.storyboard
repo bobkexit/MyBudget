@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,10 +15,10 @@
         <scene sceneID="vX9-Rc-Ffu">
             <objects>
                 <tableViewController id="xog-R9-Ur7" customClass="ReportsVC" customModule="My_budget" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fL4-oQ-2JF">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fL4-oQ-2JF" customClass="GradientTableView" customModule="My_budget" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.1690696478" green="0.17971134189999999" blue="0.2190606296" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ILo-yU-0q1">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -26,6 +27,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -43,18 +45,69 @@
         <scene sceneID="Nbd-DX-bfz">
             <objects>
                 <tableViewController id="9Cv-H5-Q0D" customClass="TransactionsVC" customModule="My_budget" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="j5C-Ts-POo">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="j5C-Ts-POo" customClass="GradientTableView" customModule="My_budget" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="0.4823529412" green="0.4941176471" blue="0.5568627451" alpha="0.184057149" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="btG-IG-yXW">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="TransactionCell" id="btG-IG-yXW" customClass="TransactionCell" customModule="My_budget" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="btG-IG-yXW" id="O7i-qA-CSW">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="327" height="54.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZvP-HF-JTW">
+                                            <rect key="frame" x="16" y="11" width="303" height="33"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Credit Card" translatesAutoresizingMaskIntoConstraints="NO" id="ysu-ET-Vzm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="d0K-4H-fX6"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4w9-UP-2UT">
+                                                    <rect key="frame" x="40" y="0.0" width="220.5" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="lHW-l4-rr5">
+                                                    <rect key="frame" x="268.5" y="0.0" width="34.5" height="33"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gF4-kl-Ii8">
+                                                            <rect key="frame" x="0.0" y="0.0" width="34.5" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8d-Rj-SOS">
+                                                            <rect key="frame" x="0.0" y="21" width="34.5" height="12"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ZvP-HF-JTW" secondAttribute="trailing" id="KJn-3Y-t0i"/>
+                                        <constraint firstItem="ZvP-HF-JTW" firstAttribute="leading" secondItem="O7i-qA-CSW" secondAttribute="leadingMargin" id="NA6-54-ekQ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ZvP-HF-JTW" secondAttribute="bottom" id="RgU-oB-OPD"/>
+                                        <constraint firstItem="ZvP-HF-JTW" firstAttribute="top" secondItem="O7i-qA-CSW" secondAttribute="topMargin" id="Wc2-cR-WPq"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="accountImg" destination="ysu-ET-Vzm" id="xqm-DM-jIA"/>
+                                    <outlet property="amountLbl" destination="gF4-kl-Ii8" id="3dn-RO-zOJ"/>
+                                    <outlet property="categoryLbl" destination="4w9-UP-2UT" id="btC-vx-wF0"/>
+                                    <outlet property="dateLbl" destination="j8d-Rj-SOS" id="4l2-gI-8aC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -62,17 +115,44 @@
                             <outlet property="delegate" destination="9Cv-H5-Q0D" id="5MQ-ch-V8I"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Yym-3b-Ebx"/>
+                    <navigationItem key="navigationItem" id="Yym-3b-Ebx">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jfp-Yh-6KY">
+                            <connections>
+                                <action selector="addBtnPressed:" destination="9Cv-H5-Q0D" id="dmd-y8-0TX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="s5K-Yz-tJK" kind="show" identifier="toTransactionDetailVC" id="MW8-Ng-SOg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="za5-1S-PSC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2007" y="1863"/>
+            <point key="canvasLocation" x="-2007.2" y="1862.5187406296852"/>
+        </scene>
+        <!--Transaction DetailVC-->
+        <scene sceneID="UHY-ac-2Va">
+            <objects>
+                <viewController id="s5K-Yz-tJK" customClass="TransactionDetailVC" customModule="My_budget" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sp9-zF-Ugd" customClass="GradientView" customModule="My_budget" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JaB-kT-SQd"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7YD-G4-eGS">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="tVy-kY-8kR"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zhb-eG-cwi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2007" y="2688"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="vLn-A7-u9s">
             <objects>
                 <tableViewController id="Pfv-0Y-WAs" customClass="SettingsVC" customModule="My_budget" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KH6-Pp-dSR">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KH6-Pp-dSR" customClass="GradientTableView" customModule="My_budget" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -115,7 +195,7 @@
         <scene sceneID="rvi-87-jlQ">
             <objects>
                 <tableViewController id="f0C-0X-0vB" customClass="AccountsVC" customModule="My_budget" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Fdb-Pq-uxU">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Fdb-Pq-uxU" customClass="GradientTableView" customModule="My_budget" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -138,7 +218,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="alg-jh-FnZ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qyn-cX-dxA">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="account name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qyn-cX-dxA">
                                                     <rect key="frame" x="42" y="0.0" width="246.5" height="30"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -189,7 +269,7 @@
         <scene sceneID="yp2-yZ-C0I">
             <objects>
                 <tableViewController id="8nR-Y0-QtC" customClass="CategoriesVC" customModule="My_budget" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DG8-MH-ULU">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DG8-MH-ULU" customClass="GradientTableView" customModule="My_budget" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -202,7 +282,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New category" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-rL-pY1">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Category name" placeholder="New category" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-rL-pY1">
                                             <rect key="frame" x="16" y="11" width="343" height="22.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -295,11 +375,11 @@
             </objects>
             <point key="canvasLocation" x="-1209" y="1014"/>
         </scene>
-        <!--Transaction-->
+        <!--Transactions-->
         <scene sceneID="QBN-SO-ThC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qlB-TI-I9D" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Transaction" image="Transaction" id="tEg-b2-Tyl"/>
+                    <tabBarItem key="tabBarItem" title="Transactions" image="Transaction" id="tEg-b2-Tyl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cCg-ko-76L">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -352,6 +432,7 @@
     </scenes>
     <resources>
         <image name="Charts" width="26" height="29"/>
+        <image name="Credit Card" width="30" height="21"/>
         <image name="Settings" width="30" height="30"/>
         <image name="Transaction" width="30" height="30"/>
         <image name="Wallet" width="48" height="38"/>

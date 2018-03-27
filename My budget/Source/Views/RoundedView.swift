@@ -9,21 +9,17 @@
 import UIKit
 
 @IBDesignable
-class CustomizedView: UIView {
+class RoundedView: UIView {
 
     @IBInspectable
     var cornerRadius: CGFloat = 8 {
         didSet{
-            self.setNeedsLayout()
+            setNeedsLayout()
         }
     }
     
     @IBInspectable
-    var dropShadow: Bool = false {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
+    var dropShadow: Bool = false
     
     @IBInspectable
     var shadowColor: UIColor = .black
@@ -43,17 +39,9 @@ class CustomizedView: UIView {
     @IBInspectable
     var shadowHeight: Int = 0
     
-    override func prepareForInterfaceBuilder() {
-        customizeView()
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        customizeView()
-    }
-    
-    fileprivate func customizeView() {
-        self.layer.cornerRadius = cornerRadius
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = cornerRadius
         if dropShadow {
             let shadowOffest = CGSize(width: shadowWidth, height: shadowHeight)
             self.dropShadow(color: shadowColor, opacity: shadowOpacity, offset: shadowOffest, radius: shadowRadius, scale: shadowScale)

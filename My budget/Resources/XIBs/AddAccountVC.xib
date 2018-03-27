@@ -25,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Yn-rg-P1i" customClass="CustomizedView" customModule="My_budget" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Yn-rg-P1i" customClass="RoundedView" customModule="My_budget" customModuleProvider="target">
                     <rect key="frame" x="20" y="30" width="280" height="260"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cKt-8m-zwE">
@@ -52,7 +52,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lak-py-3mo" customClass="CustomizedTextField" customModule="My_budget" customModuleProvider="target">
+                                                <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lak-py-3mo" customClass="BorderedTextField" customModule="My_budget" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="24" width="280" height="30"/>
                                                     <color key="backgroundColor" red="0.4823529411764706" green="0.49411764705882355" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -62,13 +62,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftBorderSide" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="rightBorderSide" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorderSide" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="topBorderSide" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="borderTopSide" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="borderBottomSide" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
@@ -84,7 +77,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gN-b8-0Iv" customClass="CustomizedTextField" customModule="My_budget" customModuleProvider="target">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gN-b8-0Iv" customClass="BorderedTextField" customModule="My_budget" customModuleProvider="target">
                                                     <rect key="frame" x="141.5" y="0.0" width="138.5" height="30"/>
                                                     <color key="backgroundColor" red="0.4823529411764706" green="0.49411764705882355" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -94,13 +87,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="topBorderSide" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorderSide" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="borderTopSide" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="borderBottomSide" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
                                             </subviews>
@@ -115,7 +103,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h30-cT-QBQ" customClass="CustomizedTextField" customModule="My_budget" customModuleProvider="target">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h30-cT-QBQ" customClass="BorderedTextField" customModule="My_budget" customModuleProvider="target">
                                                     <rect key="frame" x="141.5" y="0.0" width="138.5" height="30"/>
                                                     <color key="backgroundColor" red="0.4823529411764706" green="0.49411764705882355" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -125,13 +113,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="topBorderSide" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorderSide" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="borderTopSide" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="borderBottomSide" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="borderBottomSide" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
                                             </subviews>
@@ -145,7 +128,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vDt-RD-yZT" customClass="CustomizedTextField" customModule="My_budget" customModuleProvider="target">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vDt-RD-yZT" customClass="BorderedTextField" customModule="My_budget" customModuleProvider="target">
                                                     <rect key="frame" x="141.5" y="0.0" width="138.5" height="30"/>
                                                     <color key="backgroundColor" red="0.4823529411764706" green="0.49411764705882355" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -155,13 +138,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="topBorderSide" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorderSide" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="borderTopSide" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="borderBottomSide" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
                                             </subviews>
@@ -175,7 +153,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="q36-YI-68A">
                                     <rect key="frame" x="0.0" y="212.5" width="280" height="40"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coD-3g-SeQ" customClass="CustomizedButton" customModule="My_budget" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coD-3g-SeQ" customClass="RoundedButton" customModule="My_budget" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="137" height="40"/>
                                             <color key="backgroundColor" red="0.4823529412" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="Create">
@@ -191,7 +169,7 @@
                                                 <action selector="createButtonPressed:" destination="-1" eventType="touchUpInside" id="Dxc-nD-pjy"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mwi-Xx-eGJ" customClass="CustomizedButton" customModule="My_budget" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mwi-Xx-eGJ" customClass="RoundedButton" customModule="My_budget" customModuleProvider="target">
                                             <rect key="frame" x="137" y="0.0" width="143" height="40"/>
                                             <color key="backgroundColor" red="0.94509803920000002" green="0.34509803919999998" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="Cancel">

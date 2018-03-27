@@ -15,18 +15,12 @@ class AccountCell: BaseCell {
     @IBOutlet weak var accountNameTxt: UITextField!
     @IBOutlet weak var accountCurrencyLbl: UILabel!
     
-    
     func configureCell(account: RealmAccount, balance: Double? = nil) {
         accountNameTxt.delegate = self
         
         accountNameTxt.text = account.name
         accountCurrencyLbl.text = account.currency?.code
-       
-        guard let accountType = AccountType(rawValue: account.accountTypeId) else {
-            fatalError("Can't get account type for raw value: \(account.accountTypeId)")
-        }
-        
-        accountTypeImg.image = accountType.image
+        accountTypeImg.image = account.accountType?.image
     }
 }
 

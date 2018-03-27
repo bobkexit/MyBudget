@@ -12,13 +12,14 @@ extension UIView {
     
     // Example use: myView.addBorder(toSide: .Left, withColor: UIColor.redColor().CGColor, andThickness: 1.0)
     
-    enum ViewSide {
+    enum ViewSide: String {
         case left, right, top, bottom
     }
     
     func addBorder(toSide side: ViewSide, withColor color: UIColor, andThickness thickness: CGFloat) {
         
         let border = CALayer()
+        border.name = side.rawValue
         border.masksToBounds = true
         border.backgroundColor = color.cgColor
         
@@ -29,6 +30,13 @@ extension UIView {
         case .bottom: border.frame = CGRect(x: 0, y: frame.size.height - thickness, width: frame.size.width, height: thickness)
         }
         layer.addSublayer(border)
+    }
+    
+    func removeBorder(fromSide side: ViewSide) {
+        guard let layer = layer.sublayers?.first(where: {$0.name == side.rawValue}) else {
+            return
+        }
+        layer.removeFromSuperlayer()
     }
     
     func dropShadow(color: UIColor, opacity: Float, offset: CGSize, radius: CGFloat, scale: Bool = true) {
@@ -50,14 +58,14 @@ extension UIView {
         self.layer.masksToBounds = true
     }
     
-//    func applyGradient(colors: [UIColor], bounds: CGRect, replacing prior: CALayer?) -> CALayer {
-//        let gradientLayer = CAGradientLayer(frame: bounds, colors: colors)
-//        if let prior = prior {
-//            self.layer.replaceSublayer(prior, with: gradientLayer)
-//        } else {
-//            self.layer.insertSublayer(gradientLayer, at: 0)
-//        }
-//        return gradientLayer
-//    }
+    func applyGradient(colors: [UIColor]) {
+        let gradientLayer = CAGradientLayer(frame: self.frame, colors: colors)
+        
+        if let prevGradientLayer = self.layer.sublayers?.first(where: { $0 is CAGradientLayer}) {
+            self.layer.replaceSublayer(prevGradientLayer, with: gradientLayer)
+        } else {
+            self.layer.insertSublayer(gradientLayer, at: 0)
+        }
+    }
 }
 

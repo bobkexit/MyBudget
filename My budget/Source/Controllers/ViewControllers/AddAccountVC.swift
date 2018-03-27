@@ -14,20 +14,20 @@ protocol AddAccountVCDelegate {
 
 class AddAccountVC: UIViewController {
 
-    @IBOutlet weak var roundedView: CustomizedView!
+    @IBOutlet weak var roundedView: RoundedView!
     
-    @IBOutlet weak var titleTextField: CustomizedTextField!
-    @IBOutlet weak var accountTypeTextField: CustomizedTextField!
-    @IBOutlet weak var currencyTextField: CustomizedTextField!
-    @IBOutlet weak var balanceTextField: CustomizedTextField!
+    @IBOutlet weak var titleTextField: BorderedTextField!
+    @IBOutlet weak var accountTypeTextField: BorderedTextField!
+    @IBOutlet weak var currencyTextField: BorderedTextField!
+    @IBOutlet weak var balanceTextField: BorderedTextField!
     
     fileprivate let accountTypePicker = UIPickerView()
     fileprivate let currencyPicker = UIPickerView()
     
     fileprivate let currencies = DataManager.shared.getData(of: RealmCurrency.self)
-    fileprivate let accountTypes = Array(AccountType.cases())
+    fileprivate let accountTypes = Array(RealmAccount.AccountType.cases())
     
-    fileprivate var selectedAccountType: AccountType?
+    fileprivate var selectedAccountType: RealmAccount.AccountType?
     fileprivate var selectedCurrency: RealmCurrency?
     
     var delagate: AddAccountVCDelegate?
@@ -130,7 +130,7 @@ class AddAccountVC: UIViewController {
         if !UIAccessibilityIsReduceTransparencyEnabled() {
             view.backgroundColor = .clear
             
-            let blurEffect = UIBlurEffect(style: .regular)
+            let blurEffect = UIBlurEffect(style: .dark)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
             //always fill the view
             blurEffectView.frame = self.view.bounds

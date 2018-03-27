@@ -9,60 +9,31 @@
 import UIKit
 
 @IBDesignable
-class CustomizedButton: UIButton {
+class RoundedButton: UIButton {
 
     @IBInspectable
     var cornerRadius: CGFloat = 8 {
-        didSet {
-            self.setNeedsLayout()
+        didSet{
+            setNeedsLayout()
         }
     }
     
     @IBInspectable
-    var topRight: Bool = false {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
+    var topRight: Bool = false
     
     @IBInspectable
-    var bottomRight: Bool = false {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
+    var bottomRight: Bool = false
     
     @IBInspectable
-    var topLeft: Bool = false {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
+    var topLeft: Bool = false
     
     @IBInspectable
-    var bottomLeft: Bool = false {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        customizeView()
-    }
-    
-    override func prepareForInterfaceBuilder() {
-        customizeView()
-    }
+    var bottomLeft: Bool = false
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        customizeView()
-    }
-    
-    fileprivate func customizeView() {
         let corners = getCorners()
-        roundCorners(corners, radius: cornerRadius)
+        self.roundCorners(corners, radius: cornerRadius)
         self.clipsToBounds = true
     }
     
