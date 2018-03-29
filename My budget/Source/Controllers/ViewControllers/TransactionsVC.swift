@@ -11,23 +11,34 @@ import RealmSwift
 
 class TransactionsVC: BaseTableVC {
     
+    
+    // MARK: - Properties
+    
     fileprivate var transactions: Results<RealmTransaction>!
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadData()
     }
     
+    
+    // MARK: - View Actions
     @IBAction func addBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: Constants.Segues.toTransactionDetailVC, sender: self)
     }
     
     
+    // MARK: - View Methods
     func reloadData() {
         transactions = DataManager.shared.getData(of: RealmTransaction.self)
         tableView.reloadData()
     }
 }
+
+
+// MARK: UITableViewDelegate and UITableViewDataSource Methods
 
 extension TransactionsVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

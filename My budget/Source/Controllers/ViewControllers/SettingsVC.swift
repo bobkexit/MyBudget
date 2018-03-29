@@ -9,9 +9,14 @@
 import UIKit
 
 class SettingsVC: BaseTableVC {
-        
+    
+    // MARK: - Properties
+    
     fileprivate let settings = Array(Settings.cases())
     fileprivate var selectedSetting: Settings?
+    
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +26,12 @@ class SettingsVC: BaseTableVC {
         
         tableView.reloadData()
     }
-    
+}
+
+
+// MARK: UITableViewDelegate and UITableViewDataSource Methods
+
+extension SettingsVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
@@ -40,7 +50,7 @@ class SettingsVC: BaseTableVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         selectedSetting = settings[indexPath.row]
-       
+        
         switch selectedSetting! {
         case .accounts:
             performSegue(withIdentifier: Constants.Segues.toAccountsVC, sender: self)
@@ -50,7 +60,7 @@ class SettingsVC: BaseTableVC {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
+        
         guard let selectedSetting = selectedSetting  else {
             return
         }

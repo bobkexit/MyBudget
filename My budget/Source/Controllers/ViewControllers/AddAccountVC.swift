@@ -14,38 +14,40 @@ protocol AddAccountVCDelegate {
 
 class AddAccountVC: UIViewController {
 
-    @IBOutlet weak var roundedView: RoundedView!
+    // MARK: - IBOutlets
     
+    @IBOutlet weak var roundedView: RoundedView!
     @IBOutlet weak var titleTextField: BorderedTextField!
     @IBOutlet weak var accountTypeTextField: BorderedTextField!
     @IBOutlet weak var currencyTextField: BorderedTextField!
     @IBOutlet weak var balanceTextField: BorderedTextField!
     
+    
+    // MARK: - Constants
+    
     fileprivate let accountTypePicker = UIPickerView()
     fileprivate let currencyPicker = UIPickerView()
-    
     fileprivate let currencies = DataManager.shared.getData(of: RealmCurrency.self)
     fileprivate let accountTypes = Array(RealmAccount.AccountType.cases())
+    
+    
+    // MARK: - Properties
     
     fileprivate var selectedAccountType: RealmAccount.AccountType?
     fileprivate var selectedCurrency: RealmCurrency?
     
     var delagate: AddAccountVCDelegate?
     
+    
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
 
-    func setup() {
-        setBlurEffect()
-        setupCurrencyPicker()
-        setupAccountTypePicker()
-        createToolbar()
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
+   
+    // MARK: - View Actions
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -64,6 +66,9 @@ class AddAccountVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    
+    // MARK: - View Methods
+    
     func isValidData() -> Bool {
         var isValid = true
         var invalidFields = [UITextField]()
@@ -71,7 +76,6 @@ class AddAccountVC: UIViewController {
         let emptyTitle = titleTextField.text?.isEmpty ?? true
         
         if emptyTitle   {
-            //titleTextField.backgroundColor = Constants.Colors.error
             invalidFields.append(titleTextField)
             isValid = false
         }
@@ -93,6 +97,19 @@ class AddAccountVC: UIViewController {
         }
         
         return isValid
+    }
+    
+    
+    // MARK: - Private Interface
+    
+    func setup() {
+        setBlurEffect()
+        setupCurrencyPicker()
+        setupAccountTypePicker()
+        createToolbar()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     func createToolbar() {
@@ -146,6 +163,9 @@ class AddAccountVC: UIViewController {
         view.endEditing(true)
     }
 }
+
+
+// MARK: UIPickerViewDelegate and UIPickerViewDataSource Methods
 
 extension AddAccountVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

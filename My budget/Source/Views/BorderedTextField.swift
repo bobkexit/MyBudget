@@ -22,7 +22,7 @@ class BorderedTextField: UITextField {
     
     @IBInspectable
     var borderRightSide: Bool = false
-        
+    
     @IBInspectable
     var borderColor: UIColor = #colorLiteral(red: 0.5921568627, green: 0.5921568627, blue: 0.5921568627, alpha: 1)
     
@@ -31,7 +31,7 @@ class BorderedTextField: UITextField {
     
     @IBInspectable
     var paddingTop: CGFloat = 0
-   
+    
     @IBInspectable
     var paddingLeft: CGFloat = 0
     
@@ -43,13 +43,14 @@ class BorderedTextField: UITextField {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        self.layer.masksToBounds = true
         createBorder()
     }
     
     fileprivate func createBorder() {
         borderStyle = .none
-        layer.masksToBounds = true
-        
+      
         if borderTopSide {
             self.addBorder(toSide: .top, withColor: borderColor, andThickness: borderThickness)
         } else {

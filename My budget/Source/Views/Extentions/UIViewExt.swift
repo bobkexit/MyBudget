@@ -12,11 +12,13 @@ extension UIView {
     
     // Example use: myView.addBorder(toSide: .Left, withColor: UIColor.redColor().CGColor, andThickness: 1.0)
     
-    enum ViewSide: String {
+    enum ViewSide: String, EnumCollection {
         case left, right, top, bottom
     }
     
     func addBorder(toSide side: ViewSide, withColor color: UIColor, andThickness thickness: CGFloat) {
+        
+        removeBorder(fromSide: side)
         
         let border = CALayer()
         border.name = side.rawValue

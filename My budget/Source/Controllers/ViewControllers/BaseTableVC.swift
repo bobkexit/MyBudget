@@ -10,6 +10,8 @@ import UIKit
 
 class BaseTableVC: UITableViewController {
     
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = tabBarController?.tabBar.selectedItem?.title

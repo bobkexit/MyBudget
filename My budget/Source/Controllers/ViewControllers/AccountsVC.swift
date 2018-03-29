@@ -11,11 +11,18 @@ import RealmSwift
 
 class AccountsVC: BaseTableVC {
 
-    @IBOutlet weak var accountTypeImage: UIImageView!
+    // MARK: - IBOutlets
     
+    @IBOutlet weak var accountTypeImage: UIImageView!
     @IBOutlet weak var accountNameTxt: UITextField!
     
-    var accounts = DataManager.shared.getData(of: RealmAccount.self)
+    
+    // MARK: - Properties
+    
+    fileprivate var accounts = DataManager.shared.getData(of: RealmAccount.self)
+    
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +30,9 @@ class AccountsVC: BaseTableVC {
         reloadData()
     }
 
+    
+    // MARK: - View Actions
+    
     @IBAction func addButtomPressed(_ sender: Any) {
         let addAccountVC = AddAccountVC()
         addAccountVC.delagate = self
@@ -30,11 +40,19 @@ class AccountsVC: BaseTableVC {
         present(addAccountVC, animated: true, completion: nil)
     }
     
-    func reloadData() {
+    
+    // MARK: - View Methods
+    
+    fileprivate func reloadData() {
         accounts = DataManager.shared.getData(of: RealmAccount.self)
         tableView.reloadData()
     }
-    
+}
+
+
+// MARK: UITableViewDelegate and UITableViewDataSource Methods
+
+extension AccountsVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return accounts.count
     }
@@ -47,7 +65,7 @@ class AccountsVC: BaseTableVC {
         let account = accounts[indexPath.row]
         cell.delegate = self
         cell.configureCell(account: account, balance: nil)
-    
+        
         return cell
     }
     
@@ -64,11 +82,17 @@ class AccountsVC: BaseTableVC {
     }
 }
 
+
+// MARK: - AddAccountVCDelegate Methods
+
 extension AccountsVC: AddAccountVCDelegate {
     func newAccountHasBeenCreated() {
         reloadData()
     }
 }
+
+
+// MARK: - UITableViewCellDelgate Methods
 
 extension AccountsVC: UITableViewCellDelgate {
     func cellDidBeginEditing(editingCell: UITableViewCell) {
@@ -95,6 +119,4 @@ extension AccountsVC: UITableViewCellDelgate {
         }
         reloadData()
     }
-    
-   
 }
