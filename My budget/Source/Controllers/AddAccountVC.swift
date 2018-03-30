@@ -12,7 +12,7 @@ protocol AddAccountVCDelegate {
     func newAccountHasBeenCreated()
 }
 
-class AddAccountVC: UIViewController {
+class AddAccountVC: BaseVC {
 
     // MARK: - IBOutlets
     
@@ -25,8 +25,10 @@ class AddAccountVC: UIViewController {
     
     // MARK: - Constants
     
+    fileprivate let toolBarForPicker = UIToolbar()
     fileprivate let accountTypePicker = UIPickerView()
     fileprivate let currencyPicker = UIPickerView()
+    
     fileprivate let currencies = DataManager.shared.getData(of: RealmCurrency.self)
     fileprivate let accountTypes = Array(RealmAccount.AccountType.cases())
     
@@ -43,7 +45,6 @@ class AddAccountVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
     }
 
    
@@ -68,8 +69,40 @@ class AddAccountVC: UIViewController {
     
     
     // MARK: - View Methods
+
+    override func setupUI() {
+        setupToolbar(toolBarForPicker, withSelector: #selector(dismissKeyboard))
+        
+        setupPickerView(currencyPicker, delegate: self)
+        setupPickerView(accountTypePicker, delegate: self)
+        
+        setupTextField(currencyTextField, withInputView: currencyPicker, andInputAccessoryView: toolBarForPicker)
+        setupTextField(accountTypeTextField, withInputView: accountTypePicker, andInputAccessoryView: toolBarForPicker)
+        
+        setBlurEffect()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
     
-    func isValidData() -> Bool {
+    fileprivate func setBlurEffect() {
+        //only apply the blur if the user hasn't disabled transparency effects
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+            view.backgroundColor = .clear
+            
+            let blurEffect = UIBlurEffect(style: .dark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            //always fill the view
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            view.insertSubview(blurEffectView, at: 0)
+        } else {
+            view.backgroundColor = .black
+        }
+    }
+    
+    fileprivate func isValidData() -> Bool {
         var isValid = true
         var invalidFields = [UITextField]()
         
@@ -97,70 +130,6 @@ class AddAccountVC: UIViewController {
         }
         
         return isValid
-    }
-    
-    
-    // MARK: - Private Interface
-    
-    func setup() {
-        setBlurEffect()
-        setupCurrencyPicker()
-        setupAccountTypePicker()
-        createToolbar()
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    func createToolbar() {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        toolBar.barTintColor = .clear
-        toolBar.tintColor = .white
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismissKeyboard))
-        
-        toolBar.setItems([doneButton], animated: true)
-        toolBar.isUserInteractionEnabled = true
-        
-        accountTypeTextField.inputAccessoryView = toolBar
-        currencyTextField.inputAccessoryView = toolBar
-    }
-    
-    func setupAccountTypePicker() {
-        accountTypePicker.delegate = self
-        accountTypePicker.dataSource = self
-        
-        accountTypeTextField.inputView = accountTypePicker
-    }
-    
-    func setupCurrencyPicker() {
-        currencyPicker.delegate = self
-        currencyPicker.dataSource = self
-        
-        currencyTextField.inputView = currencyPicker
-    }
-    
-    func setBlurEffect() {
-        //only apply the blur if the user hasn't disabled transparency effects
-        if !UIAccessibilityIsReduceTransparencyEnabled() {
-            view.backgroundColor = .clear
-            
-            let blurEffect = UIBlurEffect(style: .dark)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            //always fill the view
-            blurEffectView.frame = self.view.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            
-            view.insertSubview(blurEffectView, at: 0)
-        } else {
-            view.backgroundColor = .black
-        }
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 }
 

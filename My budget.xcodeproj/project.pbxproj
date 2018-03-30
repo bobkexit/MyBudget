@@ -37,6 +37,9 @@
 		356E06F6206A755E004034AE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F5206A755E004034AE /* GradientView.swift */; };
 		356E06F8206A802C004034AE /* GradientTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F7206A802C004034AE /* GradientTableView.swift */; };
 		356E06FA206D59E1004034AE /* DesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F9206D59E1004034AE /* DesignableViews.swift */; };
+		357E0D28206E858B00205970 /* UITextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D27206E858B00205970 /* UITextFieldExt.swift */; };
+		357E0D2A206E97F100205970 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D29206E97F100205970 /* BaseVC.swift */; };
+		357E0D2C206E9F2B00205970 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D2B206E9F2B00205970 /* Helper.swift */; };
 		35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3011206108FE0041F195 /* CategoriesVC.swift */; };
 		35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3015206111230041F195 /* EnumCollectionExt.swift */; };
 		35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE30192061188A0041F195 /* CategoryCell.swift */; };
@@ -79,6 +82,9 @@
 		356E06F5206A755E004034AE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		356E06F7206A802C004034AE /* GradientTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTableView.swift; sourceTree = "<group>"; };
 		356E06F9206D59E1004034AE /* DesignableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableViews.swift; sourceTree = "<group>"; };
+		357E0D27206E858B00205970 /* UITextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
+		357E0D29206E97F100205970 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		357E0D2B206E9F2B00205970 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		35EE3011206108FE0041F195 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		35EE3015206111230041F195 /* EnumCollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollectionExt.swift; sourceTree = "<group>"; };
 		35EE30192061188A0041F195 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -184,6 +190,7 @@
 				353B6DE32063D7D000D7004B /* AddAccountVC.swift */,
 				356E06F3206A6C9C004034AE /* TransactionDetailVC.swift */,
 				351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */,
+				357E0D29206E97F100205970 /* BaseVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -245,6 +252,7 @@
 			children = (
 				356E06D7206666D7004034AE /* UIViewExt.swift */,
 				351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */,
+				357E0D27206E858B00205970 /* UITextFieldExt.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -263,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				35EE3014206111120041F195 /* Extentions */,
+				357E0D2B206E9F2B00205970 /* Helper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -437,12 +446,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				351E3E8E205BDC22004A3414 /* BaseTabBarController.swift in Sources */,
+				357E0D2A206E97F100205970 /* BaseVC.swift in Sources */,
 				351E3E8A205BDB95004A3414 /* TransactionsVC.swift in Sources */,
 				35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */,
 				356E06E220683BBE004034AE /* AccountType.swift in Sources */,
 				356E06DF20683B41004034AE /* CategoryType.swift in Sources */,
 				35EE301E206118BA0041F195 /* BaseCell.swift in Sources */,
 				353B47F6205958B6008281B0 /* RealmCategory.swift in Sources */,
+				357E0D28206E858B00205970 /* UITextFieldExt.swift in Sources */,
 				356E06FA206D59E1004034AE /* DesignableViews.swift in Sources */,
 				356E06F4206A6C9C004034AE /* TransactionDetailVC.swift in Sources */,
 				356E06D8206666D7004034AE /* UIViewExt.swift in Sources */,
@@ -459,6 +470,7 @@
 				35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */,
 				356E06F2206A5699004034AE /* TransactionCell.swift in Sources */,
 				353B47EE20594B63008281B0 /* RealmAccount.swift in Sources */,
+				357E0D2C206E9F2B00205970 /* Helper.swift in Sources */,
 				35EE301C206118AC0041F195 /* AccountCell.swift in Sources */,
 				35F012132063B9D7008EE633 /* PreinstallationManager.swift in Sources */,
 				353B6DE52063D7D000D7004B /* AddAccountVC.swift in Sources */,
