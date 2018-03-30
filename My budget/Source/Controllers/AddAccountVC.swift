@@ -16,11 +16,11 @@ class AddAccountVC: UIViewController {
 
     // MARK: - IBOutlets
     
-    @IBOutlet weak var roundedView: RoundedView!
-    @IBOutlet weak var titleTextField: BorderedTextField!
-    @IBOutlet weak var accountTypeTextField: BorderedTextField!
-    @IBOutlet weak var currencyTextField: BorderedTextField!
-    @IBOutlet weak var balanceTextField: BorderedTextField!
+    @IBOutlet weak var roundedView: UIView!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var accountTypeTextField: UITextField!
+    @IBOutlet weak var currencyTextField: UITextField!
+    @IBOutlet weak var balanceTextField: UITextField!
     
     
     // MARK: - Constants

@@ -11,7 +11,6 @@
 		351E3E8C205BDBB4004A3414 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E8B205BDBB4004A3414 /* SettingsVC.swift */; };
 		351E3E8E205BDC22004A3414 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */; };
 		351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */; };
-		351E3E98205BED97004A3414 /* UINavigationBarExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E97205BED97004A3414 /* UINavigationBarExt.swift */; };
 		353B47C6205690B3008281B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47C5205690B3008281B0 /* AppDelegate.swift */; };
 		353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47C7205690B3008281B0 /* ReportsVC.swift */; };
 		353B47CB205690B3008281B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 353B47C9205690B3008281B0 /* Main.storyboard */; };
@@ -22,9 +21,6 @@
 		353B47F820595ACD008281B0 /* RealmTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F720595ACD008281B0 /* RealmTransaction.swift */; };
 		353B6DE52063D7D000D7004B /* AddAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B6DE32063D7D000D7004B /* AddAccountVC.swift */; };
 		353B6DE62063D7D000D7004B /* AddAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 353B6DE42063D7D000D7004B /* AddAccountVC.xib */; };
-		353B6DE92063EEC900D7004B /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B6DE82063EEC900D7004B /* BorderedTextField.swift */; };
-		353B6DEB2063F33200D7004B /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B6DEA2063F33200D7004B /* RoundedView.swift */; };
-		353B6DED2063F70D00D7004B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B6DEC2063F70D00D7004B /* RoundedButton.swift */; };
 		3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563FF02205FD28C00B05E82 /* AccountsVC.swift */; };
 		3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563FF04205FD77900B05E82 /* BaseTableVC.swift */; };
 		3567747C205FA8EC00743FCA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3567747B205FA8EC00743FCA /* Constants.swift */; };
@@ -40,6 +36,7 @@
 		356E06F4206A6C9C004034AE /* TransactionDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F3206A6C9C004034AE /* TransactionDetailVC.swift */; };
 		356E06F6206A755E004034AE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F5206A755E004034AE /* GradientView.swift */; };
 		356E06F8206A802C004034AE /* GradientTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F7206A802C004034AE /* GradientTableView.swift */; };
+		356E06FA206D59E1004034AE /* DesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F9206D59E1004034AE /* DesignableViews.swift */; };
 		35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3011206108FE0041F195 /* CategoriesVC.swift */; };
 		35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3015206111230041F195 /* EnumCollectionExt.swift */; };
 		35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE30192061188A0041F195 /* CategoryCell.swift */; };
@@ -54,7 +51,6 @@
 		351E3E8B205BDBB4004A3414 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExt.swift; sourceTree = "<group>"; };
-		351E3E97205BED97004A3414 /* UINavigationBarExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExt.swift; sourceTree = "<group>"; };
 		353B47C2205690B3008281B0 /* My budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My budget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		353B47C5205690B3008281B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		353B47C7205690B3008281B0 /* ReportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsVC.swift; sourceTree = "<group>"; };
@@ -67,9 +63,6 @@
 		353B47F720595ACD008281B0 /* RealmTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransaction.swift; sourceTree = "<group>"; };
 		353B6DE32063D7D000D7004B /* AddAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountVC.swift; sourceTree = "<group>"; };
 		353B6DE42063D7D000D7004B /* AddAccountVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAccountVC.xib; sourceTree = "<group>"; };
-		353B6DE82063EEC900D7004B /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
-		353B6DEA2063F33200D7004B /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
-		353B6DEC2063F70D00D7004B /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		3563FF02205FD28C00B05E82 /* AccountsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsVC.swift; sourceTree = "<group>"; };
 		3563FF04205FD77900B05E82 /* BaseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableVC.swift; sourceTree = "<group>"; };
 		3567747B205FA8EC00743FCA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -85,6 +78,7 @@
 		356E06F3206A6C9C004034AE /* TransactionDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailVC.swift; sourceTree = "<group>"; };
 		356E06F5206A755E004034AE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		356E06F7206A802C004034AE /* GradientTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTableView.swift; sourceTree = "<group>"; };
+		356E06F9206D59E1004034AE /* DesignableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableViews.swift; sourceTree = "<group>"; };
 		35EE3011206108FE0041F195 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		35EE3015206111230041F195 /* EnumCollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollectionExt.swift; sourceTree = "<group>"; };
 		35EE30192061188A0041F195 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -181,7 +175,14 @@
 		353B47DB20593106008281B0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				35677479205C12CB00743FCA /* ViewControllers */,
+				3563FF04205FD77900B05E82 /* BaseTableVC.swift */,
+				353B47C7205690B3008281B0 /* ReportsVC.swift */,
+				351E3E89205BDB95004A3414 /* TransactionsVC.swift */,
+				351E3E8B205BDBB4004A3414 /* SettingsVC.swift */,
+				3563FF02205FD28C00B05E82 /* AccountsVC.swift */,
+				35EE3011206108FE0041F195 /* CategoriesVC.swift */,
+				353B6DE32063D7D000D7004B /* AddAccountVC.swift */,
+				356E06F3206A6C9C004034AE /* TransactionDetailVC.swift */,
 				351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */,
 			);
 			path = Controllers;
@@ -192,11 +193,9 @@
 			children = (
 				356E06D9206666E3004034AE /* Extentions */,
 				3567747D205FA9A500743FCA /* CustomCells */,
-				353B6DEA2063F33200D7004B /* RoundedView.swift */,
-				353B6DE82063EEC900D7004B /* BorderedTextField.swift */,
-				353B6DEC2063F70D00D7004B /* RoundedButton.swift */,
 				356E06F5206A755E004034AE /* GradientView.swift */,
 				356E06F7206A802C004034AE /* GradientTableView.swift */,
+				356E06F9206D59E1004034AE /* DesignableViews.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,21 +218,6 @@
 				353B6DE42063D7D000D7004B /* AddAccountVC.xib */,
 			);
 			path = XIBs;
-			sourceTree = "<group>";
-		};
-		35677479205C12CB00743FCA /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				3563FF04205FD77900B05E82 /* BaseTableVC.swift */,
-				353B47C7205690B3008281B0 /* ReportsVC.swift */,
-				351E3E89205BDB95004A3414 /* TransactionsVC.swift */,
-				351E3E8B205BDBB4004A3414 /* SettingsVC.swift */,
-				3563FF02205FD28C00B05E82 /* AccountsVC.swift */,
-				35EE3011206108FE0041F195 /* CategoriesVC.swift */,
-				353B6DE32063D7D000D7004B /* AddAccountVC.swift */,
-				356E06F3206A6C9C004034AE /* TransactionDetailVC.swift */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3567747A205FA8C500743FCA /* Constants */ = {
@@ -261,7 +245,6 @@
 			children = (
 				356E06D7206666D7004034AE /* UIViewExt.swift */,
 				351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */,
-				351E3E97205BED97004A3414 /* UINavigationBarExt.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -459,19 +442,16 @@
 				356E06E220683BBE004034AE /* AccountType.swift in Sources */,
 				356E06DF20683B41004034AE /* CategoryType.swift in Sources */,
 				35EE301E206118BA0041F195 /* BaseCell.swift in Sources */,
-				353B6DED2063F70D00D7004B /* RoundedButton.swift in Sources */,
 				353B47F6205958B6008281B0 /* RealmCategory.swift in Sources */,
-				351E3E98205BED97004A3414 /* UINavigationBarExt.swift in Sources */,
+				356E06FA206D59E1004034AE /* DesignableViews.swift in Sources */,
 				356E06F4206A6C9C004034AE /* TransactionDetailVC.swift in Sources */,
 				356E06D8206666D7004034AE /* UIViewExt.swift in Sources */,
 				353B47F820595ACD008281B0 /* RealmTransaction.swift in Sources */,
 				356E06E420683C7A004034AE /* Settings.swift in Sources */,
 				35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */,
-				353B6DE92063EEC900D7004B /* BorderedTextField.swift in Sources */,
 				353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */,
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
 				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
-				353B6DEB2063F33200D7004B /* RoundedView.swift in Sources */,
 				3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */,
 				351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */,
 				353B47EC205949BF008281B0 /* RealmCurrency.swift in Sources */,

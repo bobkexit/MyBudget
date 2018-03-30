@@ -27,7 +27,6 @@ class GradientTableView: UITableView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-       
         let backgroundView = UIView(frame: self.frame)
         backgroundView.applyGradient(colors: [topColor, bottomColor])
         self.backgroundView = backgroundView
