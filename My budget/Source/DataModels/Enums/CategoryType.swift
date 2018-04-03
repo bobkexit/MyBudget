@@ -11,4 +11,13 @@ import Foundation
 enum CategoryType: Int, EnumCollection {
     case debit = 1
     case credit = 2
+    
+    var sign: Int {
+        switch self {
+        case .debit:
+            return 1
+        case .credit:
+            return -1
+        }
+    }
 }

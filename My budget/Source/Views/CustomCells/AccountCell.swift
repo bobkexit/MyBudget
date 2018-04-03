@@ -19,7 +19,11 @@ class AccountCell: BaseCell {
         accountNameTxt.delegate = self
         
         accountNameTxt.text = account.name
-        accountCurrencyLbl.text = account.currency?.code
+        
+        if let currencyCode = account.currencyCode {
+            accountCurrencyLbl.text = Helper.shared.getCurrencySymbol(forCurrencyCode: currencyCode)
+        }
+        
         accountTypeImg.image = account.accountType?.image
     }
 }

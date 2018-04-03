@@ -20,18 +20,22 @@ class TransactionsVC: BaseTableVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .transaction, object: nil)
+        
         reloadData()
     }
     
     
     // MARK: - View Actions
     @IBAction func addBtnPressed(_ sender: Any) {
+        
         performSegue(withIdentifier: Constants.Segues.toTransactionDetailVC, sender: self)
     }
     
     
     // MARK: - View Methods
-    func reloadData() {
+    @objc func reloadData() {
         transactions = DataManager.shared.getData(of: RealmTransaction.self)
         tableView.reloadData()
     }

@@ -24,7 +24,7 @@ class BaseVC: UIViewController {
         pickerView.dataSource = delegate
     }
     
-    func setupTextField(_ textField: UITextField, withInputView inputView: UIView, andInputAccessoryView inputAccessoryView: UIView) {
+    func setupTextField(_ textField: UITextField, withInputView inputView: UIView?, andInputAccessoryView inputAccessoryView: UIView?) {
         textField.inputView = inputView
         textField.inputAccessoryView = inputAccessoryView
     }

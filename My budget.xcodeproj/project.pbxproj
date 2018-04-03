@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3515E0F92073655900ED0363 /* NotificationNameExt.swift */; };
 		351E3E8A205BDB95004A3414 /* TransactionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E89205BDB95004A3414 /* TransactionsVC.swift */; };
 		351E3E8C205BDBB4004A3414 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E8B205BDBB4004A3414 /* SettingsVC.swift */; };
 		351E3E8E205BDC22004A3414 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */; };
@@ -15,7 +16,6 @@
 		353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47C7205690B3008281B0 /* ReportsVC.swift */; };
 		353B47CB205690B3008281B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 353B47C9205690B3008281B0 /* Main.storyboard */; };
 		353B47D0205690B3008281B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 353B47CE205690B3008281B0 /* LaunchScreen.storyboard */; };
-		353B47EC205949BF008281B0 /* RealmCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47EB205949BF008281B0 /* RealmCurrency.swift */; };
 		353B47EE20594B63008281B0 /* RealmAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47ED20594B63008281B0 /* RealmAccount.swift */; };
 		353B47F6205958B6008281B0 /* RealmCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F5205958B6008281B0 /* RealmCategory.swift */; };
 		353B47F820595ACD008281B0 /* RealmTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F720595ACD008281B0 /* RealmTransaction.swift */; };
@@ -50,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3515E0F92073655900ED0363 /* NotificationNameExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExt.swift; sourceTree = "<group>"; };
 		351E3E89205BDB95004A3414 /* TransactionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsVC.swift; sourceTree = "<group>"; };
 		351E3E8B205BDBB4004A3414 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		353B47CA205690B3008281B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		353B47CF205690B3008281B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		353B47D1205690B3008281B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		353B47EB205949BF008281B0 /* RealmCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCurrency.swift; sourceTree = "<group>"; };
 		353B47ED20594B63008281B0 /* RealmAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAccount.swift; sourceTree = "<group>"; };
 		353B47F5205958B6008281B0 /* RealmCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategory.swift; sourceTree = "<group>"; };
 		353B47F720595ACD008281B0 /* RealmTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransaction.swift; sourceTree = "<group>"; };
@@ -211,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				356E06E020683B9B004034AE /* Enums */,
-				353B47EB205949BF008281B0 /* RealmCurrency.swift */,
 				353B47ED20594B63008281B0 /* RealmAccount.swift */,
 				353B47F5205958B6008281B0 /* RealmCategory.swift */,
 				353B47F720595ACD008281B0 /* RealmTransaction.swift */,
@@ -280,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				35EE3015206111230041F195 /* EnumCollectionExt.swift */,
+				3515E0F92073655900ED0363 /* NotificationNameExt.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -340,7 +340,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Николай Маторин";
 				TargetAttributes = {
 					353B47C1205690B3008281B0 = {
@@ -465,10 +465,10 @@
 				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
 				3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */,
 				351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */,
-				353B47EC205949BF008281B0 /* RealmCurrency.swift in Sources */,
 				356E06F8206A802C004034AE /* GradientTableView.swift in Sources */,
 				35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */,
 				356E06F2206A5699004034AE /* TransactionCell.swift in Sources */,
+				3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */,
 				353B47EE20594B63008281B0 /* RealmAccount.swift in Sources */,
 				357E0D2C206E9F2B00205970 /* Helper.swift in Sources */,
 				35EE301C206118AC0041F195 /* AccountCell.swift in Sources */,
@@ -518,6 +518,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -525,6 +526,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -552,7 +554,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -575,6 +577,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -582,6 +585,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -603,7 +607,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

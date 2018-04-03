@@ -30,13 +30,14 @@ class TransactionCell: BaseCell {
     func configure(data: RealmTransaction) {
         accountImg.image = data.account?.accountType?.image
         categoryLbl.text = data.category?.name
-        amountLbl.text = (data.sum < 0 ? "-" : "+") + String(format: "%.2f", data.sum)
+        
+        // TODO: need to refactor
+        if let currencyCode = data.account?.currencyCode {
+            amountLbl.text = Helper.shared.formatCurrency(data.sum, currencyCode: currencyCode)
+        }
         amountLbl.textColor = data.sum < 0 ? Constants.Colors.credit : Constants.Colors.debit
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
+        let dateFormatter = Helper.shared.getDateFormatter()
         dateLbl.text = dateFormatter.string(from: data.date)
     }
 }

@@ -26,8 +26,12 @@ class AccountsVC: BaseTableVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         title = "Accounts"
+        
         reloadData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .account, object: nil)
     }
 
     
@@ -43,7 +47,7 @@ class AccountsVC: BaseTableVC {
     
     // MARK: - View Methods
     
-    fileprivate func reloadData() {
+    @objc fileprivate func reloadData() {
         accounts = DataManager.shared.getData(of: RealmAccount.self)
         tableView.reloadData()
     }
@@ -111,7 +115,7 @@ extension AccountsVC: UITableViewCellDelgate {
         if let accountName = editingCell.accountNameTxt.text, !accountName.isEmpty {
             
             let accountName = accountName.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
-            let updatedItem = RealmAccount(name: accountName, accountTypeId: account.accountTypeId, currency: account.currency!, accountId: account.accountId)
+            let updatedItem = RealmAccount(name: accountName, accountTypeId: account.accountTypeId, currencyCode: account.currencyCode!, accountId: account.accountId)
             
             DataManager.shared.createOrUpdate(data: updatedItem)
         } else {

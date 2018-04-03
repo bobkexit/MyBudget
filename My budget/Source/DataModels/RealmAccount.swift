@@ -14,7 +14,7 @@ class RealmAccount: Object {
     @objc dynamic var accountId = UUID().uuidString
     @objc dynamic var name = ""
     @objc dynamic var accountTypeId = 0
-    @objc dynamic var currency: RealmCurrency?
+    @objc dynamic var currencyCode: String? = Locale.current.currencyCode
     
     var accountType: RealmAccount.AccountType? {
         get {
@@ -29,18 +29,18 @@ class RealmAccount: Object {
         return "accountId"
     }
     
-    convenience init(name: String, accountType: AccountType, currency: RealmCurrency) {
+    convenience init(name: String, accountType: AccountType, currencyCode: String) {
         self.init()
         self.name = name
         self.accountTypeId = accountType.rawValue
-        self.currency = currency
+        self.currencyCode = currencyCode
     }
     
-    convenience init(name: String, accountTypeId: Int, currency: RealmCurrency, accountId: String?) {
+    convenience init(name: String, accountTypeId: Int, currencyCode: String, accountId: String?) {
         self.init()
         self.name = name
         self.accountTypeId = accountTypeId
-        self.currency = currency
+        self.currencyCode = currencyCode
         
         if let accountId = accountId {
             self.accountId = accountId

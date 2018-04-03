@@ -29,14 +29,14 @@ class AddAccountVC: BaseVC {
     fileprivate let accountTypePicker = UIPickerView()
     fileprivate let currencyPicker = UIPickerView()
     
-    fileprivate let currencies = DataManager.shared.getData(of: RealmCurrency.self)
+    fileprivate let currencies = Helper.shared.getCurrencies()
     fileprivate let accountTypes = Array(RealmAccount.AccountType.cases())
     
     
     // MARK: - Properties
     
     fileprivate var selectedAccountType: RealmAccount.AccountType?
-    fileprivate var selectedCurrency: RealmCurrency?
+    fileprivate var selectedCurrency: String?
     
     var delagate: AddAccountVCDelegate?
     
@@ -45,6 +45,15 @@ class AddAccountVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        selectedCurrency = Locale.current.currencyCode
+        if let currencyCode = selectedCurrency {
+            currencyTextField.text = Locale.current.localizedString(forCurrencyCode: currencyCode)
+            guard let index = currencies.index(of: currencyCode) else {
+                return
+            }
+            currencyPicker.selectRow(index, inComponent: 0, animated: true)
+        }
     }
 
    
@@ -55,15 +64,16 @@ class AddAccountVC: BaseVC {
     }
     
     @IBAction func createButtonPressed(_ sender: Any) {
+        
         if !isValidData() {
             return
         }
         
         let accountName = titleTextField.text!.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        let account = RealmAccount(name: accountName, accountType: selectedAccountType!, currency: selectedCurrency!)
+        let account = RealmAccount(name: accountName, accountType: selectedAccountType!, currencyCode: selectedCurrency!)
         DataManager.shared.createOrUpdate(data: account)
-        delagate?.newAccountHasBeenCreated()
+        NotificationCenter.default.post(name: .account, object: nil)
+        //delagate?.newAccountHasBeenCreated()
         dismiss(animated: true, completion: nil)
     }
     
@@ -83,6 +93,11 @@ class AddAccountVC: BaseVC {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+    }
+    
+    override func setupTextField(_ textField: UITextField, withInputView inputView: UIView?, andInputAccessoryView inputAccessoryView: UIView?) {
+        super.setupTextField(textField, withInputView: inputView, andInputAccessoryView: inputAccessoryView)
+        textField.delegate = self
     }
     
     fileprivate func setBlurEffect() {
@@ -154,7 +169,7 @@ extension AddAccountVC: UIPickerViewDelegate, UIPickerViewDataSource {
         if pickerView == accountTypePicker {
             return accountTypes[row].description
         } else if pickerView == currencyPicker {
-            return currencies[row].code
+            return Locale.current.localizedString(forCurrencyCode: currencies[row]) //currencies[row]
         }
         return nil
     }
@@ -165,7 +180,18 @@ extension AddAccountVC: UIPickerViewDelegate, UIPickerViewDataSource {
             accountTypeTextField.text = selectedAccountType?.description
         } else if pickerView == currencyPicker {
             selectedCurrency = currencies[row]
-            currencyTextField.text = selectedCurrency?.code
+            currencyTextField.text = Locale.current.localizedString(forCurrencyCode: currencies[row])
         }
     }
 }
+
+extension AddAccountVC: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let pickerView = textField.inputView as? UIPickerView, pickerView.numberOfRows(inComponent: 0) > 0 else {
+            return
+        }
+        let row = pickerView.selectedRow(inComponent: 0)
+        self.pickerView(pickerView, didSelectRow: row, inComponent: 0)
+    }
+}
+
