@@ -19,6 +19,7 @@ class TransactionDetailVC: BaseVC {
     @IBOutlet weak var amountTxt: UITextField!
     @IBOutlet weak var commentTxtView: UITextView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var deleteBtn: UIButton!
     
     // MARK: - Constants
     fileprivate let toolBarForPicker = UIToolbar()
@@ -55,9 +56,10 @@ class TransactionDetailVC: BaseVC {
     
     // MARK: - View Actions
     
-    //TODO: - needs refactorS
+    //TODO: - needs to refactoring
     @IBAction func saveButtonPressed(_ sender: Any) {
         
+        //FIXME: - don't work animation invalid fields
         if !validateData() { return }
         
         guard let account = selectedAccount else {
@@ -101,11 +103,23 @@ class TransactionDetailVC: BaseVC {
         reloadData()
     }
     
+    @IBAction func deleteBtnPressed(_ sender: Any) {
+        
+        guard let transaction = transaction else { return }
+        
+        DataManager.shared.remove(data: transaction)
+        
+        NotificationCenter.default.post(name: .transaction, object: nil)
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @objc func datePickerValueChannged(_ sender: Any) {
         let dateFormatter = Helper.shared.getDateFormatter(timeStyle: .short)
         selectedDate = datePicker.date
         dateTxt.text = dateFormatter.string(from: selectedDate!)
     }
+    
     
     // MARK: - View Methods
     
@@ -153,6 +167,7 @@ class TransactionDetailVC: BaseVC {
             segmentedControl.selectedSegmentIndex = 1
         }
         
+        deleteBtn.isHidden = transaction == nil
     }
     
     fileprivate func formatAmount(forTextField textField: UITextField) {

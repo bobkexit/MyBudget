@@ -29,7 +29,6 @@ class TransactionsVC: BaseTableVC {
     
     // MARK: - View Actions
     @IBAction func addBtnPressed(_ sender: Any) {
-        
         performSegue(withIdentifier: Constants.Segues.toTransactionDetailVC, sender: self)
     }
     
@@ -57,6 +56,19 @@ extension TransactionsVC {
         cell.configure(data: transaction)
         
         return cell
+    }
+    
+    // MARK: - needs to refactoring (DRY)
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (row, indexPath) in
+            let data = self.transactions[indexPath.row]
+            DataManager.shared.remove(data: data)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        deleteAction.backgroundColor = Constants.Colors.delete
+        
+        return [deleteAction]
     }
 }
 

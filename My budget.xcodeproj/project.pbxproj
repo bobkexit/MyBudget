@@ -108,6 +108,70 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3509178C2074C2CF0000045C /* Base Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				357E0D29206E97F100205970 /* BaseVC.swift */,
+				351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */,
+				3563FF04205FD77900B05E82 /* BaseTableVC.swift */,
+			);
+			path = "Base Controllers";
+			sourceTree = "<group>";
+		};
+		3509178D2074C4A10000045C /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				351E3E89205BDB95004A3414 /* TransactionsVC.swift */,
+				356E06F3206A6C9C004034AE /* TransactionDetailVC.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		3509178E2074C4C10000045C /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				353B47C7205690B3008281B0 /* ReportsVC.swift */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
+		3509178F2074C4CA0000045C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				350917912074C5400000045C /* Categories */,
+				350917902074C5380000045C /* Accounts */,
+				351E3E8B205BDBB4004A3414 /* SettingsVC.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		350917902074C5380000045C /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				3563FF02205FD28C00B05E82 /* AccountsVC.swift */,
+				353B6DE32063D7D000D7004B /* AddAccountVC.swift */,
+			);
+			path = Accounts;
+			sourceTree = "<group>";
+		};
+		350917912074C5400000045C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				35EE3011206108FE0041F195 /* CategoriesVC.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		350917922074C58E0000045C /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				356E06F5206A755E004034AE /* GradientView.swift */,
+				356E06F7206A802C004034AE /* GradientTableView.swift */,
+				356E06F9206D59E1004034AE /* DesignableViews.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		353B47B9205690B3008281B0 = {
 			isa = PBXGroup;
 			children = (
@@ -181,16 +245,10 @@
 		353B47DB20593106008281B0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3563FF04205FD77900B05E82 /* BaseTableVC.swift */,
-				353B47C7205690B3008281B0 /* ReportsVC.swift */,
-				351E3E89205BDB95004A3414 /* TransactionsVC.swift */,
-				351E3E8B205BDBB4004A3414 /* SettingsVC.swift */,
-				3563FF02205FD28C00B05E82 /* AccountsVC.swift */,
-				35EE3011206108FE0041F195 /* CategoriesVC.swift */,
-				353B6DE32063D7D000D7004B /* AddAccountVC.swift */,
-				356E06F3206A6C9C004034AE /* TransactionDetailVC.swift */,
-				351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */,
-				357E0D29206E97F100205970 /* BaseVC.swift */,
+				3509178C2074C2CF0000045C /* Base Controllers */,
+				3509178E2074C4C10000045C /* Reports */,
+				3509178D2074C4A10000045C /* Transactions */,
+				3509178F2074C4CA0000045C /* Settings */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -198,11 +256,9 @@
 		353B47DC20593113008281B0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				350917922074C58E0000045C /* Custom Views */,
+				3567747D205FA9A500743FCA /* Custom Cells */,
 				356E06D9206666E3004034AE /* Extentions */,
-				3567747D205FA9A500743FCA /* CustomCells */,
-				356E06F5206A755E004034AE /* GradientView.swift */,
-				356E06F7206A802C004034AE /* GradientTableView.swift */,
-				356E06F9206D59E1004034AE /* DesignableViews.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,7 +290,7 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		3567747D205FA9A500743FCA /* CustomCells */ = {
+		3567747D205FA9A500743FCA /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
 				35EE301D206118BA0041F195 /* BaseCell.swift */,
@@ -243,7 +299,7 @@
 				35EE301B206118AC0041F195 /* AccountCell.swift */,
 				356E06F1206A5699004034AE /* TransactionCell.swift */,
 			);
-			path = CustomCells;
+			path = "Custom Cells";
 			sourceTree = "<group>";
 		};
 		356E06D9206666E3004034AE /* Extentions */ = {

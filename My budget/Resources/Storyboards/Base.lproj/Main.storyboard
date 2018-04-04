@@ -352,6 +352,25 @@
                                                     <constraint firstItem="85L-N1-Sle" firstAttribute="width" secondItem="4e9-FB-Vtd" secondAttribute="width" id="lcN-Gs-EHW"/>
                                                 </constraints>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44W-bL-whS">
+                                                <rect key="frame" x="117.5" y="428" width="140" height="30"/>
+                                                <color key="backgroundColor" red="0.94509803920000002" green="0.34509803919999998" blue="0.40784313729999999" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="fS5-Rm-gL9"/>
+                                                    <constraint firstAttribute="height" constant="30" id="tkk-EZ-UEg"/>
+                                                </constraints>
+                                                <state key="normal" title="Delete">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="deleteBtnPressed:" destination="s5K-Yz-tJK" eventType="touchUpInside" id="B3y-Ch-9yS"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -360,6 +379,8 @@
                                             <constraint firstAttribute="trailing" secondItem="OYa-kO-e4b" secondAttribute="trailing" constant="8" id="JCC-pQ-BWe"/>
                                             <constraint firstItem="DlK-gE-UZv" firstAttribute="top" secondItem="A7F-ne-tcv" secondAttribute="top" constant="20" id="JHl-ci-yJh"/>
                                             <constraint firstItem="OYa-kO-e4b" firstAttribute="top" secondItem="DlK-gE-UZv" secondAttribute="bottom" constant="20" id="NcR-88-Og0"/>
+                                            <constraint firstItem="44W-bL-whS" firstAttribute="centerX" secondItem="A7F-ne-tcv" secondAttribute="centerX" id="b6o-bm-WzJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="44W-bL-whS" secondAttribute="bottom" constant="8" id="oq7-zh-fBt"/>
                                             <constraint firstItem="OYa-kO-e4b" firstAttribute="leading" secondItem="A7F-ne-tcv" secondAttribute="leading" constant="8" id="s4G-O0-AbP"/>
                                         </constraints>
                                     </view>
@@ -397,6 +418,7 @@
                         <outlet property="categoryTxt" destination="fJj-FI-brZ" id="uGT-vq-egN"/>
                         <outlet property="commentTxtView" destination="Uoy-Xu-CCp" id="AZF-5f-yU6"/>
                         <outlet property="dateTxt" destination="1Ph-lm-ybk" id="RBV-5c-dhn"/>
+                        <outlet property="deleteBtn" destination="44W-bL-whS" id="M6N-rb-H5V"/>
                         <outlet property="segmentedControl" destination="DlK-gE-UZv" id="D8B-1e-tvZ"/>
                     </connections>
                 </viewController>

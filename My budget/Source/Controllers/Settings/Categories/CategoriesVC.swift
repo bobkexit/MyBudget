@@ -89,6 +89,7 @@ extension CategoriesVC {
         
     }
     
+     // MARK: - needs to refactoring (DRY)
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (row, indexPath) in
             let category = self.categories[indexPath.row]

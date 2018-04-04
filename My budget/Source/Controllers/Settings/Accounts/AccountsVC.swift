@@ -73,6 +73,7 @@ extension AccountsVC {
         return cell
     }
     
+     // MARK: - needs to refactoring (DRY)
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (row, indexPath) in
             let data = self.accounts[indexPath.row]
