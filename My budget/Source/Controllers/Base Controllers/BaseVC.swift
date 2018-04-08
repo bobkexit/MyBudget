@@ -45,3 +45,36 @@ class BaseVC: UIViewController {
         view.endEditing(true)
     }
 }
+
+extension BaseVC: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return nil
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+    }
+}
+
+extension BaseVC: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let pickerView = textField.inputView as? UIPickerView, pickerView.numberOfRows(inComponent: 0) > 0 else {
+            return
+        }
+        let row = pickerView.selectedRow(inComponent: 0)
+        self.pickerView(pickerView, didSelectRow: row, inComponent: 0)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
+}
+

@@ -117,6 +117,7 @@ class AddAccountVC: BaseVC {
         }
     }
     
+    // FIXME: - DRY
     fileprivate func isValidData() -> Bool {
         var isValid = true
         var invalidFields = [UITextField]()
@@ -151,12 +152,8 @@ class AddAccountVC: BaseVC {
 
 // MARK: UIPickerViewDelegate and UIPickerViewDataSource Methods
 
-extension AddAccountVC: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+extension AddAccountVC {    
+    override func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == accountTypePicker {
             return accountTypes.count
         } else if pickerView == currencyPicker {
@@ -165,7 +162,7 @@ extension AddAccountVC: UIPickerViewDelegate, UIPickerViewDataSource {
         return 0
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    override func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == accountTypePicker {
             return accountTypes[row].description
         } else if pickerView == currencyPicker {
@@ -174,7 +171,7 @@ extension AddAccountVC: UIPickerViewDelegate, UIPickerViewDataSource {
         return nil
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == accountTypePicker {
             selectedAccountType = accountTypes[row]
             accountTypeTextField.text = selectedAccountType?.description
@@ -182,16 +179,6 @@ extension AddAccountVC: UIPickerViewDelegate, UIPickerViewDataSource {
             selectedCurrency = currencies[row]
             currencyTextField.text = Locale.current.localizedString(forCurrencyCode: currencies[row])
         }
-    }
-}
-
-extension AddAccountVC: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        guard let pickerView = textField.inputView as? UIPickerView, pickerView.numberOfRows(inComponent: 0) > 0 else {
-            return
-        }
-        let row = pickerView.selectedRow(inComponent: 0)
-        self.pickerView(pickerView, didSelectRow: row, inComponent: 0)
     }
 }
 

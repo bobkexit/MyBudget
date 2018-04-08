@@ -28,9 +28,7 @@ class AccountsVC: BaseTableVC {
         super.viewDidLoad()
         
         title = "Accounts"
-        
         reloadData()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .account, object: nil)
     }
 
@@ -39,7 +37,6 @@ class AccountsVC: BaseTableVC {
     
     @IBAction func addButtomPressed(_ sender: Any) {
         let addAccountVC = AddAccountVC()
-        addAccountVC.delagate = self
         addAccountVC.modalPresentationStyle = .custom
         present(addAccountVC, animated: true, completion: nil)
     }
@@ -50,6 +47,10 @@ class AccountsVC: BaseTableVC {
     @objc fileprivate func reloadData() {
         accounts = DataManager.shared.getData(of: RealmAccount.self)
         tableView.reloadData()
+    }
+    
+    override func getData(atIndexPath indexPath: IndexPath) -> Object? {
+        return accounts[indexPath.row]
     }
 }
 
@@ -72,38 +73,11 @@ extension AccountsVC {
         
         return cell
     }
-    
-     // MARK: - needs to refactoring (DRY)
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (row, indexPath) in
-            let data = self.accounts[indexPath.row]
-            DataManager.shared.remove(data: data)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-        
-        deleteAction.backgroundColor = Constants.Colors.delete
-        
-        return [deleteAction]
-    }
 }
-
-
-// MARK: - AddAccountVCDelegate Methods
-
-extension AccountsVC: AddAccountVCDelegate {
-    func newAccountHasBeenCreated() {
-        reloadData()
-    }
-}
-
 
 // MARK: - UITableViewCellDelgate Methods
 
 extension AccountsVC: UITableViewCellDelgate {
-    func cellDidBeginEditing(editingCell: UITableViewCell) {
-        
-    }
-    
     func cellDidEndEditing(editingCell: UITableViewCell) {
         guard let editingCell = editingCell as? AccountCell else {
             fatalError("Cant cast cell to \(AccountCell.self)")

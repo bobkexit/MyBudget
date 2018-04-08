@@ -63,6 +63,10 @@ class CategoriesVC: BaseTableVC {
         self.categories = data
         self.tableView.reloadData()
     }
+    
+    override func getData(atIndexPath indexPath: IndexPath) -> Object? {
+        return categories[indexPath.row]
+    }
 }
 
 
@@ -84,33 +88,12 @@ extension CategoriesVC {
         
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
-     // MARK: - needs to refactoring (DRY)
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (row, indexPath) in
-            let category = self.categories[indexPath.row]
-            DataManager.shared.remove(data: category)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-        
-        deleteAction.backgroundColor = Constants.Colors.delete
-        
-        return [deleteAction]
-    }
 }
 
 
 // MARK: UITableViewCellDelgate Methods
 
 extension CategoriesVC: UITableViewCellDelgate {
-    func cellDidBeginEditing(editingCell: UITableViewCell) {
-        
-    }
-    
     func cellDidEndEditing(editingCell: UITableViewCell) {
         
         guard let editingCell = editingCell as? CategoryCell else {

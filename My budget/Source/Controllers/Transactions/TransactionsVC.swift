@@ -11,7 +11,6 @@ import RealmSwift
 
 class TransactionsVC: BaseTableVC {
     
-    
     // MARK: - Properties
     
     fileprivate var transactions: Results<RealmTransaction>!

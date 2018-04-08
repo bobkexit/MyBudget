@@ -189,6 +189,7 @@ class TransactionDetailVC: BaseVC {
         categories = DataManager.shared.getData(of: RealmCategory.self).filter("categoryTypeId = \(selectedCategoryType.rawValue)")
     }
     
+    // FIXME: - DRY
     fileprivate func validateData() -> Bool {
         var isValid = true
         var invalidFields = [UITextField]()
@@ -252,12 +253,11 @@ class TransactionDetailVC: BaseVC {
     }
 }
 
-extension TransactionDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+
+// MARK: - UIPickerViewDelegate, UIPickerViewDataSource Methods
+
+extension TransactionDetailVC  {
+    override func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         if pickerView == accountPicker {
             return accounts.count
@@ -268,7 +268,7 @@ extension TransactionDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
         return 0
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    override func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if pickerView == accountPicker {
             return accounts[row].name
@@ -279,7 +279,7 @@ extension TransactionDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
         return nil
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == accountPicker {
             selectedAccount = accounts[row]
             accountTxt.text = selectedAccount?.name
@@ -292,23 +292,19 @@ extension TransactionDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
 }
 
-extension TransactionDetailVC: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
+// MARK: - UITextFieldDelegate Methods
+
+extension TransactionDetailVC {
+    override func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == amountTxt {
             textField.text = ""
             return
         }
-        
-        guard let pickerView = textField.inputView as? UIPickerView, pickerView.numberOfRows(inComponent: 0) > 0 else {
-            return
-        }
-        let row = pickerView.selectedRow(inComponent: 0)
-        self.pickerView(pickerView, didSelectRow: row, inComponent: 0)
+        super.textFieldDidBeginEditing(textField)
     }
     
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    override func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == amountTxt {
             formatAmount(forTextField: amountTxt)
         }

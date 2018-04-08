@@ -14,6 +14,16 @@ protocol UITableViewCellDelgate {
     func cellDidEndEditing(editingCell: UITableViewCell)
 }
 
+extension UITableViewCellDelgate {
+    func cellDidBeginEditing(editingCell: UITableViewCell) {
+        
+    }
+    
+    func cellDidEndEditing(editingCell: UITableViewCell) {
+        
+    }
+}
+
 class BaseCell: UITableViewCell {
     var delegate: UITableViewCellDelgate?
 }
