@@ -135,19 +135,19 @@
             <objects>
                 <viewController id="s5K-Yz-tJK" customClass="TransactionDetailVC" customModule="My_budget" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sp9-zF-Ugd" customClass="GradientView" customModule="My_budget" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iD7-hX-qnL">
-                                <rect key="frame" x="0.0" y="64" width="375" height="687"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="887"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7F-ne-tcv" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="466"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="474"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DlK-gE-UZv">
                                                 <rect key="frame" x="121" y="20" width="133" height="29"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="28" id="uYU-0I-Pmy"/>
+                                                    <constraint firstAttribute="height" constant="28" id="NqI-EE-mO3"/>
                                                 </constraints>
                                                 <segments>
                                                     <segment title="Expense"/>
@@ -159,7 +159,7 @@
                                                 </connections>
                                             </segmentedControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="OYa-kO-e4b">
-                                                <rect key="frame" x="8" y="68" width="359" height="330"/>
+                                                <rect key="frame" x="8" y="68" width="359" height="300"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jy0-cT-gsp" customClass="DesignableView" customModule="My_budget" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="359" height="40"/>
@@ -308,10 +308,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9f-U9-gOX" customClass="DesignableView" customModule="My_budget" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="180" width="359" height="150"/>
+                                                        <rect key="frame" x="0.0" y="180" width="359" height="120"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Commet" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Uoy-Xu-CCp" customClass="DesignableTextView" customModule="My_budget" customModuleProvider="target">
-                                                                <rect key="frame" x="10" y="10" width="339" height="130"/>
+                                                                <rect key="frame" x="10" y="10" width="339" height="100"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="textColor" red="0.32236325739999999" green="0.340342164" blue="0.38857889179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -332,7 +332,7 @@
                                                         <color key="backgroundColor" red="0.4823529411764706" green="0.49411764705882355" blue="0.55686274509803924" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="Uoy-Xu-CCp" secondAttribute="trailing" constant="10" id="06M-gB-cRm"/>
-                                                            <constraint firstAttribute="height" constant="150" id="115-Lq-5Yc"/>
+                                                            <constraint firstAttribute="height" constant="120" id="115-Lq-5Yc"/>
                                                             <constraint firstItem="Uoy-Xu-CCp" firstAttribute="top" secondItem="D9f-U9-gOX" secondAttribute="top" constant="10" id="46t-kb-hRI"/>
                                                             <constraint firstAttribute="bottom" secondItem="Uoy-Xu-CCp" secondAttribute="bottom" constant="10" id="Dbz-lN-NRu"/>
                                                             <constraint firstItem="Uoy-Xu-CCp" firstAttribute="leading" secondItem="D9f-U9-gOX" secondAttribute="leading" constant="10" id="yN7-d8-Pzq"/>
@@ -352,55 +352,54 @@
                                                     <constraint firstItem="85L-N1-Sle" firstAttribute="width" secondItem="4e9-FB-Vtd" secondAttribute="width" id="lcN-Gs-EHW"/>
                                                 </constraints>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44W-bL-whS">
-                                                <rect key="frame" x="117.5" y="428" width="140" height="30"/>
-                                                <color key="backgroundColor" red="0.94509803920000002" green="0.34509803919999998" blue="0.40784313729999999" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44W-bL-whS">
+                                                <rect key="frame" x="160" y="389" width="55" height="55"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="fS5-Rm-gL9"/>
-                                                    <constraint firstAttribute="height" constant="30" id="tkk-EZ-UEg"/>
+                                                    <constraint firstAttribute="width" constant="55" id="51b-j1-IXk"/>
+                                                    <constraint firstAttribute="height" constant="55" id="WOZ-9F-v0A"/>
                                                 </constraints>
-                                                <state key="normal" title="Delete">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
+                                                <color key="tintColor" red="0.4823529412" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" image="QR Code Icon"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="deleteBtnPressed:" destination="s5K-Yz-tJK" eventType="touchUpInside" id="B3y-Ch-9yS"/>
+                                                    <action selector="scanQRCodeBtnPressed:" destination="s5K-Yz-tJK" eventType="touchUpInside" id="B3y-Ch-9yS"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="OYa-kO-e4b" firstAttribute="centerY" secondItem="A7F-ne-tcv" secondAttribute="centerY" id="0tf-SJ-ggv"/>
-                                            <constraint firstItem="DlK-gE-UZv" firstAttribute="centerX" secondItem="A7F-ne-tcv" secondAttribute="centerX" id="FTD-yy-wlF"/>
-                                            <constraint firstAttribute="trailing" secondItem="OYa-kO-e4b" secondAttribute="trailing" constant="8" id="JCC-pQ-BWe"/>
-                                            <constraint firstItem="DlK-gE-UZv" firstAttribute="top" secondItem="A7F-ne-tcv" secondAttribute="top" constant="20" id="JHl-ci-yJh"/>
-                                            <constraint firstItem="OYa-kO-e4b" firstAttribute="top" secondItem="DlK-gE-UZv" secondAttribute="bottom" constant="20" id="NcR-88-Og0"/>
-                                            <constraint firstItem="44W-bL-whS" firstAttribute="centerX" secondItem="A7F-ne-tcv" secondAttribute="centerX" id="b6o-bm-WzJ"/>
-                                            <constraint firstAttribute="bottom" secondItem="44W-bL-whS" secondAttribute="bottom" constant="8" id="oq7-zh-fBt"/>
-                                            <constraint firstItem="OYa-kO-e4b" firstAttribute="leading" secondItem="A7F-ne-tcv" secondAttribute="leading" constant="8" id="s4G-O0-AbP"/>
+                                            <constraint firstItem="44W-bL-whS" firstAttribute="centerX" secondItem="A7F-ne-tcv" secondAttribute="centerX" id="BMP-MR-CJl"/>
+                                            <constraint firstAttribute="trailing" secondItem="OYa-kO-e4b" secondAttribute="trailing" constant="8" id="CWZ-2o-viV"/>
+                                            <constraint firstItem="OYa-kO-e4b" firstAttribute="leading" secondItem="A7F-ne-tcv" secondAttribute="leading" constant="8" id="Dzp-uw-2t4"/>
+                                            <constraint firstItem="DlK-gE-UZv" firstAttribute="top" secondItem="A7F-ne-tcv" secondAttribute="top" constant="20" id="GbQ-se-NbR"/>
+                                            <constraint firstItem="44W-bL-whS" firstAttribute="top" secondItem="OYa-kO-e4b" secondAttribute="bottom" constant="21" id="K5t-Uf-HEo"/>
+                                            <constraint firstItem="DlK-gE-UZv" firstAttribute="centerX" secondItem="A7F-ne-tcv" secondAttribute="centerX" id="PLh-gI-abr"/>
+                                            <constraint firstItem="OYa-kO-e4b" firstAttribute="top" secondItem="DlK-gE-UZv" secondAttribute="bottom" constant="20" id="pgE-Kb-unU"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="A7F-ne-tcv" secondAttribute="trailing" id="AOG-P3-0aZ"/>
-                                    <constraint firstItem="A7F-ne-tcv" firstAttribute="width" secondItem="iD7-hX-qnL" secondAttribute="width" id="BgB-ie-PeC"/>
-                                    <constraint firstItem="A7F-ne-tcv" firstAttribute="leading" secondItem="iD7-hX-qnL" secondAttribute="leading" id="bep-U6-Z3A"/>
-                                    <constraint firstItem="A7F-ne-tcv" firstAttribute="height" secondItem="iD7-hX-qnL" secondAttribute="height" priority="250" id="cJk-UP-xTf"/>
-                                    <constraint firstItem="A7F-ne-tcv" firstAttribute="top" secondItem="iD7-hX-qnL" secondAttribute="top" id="yUm-aN-K7k"/>
-                                    <constraint firstAttribute="bottom" secondItem="A7F-ne-tcv" secondAttribute="bottom" id="ztd-2e-eAB"/>
+                                    <constraint firstItem="A7F-ne-tcv" firstAttribute="leading" secondItem="iD7-hX-qnL" secondAttribute="leading" id="HoC-Rh-gao"/>
+                                    <constraint firstItem="A7F-ne-tcv" firstAttribute="top" secondItem="iD7-hX-qnL" secondAttribute="top" id="KVP-B6-AXl"/>
+                                    <constraint firstItem="A7F-ne-tcv" firstAttribute="width" secondItem="iD7-hX-qnL" secondAttribute="width" id="Tag-NH-0V5"/>
+                                    <constraint firstAttribute="bottom" secondItem="44W-bL-whS" secondAttribute="bottom" constant="30" id="Z4i-Pt-4VE"/>
+                                    <constraint firstAttribute="bottom" secondItem="A7F-ne-tcv" secondAttribute="bottom" id="eRn-Oy-tIz"/>
+                                    <constraint firstAttribute="trailing" secondItem="A7F-ne-tcv" secondAttribute="trailing" id="g7y-Qt-QCK"/>
+                                    <constraint firstItem="A7F-ne-tcv" firstAttribute="height" secondItem="iD7-hX-qnL" secondAttribute="height" priority="250" id="myu-rj-Vpq"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="iD7-hX-qnL" firstAttribute="leading" secondItem="JaB-kT-SQd" secondAttribute="leading" id="43r-Qh-pRI"/>
-                            <constraint firstItem="JaB-kT-SQd" firstAttribute="bottom" secondItem="iD7-hX-qnL" secondAttribute="bottom" id="9uv-a8-u93"/>
-                            <constraint firstItem="iD7-hX-qnL" firstAttribute="top" secondItem="JaB-kT-SQd" secondAttribute="top" id="sSM-5M-Otv"/>
-                            <constraint firstItem="JaB-kT-SQd" firstAttribute="trailing" secondItem="iD7-hX-qnL" secondAttribute="trailing" id="uWh-W8-EWX"/>
+                            <constraint firstItem="iD7-hX-qnL" firstAttribute="leading" secondItem="JaB-kT-SQd" secondAttribute="leading" id="OwM-ed-c7H"/>
+                            <constraint firstItem="JaB-kT-SQd" firstAttribute="trailing" secondItem="iD7-hX-qnL" secondAttribute="trailing" id="POk-fD-gIL"/>
+                            <constraint firstItem="iD7-hX-qnL" firstAttribute="top" secondItem="JaB-kT-SQd" secondAttribute="top" id="T52-Ja-CYM"/>
+                            <constraint firstItem="JaB-kT-SQd" firstAttribute="bottom" secondItem="iD7-hX-qnL" secondAttribute="bottom" id="kDT-cm-r4t"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JaB-kT-SQd"/>
                     </view>
@@ -411,20 +410,20 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <size key="freeformSize" width="375" height="800"/>
+                    <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="accountTxt" destination="hDq-la-REB" id="GHa-Kw-tfI"/>
                         <outlet property="amountTxt" destination="9uG-v3-wyX" id="yRb-cM-ZyQ"/>
                         <outlet property="categoryTxt" destination="fJj-FI-brZ" id="uGT-vq-egN"/>
                         <outlet property="commentTxtView" destination="Uoy-Xu-CCp" id="AZF-5f-yU6"/>
                         <outlet property="dateTxt" destination="1Ph-lm-ybk" id="RBV-5c-dhn"/>
-                        <outlet property="deleteBtn" destination="44W-bL-whS" id="M6N-rb-H5V"/>
+                        <outlet property="scanQRCodeBtn" destination="44W-bL-whS" id="M6N-rb-H5V"/>
                         <outlet property="segmentedControl" destination="DlK-gE-UZv" id="D8B-1e-tvZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhb-eG-cwi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2007.2" y="2686.9565217391305"/>
+            <point key="canvasLocation" x="-2007.2" y="2686.0569715142433"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="vLn-A7-u9s">
@@ -711,6 +710,7 @@
     <resources>
         <image name="Charts" width="26" height="29"/>
         <image name="Credit Card" width="30" height="21"/>
+        <image name="QR Code Icon" width="49" height="49"/>
         <image name="Settings" width="30" height="30"/>
         <image name="Transaction" width="30" height="30"/>
         <image name="Wallet" width="48" height="38"/>

@@ -19,7 +19,7 @@ class TransactionDetailVC: BaseVC {
     @IBOutlet weak var amountTxt: UITextField!
     @IBOutlet weak var commentTxtView: UITextView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var scanQRCodeBtn: UIButton!
     
     // MARK: - Constants
     fileprivate let toolBarForPicker = UIToolbar()
@@ -103,15 +103,15 @@ class TransactionDetailVC: BaseVC {
         reloadData()
     }
     
-    @IBAction func deleteBtnPressed(_ sender: Any) {
+    @IBAction func scanQRCodeBtnPressed(_ sender: Any) {
         
-        guard let transaction = transaction else { return }
-        
-        DataManager.shared.remove(data: transaction)
-        
-        NotificationCenter.default.post(name: .transaction, object: nil)
-        
-        self.navigationController?.popViewController(animated: true)
+//        guard let transaction = transaction else { return }
+//
+//        DataManager.shared.remove(data: transaction)
+//
+//        NotificationCenter.default.post(name: .transaction, object: nil)
+//
+//        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func datePickerValueChannged(_ sender: Any) {
@@ -167,7 +167,7 @@ class TransactionDetailVC: BaseVC {
             segmentedControl.selectedSegmentIndex = 1
         }
         
-        deleteBtn.isHidden = transaction == nil
+        //deleteBtn.isHidden = transaction == nil
     }
     
     fileprivate func formatAmount(forTextField textField: UITextField) {
