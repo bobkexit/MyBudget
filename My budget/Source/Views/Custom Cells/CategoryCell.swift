@@ -12,12 +12,12 @@ class CategoryCell: BaseCell {
     
     @IBOutlet weak var categoryName: UITextField!
     
-    var category: RealmCategory!
+    var viewModel: CategoryViewModel!
     
-    func configureCell(_ data: RealmCategory) {
+    func configureCell(viewModel: CategoryViewModel) {
         setup()
-        self.category = data
-        self.categoryName.text = data.name
+        self.viewModel = viewModel
+        self.categoryName.text = viewModel.title
     }
     
     fileprivate func setup() {
@@ -39,6 +39,7 @@ extension CategoryCell: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = textField.text?.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
         delegate?.cellDidEndEditing(editingCell: self)
     }
 }

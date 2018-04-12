@@ -11,10 +11,16 @@ import RealmSwift
 
 class CategoriesVC: BaseTableVC {
     
+    typealias Entity = Category
+    typealias ViewModel = CategoryViewModel
+    typealias CategoryType = BaseViewModel.CategoryType
+    
      // MARK: - Properties
+    var dataManager = DataManager.shared
+    var viewModelFactory: ViewModelFactoryProtocol = ViewModelFactory.shared
     
     var categoryType: CategoryType!
-    var categories: Results<RealmCategory>!
+    var categories = [CategoryViewModel]()
     
     
     // MARK: - View Life Cycle
@@ -30,19 +36,18 @@ class CategoriesVC: BaseTableVC {
     // MARK: - View Actions
     
     @IBAction func addButtonPressed(_ sender: Any) {
-        
-        let category = RealmCategory(name: "", categoryType: categoryType)
-        DataManager.shared.createOrUpdate(data: category)
+        let viewModel = viewModelFactory.createCategoryViewModel(model: nil)
+        viewModel.set(categoryType: categoryType)
+        viewModel.save()
         reloadData()
         
         guard let visibleCells = tableView.visibleCells as? [CategoryCell] else {
             fatalError("Can't get visible category cells")
         }
         
-        let cell = visibleCells.first(where: {$0.category.categoryId == category.categoryId })
+        let cell = visibleCells.first(where: {$0.viewModel?.id == viewModel.id })
         cell?.categoryName.becomeFirstResponder()
     }
-    
     
     // MARK: - View Methods
     
@@ -58,14 +63,36 @@ class CategoriesVC: BaseTableVC {
     }
     
     fileprivate func reloadData() {
-        let data = DataManager.shared.getData(of: RealmCategory.self).filter("categoryTypeId = \(self.categoryType.rawValue)")//.sorted(byKeyPath: "name")
+        var rawData = dataManager.fetchObjects(ofType: Entity.self)
+        rawData = rawData.filter("typeId = \(self.categoryType.rawValue)")
         
-        self.categories = data
+        categories = rawData.map { viewModelFactory.createCategoryViewModel(model: $0) }
+        
         self.tableView.reloadData()
     }
     
-    override func getData(atIndexPath indexPath: IndexPath) -> Object? {
-        return categories[indexPath.row]
+    fileprivate func deleteEmptyCategory(viewModel: ViewModel) {
+        guard let model = dataManager.findObject(ofType: Entity.self, byId: viewModel.id) else {
+            return
+        }
+        dataManager.remove(model) { _ in }
+    }
+    
+    override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
+        let viewModel = categories[indexPath.row]
+        
+        guard let model = dataManager.findObject(ofType: Category.self, byId: viewModel.id)  else {
+            return
+        }
+        
+        dataManager.remove(model) { (error) in
+            if error != nil {
+                print(error as Any)
+                return
+            }
+            self.categories.remove(at: indexPath.row)
+            super.tablewView(tableView, actionsWhenRemoveRowAt: indexPath)
+        }
     }
 }
 
@@ -82,9 +109,9 @@ extension CategoriesVC {
             return UITableViewCell()
         }
         
-        let category = categories[indexPath.row]
+        let viewModel = categories[indexPath.row]
         cell.delegate = self
-        cell.configureCell(category)
+        cell.configureCell(viewModel: viewModel)
         
         return cell
     }
@@ -95,23 +122,23 @@ extension CategoriesVC {
 
 extension CategoriesVC: UITableViewCellDelgate {
     func cellDidEndEditing(editingCell: UITableViewCell) {
-        
+        // FIXME - I don't like this part
         guard let editingCell = editingCell as? CategoryCell else {
-            fatalError("Cant cast cell to \(AccountCell.self)")
+            return
         }
         
-        guard let indexPath = tableView.indexPath(for: editingCell) else { return }
+        guard let indexPath = tableView.indexPath(for: editingCell) else {
+            return
+        }
         
-        if let categoryName = editingCell.categoryName.text, !categoryName.isEmpty {
-            
-            let categoryId = categories[indexPath.row].categoryId
-            let categoryName = categoryName.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
-            let updatedCategory = RealmCategory(name: categoryName, categoryType: categoryType, categoryId: categoryId)
-            
-            DataManager.shared.createOrUpdate(data: updatedCategory)
+        let viewModel = categories[indexPath.row]
+        let title = editingCell.categoryName.text
+        
+        if title?.isEmpty ?? true {
+            deleteEmptyCategory(viewModel: viewModel)
+            reloadData()
         } else {
-            DataManager.shared.remove(data: categories[indexPath.row])
+            viewModel.set(title: title!)
         }
-        self.reloadData()
     }
 }

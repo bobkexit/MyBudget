@@ -11,6 +11,11 @@ import RealmSwift
 
 class TransactionDetailVC: BaseVC {
     
+    typealias Entity = Transaction
+    typealias ViewModel = TransactionViewModel
+    typealias CategoryType = BaseViewModel.CategoryType
+    typealias AccountType = BaseViewModel.AccountType
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var dateTxt: UITextField!
@@ -27,16 +32,18 @@ class TransactionDetailVC: BaseVC {
     fileprivate let accountPicker = UIPickerView()
     fileprivate let categoryPicker = UIPickerView()
     
-    fileprivate let accounts = DataManager.shared.getData(of: RealmAccount.self)
-    fileprivate var categories: Results<RealmCategory>!
+    fileprivate var accounts: Results<Account>!
+    fileprivate var categories: Results<Category>!
     
     
     // MARK: - Properties
+    var dataManager = DataManager.shared
+
+    var viewModel: ViewModel!
     
-    var transaction: RealmTransaction?
     fileprivate var selectedDate: Date?
-    fileprivate var selectedAccount: RealmAccount?
-    fileprivate var selectedCategory: RealmCategory?
+//    fileprivate var selectedAccount: Account?
+//    fileprivate var selectedCategory: Category?
     fileprivate var selectedCategoryType = CategoryType.credit
     
     
@@ -44,13 +51,9 @@ class TransactionDetailVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        updateUI()
+       
         reloadData()
-        
-        if accounts.count > 0 {
-            accountPicker.selectRow(0, inComponent: 0, animated: true)
-        }
+        updateUI()
     }
     
     
@@ -60,31 +63,13 @@ class TransactionDetailVC: BaseVC {
     @IBAction func saveButtonPressed(_ sender: Any) {
         
         //FIXME: - don't work animation invalid fields
-        if !validateData() { return }
-        
-        guard let account = selectedAccount else {
-            fatalError("Can't get selected account")
+        if !validateData() {
+            return
+            
         }
         
-        guard let category = selectedCategory else {
-            fatalError("Can't get selected category")
-        }
-        
-        let updatedTransaction = RealmTransaction()
-        updatedTransaction.account = account
-        updatedTransaction.category = category
-        updatedTransaction.comment = getCommet()
-        updatedTransaction.sum = getAmount()
-        
-        if let transactionId = transaction?.transactionId {
-            updatedTransaction.transactionId = transactionId
-        }
-        
-        if let date = selectedDate {
-            updatedTransaction.date = date
-        }
-       
-        DataManager.shared.createOrUpdate(data: updatedTransaction)
+        updateData()
+        viewModel.save()
         NotificationCenter.default.post(name: .transaction, object: nil)
         self.navigationController?.popViewController(animated: true)
     }
@@ -98,20 +83,13 @@ class TransactionDetailVC: BaseVC {
         default:
             return
         }
-        selectedCategory = nil
-        categoryTxt.text = nil
+//        selectedCategory = nil
+//        categoryTxt.text = nil
         reloadData()
     }
     
     @IBAction func scanQRCodeBtnPressed(_ sender: Any) {
         
-//        guard let transaction = transaction else { return }
-//
-//        DataManager.shared.remove(data: transaction)
-//
-//        NotificationCenter.default.post(name: .transaction, object: nil)
-//
-//        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func datePickerValueChannged(_ sender: Any) {
@@ -135,6 +113,8 @@ class TransactionDetailVC: BaseVC {
         setupTextField(dateTxt, withInputView: datePicker, andInputAccessoryView: toolBarForPicker)
         setupTextField(amountTxt, withInputView: nil, andInputAccessoryView: toolBarForPicker)
         
+        commentTxtView.delegate = self
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -150,43 +130,24 @@ class TransactionDetailVC: BaseVC {
     }
     
     fileprivate func updateUI() {
-        let dateFormatter = Helper.shared.getDateFormatter(timeStyle: .short)
-        
-        if let transaction = transaction {
-            dateTxt.text = dateFormatter.string(from: transaction.date)
-            accountTxt.text = transaction.account?.name
-            categoryTxt.text = transaction.category?.name
-            formatAmount(forTextField: amountTxt)
-        } else {
-            dateTxt.text = dateFormatter.string(from: Date())
-        }
+        dateTxt.text = viewModel.date
+        accountTxt.text = viewModel.account
+        categoryTxt.text = viewModel.category
+        amountTxt.text = viewModel.amount
         
         if selectedCategoryType == .credit {
             segmentedControl.selectedSegmentIndex = 0
         } else if selectedCategoryType == .debit {
             segmentedControl.selectedSegmentIndex = 1
         }
-        
-        //deleteBtn.isHidden = transaction == nil
-    }
-    
-    fileprivate func formatAmount(forTextField textField: UITextField) {
-        guard let currencyCode = selectedAccount?.currencyCode, let text = textField.text, !text.isEmpty else {
-            return
-        }
-        
-        let formatter = NumberFormatter()
-       
-        guard let number = formatter.number(from: text)?.doubleValue else {
-            return
-        }
-        
-        textField.text = Helper.shared.formatCurrency(number, currencyCode: currencyCode)
     }
     
     // MARK: - Data Methods
     fileprivate func reloadData() {
-        categories = DataManager.shared.getData(of: RealmCategory.self).filter("categoryTypeId = \(selectedCategoryType.rawValue)")
+        categories = dataManager.fetchObjects(ofType: Category.self)
+        categories = categories.filter("typeId = \(selectedCategoryType.rawValue)")
+        
+        accounts = dataManager.fetchObjects(ofType: Account.self)
     }
     
     // FIXME: - DRY
@@ -194,17 +155,17 @@ class TransactionDetailVC: BaseVC {
         var isValid = true
         var invalidFields = [UITextField]()
         
-        if selectedAccount == nil {
+        if viewModel.account == nil {
             isValid = false
             invalidFields.append(accountTxt)
         }
         
-        if selectedCategory == nil {
+        if viewModel.category == nil {
             isValid = false
             invalidFields.append(categoryTxt)
         }
         
-        if amountTxt.text?.isEmpty ?? true {
+        if viewModel.amount?.isEmpty ?? true {
             isValid = false
             invalidFields.append(categoryTxt)
         }
@@ -218,38 +179,10 @@ class TransactionDetailVC: BaseVC {
         return isValid
     }
     
-    fileprivate func getAmount() -> Double {
-        
-        guard let amountStr = amountTxt.text else {
-            fatalError("Can't get amount")
+    fileprivate func updateData() {
+        if let date = dateTxt.text, date != viewModel.date {
+            viewModel.set(date: date)
         }
-        
-        let formatter = NumberFormatter()
-        if let currencyCode = selectedAccount?.currencyCode, let currencySymbol = Helper.shared.getCurrencySymbol(forCurrencyCode: currencyCode) {
-            
-            if amountStr.hasPrefix(currencySymbol) || amountStr.hasSuffix(currencySymbol) {
-                formatter.currencySymbol = currencySymbol
-                formatter.numberStyle = .currency
-            }
-        }
-        
-        guard let amount = formatter.number(from: amountStr)?.doubleValue else {
-            fatalError("Can't get amount")
-        }
-        
-        return amount * Double(selectedCategoryType.sign)
-    }
-        
-    fileprivate func getCommet() -> String? {
-        guard let comment = commentTxtView.text else {
-            return nil
-        }
-        
-        if comment.lowercased().contains("comment") || comment.isEmpty {
-            return nil
-        }
-        
-        return comment
     }
 }
 
@@ -258,7 +191,6 @@ class TransactionDetailVC: BaseVC {
 
 extension TransactionDetailVC  {
     override func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
         if pickerView == accountPicker {
             return accounts.count
         } else if pickerView == categoryPicker {
@@ -271,9 +203,9 @@ extension TransactionDetailVC  {
     override func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if pickerView == accountPicker {
-            return accounts[row].name
+            return accounts[row].title
         } else if pickerView == categoryPicker {
-            return categories[row].name
+            return categories[row].title
         }
         
         return nil
@@ -281,13 +213,13 @@ extension TransactionDetailVC  {
     
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == accountPicker {
-            selectedAccount = accounts[row]
-            accountTxt.text = selectedAccount?.name
-            formatAmount(forTextField: amountTxt)
+            let account = accounts[row]
+            viewModel.set(account: account)
         } else if pickerView == categoryPicker {
-            selectedCategory = categories[row]
-            categoryTxt.text = selectedCategory?.name
+            let category = categories[row]
+            viewModel.set(category: category)
         }
+        updateUI()
     }
     
 }
@@ -306,8 +238,25 @@ extension TransactionDetailVC {
     
     override func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == amountTxt {
-            formatAmount(forTextField: amountTxt)
+            viewModel.set(amount: textField.text)
         }
+        updateUI()
     }
 }
 
+// MARK: - UITextViewDelegate Methods
+
+extension TransactionDetailVC: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView == commentTxtView && textView.text.lowercased() == "comment" {
+            textView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView == commentTxtView {
+            viewModel.set(comment: textView.text)
+        }
+        updateUI()
+    }
+}

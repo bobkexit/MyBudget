@@ -9,15 +9,15 @@
 import Foundation
 import RealmSwift
 
-class RealmTransaction: Object {
-    @objc dynamic var transactionId = UUID().uuidString
+class Transaction: Object {
+    @objc dynamic var id = UUID().uuidString
     @objc dynamic var date = Date()
-    @objc dynamic var account: RealmAccount?
-    @objc dynamic var category: RealmCategory?
-    @objc dynamic var sum: Double = 0.0
+    @objc dynamic var account: Account?
+    @objc dynamic var category: Category?
+    @objc dynamic var amount: Float = 0.0
     @objc dynamic var comment: String?
     
     override static func primaryKey() -> String? {
-        return "transactionId"
+        return "id"
     }
 }

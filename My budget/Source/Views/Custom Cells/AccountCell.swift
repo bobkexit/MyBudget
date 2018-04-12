@@ -11,20 +11,18 @@ import RealmSwift
 
 class AccountCell: BaseCell {
     
+    var viewModel: AccountViewModel!
+    
     @IBOutlet weak var accountTypeImg: UIImageView!
     @IBOutlet weak var accountNameTxt: UITextField!
     @IBOutlet weak var accountCurrencyLbl: UILabel!
     
-    func configureCell(account: RealmAccount, balance: Double? = nil) {
+    func configureCell() {
         accountNameTxt.delegate = self
         
-        accountNameTxt.text = account.name
-        
-        if let currencyCode = account.currencyCode {
-            accountCurrencyLbl.text = Helper.shared.getCurrencySymbol(forCurrencyCode: currencyCode)
-        }
-        
-        accountTypeImg.image = account.accountType?.image
+        accountNameTxt.text = viewModel.title
+        accountCurrencyLbl.text = viewModel.currencySymbol
+        accountTypeImg.image = viewModel.accountType.image
     }
 }
 

@@ -13,6 +13,13 @@ protocol AddAccountVCDelegate {
 }
 
 class AddAccountVC: BaseVC {
+    
+    typealias Entity = Account
+    typealias ViewModel = AccountViewModel
+    typealias AccountType = BaseViewModel.AccountType
+    
+    let dataManager = DataManager.shared
+    var viewModel: ViewModel!
 
     // MARK: - IBOutlets
     
@@ -30,12 +37,12 @@ class AddAccountVC: BaseVC {
     fileprivate let currencyPicker = UIPickerView()
     
     fileprivate let currencies = Helper.shared.getCurrencies()
-    fileprivate let accountTypes = Array(RealmAccount.AccountType.cases())
+    fileprivate let accountTypes = Array(AccountType.cases())
     
     
     // MARK: - Properties
     
-    fileprivate var selectedAccountType: RealmAccount.AccountType?
+    fileprivate var selectedAccountType: AccountType?
     fileprivate var selectedCurrency: String?
     
     var delagate: AddAccountVCDelegate?
@@ -69,11 +76,8 @@ class AddAccountVC: BaseVC {
             return
         }
         
-        let accountName = titleTextField.text!.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
-        let account = RealmAccount(name: accountName, accountType: selectedAccountType!, currencyCode: selectedCurrency!)
-        DataManager.shared.createOrUpdate(data: account)
+        saveData()
         NotificationCenter.default.post(name: .account, object: nil)
-        //delagate?.newAccountHasBeenCreated()
         dismiss(animated: true, completion: nil)
     }
     
@@ -146,6 +150,25 @@ class AddAccountVC: BaseVC {
         }
         
         return isValid
+    }
+    
+    func saveData() {
+        guard let title = titleTextField.text, !title.isEmpty  else {
+            return
+        }
+        
+        guard let accountType = selectedAccountType else {
+            return
+        }
+        
+        guard let currencyCode = selectedCurrency else {
+            return
+        }
+        
+        viewModel.set(title: title)
+        viewModel.set(accountType: accountType)
+        viewModel.set(currencyCode: currencyCode)
+        viewModel.save()
     }
 }
 

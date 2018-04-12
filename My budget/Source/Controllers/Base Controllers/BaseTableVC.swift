@@ -31,18 +31,14 @@ class BaseTableVC: UITableViewController {
     
     final func getDeleteRowAction() -> UITableViewRowAction {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (row, indexPath) in
-            guard let data = self.getData(atIndexPath: indexPath) else { return }
-            DataManager.shared.remove(data: data)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.tablewView(self.tableView, actionsWhenRemoveRowAt: indexPath)
         }
-        
         deleteAction.backgroundColor = Constants.Colors.delete
         
         return deleteAction
     }
     
-    // FIXME: - needs abstract layer (Entity)
-    func getData(atIndexPath indexPath: IndexPath) -> Object? {
-        return nil
+    func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
+         self.tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }

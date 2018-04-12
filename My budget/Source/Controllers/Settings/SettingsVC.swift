@@ -15,7 +15,6 @@ class SettingsVC: BaseTableVC {
     fileprivate let settings = Array(Settings.cases())
     fileprivate var selectedSetting: Settings?
     
-    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -64,21 +63,17 @@ extension SettingsVC {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let selectedSetting = selectedSetting  else {
-            return
-        }
-        
-        if selectedSetting == .incomings || selectedSetting == .expenses {
+        if segue.identifier == Constants.Segues.toCategoriesVC {
+            
             guard let destinationVC = segue.destination as? CategoriesVC else {
-                fatalError("Can't cast destinationVC to \(CategoriesVC.self)")
+                 fatalError("Can't cast destinationVC to \(CategoriesVC.self)")
             }
             
-            guard let categoryType = selectedSetting.gwtrRelatedCategoryType() else {
-                fatalError("Can't get related category type for setting = \(selectedSetting.rawValue)")
+            if selectedSetting == .incomings {
+                destinationVC.categoryType = BaseViewModel.CategoryType.debit
+            } else if selectedSetting == .expenses {
+                 destinationVC.categoryType = BaseViewModel.CategoryType.credit
             }
-            
-            destinationVC.categoryType = categoryType
         }
     }
 }

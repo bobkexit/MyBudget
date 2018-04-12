@@ -11,9 +11,16 @@ import RealmSwift
 
 class TransactionsVC: BaseTableVC {
     
-    // MARK: - Properties
+    typealias Entity = Transaction
+    typealias ViewModel = TransactionViewModel
     
-    fileprivate var transactions: Results<RealmTransaction>!
+    // MARK: - Properties
+    var dataManager = DataManager.shared
+    var viewModelFactory: ViewModelFactoryProtocol = ViewModelFactory.shared
+    
+    fileprivate var transactions = [TransactionViewModel]()
+    var selectedTransaction: TransactionViewModel?
+    
     
     // MARK: - View Life Cycle
     
@@ -31,11 +38,39 @@ class TransactionsVC: BaseTableVC {
         performSegue(withIdentifier: Constants.Segues.toTransactionDetailVC, sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier, identifier == Constants.Segues.toTransactionDetailVC {
+            guard let destinationVC = segue.destination as? TransactionDetailVC else {
+                return
+            }
+            let viewModel = selectedTransaction ?? viewModelFactory.createTransactionViewModel(model: nil)
+            destinationVC.viewModel = viewModel
+        }
+    }
+    
     
     // MARK: - View Methods
     @objc func reloadData() {
-        transactions = DataManager.shared.getData(of: RealmTransaction.self)
+        let rawData = dataManager.fetchObjects(ofType: Transaction.self)
+        transactions = rawData.map { viewModelFactory.createTransactionViewModel(model: $0) }
         tableView.reloadData()
+    }
+    
+    override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
+        let viewModel = transactions[indexPath.row]
+        
+        guard let model = dataManager.findObject(ofType: Transaction.self, byId: viewModel.id)  else {
+            return
+        }
+        
+        dataManager.remove(model) { (error) in
+            if error != nil {
+                print(error as Any)
+                return
+            }
+            self.transactions.remove(at: indexPath.row)
+            super.tablewView(tableView, actionsWhenRemoveRowAt: indexPath)
+        }
     }
 }
 
@@ -51,23 +86,16 @@ extension TransactionsVC {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.transactionCell) as? TransactionCell else {
             return UITableViewCell()
         }
-        let transaction = transactions[indexPath.row]
-        cell.configure(data: transaction)
+        let transactionViewModel = transactions[indexPath.row]
+        cell.viewModel = transactionViewModel
+        cell.configure()
         
         return cell
     }
     
-    // MARK: - needs to refactoring (DRY)
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (row, indexPath) in
-            let data = self.transactions[indexPath.row]
-            DataManager.shared.remove(data: data)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-        
-        deleteAction.backgroundColor = Constants.Colors.delete
-        
-        return [deleteAction]
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedTransaction = transactions[indexPath.row]
+        performSegue(withIdentifier: Constants.Segues.toTransactionDetailVC, sender: self)
     }
 }
 

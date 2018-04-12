@@ -12,13 +12,18 @@
 		351E3E8C205BDBB4004A3414 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E8B205BDBB4004A3414 /* SettingsVC.swift */; };
 		351E3E8E205BDC22004A3414 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */; };
 		351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */; };
+		3531C595207E76080055D0B4 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C594207E76080055D0B4 /* CategoryViewModel.swift */; };
+		3531C597207E7A500055D0B4 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C596207E7A500055D0B4 /* AccountViewModel.swift */; };
+		3531C599207E7C4B0055D0B4 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C598207E7C4B0055D0B4 /* BaseViewModel.swift */; };
+		3531C59B207E81BA0055D0B4 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C59A207E81BA0055D0B4 /* TransactionViewModel.swift */; };
+		3531C59D207F2D730055D0B4 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C59C207F2D730055D0B4 /* ViewModelFactory.swift */; };
 		353B47C6205690B3008281B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47C5205690B3008281B0 /* AppDelegate.swift */; };
 		353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47C7205690B3008281B0 /* ReportsVC.swift */; };
 		353B47CB205690B3008281B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 353B47C9205690B3008281B0 /* Main.storyboard */; };
 		353B47D0205690B3008281B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 353B47CE205690B3008281B0 /* LaunchScreen.storyboard */; };
-		353B47EE20594B63008281B0 /* RealmAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47ED20594B63008281B0 /* RealmAccount.swift */; };
-		353B47F6205958B6008281B0 /* RealmCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F5205958B6008281B0 /* RealmCategory.swift */; };
-		353B47F820595ACD008281B0 /* RealmTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F720595ACD008281B0 /* RealmTransaction.swift */; };
+		353B47EE20594B63008281B0 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47ED20594B63008281B0 /* Account.swift */; };
+		353B47F6205958B6008281B0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F5205958B6008281B0 /* Category.swift */; };
+		353B47F820595ACD008281B0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47F720595ACD008281B0 /* Transaction.swift */; };
 		353B6DE52063D7D000D7004B /* AddAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B6DE32063D7D000D7004B /* AddAccountVC.swift */; };
 		353B6DE62063D7D000D7004B /* AddAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 353B6DE42063D7D000D7004B /* AddAccountVC.xib */; };
 		3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563FF02205FD28C00B05E82 /* AccountsVC.swift */; };
@@ -27,8 +32,6 @@
 		3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3567747E205FA9D200743FCA /* SettingsCell.swift */; };
 		356E06D8206666D7004034AE /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06D7206666D7004034AE /* UIViewExt.swift */; };
 		356E06DB2067E0A2004034AE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06DA2067E0A2004034AE /* DataManager.swift */; };
-		356E06DF20683B41004034AE /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06DE20683B41004034AE /* CategoryType.swift */; };
-		356E06E220683BBE004034AE /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06E120683BBE004034AE /* AccountType.swift */; };
 		356E06E420683C7A004034AE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06E320683C7A004034AE /* Settings.swift */; };
 		356E06EE2068D084004034AE /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 356E06ED2068D084004034AE /* currencies.json */; };
 		356E06F020693E26004034AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 356E06EF20693E25004034AE /* Assets.xcassets */; };
@@ -55,15 +58,20 @@
 		351E3E8B205BDBB4004A3414 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExt.swift; sourceTree = "<group>"; };
+		3531C594207E76080055D0B4 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		3531C596207E7A500055D0B4 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		3531C598207E7C4B0055D0B4 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		3531C59A207E81BA0055D0B4 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
+		3531C59C207F2D730055D0B4 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		353B47C2205690B3008281B0 /* My budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My budget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		353B47C5205690B3008281B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		353B47C7205690B3008281B0 /* ReportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsVC.swift; sourceTree = "<group>"; };
 		353B47CA205690B3008281B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		353B47CF205690B3008281B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		353B47D1205690B3008281B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		353B47ED20594B63008281B0 /* RealmAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAccount.swift; sourceTree = "<group>"; };
-		353B47F5205958B6008281B0 /* RealmCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategory.swift; sourceTree = "<group>"; };
-		353B47F720595ACD008281B0 /* RealmTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTransaction.swift; sourceTree = "<group>"; };
+		353B47ED20594B63008281B0 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		353B47F5205958B6008281B0 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		353B47F720595ACD008281B0 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		353B6DE32063D7D000D7004B /* AddAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountVC.swift; sourceTree = "<group>"; };
 		353B6DE42063D7D000D7004B /* AddAccountVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAccountVC.xib; sourceTree = "<group>"; };
 		3563FF02205FD28C00B05E82 /* AccountsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsVC.swift; sourceTree = "<group>"; };
@@ -72,8 +80,6 @@
 		3567747E205FA9D200743FCA /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		356E06D7206666D7004034AE /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		356E06DA2067E0A2004034AE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		356E06DE20683B41004034AE /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
-		356E06E120683BBE004034AE /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
 		356E06E320683C7A004034AE /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		356E06ED2068D084004034AE /* currencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = currencies.json; sourceTree = "<group>"; };
 		356E06EF20693E25004034AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -138,8 +144,6 @@
 		3509178F2074C4CA0000045C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				350917912074C5400000045C /* Categories */,
-				350917902074C5380000045C /* Accounts */,
 				351E3E8B205BDBB4004A3414 /* SettingsVC.swift */,
 			);
 			path = Settings;
@@ -170,6 +174,18 @@
 				356E06F9206D59E1004034AE /* DesignableViews.swift */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		3531C593207E75CA0055D0B4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3531C598207E7C4B0055D0B4 /* BaseViewModel.swift */,
+				3531C594207E76080055D0B4 /* CategoryViewModel.swift */,
+				3531C596207E7A500055D0B4 /* AccountViewModel.swift */,
+				3531C59A207E81BA0055D0B4 /* TransactionViewModel.swift */,
+				3531C59C207F2D730055D0B4 /* ViewModelFactory.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		353B47B9205690B3008281B0 = {
@@ -206,7 +222,8 @@
 				35F012112063B960008EE633 /* Services */,
 				35EE3013206110DA0041F195 /* Utilities */,
 				3567747A205FA8C500743FCA /* Constants */,
-				353B47DE20593F71008281B0 /* DataModels */,
+				353B47DE20593F71008281B0 /* Models */,
+				3531C593207E75CA0055D0B4 /* ViewModels */,
 				353B47DC20593113008281B0 /* Views */,
 				353B47DB20593106008281B0 /* Controllers */,
 				353B47DA205930F8008281B0 /* Application */,
@@ -246,9 +263,11 @@
 			isa = PBXGroup;
 			children = (
 				3509178C2074C2CF0000045C /* Base Controllers */,
+				350917902074C5380000045C /* Accounts */,
+				350917912074C5400000045C /* Categories */,
 				3509178E2074C4C10000045C /* Reports */,
-				3509178D2074C4A10000045C /* Transactions */,
 				3509178F2074C4CA0000045C /* Settings */,
+				3509178D2074C4A10000045C /* Transactions */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -263,15 +282,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		353B47DE20593F71008281B0 /* DataModels */ = {
+		353B47DE20593F71008281B0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				356E06E020683B9B004034AE /* Enums */,
-				353B47ED20594B63008281B0 /* RealmAccount.swift */,
-				353B47F5205958B6008281B0 /* RealmCategory.swift */,
-				353B47F720595ACD008281B0 /* RealmTransaction.swift */,
+				356E06E320683C7A004034AE /* Settings.swift */,
+				353B47ED20594B63008281B0 /* Account.swift */,
+				353B47F5205958B6008281B0 /* Category.swift */,
+				353B47F720595ACD008281B0 /* Transaction.swift */,
 			);
-			path = DataModels;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		353B6DE72063D7ED00D7004B /* XIBs */ = {
@@ -310,16 +329,6 @@
 				357E0D27206E858B00205970 /* UITextFieldExt.swift */,
 			);
 			path = Extentions;
-			sourceTree = "<group>";
-		};
-		356E06E020683B9B004034AE /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				356E06DE20683B41004034AE /* CategoryType.swift */,
-				356E06E120683BBE004034AE /* AccountType.swift */,
-				356E06E320683C7A004034AE /* Settings.swift */,
-			);
-			path = Enums;
 			sourceTree = "<group>";
 		};
 		35EE3013206110DA0041F195 /* Utilities */ = {
@@ -505,16 +514,16 @@
 				357E0D2A206E97F100205970 /* BaseVC.swift in Sources */,
 				351E3E8A205BDB95004A3414 /* TransactionsVC.swift in Sources */,
 				35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */,
-				356E06E220683BBE004034AE /* AccountType.swift in Sources */,
-				356E06DF20683B41004034AE /* CategoryType.swift in Sources */,
 				35EE301E206118BA0041F195 /* BaseCell.swift in Sources */,
-				353B47F6205958B6008281B0 /* RealmCategory.swift in Sources */,
+				3531C595207E76080055D0B4 /* CategoryViewModel.swift in Sources */,
+				353B47F6205958B6008281B0 /* Category.swift in Sources */,
 				357E0D28206E858B00205970 /* UITextFieldExt.swift in Sources */,
 				356E06FA206D59E1004034AE /* DesignableViews.swift in Sources */,
 				356E06F4206A6C9C004034AE /* TransactionDetailVC.swift in Sources */,
 				356E06D8206666D7004034AE /* UIViewExt.swift in Sources */,
-				353B47F820595ACD008281B0 /* RealmTransaction.swift in Sources */,
+				353B47F820595ACD008281B0 /* Transaction.swift in Sources */,
 				356E06E420683C7A004034AE /* Settings.swift in Sources */,
+				3531C59B207E81BA0055D0B4 /* TransactionViewModel.swift in Sources */,
 				35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */,
 				353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */,
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
@@ -522,10 +531,13 @@
 				3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */,
 				351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */,
 				356E06F8206A802C004034AE /* GradientTableView.swift in Sources */,
+				3531C597207E7A500055D0B4 /* AccountViewModel.swift in Sources */,
 				35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */,
 				356E06F2206A5699004034AE /* TransactionCell.swift in Sources */,
 				3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */,
-				353B47EE20594B63008281B0 /* RealmAccount.swift in Sources */,
+				3531C59D207F2D730055D0B4 /* ViewModelFactory.swift in Sources */,
+				353B47EE20594B63008281B0 /* Account.swift in Sources */,
+				3531C599207E7C4B0055D0B4 /* BaseViewModel.swift in Sources */,
 				357E0D2C206E9F2B00205970 /* Helper.swift in Sources */,
 				35EE301C206118AC0041F195 /* AccountCell.swift in Sources */,
 				35F012132063B9D7008EE633 /* PreinstallationManager.swift in Sources */,

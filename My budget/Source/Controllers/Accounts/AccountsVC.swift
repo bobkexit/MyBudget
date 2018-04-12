@@ -11,6 +11,10 @@ import RealmSwift
 
 class AccountsVC: BaseTableVC {
 
+    typealias Entity = Account
+    typealias ViewModel = AccountViewModel
+    typealias AccountType = BaseViewModel.AccountType
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var accountTypeImage: UIImageView!
@@ -18,8 +22,9 @@ class AccountsVC: BaseTableVC {
     
     
     // MARK: - Properties
-    
-    fileprivate var accounts = DataManager.shared.getData(of: RealmAccount.self)
+    var viewModelFactory: ViewModelFactoryProtocol = ViewModelFactory.shared
+    let dataManager = DataManager.shared
+    fileprivate var accounts = [ViewModel]()
     
     
     // MARK: - View Life Cycle
@@ -37,6 +42,7 @@ class AccountsVC: BaseTableVC {
     
     @IBAction func addButtomPressed(_ sender: Any) {
         let addAccountVC = AddAccountVC()
+        addAccountVC.viewModel = viewModelFactory.createAccountViewModel(model: nil)
         addAccountVC.modalPresentationStyle = .custom
         present(addAccountVC, animated: true, completion: nil)
     }
@@ -45,12 +51,33 @@ class AccountsVC: BaseTableVC {
     // MARK: - View Methods
     
     @objc fileprivate func reloadData() {
-        accounts = DataManager.shared.getData(of: RealmAccount.self)
+        let rawData = dataManager.fetchObjects(ofType: Entity.self)
+        accounts = rawData.map{viewModelFactory.createAccountViewModel(model: $0)}
         tableView.reloadData()
     }
     
-    override func getData(atIndexPath indexPath: IndexPath) -> Object? {
-        return accounts[indexPath.row]
+    func removeAccount(viewModel: ViewModel) {
+        guard let model = dataManager.findObject(ofType: Entity.self, byId: viewModel.id) else {
+            return
+        }
+        dataManager.remove(model) { _ in }
+    }
+    
+    override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
+        let viewModel = accounts[indexPath.row]
+        
+        guard let model = dataManager.findObject(ofType: Account.self, byId: viewModel.id)  else {
+            return
+        }
+        
+        dataManager.remove(model) { (error) in
+            if error != nil {
+                print(error as Any)
+                return
+            }
+            self.accounts.remove(at: indexPath.row)
+            super.tablewView(tableView, actionsWhenRemoveRowAt: indexPath)
+        }
     }
 }
 
@@ -67,9 +94,10 @@ extension AccountsVC {
             return UITableViewCell()
         }
         
-        let account = accounts[indexPath.row]
+        let accountViewModel = accounts[indexPath.row]
         cell.delegate = self
-        cell.configureCell(account: account, balance: nil)
+        cell.viewModel = accountViewModel
+        cell.configureCell()
         
         return cell
     }
@@ -79,23 +107,23 @@ extension AccountsVC {
 
 extension AccountsVC: UITableViewCellDelgate {
     func cellDidEndEditing(editingCell: UITableViewCell) {
-        guard let editingCell = editingCell as? AccountCell else {
-            fatalError("Cant cast cell to \(AccountCell.self)")
+        
+        // FIXME - I don't like this part
+        
+        guard let editingCell = editingCell as? AccountCell, let indexPath = tableView.indexPath(for: editingCell) else {
+            return
         }
         
-        guard let indexPath = tableView.indexPath(for: editingCell) else { return }
+        let accountViewModel = accounts[indexPath.row]
         
-        let account = accounts[indexPath.row]
+        let title = editingCell.accountNameTxt.text
         
-        if let accountName = editingCell.accountNameTxt.text, !accountName.isEmpty {
-            
-            let accountName = accountName.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)
-            let updatedItem = RealmAccount(name: accountName, accountTypeId: account.accountTypeId, currencyCode: account.currencyCode!, accountId: account.accountId)
-            
-            DataManager.shared.createOrUpdate(data: updatedItem)
+        if title?.isEmpty ?? true {
+            removeAccount(viewModel: accountViewModel)
         } else {
-            DataManager.shared.remove(data: account)
+            accountViewModel.set(title: title!)
         }
+
         reloadData()
     }
 }

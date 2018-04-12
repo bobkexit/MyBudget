@@ -12,15 +12,4 @@ enum Settings: String, EnumCollection {
     case accounts
     case incomings
     case expenses
-    
-    func gwtrRelatedCategoryType() -> CategoryType? {
-        switch self {
-        case .expenses:
-            return CategoryType.credit
-        case .incomings:
-            return CategoryType.debit
-        default:
-            return nil
-        }
-    }
 }
