@@ -42,10 +42,7 @@ class TransactionDetailVC: BaseVC {
     var viewModel: ViewModel!
     
     fileprivate var selectedDate: Date?
-//    fileprivate var selectedAccount: Account?
-//    fileprivate var selectedCategory: Category?
-    fileprivate var selectedCategoryType = CategoryType.credit
-    
+    //fileprivate var operationType: CategoryType = .credit
     
     // MARK: - View Life Cycle
     
@@ -65,7 +62,6 @@ class TransactionDetailVC: BaseVC {
         //FIXME: - don't work animation invalid fields
         if !validateData() {
             return
-            
         }
         
         updateData()
@@ -77,19 +73,30 @@ class TransactionDetailVC: BaseVC {
     @IBAction func indexChanged(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            selectedCategoryType = .credit
+            viewModel.operationType = .credit
         case 1:
-            selectedCategoryType = .debit
+            viewModel.operationType = .debit
         default:
             return
         }
-//        selectedCategory = nil
-//        categoryTxt.text = nil
         reloadData()
+        updateUI()
     }
     
+    @available(iOS 10.2, *)
     @IBAction func scanQRCodeBtnPressed(_ sender: Any) {
-        
+        performSegue(withIdentifier: Constants.Segues.toQRScannerVC, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.Segues.toQRScannerVC {
+            if #available(iOS 10.2, *) {
+                guard let destinationVC = segue.destination as? QRScannerVC  else { return }
+                destinationVC.delegate = self
+            } else {
+                // Fallback on earlier versions
+            }
+        }
     }
     
     @objc func datePickerValueChannged(_ sender: Any) {
@@ -133,11 +140,11 @@ class TransactionDetailVC: BaseVC {
         dateTxt.text = viewModel.date
         accountTxt.text = viewModel.account
         categoryTxt.text = viewModel.category
-        amountTxt.text = viewModel.amount
+        amountTxt.text = viewModel.amountPositive
         
-        if selectedCategoryType == .credit {
+        if viewModel.operationType == .credit {
             segmentedControl.selectedSegmentIndex = 0
-        } else if selectedCategoryType == .debit {
+        } else {
             segmentedControl.selectedSegmentIndex = 1
         }
     }
@@ -145,7 +152,7 @@ class TransactionDetailVC: BaseVC {
     // MARK: - Data Methods
     fileprivate func reloadData() {
         categories = dataManager.fetchObjects(ofType: Category.self)
-        categories = categories.filter("typeId = \(selectedCategoryType.rawValue)")
+        categories = categories.filter("typeId = \(viewModel.operationType.rawValue)")
         
         accounts = dataManager.fetchObjects(ofType: Account.self)
     }
@@ -258,5 +265,20 @@ extension TransactionDetailVC: UITextViewDelegate {
             viewModel.set(comment: textView.text)
         }
         updateUI()
+    }
+}
+
+extension TransactionDetailVC: QRScannerVCDelegate {
+    func qrScanner(found code: String) {
+        QRCodeParser.shared.parse(code: code) { (date, sum) in
+            if let date = date {
+                viewModel.set(date: date)
+            }
+            
+            if let amount = sum {
+                viewModel.set(amount: amount)
+            }
+            updateUI()
+        }
     }
 }

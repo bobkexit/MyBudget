@@ -419,11 +419,84 @@
                         <outlet property="dateTxt" destination="1Ph-lm-ybk" id="RBV-5c-dhn"/>
                         <outlet property="scanQRCodeBtn" destination="44W-bL-whS" id="M6N-rb-H5V"/>
                         <outlet property="segmentedControl" destination="DlK-gE-UZv" id="D8B-1e-tvZ"/>
+                        <segue destination="cGI-Yr-WV9" kind="presentation" identifier="toQRScannerVC" modalTransitionStyle="crossDissolve" id="Nl5-Qw-mC3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhb-eG-cwi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2007.2" y="2686.0569715142433"/>
+            <point key="canvasLocation" x="-2009" y="2805"/>
+        </scene>
+        <!--ScannerVC-->
+        <scene sceneID="Qoa-Cw-KKS">
+            <objects>
+                <viewController id="cGI-Yr-WV9" customClass="QRScannerVC" customModule="My_budget" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hkx-6h-KSP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No QR code is detected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BL-Z1-KpY">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Etb-HO-upC"/>
+                                    <constraint firstAttribute="height" constant="40" id="WmR-iw-zDY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6cQ-k1-NOR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLo-KQ-PUq">
+                                        <rect key="frame" x="15" y="29" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="5x0-Vu-ASb"/>
+                                            <constraint firstAttribute="width" constant="18" id="Py3-Ag-GMe"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="cross"/>
+                                        <connections>
+                                            <action selector="closeBtnPressed:" destination="cGI-Yr-WV9" eventType="touchUpInside" id="rJa-1h-QnZ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i06-LK-eMF">
+                                        <rect key="frame" x="133" y="27.5" width="108.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2196078431372549" green="0.23137254901960785" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="BLo-KQ-PUq" secondAttribute="bottom" constant="13" id="J8y-xK-YuW"/>
+                                    <constraint firstItem="i06-LK-eMF" firstAttribute="centerX" secondItem="6cQ-k1-NOR" secondAttribute="centerX" id="Mhl-Ue-Gxy"/>
+                                    <constraint firstAttribute="height" constant="60" id="Nrk-6B-xnc"/>
+                                    <constraint firstItem="i06-LK-eMF" firstAttribute="centerY" secondItem="BLo-KQ-PUq" secondAttribute="centerY" id="Yqz-7M-Vu8"/>
+                                    <constraint firstItem="BLo-KQ-PUq" firstAttribute="leading" secondItem="6cQ-k1-NOR" secondAttribute="leading" constant="15" id="gIJ-YQ-cOJ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1BL-Z1-KpY" firstAttribute="bottom" secondItem="cOT-25-hyh" secondAttribute="bottom" id="Hoy-Ku-TD4"/>
+                            <constraint firstItem="1BL-Z1-KpY" firstAttribute="leading" secondItem="cOT-25-hyh" secondAttribute="leading" id="Mq9-S3-0va"/>
+                            <constraint firstItem="6cQ-k1-NOR" firstAttribute="trailing" secondItem="cOT-25-hyh" secondAttribute="trailing" id="cuH-ey-Q6m"/>
+                            <constraint firstItem="6cQ-k1-NOR" firstAttribute="top" secondItem="hkx-6h-KSP" secondAttribute="top" id="gbw-PB-2AF"/>
+                            <constraint firstItem="1BL-Z1-KpY" firstAttribute="trailing" secondItem="cOT-25-hyh" secondAttribute="trailing" id="heb-9z-3s6"/>
+                            <constraint firstItem="6cQ-k1-NOR" firstAttribute="leading" secondItem="cOT-25-hyh" secondAttribute="leading" id="x8t-6R-NLz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cOT-25-hyh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zU3-6e-C5e"/>
+                    <connections>
+                        <outlet property="messageLbl" destination="1BL-Z1-KpY" id="xqz-4f-E4n"/>
+                        <outlet property="toolbarView" destination="6cQ-k1-NOR" id="XrG-FO-uT1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mSl-wv-XFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2007.2" y="3761.4692653673164"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="vLn-A7-u9s">
@@ -714,5 +787,6 @@
         <image name="Settings" width="30" height="30"/>
         <image name="Transaction" width="30" height="30"/>
         <image name="Wallet" width="48" height="38"/>
+        <image name="cross" width="40" height="40"/>
     </resources>
 </document>

@@ -17,6 +17,12 @@ struct TransactionViewModel {
    
     init(withTransaction transaction: Entity) {
         self.transaction = transaction
+      
+        if let categoryTypeId = transaction.category?.typeId, let categoryType = CategoryType(rawValue: categoryTypeId) {
+            self.operationType = categoryType
+        } else {
+            self.operationType = .credit
+        }
     }
     
     var id: String {
@@ -38,6 +44,15 @@ struct TransactionViewModel {
     var category: String? {
         let category = self.transaction.category
         return category?.title
+    }
+    
+    var operationType: CategoryType
+    
+    var categoryType: CategoryType? {
+        guard let categoryTypeId = self.transaction.category?.typeId else {
+            return nil
+        }
+        return CategoryType(rawValue: categoryTypeId)
     }
     
     var date: String {
@@ -68,6 +83,8 @@ struct TransactionViewModel {
     
     var amount: String? {
         let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.minimumFractionDigits = 2
         if let currencySymbol = self.currencySymbol, let currencyCode = self.currencyCode  {
             numberFormatter.currencySymbol = currencySymbol
             numberFormatter.currencyCode = currencyCode
@@ -75,6 +92,25 @@ struct TransactionViewModel {
         } else {
             numberFormatter.numberStyle = .decimal
         }
+        
+        let sum = self.transaction.amount * (self.operationType == .credit ? -1 : 1)
+        let number = NSNumber(value: sum)
+        let value = numberFormatter.string(from: number)
+        return value
+    }
+    
+    var amountPositive: String? {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.minimumFractionDigits = 2
+        if let currencySymbol = self.currencySymbol, let currencyCode = self.currencyCode  {
+            numberFormatter.currencySymbol = currencySymbol
+            numberFormatter.currencyCode = currencyCode
+            numberFormatter.numberStyle = .currency
+        } else {
+            numberFormatter.numberStyle = .decimal
+        }
+        
         let number = NSNumber(value: self.transaction.amount)
         let value = numberFormatter.string(from: number)
         return value
@@ -94,9 +130,13 @@ struct TransactionViewModel {
         let dateFormetter = DateFormatter()
 //        dateFormetter.dateStyle = .short
 //        dateFormetter.timeStyle = .short
-        let value = dateFormetter.date(from: date)
+        guard let value = dateFormetter.date(from: date) else { return }
         
-        dataManager.object(transaction, setValue: value, forKey: "date")
+        set(date: value)
+    }
+    
+    func set(date: Date) {
+        dataManager.object(transaction, setValue: date, forKey: "date")
     }
     
     func set(account: Account) {
@@ -137,10 +177,11 @@ struct TransactionViewModel {
             fatalError("Can't get amount from string")
         }
         
-        let value = nummber.floatValue * (self.credit ? -1 : 1)
-        
-        dataManager.object(transaction, setValue: value, forKey: "amount")
-        
+        set(amount: nummber.floatValue)
+    }
+    
+    func set(amount: Float) {
+        dataManager.object(transaction, setValue: amount, forKey: "amount")
     }
     
     func set(comment: String?) {
@@ -150,4 +191,12 @@ struct TransactionViewModel {
     func save() {
         dataManager.save(transaction)
     }
+    
+//    fileprivate func getNumberFormatter() -> NumberFormatter {
+//        
+//    }
+//    
+//    fileprivate func getDateFormatter() -> DateFormatter {
+//    
+//    }
 }

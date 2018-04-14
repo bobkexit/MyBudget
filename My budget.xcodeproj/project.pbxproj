@@ -17,6 +17,8 @@
 		3531C599207E7C4B0055D0B4 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C598207E7C4B0055D0B4 /* BaseViewModel.swift */; };
 		3531C59B207E81BA0055D0B4 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C59A207E81BA0055D0B4 /* TransactionViewModel.swift */; };
 		3531C59D207F2D730055D0B4 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C59C207F2D730055D0B4 /* ViewModelFactory.swift */; };
+		3531C5A1208091AB0055D0B4 /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C5A0208091AB0055D0B4 /* QRScannerVC.swift */; };
+		3531C5A32081105C0055D0B4 /* QRCodeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C5A22081105C0055D0B4 /* QRCodeParser.swift */; };
 		353B47C6205690B3008281B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47C5205690B3008281B0 /* AppDelegate.swift */; };
 		353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47C7205690B3008281B0 /* ReportsVC.swift */; };
 		353B47CB205690B3008281B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 353B47C9205690B3008281B0 /* Main.storyboard */; };
@@ -63,6 +65,8 @@
 		3531C598207E7C4B0055D0B4 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		3531C59A207E81BA0055D0B4 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		3531C59C207F2D730055D0B4 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
+		3531C5A0208091AB0055D0B4 /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
+		3531C5A22081105C0055D0B4 /* QRCodeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeParser.swift; sourceTree = "<group>"; };
 		353B47C2205690B3008281B0 /* My budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My budget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		353B47C5205690B3008281B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		353B47C7205690B3008281B0 /* ReportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsVC.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 			children = (
 				351E3E89205BDB95004A3414 /* TransactionsVC.swift */,
 				356E06F3206A6C9C004034AE /* TransactionDetailVC.swift */,
+				3531C5A0208091AB0055D0B4 /* QRScannerVC.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -219,9 +224,9 @@
 		353B47D720593084008281B0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3567747A205FA8C500743FCA /* Constants */,
 				35F012112063B960008EE633 /* Services */,
 				35EE3013206110DA0041F195 /* Utilities */,
-				3567747A205FA8C500743FCA /* Constants */,
 				353B47DE20593F71008281B0 /* Models */,
 				3531C593207E75CA0055D0B4 /* ViewModels */,
 				353B47DC20593113008281B0 /* Views */,
@@ -336,6 +341,7 @@
 			children = (
 				35EE3014206111120041F195 /* Extentions */,
 				357E0D2B206E9F2B00205970 /* Helper.swift */,
+				3531C5A22081105C0055D0B4 /* QRCodeParser.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -522,10 +528,12 @@
 				356E06F4206A6C9C004034AE /* TransactionDetailVC.swift in Sources */,
 				356E06D8206666D7004034AE /* UIViewExt.swift in Sources */,
 				353B47F820595ACD008281B0 /* Transaction.swift in Sources */,
+				3531C5A1208091AB0055D0B4 /* QRScannerVC.swift in Sources */,
 				356E06E420683C7A004034AE /* Settings.swift in Sources */,
 				3531C59B207E81BA0055D0B4 /* TransactionViewModel.swift in Sources */,
 				35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */,
 				353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */,
+				3531C5A32081105C0055D0B4 /* QRCodeParser.swift in Sources */,
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
 				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
 				3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */,
