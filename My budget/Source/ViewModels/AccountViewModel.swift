@@ -11,6 +11,7 @@ import Foundation
 struct AccountViewModel {
     typealias Entity = Account
     typealias AccountType = BaseViewModel.AccountType
+    typealias CompletionHandler = (_ error: Error?) -> ()
     
     private let account: Entity
     private let dataManager = DataManager.shared
@@ -63,5 +64,13 @@ struct AccountViewModel {
     
     func save() {
         dataManager.save(account)
+    }
+    
+    func remove(_ competion: CompletionHandler?) {
+        dataManager.remove(account) { (error) in
+            if let competion = competion {
+                competion(error)
+            }
+        }
     }
 }

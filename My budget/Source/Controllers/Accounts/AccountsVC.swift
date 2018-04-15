@@ -65,18 +65,10 @@ class AccountsVC: BaseTableVC {
     
     override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
         let viewModel = accounts[indexPath.row]
-        
-        guard let model = dataManager.findObject(ofType: Account.self, byId: viewModel.id)  else {
-            return
-        }
-        
-        dataManager.remove(model) { (error) in
-            if error != nil {
-                print(error as Any)
-                return
-            }
+        viewModel.remove { (error) in
+            if error != nil { return }
             self.accounts.remove(at: indexPath.row)
-            super.tablewView(tableView, actionsWhenRemoveRowAt: indexPath)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
 }
@@ -107,23 +99,22 @@ extension AccountsVC {
 
 extension AccountsVC: UITableViewCellDelgate {
     func cellDidEndEditing(editingCell: UITableViewCell) {
-        
-        // FIXME - I don't like this part
-        
-        guard let editingCell = editingCell as? AccountCell, let indexPath = tableView.indexPath(for: editingCell) else {
+        guard let indexPath = tableView.indexPath(for: editingCell) else {
             return
         }
         
-        let accountViewModel = accounts[indexPath.row]
+        guard let editingCell = editingCell as? AccountCell  else {
+            return
+        }
         
         let title = editingCell.accountNameTxt.text
         
         if title?.isEmpty ?? true {
-            removeAccount(viewModel: accountViewModel)
-        } else {
-            accountViewModel.set(title: title!)
+             tablewView(tableView, actionsWhenRemoveRowAt: indexPath)
+        } else
+        {
+            let viewModel = accounts[indexPath.row]
+            viewModel.set(title: title!)
         }
-
-        reloadData()
     }
 }

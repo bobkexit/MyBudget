@@ -69,16 +69,21 @@ final class DataManager {
         }
     }
     
-    func remove(_ object: Object,_ completion: @escaping completionHandler) {
+    func remove(_ object: Object,_ completion: completionHandler?) {
         do {
             try realm.write {
                 realm.delete(object)
                 // FIXME: - should notify, but object has been deleted
-                completion(nil)
+                if let completion = completion {
+                    completion(nil)
+                }
+               
             }
         } catch  {
             print(error as Any)
-            completion(error)
+            if let completion = completion {
+                completion(nil)
+            }
         }
     }
     

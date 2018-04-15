@@ -11,6 +11,7 @@ import Foundation
 struct CategoryViewModel {
     typealias Entity = Category
     typealias CategoryType = BaseViewModel.CategoryType
+    typealias CompletionHandler = (_ error: Error?) -> ()
     
     private let category: Entity
     private let dataManager = DataManager.shared
@@ -46,5 +47,13 @@ struct CategoryViewModel {
     
     func save() {
         dataManager.save(category)
+    }
+    
+    func remove(_ competion: CompletionHandler?) {
+        dataManager.remove(category) { (error) in
+            if let competion = competion {
+                competion(error)
+            }
+        }
     }
 }

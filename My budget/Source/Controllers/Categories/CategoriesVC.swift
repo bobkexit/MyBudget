@@ -80,18 +80,10 @@ class CategoriesVC: BaseTableVC {
     
     override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
         let viewModel = categories[indexPath.row]
-        
-        guard let model = dataManager.findObject(ofType: Category.self, byId: viewModel.id)  else {
-            return
-        }
-        
-        dataManager.remove(model) { (error) in
-            if error != nil {
-                print(error as Any)
-                return
-            }
+        viewModel.remove { (error) in
+            if error != nil { return }
             self.categories.remove(at: indexPath.row)
-            super.tablewView(tableView, actionsWhenRemoveRowAt: indexPath)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
 }
@@ -122,22 +114,20 @@ extension CategoriesVC {
 
 extension CategoriesVC: UITableViewCellDelgate {
     func cellDidEndEditing(editingCell: UITableViewCell) {
-        // FIXME - I don't like this part
-        guard let editingCell = editingCell as? CategoryCell else {
-            return
-        }
-        
         guard let indexPath = tableView.indexPath(for: editingCell) else {
             return
         }
         
-        let viewModel = categories[indexPath.row]
+        guard let editingCell = editingCell as? CategoryCell else {
+            return
+        }
+    
         let title = editingCell.categoryName.text
         
         if title?.isEmpty ?? true {
-            deleteEmptyCategory(viewModel: viewModel)
-            reloadData()
+            tablewView(tableView, actionsWhenRemoveRowAt: indexPath)
         } else {
+            let viewModel = categories[indexPath.row]
             viewModel.set(title: title!)
         }
     }

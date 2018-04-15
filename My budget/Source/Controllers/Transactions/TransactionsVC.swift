@@ -58,18 +58,10 @@ class TransactionsVC: BaseTableVC {
     
     override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
         let viewModel = transactions[indexPath.row]
-        
-        guard let model = dataManager.findObject(ofType: Transaction.self, byId: viewModel.id)  else {
-            return
-        }
-        
-        dataManager.remove(model) { (error) in
-            if error != nil {
-                print(error as Any)
-                return
-            }
+        viewModel.remove { (error) in
+            if error != nil { return }
             self.transactions.remove(at: indexPath.row)
-            super.tablewView(tableView, actionsWhenRemoveRowAt: indexPath)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
 }

@@ -11,6 +11,7 @@ struct TransactionViewModel {
     typealias Entity = Transaction
     typealias AccountType = BaseViewModel.AccountType
     typealias CategoryType = BaseViewModel.CategoryType
+    typealias CompletionHandler = (_ error: Error?) -> ()
     
     private let transaction: Entity
     private let dataManager = DataManager.shared
@@ -192,11 +193,11 @@ struct TransactionViewModel {
         dataManager.save(transaction)
     }
     
-//    fileprivate func getNumberFormatter() -> NumberFormatter {
-//        
-//    }
-//    
-//    fileprivate func getDateFormatter() -> DateFormatter {
-//    
-//    }
+    func remove(_ competion: CompletionHandler?) {
+        dataManager.remove(transaction) { (error) in
+            if let competion = competion {
+                competion(error)
+            }
+        }
+    }
 }
