@@ -31,10 +31,14 @@ struct AccountViewModel {
     
     var accountType: AccountType {
         let typeId = self.account.typeId
-        guard let value = AccountType(rawValue: typeId) else {
-            return .none
+        
+        if let value = AccountType(rawValue: typeId) {
+            return value
+        } else {
+            let accountTypes = Array(AccountType.cases())
+            guard let value = accountTypes.first else { fatalError("can't find any account types") }
+            return value
         }
-        return value
     }
     
     var currencyCode: String? {
@@ -60,6 +64,10 @@ struct AccountViewModel {
     
     func set(currencyCode: String) {
         dataManager.object(account, setValue: currencyCode, forKey: "currencyCode")
+    }
+    
+    func set(balance: String) {
+        fatalError("Not implemented")
     }
     
     func save() {

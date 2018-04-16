@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		351410EE2084773C002F0D9E /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351410ED2084773C002F0D9E /* CreateAccountVC.swift */; };
+		351410F02084890F002F0D9E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351410EF2084890F002F0D9E /* UserSettings.swift */; };
 		3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3515E0F92073655900ED0363 /* NotificationNameExt.swift */; };
 		351E3E8A205BDB95004A3414 /* TransactionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E89205BDB95004A3414 /* TransactionsVC.swift */; };
 		351E3E8C205BDBB4004A3414 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E8B205BDBB4004A3414 /* SettingsVC.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		351410ED2084773C002F0D9E /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
+		351410EF2084890F002F0D9E /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		3515E0F92073655900ED0363 /* NotificationNameExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExt.swift; sourceTree = "<group>"; };
 		351E3E89205BDB95004A3414 /* TransactionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsVC.swift; sourceTree = "<group>"; };
 		351E3E8B205BDBB4004A3414 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 			children = (
 				3563FF02205FD28C00B05E82 /* AccountsVC.swift */,
 				353B6DE32063D7D000D7004B /* AddAccountVC.swift */,
+				351410ED2084773C002F0D9E /* CreateAccountVC.swift */,
 			);
 			path = Accounts;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 		3531C593207E75CA0055D0B4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				356E06E320683C7A004034AE /* Settings.swift */,
 				3531C598207E7C4B0055D0B4 /* BaseViewModel.swift */,
 				3531C594207E76080055D0B4 /* CategoryViewModel.swift */,
 				3531C596207E7A500055D0B4 /* AccountViewModel.swift */,
@@ -290,7 +296,6 @@
 		353B47DE20593F71008281B0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				356E06E320683C7A004034AE /* Settings.swift */,
 				353B47ED20594B63008281B0 /* Account.swift */,
 				353B47F5205958B6008281B0 /* Category.swift */,
 				353B47F720595ACD008281B0 /* Transaction.swift */,
@@ -360,6 +365,7 @@
 			children = (
 				35F012122063B9D7008EE633 /* PreinstallationManager.swift */,
 				356E06DA2067E0A2004034AE /* DataManager.swift */,
+				351410EF2084890F002F0D9E /* UserSettings.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -534,10 +540,12 @@
 				35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */,
 				353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */,
 				3531C5A32081105C0055D0B4 /* QRCodeParser.swift in Sources */,
+				351410EE2084773C002F0D9E /* CreateAccountVC.swift in Sources */,
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
 				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
 				3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */,
 				351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */,
+				351410F02084890F002F0D9E /* UserSettings.swift in Sources */,
 				356E06F8206A802C004034AE /* GradientTableView.swift in Sources */,
 				3531C597207E7A500055D0B4 /* AccountViewModel.swift in Sources */,
 				35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */,

@@ -13,7 +13,7 @@ class Account: Object {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var title = ""
     @objc dynamic var typeId = 0
-    @objc dynamic var currencyCode: String? = Locale.current.currencyCode
+    //@objc dynamic var currencyCode: String? = Locale.current.currencyCode
     
     override static func primaryKey() -> String? {
         return "id"

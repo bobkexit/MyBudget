@@ -18,12 +18,15 @@ class AccountsVC: BaseTableVC {
     // MARK: - IBOutlets
     
     @IBOutlet weak var accountTypeImage: UIImageView!
+    
     @IBOutlet weak var accountNameTxt: UITextField!
     
     
     // MARK: - Properties
     var viewModelFactory: ViewModelFactoryProtocol = ViewModelFactory.shared
+    
     let dataManager = DataManager.shared
+    
     fileprivate var accounts = [ViewModel]()
     
     
@@ -40,13 +43,19 @@ class AccountsVC: BaseTableVC {
     
     // MARK: - View Actions
     
-    @IBAction func addButtomPressed(_ sender: Any) {
-        let addAccountVC = AddAccountVC()
-        addAccountVC.viewModel = viewModelFactory.createAccountViewModel(model: nil)
-        addAccountVC.modalPresentationStyle = .custom
-        present(addAccountVC, animated: true, completion: nil)
+    @IBAction func addBtnPressed(_ sender: Any) {
+       performSegue(withIdentifier: Constants.Segues.toCreateAccountVC, sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.Segues.toCreateAccountVC {
+            guard let destinationVC = segue.destination as? CreateAccountVC else {
+                fatalError("Can't find CreateAccountVC")
+            }
+            let viewModel = viewModelFactory.createAccountViewModel(model: nil)
+            destinationVC.viewModel = viewModel
+        }
+    }
     
     // MARK: - View Methods
     
@@ -77,6 +86,7 @@ class AccountsVC: BaseTableVC {
 // MARK: UITableViewDelegate and UITableViewDataSource Methods
 
 extension AccountsVC {
+   
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return accounts.count
     }
@@ -98,6 +108,7 @@ extension AccountsVC {
 // MARK: - UITableViewCellDelgate Methods
 
 extension AccountsVC: UITableViewCellDelgate {
+    
     func cellDidEndEditing(editingCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: editingCell) else {
             return

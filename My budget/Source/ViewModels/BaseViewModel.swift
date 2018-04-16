@@ -16,11 +16,10 @@ struct BaseViewModel {
     }
     
     enum AccountType: Int, EnumCollection, CustomStringConvertible {
-        case none = 0
-        case paymentCard = 1
-        case cash = 2
-        case web = 3
-        case bankAccont = 4
+        case cash = 1
+        case paymentCard = 2
+        case bankAccont = 3
+        case web = 4
         
         var description: String {
             switch self {
@@ -32,8 +31,6 @@ struct BaseViewModel {
                 return "web"
             case .bankAccont:
                 return "bank account"
-            case .none:
-                return "none"
             }
         }
         
@@ -47,8 +44,6 @@ struct BaseViewModel {
                 return Constants.Images.web
             case .bankAccont:
                 return Constants.Images.safe
-            default:
-                return nil
             }
         }
     }

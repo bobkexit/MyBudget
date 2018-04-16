@@ -8,10 +8,6 @@
 
 import Foundation
 
-//protocol  {
-//    <#requirements#>
-//}
-//
 protocol ViewModelFactoryProtocol {
     func createAccountViewModel(model: Account?) -> AccountViewModel
     func createCategoryViewModel(model: Category?) -> CategoryViewModel

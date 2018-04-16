@@ -37,6 +37,7 @@ struct Constants {
     
     struct Segues {
         static let toAccountsVC = "toAccountsVC"
+        static let toCreateAccountVC = "toCreateAccountVC"
         static let toCategoriesVC = "toCategoriesVC"
         static let toTransactionDetailVC = "toTransactionDetailVC"
         static let toQRScannerVC = "toQRScannerVC"
