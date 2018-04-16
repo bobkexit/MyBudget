@@ -12,14 +12,14 @@ import UIKit
 class GradientView: UIView {
 
     @IBInspectable
-    var topColor: UIColor = Constants.Colors.gradientBackground.first! {
+    var topColor: UIColor = Constants.DefaultColors.gradientBackground.first! {
         didSet {
             self.setNeedsLayout()
         }
     }
     
     @IBInspectable
-    var bottomColor: UIColor = Constants.Colors.gradientBackground.last! {
+    var bottomColor: UIColor = Constants.DefaultColors.gradientBackground.last! {
         didSet {
             self.setNeedsLayout()
         }

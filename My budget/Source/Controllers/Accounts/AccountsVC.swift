@@ -11,6 +11,8 @@ import RealmSwift
 
 class AccountsVC: BaseTableVC {
 
+    // MARK: - Type Alias
+    
     typealias Entity = Account
     typealias ViewModel = AccountViewModel
     typealias AccountType = BaseViewModel.AccountType
@@ -27,7 +29,7 @@ class AccountsVC: BaseTableVC {
     
     let dataManager = DataManager.shared
     
-    fileprivate var accounts = [ViewModel]()
+    var accounts = [ViewModel]()
     
     
     // MARK: - View Life Cycle
@@ -37,7 +39,17 @@ class AccountsVC: BaseTableVC {
         
         title = "Accounts"
         reloadData()
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .account, object: nil)
+        //subscribe()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribe()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unSubscribe()
     }
 
     
@@ -69,7 +81,7 @@ class AccountsVC: BaseTableVC {
         guard let model = dataManager.findObject(ofType: Entity.self, byId: viewModel.id) else {
             return
         }
-        dataManager.remove(model) { _ in }
+        dataManager.remove(model)
     }
     
     override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
@@ -79,6 +91,16 @@ class AccountsVC: BaseTableVC {
             self.accounts.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+    
+    func subscribe() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .account, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .accountHasBeenCreated, object: nil)
+    }
+    
+    func unSubscribe() {
+        NotificationCenter.default.removeObserver(self, name: .account, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .accountHasBeenCreated, object: nil)
     }
 }
 
@@ -92,7 +114,7 @@ extension AccountsVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.accountCell, for: indexPath) as? AccountCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.accountCell, for: indexPath) as? AccountCell else {
             return UITableViewCell()
         }
         

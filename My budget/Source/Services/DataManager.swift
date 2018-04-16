@@ -10,18 +10,31 @@ import Foundation
 import RealmSwift
 
 final class DataManager {
-    typealias completionHandler = (_ error: Error?) -> ()
+    
+    // MARK: - Singleton Declaration
     
     static let shared = DataManager()
-    
-    private let realm = try! Realm()
     
     private init() {
         
     }
     
-    func fetchObjects<T: Object>(ofType type: T.Type) -> Results<T> {
-        let objects = realm.objects(T.self)
+    // MARK: - Type Alias
+    typealias completionHandler = (_ error: Error?) -> ()
+    
+    // MARK: - Constants
+    private let realm = try! Realm()
+    
+    
+    // MARK: - Read Methods
+    
+    func fetchObjects<T: Object>(ofType type: T.Type, filteredBy query: String? = nil) -> Results<T> {
+        var objects = realm.objects(T.self)
+        
+        if let query = query {
+            objects = objects.filter(query)
+        }
+        
         return objects
     }
     
@@ -36,64 +49,64 @@ final class DataManager {
         return objects.first
     }
     
-    //FIXME: - remove method
-    func findObject<T: Object>(ofType type: T.Type, byValue value: String, ofKey key: String ) -> T? {
-        var objects = realm.objects(T.self)
-        objects = objects.filter("\(key) = '\(value)'")
-        return objects.first
-    }
+    
+    // MARK: - Create Methods
     
     func createObject<T: Object>(ofType type: T.Type) -> T {
         return T()
     }
     
+   
+    // MARK: - Update Methods
+    
     func object(_ object: Object, setValue vale: Any?, forKey key: String) {
         do {
             try realm.write {
                 object.setValue(vale, forKeyPath: key)
-                notifyObjectHasChaned(object: object)
             }
         } catch  {
             print(error as Any)
         }
     }
     
-    func save(_ object: Object) {
+    func save(_ object: Object, _ completion: completionHandler? = nil) {
         do {
             try realm.write {
+                
                 realm.add(object, update: true)
-                notifyObjectHasChaned(object: object)
-            }
-        } catch  {
-            print(error as Any)
-        }
-    }
-    
-    func remove(_ object: Object,_ completion: completionHandler?) {
-        do {
-            try realm.write {
-                realm.delete(object)
-                // FIXME: - should notify, but object has been deleted
+                
                 if let completion = completion {
                     completion(nil)
                 }
-               
             }
         } catch  {
             print(error as Any)
+            
             if let completion = completion {
-                completion(nil)
+                completion(error)
             }
         }
     }
     
-    private func notifyObjectHasChaned(object: Object) {
-        if object is Account {
-            NotificationCenter.default.post(name: .account, object: nil)
-        } else if object is Transaction {
-            NotificationCenter.default.post(name: .transaction, object: nil)
-        } else if object is Category {
+   
+    // MARK: - Delete Methods
+    
+    func remove(_ object: Object, _ completion: completionHandler? = nil) {
+        do {
+            try realm.write {
+                
+                realm.delete(object)
+                
+                if let completion = completion {
+                    completion(nil)
+                }
+            }
+        } catch  {
+            print(error as Any)
             
+            if let completion = completion {
+                completion(error)
+            }
         }
     }
 }

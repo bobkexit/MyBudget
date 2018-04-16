@@ -145,7 +145,7 @@ class AddAccountVC: BaseVC {
         
         invalidFields.forEach { textfield in
             UIView.animate(withDuration: 1, animations: {
-                textfield.backgroundColor = Constants.Colors.error
+                textfield.backgroundColor = Constants.DefaultColors.red
             })
         }
         
@@ -161,13 +161,13 @@ class AddAccountVC: BaseVC {
             return
         }
         
-        guard let currencyCode = selectedCurrency else {
-            return
-        }
+//        guard let currencyCode = selectedCurrency else {
+//            return
+//        }
         
         viewModel.set(title: title)
         viewModel.set(accountType: accountType)
-        viewModel.set(currencyCode: currencyCode)
+        //viewModel.set(currencyCode: currencyCode)
         viewModel.save()
     }
 }

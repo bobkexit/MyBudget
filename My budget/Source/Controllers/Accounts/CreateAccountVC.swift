@@ -30,7 +30,9 @@ class CreateAccountVC: BaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         updateUI()
+         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: .accountHasBeenUpdated, object: nil)
     }
     
     override func setupUI() {
@@ -42,7 +44,7 @@ class CreateAccountVC: BaseVC {
         view.addGestureRecognizer(tap)
     }
 
-    func updateUI() {
+    @objc override func updateUI() {
         titleTxtField.text = viewModel.title
         accountTypeTxtField.text = viewModel.accountType.description
         
@@ -55,7 +57,6 @@ class CreateAccountVC: BaseVC {
         if !validateForm() { return }
         
         viewModel.save()
-        NotificationCenter.default.post(name: .account, object: nil)
         
         if let balance = balanceTxtField.text {
             viewModel.set(balance: balance)
@@ -88,7 +89,7 @@ class CreateAccountVC: BaseVC {
             let accountType = accountTypes[row]
             viewModel.set(accountType: accountType)
         }
-        updateUI()
+        //updateUI()
     }
     
     override func textFieldDidEndEditing(_ textField: UITextField) {
@@ -98,13 +99,13 @@ class CreateAccountVC: BaseVC {
             guard let title = textField.text, title.isEmpty else { return }
             viewModel.set(title: title)
         }
-        updateUI()
+        //updateUI()
     }
     
     fileprivate func validateForm() -> Bool {
         if viewModel.title.isEmpty {
             UIView.animate(withDuration: 1) {
-                self.titleTxtField.backgroundColor = Constants.Colors.credit
+                self.titleTxtField.backgroundColor = Constants.DefaultColors.red
             }
             return false
         }

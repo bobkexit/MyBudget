@@ -136,7 +136,7 @@ class TransactionDetailVC: BaseVC {
         datePicker.timeZone = TimeZone.current
     }
     
-    fileprivate func updateUI() {
+    override func updateUI() {
         dateTxt.text = viewModel.date
         accountTxt.text = viewModel.account
         categoryTxt.text = viewModel.category

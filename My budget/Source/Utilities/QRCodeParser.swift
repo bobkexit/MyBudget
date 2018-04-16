@@ -6,15 +6,21 @@
 //  Copyright © 2018 Николай Маторин. All rights reserved.
 //
 
+import Foundation
+
+// MARK: - Protocol Declaration
+
 protocol QRCodeParserProtocol {
     func parse(code: String,  completion: (_ date: Date?, _ sum: Float?) -> ())
     func parseRaw(code: String, completion: (_ rawDate: String?, _ rawSum: String?) -> ())
 }
 
-import Foundation
+
+// MARK: - Class Declaration
 
 class QRCodeParser: QRCodeParserProtocol {
     
+    // MARK: - Singleton Declaration
     
     public static let shared = QRCodeParser()
     
@@ -22,36 +28,12 @@ class QRCodeParser: QRCodeParserProtocol {
         
     }
     
+    // MARK: - QRCodeParserProtocol Methods
+    
     func parse(code: String, completion: (Date?, Float?) -> ()) {
         var date: Date?
         var sum: Float?
         
-        
-//        print("&,\(CharacterSet.letters)")
-//
-//        let scanner = Scanner(string: code)
-//
-//        let skipped = CharacterSet(charactersIn: "t,s,&")
-//        let separator = CharacterSet(charactersIn: "=")
-//        scanner.charactersToBeSkipped = skipped
-//
-//        var dateString: NSString?
-//        var sumString: NSString?
-//
-//        scanner.scanUpToCharacters(from: separator, into: &dateString)
-//        scanner.scanUpToCharacters(from: separator, into: &sumString)
-//
-//
-//
-//        if let dateString = dateString {
-//            date = parseDate(fromString: dateString as String)
-//        }
-//
-//        if let sumString = sumString {
-//            sum = parseSum(fromString: sumString as String)
-//        }
-//
-//
         let components = code.components(separatedBy: "&")
 
         for component in components {
@@ -87,6 +69,9 @@ class QRCodeParser: QRCodeParserProtocol {
         
         completion(rawDate, rawSum)
     }
+    
+    
+    //MARK: - Private Methods
     
     private func parseDate(fromString string: String?) -> Date? {
         guard let string = string else { return nil }

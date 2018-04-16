@@ -68,31 +68,31 @@ struct TransactionViewModel {
         return self.transaction.comment
     }
     
-    var currencyCode: String? {
-        let account = self.transaction.account
-        return account?.currencyCode
-    }
-    
-    var currencySymbol: String? {
-        guard let currencyCode = self.currencyCode else {
-            return nil
-        }
-        let local = NSLocale(localeIdentifier: currencyCode)
-        let symbol = local.displayName(forKey: NSLocale.Key.currencySymbol, value: currencyCode)
-        return symbol
-    }
+//    var currencyCode: String? {
+//        let account = self.transaction.account
+//        return account?.currencyCode
+//    }
+//
+//    var currencySymbol: String? {
+//        guard let currencyCode = self.currencyCode else {
+//            return nil
+//        }
+//        let local = NSLocale(localeIdentifier: currencyCode)
+//        let symbol = local.displayName(forKey: NSLocale.Key.currencySymbol, value: currencyCode)
+//        return symbol
+//    }
     
     var amount: String? {
         let numberFormatter = NumberFormatter()
         numberFormatter.maximumFractionDigits = 2
         numberFormatter.minimumFractionDigits = 2
-        if let currencySymbol = self.currencySymbol, let currencyCode = self.currencyCode  {
-            numberFormatter.currencySymbol = currencySymbol
-            numberFormatter.currencyCode = currencyCode
-            numberFormatter.numberStyle = .currency
-        } else {
-            numberFormatter.numberStyle = .decimal
-        }
+//        if let currencySymbol = self.currencySymbol, let currencyCode = self.currencyCode  {
+//            numberFormatter.currencySymbol = currencySymbol
+//            numberFormatter.currencyCode = currencyCode
+//            numberFormatter.numberStyle = .currency
+//        } else {
+//            numberFormatter.numberStyle = .decimal
+//        }
         
         let sum = self.transaction.amount * (self.operationType == .credit ? -1 : 1)
         let number = NSNumber(value: sum)
@@ -104,13 +104,13 @@ struct TransactionViewModel {
         let numberFormatter = NumberFormatter()
         numberFormatter.maximumFractionDigits = 2
         numberFormatter.minimumFractionDigits = 2
-        if let currencySymbol = self.currencySymbol, let currencyCode = self.currencyCode  {
-            numberFormatter.currencySymbol = currencySymbol
-            numberFormatter.currencyCode = currencyCode
-            numberFormatter.numberStyle = .currency
-        } else {
-            numberFormatter.numberStyle = .decimal
-        }
+//        if let currencySymbol = self.currencySymbol, let currencyCode = self.currencyCode  {
+//            numberFormatter.currencySymbol = currencySymbol
+//            numberFormatter.currencyCode = currencyCode
+//            numberFormatter.numberStyle = .currency
+//        } else {
+//            numberFormatter.numberStyle = .decimal
+//        }
         
         let number = NSNumber(value: self.transaction.amount)
         let value = numberFormatter.string(from: number)
@@ -166,13 +166,13 @@ struct TransactionViewModel {
         
         let numberFormatter = NumberFormatter()
         
-        if let currencySymbol = self.currencySymbol, let currencyCode = self.currencyCode {
-            if amount.hasPrefix(currencySymbol) || amount.hasSuffix(currencySymbol) {
-                numberFormatter.currencyCode = currencyCode
-                numberFormatter.currencySymbol = currencySymbol
-                numberFormatter.numberStyle = .currency
-            }
-        }
+//        if let currencySymbol = self.currencySymbol, let currencyCode = self.currencyCode {
+//            if amount.hasPrefix(currencySymbol) || amount.hasSuffix(currencySymbol) {
+//                numberFormatter.currencyCode = currencyCode
+//                numberFormatter.currencySymbol = currencySymbol
+//                numberFormatter.numberStyle = .currency
+//            }
+//        }
         
         guard let nummber = numberFormatter.number(from: amount) else {
             fatalError("Can't get amount from string")
@@ -183,18 +183,25 @@ struct TransactionViewModel {
     
     func set(amount: Float) {
         dataManager.object(transaction, setValue: amount, forKey: "amount")
+        NotificationCenter.default.post(name: .transactionHasBeenUpdated, object: nil)
     }
     
     func set(comment: String?) {
         dataManager.object(transaction, setValue: comment, forKey: "comment")
+        NotificationCenter.default.post(name: .transactionHasBeenUpdated, object: nil)
     }
     
     func save() {
         dataManager.save(transaction)
+        NotificationCenter.default.post(name: .transactionHasBeenCreated, object: nil)
     }
     
     func remove(_ competion: CompletionHandler?) {
         dataManager.remove(transaction) { (error) in
+            if error == nil {
+                NotificationCenter.default.post(name: .transactionHasBeenDeleted, object: nil)
+            }
+            
             if let competion = competion {
                 competion(error)
             }

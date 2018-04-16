@@ -12,8 +12,9 @@ class SettingsVC: BaseTableVC {
     
     // MARK: - Properties
     
-    fileprivate let settings = Array(Settings.cases())
-    fileprivate var selectedSetting: Settings?
+    let settings = Array(SettingsMenu.cases())
+    
+    var selectedSetting: SettingsMenu?
     
     // MARK: - View Life Cycle
     
@@ -25,18 +26,15 @@ class SettingsVC: BaseTableVC {
         
         tableView.reloadData()
     }
-}
-
-
-// MARK: UITableViewDelegate and UITableViewDataSource Methods
-
-extension SettingsVC {
+    
+    // MARK: - UITableViewDataSource
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.settingsCell, for: indexPath) as? SettingsCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.settingsCell, for: indexPath) as? SettingsCell else {
             return UITableViewCell()
         }
         
@@ -50,6 +48,9 @@ extension SettingsVC {
         return false
     }
     
+    
+    // MARK: - UITableViewDelegate
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         selectedSetting = settings[indexPath.row]
@@ -59,20 +60,28 @@ extension SettingsVC {
             performSegue(withIdentifier: Constants.Segues.toAccountsVC, sender: self)
         case .expenses, .incomings:
             performSegue(withIdentifier: Constants.Segues.toCategoriesVC, sender: self)
+        case .defaults:
+            performSegue(withIdentifier: Constants.Segues.toDefaultsVC, sender: self)
         }
     }
+    
+    // MARK: Passing Data Methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segues.toCategoriesVC {
             
             guard let destinationVC = segue.destination as? CategoriesVC else {
-                 fatalError("Can't cast destinationVC to \(CategoriesVC.self)")
+                fatalError("Can't cast destinationVC to \(CategoriesVC.self)")
             }
             
             if selectedSetting == .incomings {
+                
                 destinationVC.categoryType = BaseViewModel.CategoryType.debit
+                
             } else if selectedSetting == .expenses {
-                 destinationVC.categoryType = BaseViewModel.CategoryType.credit
+                
+                destinationVC.categoryType = BaseViewModel.CategoryType.credit
+                
             }
         }
     }

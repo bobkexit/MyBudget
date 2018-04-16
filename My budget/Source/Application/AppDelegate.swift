@@ -13,14 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    fileprivate let userDefaults = UserDefaults.standard
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-//        if !userDefaults.bool(forKey: Constants.UserDefaults.firstLaunch) {
-//            PreinstallationManager.shared.installData()
-//        }
+        InstallationManager.shared.installDataIfNeeded()
         
         return true
     }

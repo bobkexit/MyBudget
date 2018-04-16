@@ -21,7 +21,8 @@ class AccountCell: BaseCell {
         accountNameTxt.delegate = self
         
         accountNameTxt.text = viewModel.title
-        accountCurrencyLbl.text = viewModel.currencySymbol
+        // FIXME: - Should delete
+        //accountCurrencyLbl.text = viewModel.currencySymbol
         accountTypeImg.image = viewModel.accountType.image
     }
 }

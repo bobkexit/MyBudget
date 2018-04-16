@@ -19,6 +19,10 @@ class BaseVC: UIViewController {
         
     }
     
+    func updateUI() {
+        
+    }
+    
     func setupPickerView<T: UIPickerViewDataSource & UIPickerViewDelegate>(_ pickerView: UIPickerView, delegate: T) {
         pickerView.delegate = delegate
         pickerView.dataSource = delegate

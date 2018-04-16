@@ -54,9 +54,9 @@ class CategoriesVC: BaseTableVC {
     fileprivate func setTitle() {
         switch categoryType {
         case .debit:
-            title = Settings.incomings.rawValue.capitalized
+            title = SettingsMenu.incomings.rawValue.capitalized
         case .credit:
-            title = Settings.expenses.rawValue.capitalized
+            title = SettingsMenu.expenses.rawValue.capitalized
         default:
             return
         }
@@ -97,7 +97,7 @@ extension CategoriesVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.categoryCell, for: indexPath) as? CategoryCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.categoryCell, for: indexPath) as? CategoryCell else {
             return UITableViewCell()
         }
         

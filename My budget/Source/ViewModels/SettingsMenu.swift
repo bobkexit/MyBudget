@@ -8,8 +8,9 @@
 
 import Foundation
 
-enum Settings: String, EnumCollection {
+enum SettingsMenu: String, EnumCollection {
     case accounts
     case incomings
     case expenses
+    case defaults
 }

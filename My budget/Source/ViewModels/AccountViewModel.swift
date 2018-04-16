@@ -9,6 +9,7 @@
 import Foundation
 
 struct AccountViewModel {
+   
     typealias Entity = Account
     typealias AccountType = BaseViewModel.AccountType
     typealias CompletionHandler = (_ error: Error?) -> ()
@@ -41,29 +42,28 @@ struct AccountViewModel {
         }
     }
     
-    var currencyCode: String? {
-        return self.account.currencyCode
-    }
-    
-    var currencySymbol: String? {
-        guard let currencyCode = self.account.currencyCode else {
-            return nil
-        }
-        let local = NSLocale(localeIdentifier: currencyCode)
-        let symbol = local.displayName(forKey: NSLocale.Key.currencySymbol, value: currencyCode)
-        return symbol
-    }
+//    var currencyCode: String? {
+//        //return self.account.currencyCode
+//        return nil
+//    }
+//
+//    var currencySymbol: String? {
+//        guard let currencyCode = self.account.currencyCode else {
+//            return nil
+//        }
+//        let local = NSLocale(localeIdentifier: currencyCode)
+//        let symbol = local.displayName(forKey: NSLocale.Key.currencySymbol, value: currencyCode)
+//        return symbol
+//    }
     
     func set(title: String) {
         dataManager.object(account, setValue: title, forKey: "title")
+        NotificationCenter.default.post(name: .accountHasBeenUpdated, object: nil)
     }
     
     func set(accountType: AccountType) {
         dataManager.object(account, setValue: accountType.rawValue, forKey: "typeId")
-    }
-    
-    func set(currencyCode: String) {
-        dataManager.object(account, setValue: currencyCode, forKey: "currencyCode")
+        NotificationCenter.default.post(name: .accountHasBeenUpdated, object: nil)
     }
     
     func set(balance: String) {
@@ -72,10 +72,15 @@ struct AccountViewModel {
     
     func save() {
         dataManager.save(account)
+        NotificationCenter.default.post(name: .accountHasBeenCreated, object: nil)
     }
     
     func remove(_ competion: CompletionHandler?) {
         dataManager.remove(account) { (error) in
+            if error == nil {
+                 NotificationCenter.default.post(name: .accountHasBeenDeleted, object: nil)
+            }
+            
             if let competion = competion {
                 competion(error)
             }

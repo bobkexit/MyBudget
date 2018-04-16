@@ -39,18 +39,25 @@ struct CategoryViewModel {
     
     func set(title: String) {
         dataManager.object(category, setValue: title, forKey: "title")
+        NotificationCenter.default.post(name: .categoryHasBeenUpdated, object: nil)
     }
     
     func set(categoryType: CategoryType) {
         dataManager.object(category, setValue: categoryType.rawValue, forKey: "typeId")
+        NotificationCenter.default.post(name: .categoryHasBeenUpdated, object: nil)
     }
     
     func save() {
         dataManager.save(category)
+        NotificationCenter.default.post(name: .categoryHasBeenCreated, object: nil)
     }
     
     func remove(_ competion: CompletionHandler?) {
         dataManager.remove(category) { (error) in
+            if error == nil {
+                NotificationCenter.default.post(name: .categoryHasBeenDeleted, object: nil)
+            }
+            
             if let competion = competion {
                 competion(error)
             }
