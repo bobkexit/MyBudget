@@ -8,13 +8,13 @@
 
 import Foundation
 struct TransactionViewModel {
-    typealias Entity = Transaction
+    typealias Entity = RealmTransaction
     typealias AccountType = BaseViewModel.AccountType
     typealias CategoryType = BaseViewModel.CategoryType
     typealias CompletionHandler = (_ error: Error?) -> ()
     
     private let transaction: Entity
-    private let dataManager = DataManager.shared
+    private let dataManager = RealmDataManager.shared
    
     init(withTransaction transaction: Entity) {
         self.transaction = transaction
@@ -140,22 +140,23 @@ struct TransactionViewModel {
         dataManager.object(transaction, setValue: date, forKey: "date")
     }
     
-    func set(account: Account) {
+    func set(account: RealmAccount) {
         dataManager.object(transaction, setValue: account, forKey: "account")
     }
     
-    func set(account: String?) {
-        guard let title = account else {
-            return
-        }
-        
-        guard let account = dataManager.findObject(ofType: Account.self, byValue: title, ofKey: "title") else {
-            return
-        }
-        set(account: account)
-    }
+    // FIXME: - should delete
+//    func set(account: String?) {
+//        guard let title = account else {
+//            return
+//        }
+//
+//        guard let account = dataManager.findObject(ofType: Account.self, byValue: title, ofKey: "title") else {
+//            return
+//        }
+//        set(account: account)
+//    }
     
-    func set(category: Category) {
+    func set(category: RealmCategory) {
         dataManager.object(transaction, setValue: category, forKey: "category")
     }
     

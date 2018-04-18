@@ -13,7 +13,7 @@ class AccountsVC: BaseTableVC {
 
     // MARK: - Type Alias
     
-    typealias Entity = Account
+    typealias Entity = RealmAccount
     typealias ViewModel = AccountViewModel
     typealias AccountType = BaseViewModel.AccountType
     
@@ -27,7 +27,7 @@ class AccountsVC: BaseTableVC {
     // MARK: - Properties
     var viewModelFactory: ViewModelFactoryProtocol = ViewModelFactory.shared
     
-    let dataManager = DataManager.shared
+    let dataManager = RealmDataManager.shared
     
     var accounts = [ViewModel]()
     

@@ -11,7 +11,7 @@ import RealmSwift
 
 class TransactionDetailVC: BaseVC {
     
-    typealias Entity = Transaction
+    typealias Entity = RealmTransaction
     typealias ViewModel = TransactionViewModel
     typealias CategoryType = BaseViewModel.CategoryType
     typealias AccountType = BaseViewModel.AccountType
@@ -32,12 +32,12 @@ class TransactionDetailVC: BaseVC {
     fileprivate let accountPicker = UIPickerView()
     fileprivate let categoryPicker = UIPickerView()
     
-    fileprivate var accounts: Results<Account>!
-    fileprivate var categories: Results<Category>!
+    fileprivate var accounts: Results<RealmAccount>!
+    fileprivate var categories: Results<RealmCategory>!
     
     
     // MARK: - Properties
-    var dataManager = DataManager.shared
+    var dataManager = RealmDataManager.shared
 
     var viewModel: ViewModel!
     
@@ -151,10 +151,10 @@ class TransactionDetailVC: BaseVC {
     
     // MARK: - Data Methods
     fileprivate func reloadData() {
-        categories = dataManager.fetchObjects(ofType: Category.self)
+        categories = dataManager.fetchObjects(ofType: RealmCategory.self)
         categories = categories.filter("typeId = \(viewModel.operationType.rawValue)")
         
-        accounts = dataManager.fetchObjects(ofType: Account.self)
+        accounts = dataManager.fetchObjects(ofType: RealmAccount.self)
     }
     
     // FIXME: - DRY

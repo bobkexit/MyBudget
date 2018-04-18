@@ -33,7 +33,7 @@ class BaseTableVC: UITableViewController {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (row, indexPath) in
             self.tablewView(self.tableView, actionsWhenRemoveRowAt: indexPath)
         }
-        deleteAction.backgroundColor = Constants.Colors.delete
+        deleteAction.backgroundColor = Constants.DefaultColors.red
         
         return deleteAction
     }

@@ -39,7 +39,7 @@ class DefaultsVC: BaseVC {
     
     // MARK: - Properties
     
-    var dataManager = DataManager.shared
+    var dataManager = RealmDataManager.shared
     
     var userSettings = UserSettings.defaults
     
@@ -165,12 +165,17 @@ class DefaultsVC: BaseVC {
         
         } else if pickerView == expensePicker, let categoryId = expenses[row]["id"] {
         
-            userSettings.setDefault(expenseCategory: categoryId)
+            //userSettings.setDefault(expenseCategory: categoryId)
+            
+            let key = UserSettings.Keys.defaultExpenseCategoryId
+            userSettings.setDefault(categoryId: categoryId, forCategoryType: .credit, andKey: key)
         
         } else if pickerView == incomePicker, let categoryId = incomes[row]["id"] {
         
-            userSettings.setDefault(incomeCategory: categoryId)
+            //userSettings.setDefault(incomeCategory: categoryId)
        
+            let key = UserSettings.Keys.defaultIncomeCategoryId
+            userSettings.setDefault(categoryId: categoryId, forCategoryType: .debit, andKey: key)
         }
         
         updateUI()
@@ -203,7 +208,7 @@ class DefaultsVC: BaseVC {
     
     fileprivate func loadAccounts() {
       
-        let data = dataManager.fetchObjects(ofType: Account.self)
+        let data = dataManager.fetchObjects(ofType: RealmAccount.self)
         
         let _ = data.map {
             
@@ -216,7 +221,7 @@ class DefaultsVC: BaseVC {
     fileprivate func loadExpenses() {
         
         let query = "typeId = \(CategoryType.credit.rawValue)"
-        let data = dataManager.fetchObjects(ofType: Category.self, filteredBy: query)
+        let data = dataManager.fetchObjects(ofType: RealmCategory.self, filteredBy: query)
         
         let _ = data.map {
             
@@ -229,7 +234,7 @@ class DefaultsVC: BaseVC {
     fileprivate func loadIncomes() {
         
         let query = "typeId = \(CategoryType.debit.rawValue)"
-        let data = dataManager.fetchObjects(ofType: Category.self, filteredBy: query)
+        let data = dataManager.fetchObjects(ofType: RealmCategory.self, filteredBy: query)
         
         let _ = data.map {
             

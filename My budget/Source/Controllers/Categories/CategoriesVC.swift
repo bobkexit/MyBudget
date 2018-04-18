@@ -11,12 +11,12 @@ import RealmSwift
 
 class CategoriesVC: BaseTableVC {
     
-    typealias Entity = Category
+    typealias Entity = RealmCategory
     typealias ViewModel = CategoryViewModel
     typealias CategoryType = BaseViewModel.CategoryType
     
      // MARK: - Properties
-    var dataManager = DataManager.shared
+    var dataManager = RealmDataManager.shared
     var viewModelFactory: ViewModelFactoryProtocol = ViewModelFactory.shared
     
     var categoryType: CategoryType!

@@ -9,11 +9,11 @@
 import Foundation
 import RealmSwift
 
-class Transaction: Object {
+class RealmTransaction: Object {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var date = Date()
-    @objc dynamic var account: Account?
-    @objc dynamic var category: Category?
+    @objc dynamic var account: RealmAccount?
+    @objc dynamic var category: RealmCategory?
     @objc dynamic var amount: Float = 0.0
     @objc dynamic var comment: String?
     

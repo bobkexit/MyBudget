@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         InstallationManager.shared.installDataIfNeeded()
+        //DataManager.shared.testCategoryViewModel()
+        //DataManager.shared.testAccountViewModel()
         
         return true
     }

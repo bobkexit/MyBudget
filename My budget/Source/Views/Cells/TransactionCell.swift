@@ -21,7 +21,7 @@ class TransactionCell: BaseCell {
         accountImg.image = viewModel.accountType?.image
         categoryLbl.text = viewModel.category
         amountLbl.text =  viewModel.amount 
-        amountLbl.textColor = viewModel.credit ? Constants.Colors.credit : Constants.Colors.green
+        amountLbl.textColor = viewModel.credit ? Constants.DefaultColors.red : Constants.DefaultColors.green
         dateLbl.text = viewModel.date
     }
 }

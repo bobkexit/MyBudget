@@ -9,51 +9,51 @@
 import Foundation
 
 protocol ViewModelFactoryProtocol {
-    func createAccountViewModel(model: Account?) -> AccountViewModel
-    func createCategoryViewModel(model: Category?) -> CategoryViewModel
-    func createTransactionViewModel(model: Transaction?) -> TransactionViewModel
+    func createAccountViewModel(model: RealmAccount?) -> AccountViewModel
+    func createCategoryViewModel(model: RealmCategory?) -> CategoryViewModel
+    func createTransactionViewModel(model: RealmTransaction?) -> TransactionViewModel
 }
 
 
 final class ViewModelFactory: ViewModelFactoryProtocol {
     public static let shared = ViewModelFactory()
     
-    private let dataManager = DataManager.shared
+    private let dataManager = RealmDataManager.shared
     
-    func createAccountViewModel(model: Account? = nil) -> AccountViewModel {
+    func createAccountViewModel(model: RealmAccount? = nil) -> AccountViewModel {
         var viewModel: AccountViewModel
         
         if let model = model {
             return AccountViewModel(withAccount: model)
         }
         
-        let account = dataManager.createObject(ofType: Account.self)
+        let account = RealmAccount() //dataManager.createObject(ofType: Account.self)
         viewModel = AccountViewModel(withAccount: account)
         
         return viewModel
     }
     
-    func createCategoryViewModel(model: Category? = nil) -> CategoryViewModel {
+    func createCategoryViewModel(model: RealmCategory? = nil) -> CategoryViewModel {
         var viewModel: CategoryViewModel
         
         if let model = model {
             return CategoryViewModel(withCategory: model)
         }
         
-        let category = dataManager.createObject(ofType: Category.self)
+        let category = RealmCategory() //dataManager.createObject(ofType: Category.self)
         viewModel = CategoryViewModel(withCategory: category)
         
         return viewModel
     }
     
-    func createTransactionViewModel(model: Transaction? = nil) -> TransactionViewModel {
+    func createTransactionViewModel(model: RealmTransaction? = nil) -> TransactionViewModel {
         var viewModel: TransactionViewModel
         
         if let model = model {
             return TransactionViewModel(withTransaction: model)
         }
         
-        let transaction = dataManager.createObject(ofType: Transaction.self)
+        let transaction = RealmTransaction() //dataManager.createObject(ofType: Transaction.self)
         viewModel = TransactionViewModel(withTransaction: transaction)
         
         return viewModel

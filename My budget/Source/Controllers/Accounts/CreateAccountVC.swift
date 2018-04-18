@@ -10,7 +10,7 @@ import UIKit
 
 class CreateAccountVC: BaseVC {
     
-    typealias Entity = Account
+    typealias Entity = RealmAccount
     typealias ViewModel = AccountViewModel
     typealias AccountType = BaseViewModel.AccountType
     

@@ -11,11 +11,11 @@ import RealmSwift
 
 class TransactionsVC: BaseTableVC {
     
-    typealias Entity = Transaction
+    typealias Entity = RealmTransaction
     typealias ViewModel = TransactionViewModel
     
     // MARK: - Properties
-    var dataManager = DataManager.shared
+    var dataManager = RealmDataManager.shared
     var viewModelFactory: ViewModelFactoryProtocol = ViewModelFactory.shared
     
     fileprivate var transactions = [TransactionViewModel]()
@@ -51,7 +51,7 @@ class TransactionsVC: BaseTableVC {
     
     // MARK: - View Methods
     @objc func reloadData() {
-        let rawData = dataManager.fetchObjects(ofType: Transaction.self)
+        let rawData = dataManager.fetchObjects(ofType: RealmTransaction.self)
         transactions = rawData.map { viewModelFactory.createTransactionViewModel(model: $0) }
         tableView.reloadData()
     }

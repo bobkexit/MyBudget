@@ -14,11 +14,11 @@ protocol AddAccountVCDelegate {
 
 class AddAccountVC: BaseVC {
     
-    typealias Entity = Account
+    typealias Entity = RealmAccount
     typealias ViewModel = AccountViewModel
     typealias AccountType = BaseViewModel.AccountType
     
-    let dataManager = DataManager.shared
+    let dataManager = RealmDataManager.shared
     var viewModel: ViewModel!
 
     // MARK: - IBOutlets

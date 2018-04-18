@@ -10,12 +10,12 @@ import Foundation
 
 struct AccountViewModel {
    
-    typealias Entity = Account
+    typealias Entity = RealmAccount
     typealias AccountType = BaseViewModel.AccountType
     typealias CompletionHandler = (_ error: Error?) -> ()
     
     private let account: Entity
-    private let dataManager = DataManager.shared
+    private let dataManager = RealmDataManager.shared
     
     
     init(withAccount account: Entity) {

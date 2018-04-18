@@ -9,12 +9,12 @@
 import Foundation
 
 struct CategoryViewModel {
-    typealias Entity = Category
+    typealias Entity = RealmCategory
     typealias CategoryType = BaseViewModel.CategoryType
     typealias CompletionHandler = (_ error: Error?) -> ()
     
     private let category: Entity
-    private let dataManager = DataManager.shared
+    private let dataManager = RealmDataManager.shared
     
     var id: String {
         return category.id

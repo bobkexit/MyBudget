@@ -43,11 +43,21 @@ final class InstallationManager {
         
         if userDefaults.bool(forKey: Kyes.firstLaunch) { return }
         
-        setDefaultCurrency()
+        if userDefaults.string(forKey: Kyes.defaultCurrencyCode) == nil {
+            setDefaultCurrency()
+        }
+       
+        if userDefaults.string(forKey: Kyes.defaultAccountId) == nil {
+            createAccounts()
+        }
         
-        createAccounts()
-        createIncomes()
-        createExpenses()
+        if userDefaults.string(forKey: Kyes.defaultIncomeCategoryId) == nil {
+            createIncomes()
+        }
+        
+        if userDefaults.string(forKey: Kyes.defaultExpenseCategoryId) == nil {
+            createExpenses()
+        }
         
         userDefaults.set(true, forKey: Kyes.firstLaunch)
     }
@@ -68,21 +78,25 @@ final class InstallationManager {
     }
     
     fileprivate func createExpenses() {
-        let _ = createProductCategory()
+        let productId = createProductCategory()
         let _ = createHealthCategory()
         let _ = createUtilitiesCategory()
         let _ = createEntertainmentCategory()
         
         let accountAdjustmentId = createAccountAdjustment(.credit)
-        userSettings.setExpenseAccountAdjustment(accountAdjustmentId)
+        
+        userSettings.setDefault(categoryId: productId, forCategoryType: .credit, andKey: Kyes.defaultExpenseCategoryId)
+        
+        userSettings.setDefault(categoryId: accountAdjustmentId, forCategoryType: .credit, andKey: Kyes.accountAdjustmentExpenseCategoryId)
     }
         
     fileprivate func createIncomes() {
         let salaryId = createSalaryCategory()
         let accountAdjustmentId = createAccountAdjustment(.debit)
         
-        userSettings.setDefault(incomeCategory: salaryId)
-        userSettings.setIncomeAccountAdjustment(accountAdjustmentId)
+        userSettings.setDefault(categoryId: salaryId, forCategoryType: .debit, andKey: Kyes.defaultIncomeCategoryId)
+        
+        userSettings.setDefault(categoryId: accountAdjustmentId, forCategoryType: .debit, andKey: Kyes.accountAdjustmentIncomeCategoryId)
     }
     
     
@@ -117,7 +131,7 @@ final class InstallationManager {
         category.set(title: "Salary")
         category.set(categoryType: .debit)
         category.save()
-        
+       
         return category.id
     }
     

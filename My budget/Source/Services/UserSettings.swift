@@ -32,7 +32,7 @@ final class UserSettings {
     
     // MARK: - Properties
     
-    var dataManager = DataManager.shared
+    var dataManager = RealmDataManager.shared
     
     
     // MARK: - Read-Only Properties
@@ -41,43 +41,43 @@ final class UserSettings {
         return userDefaults.string(forKey: Keys.defaultCurrencyCode)
     }
     
-    var account: Account? {
+    var account: RealmAccount? {
         guard let accountId = userDefaults.string(forKey: Keys.defaultAccountId)  else {
             return nil
         }
-        let account = dataManager.findObject(ofType: Account.self, byId: accountId)
+        let account = dataManager.findObject(ofType: RealmAccount.self, byId: accountId)
         return account
     }
     
-    var expenseCategory: Category? {
+    var expenseCategory: RealmCategory? {
         guard let categoryId = userDefaults.string(forKey: Keys.defaultExpenseCategoryId)  else {
             return nil
         }
-        let category = dataManager.findObject(ofType: Category.self, byId: categoryId)
+        let category = dataManager.findObject(ofType: RealmCategory.self, byId: categoryId)
         return category
     }
     
-    var incomeCategory: Category? {
+    var incomeCategory: RealmCategory? {
         guard let categoryId = userDefaults.string(forKey: Keys.defaultIncomeCategoryId)  else {
             return nil
         }
-        let category = dataManager.findObject(ofType: Category.self, byId: categoryId)
+        let category = dataManager.findObject(ofType: RealmCategory.self, byId: categoryId)
         return category
     }
     
-    var accountAdjustmentExpense: Category? {
+    var accountAdjustmentExpense: RealmCategory? {
         guard let categoryId = userDefaults.string(forKey: Keys.accountAdjustmentExpenseCategoryId)  else {
             return nil
         }
-        let category = dataManager.findObject(ofType: Category.self, byId: categoryId)
+        let category = dataManager.findObject(ofType: RealmCategory.self, byId: categoryId)
         return category
     }
     
-    var accountAdjustmentIncome: Category? {
+    var accountAdjustmentIncome: RealmCategory? {
         guard let categoryId = userDefaults.string(forKey: Keys.accountAdjustmentIncomeCategoryId)  else {
             return nil
         }
-        let category = dataManager.findObject(ofType: Category.self, byId: categoryId)
+        let category = dataManager.findObject(ofType: RealmCategory.self, byId: categoryId)
         return category
     }
     
@@ -92,30 +92,12 @@ final class UserSettings {
         userDefaults.set(accountId, forKey: Keys.defaultAccountId)
     }
     
-    func setDefault(expenseCategory categoryId: String) {
-        set(categoryId, forCategoryType: .credit, andKey: Keys.defaultExpenseCategoryId)
-    }
-    
-    func setDefault(incomeCategory categoryId: String) {
-        set(categoryId, forCategoryType: .debit, andKey: Keys.defaultIncomeCategoryId)
-    }
-    
-    func setExpenseAccountAdjustment(_ categoryId: String) {
-        set(categoryId, forCategoryType: .credit, andKey: Keys.accountAdjustmentExpenseCategoryId)
-    }
-    
-    func setIncomeAccountAdjustment(_ categoryId: String) {
-        set(categoryId, forCategoryType: .debit, andKey: Keys.accountAdjustmentIncomeCategoryId)
-    }
-    
-    
-    // MARK: - Private Methods
-    
-    private func set(_ categoryId: String, forCategoryType categoryType: CategoryType, andKey key: String) {
-        
-        guard let category = dataManager.findObject(ofType: Category.self, byId: categoryId)  else {
+    func setDefault(categoryId: String, forCategoryType categoryType: CategoryType, andKey key: String) {
+      
+        guard let category = dataManager.findObject(ofType: RealmCategory.self, byId: categoryId) else {
             fatalError("Category with id = \(categoryId) not found")
         }
+        
         
         guard CategoryType(rawValue: category.typeId) != categoryType else {
             fatalError("incorrect default category type")
@@ -123,5 +105,4 @@ final class UserSettings {
         
         userDefaults.set(categoryId, forKey: key)
     }
-    
 }
