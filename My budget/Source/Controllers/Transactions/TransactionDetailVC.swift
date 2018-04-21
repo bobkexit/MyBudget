@@ -7,15 +7,12 @@
 //
 
 import UIKit
-import RealmSwift
 
 class TransactionDetailVC: BaseVC {
     
-    typealias Entity = RealmTransaction
-    typealias ViewModel = TransactionViewModel
-    typealias CategoryType = BaseViewModel.CategoryType
-    typealias AccountType = BaseViewModel.AccountType
-    
+    typealias Entity = Transaction
+    typealias ViewModel = TransactionVM
+  
     // MARK: - IBOutlets
     
     @IBOutlet weak var dateTxt: UITextField!
@@ -32,13 +29,11 @@ class TransactionDetailVC: BaseVC {
     fileprivate let accountPicker = UIPickerView()
     fileprivate let categoryPicker = UIPickerView()
     
-    fileprivate var accounts: Results<RealmAccount>!
-    fileprivate var categories: Results<RealmCategory>!
+    var accounts = [Account]()
+    var categories = [Category]()
     
     
-    // MARK: - Properties
-    var dataManager = RealmDataManager.shared
-
+    // MARK: - Properties    
     var viewModel: ViewModel!
     
     fileprivate var selectedDate: Date?
@@ -140,7 +135,7 @@ class TransactionDetailVC: BaseVC {
         dateTxt.text = viewModel.date
         accountTxt.text = viewModel.account
         categoryTxt.text = viewModel.category
-        amountTxt.text = viewModel.amountPositive
+        amountTxt.text = viewModel.amount
         
         if viewModel.operationType == .credit {
             segmentedControl.selectedSegmentIndex = 0
@@ -151,10 +146,18 @@ class TransactionDetailVC: BaseVC {
     
     // MARK: - Data Methods
     fileprivate func reloadData() {
-        categories = dataManager.fetchObjects(ofType: RealmCategory.self)
-        categories = categories.filter("typeId = \(viewModel.operationType.rawValue)")
         
-        accounts = dataManager.fetchObjects(ofType: RealmAccount.self)
+        let accountManager = BaseDataManager<Account>()
+        var categoryManager: BaseDataManager<Category>?
+        
+        if viewModel.operationType == .credit {
+            categoryManager = ExpenseCategoryManager()
+        } else if viewModel.operationType == .debit {
+            categoryManager = IncomeCategoryManager()
+        }
+
+        accounts = accountManager.getObjects()
+        categories = categoryManager!.getObjects()
     }
     
     // FIXME: - DRY

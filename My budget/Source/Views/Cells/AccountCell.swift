@@ -11,7 +11,7 @@ import RealmSwift
 
 class AccountCell: BaseCell {
     
-    var viewModel: AccountViewModel!
+    var viewModel: AccountVM!
     
     @IBOutlet weak var accountTypeImg: UIImageView!
     @IBOutlet weak var accountNameTxt: UITextField!

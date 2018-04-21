@@ -51,8 +51,6 @@ struct Constants {
             static let defaultAccountId = "DEFAULT_ACCOUNT_ID"
             static let defaultExpenseCategoryId = "DEFAULT_EXPENSE_CATEGORY_ID"
             static let defaultIncomeCategoryId = "DEFAULT_INCOME_CATEGORY_ID"
-            static let accountAdjustmentExpenseCategoryId = "ACCOUNT_ADJUSTMENT_EXPENSE_CATEGORY_ID"
-            static let accountAdjustmentIncomeCategoryId = "ACCOUNT_ADJUSTMENT_INCOME_CATEGORY_ID"
         }
     }
 }

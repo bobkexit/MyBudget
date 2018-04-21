@@ -7,30 +7,28 @@
 //
 
 import UIKit
-import RealmSwift
 
 class AccountsVC: BaseTableVC {
 
     // MARK: - Type Alias
     
-    typealias Entity = RealmAccount
-    typealias ViewModel = AccountViewModel
-    typealias AccountType = BaseViewModel.AccountType
+    typealias Entity = Account
     
+    typealias ViewModel = AccountVM
+   
     // MARK: - IBOutlets
     
     @IBOutlet weak var accountTypeImage: UIImageView!
     
     @IBOutlet weak var accountNameTxt: UITextField!
     
-    
     // MARK: - Properties
-    var viewModelFactory: ViewModelFactoryProtocol = ViewModelFactory.shared
     
-    let dataManager = RealmDataManager.shared
+    var viewModelFactory = ViewModelFactory.shared
+    
+    let dataManager = BaseDataManager<Account>()
     
     var accounts = [ViewModel]()
-    
     
     // MARK: - View Life Cycle
     
@@ -39,18 +37,17 @@ class AccountsVC: BaseTableVC {
         
         title = "Accounts"
         reloadData()
-        //subscribe()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        subscribe()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        unSubscribe()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        subscribe()
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        unSubscribe()
+//    }
 
     
     // MARK: - View Actions
@@ -64,7 +61,8 @@ class AccountsVC: BaseTableVC {
             guard let destinationVC = segue.destination as? CreateAccountVC else {
                 fatalError("Can't find CreateAccountVC")
             }
-            let viewModel = viewModelFactory.createAccountViewModel(model: nil)
+            let account = dataManager.create()
+            let viewModel = viewModelFactory.create(object: account, dataManager: dataManager)
             destinationVC.viewModel = viewModel
         }
     }
@@ -72,36 +70,26 @@ class AccountsVC: BaseTableVC {
     // MARK: - View Methods
     
     @objc fileprivate func reloadData() {
-        let rawData = dataManager.fetchObjects(ofType: Entity.self)
-        accounts = rawData.map{viewModelFactory.createAccountViewModel(model: $0)}
+        let data = dataManager.getObjects()
+        accounts = data.map{ viewModelFactory.create(object: $0, dataManager: dataManager) }
         tableView.reloadData()
-    }
-    
-    func removeAccount(viewModel: ViewModel) {
-        guard let model = dataManager.findObject(ofType: Entity.self, byId: viewModel.id) else {
-            return
-        }
-        dataManager.remove(model)
     }
     
     override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
         let viewModel = accounts[indexPath.row]
-        viewModel.remove { (error) in
-            if error != nil { return }
-            self.accounts.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
+        viewModel.delete()
+        viewModel.save()
     }
     
-    func subscribe() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .account, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .accountHasBeenCreated, object: nil)
-    }
-    
-    func unSubscribe() {
-        NotificationCenter.default.removeObserver(self, name: .account, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .accountHasBeenCreated, object: nil)
-    }
+//    func subscribe() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .account, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .accountHasBeenCreated, object: nil)
+//    }
+//
+//    func unSubscribe() {
+//        NotificationCenter.default.removeObserver(self, name: .account, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: .accountHasBeenCreated, object: nil)
+//    }
 }
 
 

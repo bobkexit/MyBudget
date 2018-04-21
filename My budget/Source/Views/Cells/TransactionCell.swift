@@ -15,13 +15,13 @@ class TransactionCell: BaseCell {
     @IBOutlet weak var amountLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
     
-    var viewModel: TransactionViewModel!
+    var viewModel: TransactionVM!
     
     func configure() {
         accountImg.image = viewModel.accountType?.image
         categoryLbl.text = viewModel.category
         amountLbl.text =  viewModel.amount 
-        amountLbl.textColor = viewModel.credit ? Constants.DefaultColors.red : Constants.DefaultColors.green
+        //amountLbl.textColor = viewModel.credit ? Constants.DefaultColors.red : Constants.DefaultColors.green
         dateLbl.text = viewModel.date
     }
 }

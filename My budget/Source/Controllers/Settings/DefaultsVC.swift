@@ -9,9 +9,6 @@
 import UIKit
 
 class DefaultsVC: BaseVC {
-
-    // MARK: - Type Alias
-    typealias CategoryType = BaseViewModel.CategoryType
     
     // MARK: - Outlets
     
@@ -38,18 +35,18 @@ class DefaultsVC: BaseVC {
     
     
     // MARK: - Properties
+
+    let userDefaults = UserDefaults.standard
+
+    let userSettings = UserSettings.defaults
     
-    var dataManager = RealmDataManager.shared
+    let currencies: [String] = Locale.commonISOCurrencyCodes
     
-    var userSettings = UserSettings.defaults
+    var accounts: [Account] = []
     
-    let currencies = Locale.commonISOCurrencyCodes
+    var expenses: [Category] = []
     
-    var accounts: [[String: String]] = []
-    
-    var expenses: [[String: String]] = []
-    
-    var incomes: [[String: String]] = []
+    var incomes: [Category] = []
     
     
     // MARK: - View Life Cycle Methods
@@ -58,10 +55,13 @@ class DefaultsVC: BaseVC {
         super.viewDidLoad()
         
         loadData()
+        updateUI()
     }
     
     // MARK: Overridden Base Class Methods
     override func setupUI() {
+        
+        title = "Defaults"
         
         setupToolbar(toolBar, withSelector: #selector(BaseVC.dismissKeyboard))
         
@@ -83,7 +83,7 @@ class DefaultsVC: BaseVC {
             
             accountTxtField.text = account.title
             
-            if let row = accounts.index(of: ["id": account.id, "title": account.title]) {
+            if let row = accounts.index(of: account) {
                 accountPicker.selectRow(row, inComponent: 0, animated: true)
             }
         }
@@ -92,7 +92,7 @@ class DefaultsVC: BaseVC {
             
             expenseTxtField.text = expenseCategory.title
             
-            if let row = expenses.index(of: ["id": expenseCategory.id, "title": expenseCategory.title]) {
+            if let row = expenses.index(of: expenseCategory) {
                 expensePicker.selectRow(row, inComponent: 0, animated: true)
             }
         }
@@ -102,7 +102,7 @@ class DefaultsVC: BaseVC {
          
             incomeTxtField.text = incomeCategory.title
             
-            if let row = incomes.index(of: ["id": incomeCategory.id, "title": incomeCategory.title]) {
+            if let row = incomes.index(of: incomeCategory) {
                 incomePicker.selectRow(row, inComponent: 0, animated: true)
             }
         }
@@ -131,21 +131,18 @@ class DefaultsVC: BaseVC {
     override func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         var title: String?
-        var viewModel: [String: String]?
-        
+    
         if pickerView == currencyPicker {
             title = currencies[row]
         } else {
             
             if pickerView == accountPicker {
-                viewModel = accounts[row]
+                title = accounts[row].title
             } else if pickerView == expensePicker {
-                viewModel = expenses[row]
+                title = expenses[row].title
             } else if pickerView == incomePicker {
-                viewModel = incomes[row]
+                title = incomes[row].title
             }
-            
-            title = viewModel?["title"]
         }
         
         return title
@@ -156,26 +153,24 @@ class DefaultsVC: BaseVC {
         if pickerView == currencyPicker {
             
             let currencyCode = currencies[row]
+            userSettings.set(defaultCurrencyCode: currencyCode)
             
-            userSettings.setDefault(currencyCode: currencyCode)
-            
-        } else if pickerView == accountPicker, let accountId = accounts[row]["id"] {
+        } else if pickerView == accountPicker {
 
-            userSettings.setDefault(accountId: accountId)
-        
-        } else if pickerView == expensePicker, let categoryId = expenses[row]["id"] {
-        
-            //userSettings.setDefault(expenseCategory: categoryId)
+            let account = accounts[row]
+            userSettings.set(defautAccount: account)
             
-            let key = UserSettings.Keys.defaultExpenseCategoryId
-            userSettings.setDefault(categoryId: categoryId, forCategoryType: .credit, andKey: key)
         
-        } else if pickerView == incomePicker, let categoryId = incomes[row]["id"] {
+        } else if pickerView == expensePicker {
         
-            //userSettings.setDefault(incomeCategory: categoryId)
-       
-            let key = UserSettings.Keys.defaultIncomeCategoryId
-            userSettings.setDefault(categoryId: categoryId, forCategoryType: .debit, andKey: key)
+            let category = expenses[row]
+            userSettings.set(defaultCategory: category)
+        
+        } else if pickerView == incomePicker {
+        
+            let category = incomes[row]
+            userSettings.set(defaultCategory: category)
+            
         }
         
         updateUI()
@@ -201,46 +196,13 @@ class DefaultsVC: BaseVC {
     // MARK: - Data methods
     
     fileprivate func loadData() {
-        loadAccounts()
-        loadExpenses()
-        loadIncomes()
-    }
-    
-    fileprivate func loadAccounts() {
-      
-        let data = dataManager.fetchObjects(ofType: RealmAccount.self)
         
-        let _ = data.map {
-            
-            let account = ["id": $0.id, "title": $0.title]
-            self.accounts.append(account)
-            
-        }
-    }
-    
-    fileprivate func loadExpenses() {
+        let accountManager = BaseDataManager<Account>()
+        let incomeCategoryManager = IncomeCategoryManager()
+        let expenseCategoryManager = ExpenseCategoryManager()
         
-        let query = "typeId = \(CategoryType.credit.rawValue)"
-        let data = dataManager.fetchObjects(ofType: RealmCategory.self, filteredBy: query)
-        
-        let _ = data.map {
-            
-            let expnese = ["id": $0.id, "title": $0.title]
-            self.expenses.append(expnese)
-    
-        }
-    }
-    
-    fileprivate func loadIncomes() {
-        
-        let query = "typeId = \(CategoryType.debit.rawValue)"
-        let data = dataManager.fetchObjects(ofType: RealmCategory.self, filteredBy: query)
-        
-        let _ = data.map {
-            
-            let income = ["id": $0.id, "title": $0.title]
-            self.incomes.append(income)
-            
-        }
+        accounts = accountManager.getObjects()
+        expenses = expenseCategoryManager.getObjects()
+        incomes = incomeCategoryManager.getObjects()
     }
 }

@@ -10,9 +10,12 @@ import UIKit
 
 class CreateAccountVC: BaseVC {
     
-    typealias Entity = RealmAccount
-    typealias ViewModel = AccountViewModel
-    typealias AccountType = BaseViewModel.AccountType
+    typealias Entity = Account
+    
+    typealias ViewModel = AccountVM
+    
+    
+    // MARK: - IBOutlets
     
     @IBOutlet weak var titleTxtField: UITextField!
     
@@ -23,6 +26,8 @@ class CreateAccountVC: BaseVC {
     fileprivate let toolBar = UIToolbar()
     fileprivate let accountTypePicker = UIPickerView()
     
+    // MARK: - Properties
+    
     var viewModel: ViewModel!
     
     fileprivate let accountTypes = Array(AccountType.cases())
@@ -32,7 +37,6 @@ class CreateAccountVC: BaseVC {
         super.viewDidLoad()
         
         updateUI()
-         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: .accountHasBeenUpdated, object: nil)
     }
     
     override func setupUI() {
@@ -57,10 +61,6 @@ class CreateAccountVC: BaseVC {
         if !validateForm() { return }
         
         viewModel.save()
-        
-        if let balance = balanceTxtField.text {
-            viewModel.set(balance: balance)
-        }
         
         dismiss(animated: true, completion: nil)
     }
@@ -89,7 +89,7 @@ class CreateAccountVC: BaseVC {
             let accountType = accountTypes[row]
             viewModel.set(accountType: accountType)
         }
-        //updateUI()
+        updateUI()
     }
     
     override func textFieldDidEndEditing(_ textField: UITextField) {
@@ -99,11 +99,11 @@ class CreateAccountVC: BaseVC {
             guard let title = textField.text, title.isEmpty else { return }
             viewModel.set(title: title)
         }
-        //updateUI()
+        updateUI()
     }
     
     fileprivate func validateForm() -> Bool {
-        if viewModel.title.isEmpty {
+        if viewModel.title?.isEmpty ?? true {
             UIView.animate(withDuration: 1) {
                 self.titleTxtField.backgroundColor = Constants.DefaultColors.red
             }
@@ -111,5 +111,4 @@ class CreateAccountVC: BaseVC {
         }
         return true
     }
-    
 }

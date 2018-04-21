@@ -7,170 +7,96 @@
 //
 
 import Foundation
-import SwiftyJSON
-import RealmSwift
+import CoreData
 
 final class InstallationManager {
     
-    // MARK: - Singleton Declaration
+    typealias Kyes = UserSettings.Keys
+    
+    // MARK: - Properties
     
     public static let shared = InstallationManager()
+    
+    private let userDefaults = UserDefaults.standard
+    
+    // MARK: - Initializer
     
     private init() {
     
     }
     
+    // MARK: - Public Methods
     
-    // MARK: - Type Alias
-    
-    typealias CategoryType = BaseViewModel.CategoryType
-    typealias Kyes = UserSettings.Keys
-    
-    // MARK: - Public Properties
-    
-    var viewModelFactory = ViewModelFactory.shared
-    
-    
-    // MARK: - Constants
-    
-    private let userDefaults = UserDefaults.standard
-    private let userSettings = UserSettings.defaults
-    
-    
-    // MARK: - Internal Methods
-    
-    func installDataIfNeeded()  {
+    public func installDataIfNeeded()  {
         
-        if userDefaults.bool(forKey: Kyes.firstLaunch) { return }
-        
-        if userDefaults.string(forKey: Kyes.defaultCurrencyCode) == nil {
-            setDefaultCurrency()
-        }
-       
-        if userDefaults.string(forKey: Kyes.defaultAccountId) == nil {
-            createAccounts()
+        if userDefaults.bool(forKey: Kyes.firstLaunch) {
+            return
         }
         
-        if userDefaults.string(forKey: Kyes.defaultIncomeCategoryId) == nil {
-            createIncomes()
+        if let currencyCode = Locale.current.currencyCode {
+            userDefaults.set(currencyCode, forKey: Kyes.defaultCurrencyCode)
         }
         
-        if userDefaults.string(forKey: Kyes.defaultExpenseCategoryId) == nil {
-            createExpenses()
-        }
+        // Create account
+        createAccount(title: "Cash", type: .cash, setDefault: true)
+    
+        // Create income categories
+        createIncomeCategory(title: "Salary", setDefault: true)
+        
+        // Create expense categories
+        createExpenseCategory(title: "Products", setDefault: true)
+        createExpenseCategory(title: "Helath")
+        createExpenseCategory(title: "Utilities")
+        createExpenseCategory(title: "Entertainment")
         
         userDefaults.set(true, forKey: Kyes.firstLaunch)
     }
     
+    // MARK: - Private Methods
     
-    // MARK: - Default Currency Setter
-    
-    fileprivate func setDefaultCurrency() {
-        guard let currencyCode = Locale.current.currencyCode else { return }
-        userSettings.setDefault(currencyCode: currencyCode)
+    private func createAccount(title: String, type: AccountType, setDefault: Bool = false) {
+        
+        let dataManager = BaseDataManager<Account>()
+        
+        let account = dataManager.create()
+        account.title = title
+        account.typeId = Int16(type.rawValue)
+        
+        dataManager.saveContext()
+        
+        if setDefault {
+            let url = account.objectID.uriRepresentation()
+            userDefaults.set(url, forKey: Kyes.defaultAccountId)
+        }
     }
     
-    // MARK: - Creation Methods
-    
-    fileprivate func createAccounts() {
-        let cashId = createCashAccount()
-        userSettings.setDefault(accountId: cashId)
+    private func createIncomeCategory(title: String, setDefault: Bool = false) {
+        
+        let dataManager = IncomeCategoryManager()
+        
+        let category = dataManager.create()
+        category.title = title
+        
+        dataManager.saveContext()
+        
+        if setDefault {
+            let url = category.objectID.uriRepresentation()
+            userDefaults.set(url, forKey: Kyes.defaultIncomeCategoryId)
+        }
     }
     
-    fileprivate func createExpenses() {
-        let productId = createProductCategory()
-        let _ = createHealthCategory()
-        let _ = createUtilitiesCategory()
-        let _ = createEntertainmentCategory()
+    private func createExpenseCategory(title: String, setDefault: Bool = false) {
         
-        let accountAdjustmentId = createAccountAdjustment(.credit)
+        let dataManager = ExpenseCategoryManager()
         
-        userSettings.setDefault(categoryId: productId, forCategoryType: .credit, andKey: Kyes.defaultExpenseCategoryId)
+        let category = dataManager.create()
+        category.title = title
         
-        userSettings.setDefault(categoryId: accountAdjustmentId, forCategoryType: .credit, andKey: Kyes.accountAdjustmentExpenseCategoryId)
-    }
+        dataManager.saveContext()
         
-    fileprivate func createIncomes() {
-        let salaryId = createSalaryCategory()
-        let accountAdjustmentId = createAccountAdjustment(.debit)
-        
-        userSettings.setDefault(categoryId: salaryId, forCategoryType: .debit, andKey: Kyes.defaultIncomeCategoryId)
-        
-        userSettings.setDefault(categoryId: accountAdjustmentId, forCategoryType: .debit, andKey: Kyes.accountAdjustmentIncomeCategoryId)
-    }
-    
-    
-    // MARK: - Build-in Accounts
-    
-    fileprivate func createCashAccount() -> String {
-        let account = viewModelFactory.createAccountViewModel()
-        account.set(title: "Cash")
-        account.set(accountType: .cash)
-        account.save()
-        
-        return account.id
-    }
-   
-    
-    // MARK: - Build-in Special Category
-    
-    fileprivate func createAccountAdjustment(_ categoryType: CategoryType) -> String {
-        let category = viewModelFactory.createCategoryViewModel()
-        category.set(title: "Account adjustment")
-        category.set(categoryType: categoryType)
-        category.save()
-        
-        return category.id
-    }
-    
-    
-    // MARK: Build-in Incomes
-    
-    fileprivate func createSalaryCategory() -> String {
-        let category = viewModelFactory.createCategoryViewModel()
-        category.set(title: "Salary")
-        category.set(categoryType: .debit)
-        category.save()
-       
-        return category.id
-    }
-    
-    
-    // MARK: Build-in Expenses
-    
-    fileprivate func createProductCategory() -> String {
-        let category = viewModelFactory.createCategoryViewModel()
-        category.set(title: "Products")
-        category.set(categoryType: .credit)
-        category.save()
-        
-        return category.id
-    }
-    
-    fileprivate func createHealthCategory() -> String {
-        let category = viewModelFactory.createCategoryViewModel()
-        category.set(title: "Health")
-        category.set(categoryType: .credit)
-        category.save()
-        
-        return category.id
-    }
-    
-    fileprivate func createUtilitiesCategory() -> String {
-        let category = viewModelFactory.createCategoryViewModel()
-        category.set(title: "Utilities")
-        category.set(categoryType: .credit)
-        category.save()
-        
-        return category.id
-    }
-    
-    fileprivate func createEntertainmentCategory() -> String {
-        let category = viewModelFactory.createCategoryViewModel()
-        category.set(title: "Entertainment")
-        category.set(categoryType: .credit)
-        category.save()
-        
-        return category.id
+        if setDefault {
+            let url = category.objectID.uriRepresentation()
+            userDefaults.set(url, forKey: Kyes.defaultExpenseCategoryId)
+        }
     }
 }

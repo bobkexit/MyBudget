@@ -7,44 +7,23 @@
 //
 
 import UIKit
+import CoreData
 
-struct BaseViewModel {
-    enum CategoryType: Int, EnumCollection {
-        case none = 0
-        case debit = 1
-        case credit = 2
+class BaseViewModel<Entity: NSManagedObject>: ViewModel {
+    
+    let object: Entity
+    let dataManager: BaseDataManager<Entity>
+    
+    required init(object: Entity, dataManager: BaseDataManager<Entity>) {
+        self.object = object
+        self.dataManager = dataManager
     }
     
-    enum AccountType: Int, EnumCollection, CustomStringConvertible {
-        case cash = 1
-        case paymentCard = 2
-        case bankAccont = 3
-        case web = 4
-        
-        var description: String {
-            switch self {
-            case .paymentCard:
-                return "payment card"
-            case .cash:
-                return "cash"
-            case .web:
-                return "web"
-            case .bankAccont:
-                return "bank account"
-            }
-        }
-        
-        var image: UIImage? {
-            switch self {
-            case .paymentCard:
-                return Constants.Images.creditCard
-            case .cash:
-                return Constants.Images.wallet
-            case .web:
-                return Constants.Images.web
-            case .bankAccont:
-                return Constants.Images.safe
-            }
-        }
+    func save() {
+        dataManager.saveContext()
+    }
+    
+    func delete() {
+        dataManager.delete(object: object)
     }
 }

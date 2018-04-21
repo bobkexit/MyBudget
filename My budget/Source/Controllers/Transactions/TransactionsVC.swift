@@ -7,19 +7,22 @@
 //
 
 import UIKit
-import RealmSwift
 
 class TransactionsVC: BaseTableVC {
     
-    typealias Entity = RealmTransaction
-    typealias ViewModel = TransactionViewModel
+    typealias Entity = Transaction
+    
+    typealias ViewModel = TransactionVM
     
     // MARK: - Properties
-    var dataManager = RealmDataManager.shared
-    var viewModelFactory: ViewModelFactoryProtocol = ViewModelFactory.shared
     
-    fileprivate var transactions = [TransactionViewModel]()
-    var selectedTransaction: TransactionViewModel?
+    var dataManager = BaseDataManager<Transaction>()
+    
+    var viewModelFactory = ViewModelFactory.shared
+    
+    var transactions = [TransactionVM]()
+    
+    var selectedTransaction: TransactionVM?
     
     
     // MARK: - View Life Cycle
@@ -43,7 +46,16 @@ class TransactionsVC: BaseTableVC {
             guard let destinationVC = segue.destination as? TransactionDetailVC else {
                 return
             }
-            let viewModel = selectedTransaction ?? viewModelFactory.createTransactionViewModel(model: nil)
+            
+            var viewModel: ViewModel
+            
+            if selectedTransaction != nil {
+                viewModel = selectedTransaction!
+            } else {
+                let transaction = dataManager.create()
+                viewModel = viewModelFactory.create(object: transaction, dataManager: dataManager)
+            }
+            
             destinationVC.viewModel = viewModel
         }
     }
@@ -51,18 +63,16 @@ class TransactionsVC: BaseTableVC {
     
     // MARK: - View Methods
     @objc func reloadData() {
-        let rawData = dataManager.fetchObjects(ofType: RealmTransaction.self)
-        transactions = rawData.map { viewModelFactory.createTransactionViewModel(model: $0) }
+        let data = dataManager.getObjects()
+        transactions = data.map { viewModelFactory.create(object: $0, dataManager: dataManager) }
         tableView.reloadData()
     }
     
     override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
         let viewModel = transactions[indexPath.row]
-        viewModel.remove { (error) in
-            if error != nil { return }
-            self.transactions.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
+        viewModel.delete()
+        transactions.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }
 

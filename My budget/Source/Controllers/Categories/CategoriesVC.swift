@@ -7,20 +7,22 @@
 //
 
 import UIKit
-import RealmSwift
 
 class CategoriesVC: BaseTableVC {
     
-    typealias Entity = RealmCategory
-    typealias ViewModel = CategoryViewModel
-    typealias CategoryType = BaseViewModel.CategoryType
+    typealias Entity = Category
+    
+    typealias ViewModel = CategoryVM
     
      // MARK: - Properties
-    var dataManager = RealmDataManager.shared
-    var viewModelFactory: ViewModelFactoryProtocol = ViewModelFactory.shared
+    
+    var dataManager: BaseDataManager<Category>?
+    
+    var viewModelFactory = ViewModelFactory.shared
     
     var categoryType: CategoryType!
-    var categories = [CategoryViewModel]()
+    
+    var categories = [CategoryVM]()
     
     
     // MARK: - View Life Cycle
@@ -36,9 +38,16 @@ class CategoriesVC: BaseTableVC {
     // MARK: - View Actions
     
     @IBAction func addButtonPressed(_ sender: Any) {
-        let viewModel = viewModelFactory.createCategoryViewModel(model: nil)
-        viewModel.set(categoryType: categoryType)
+        
+        guard let dataManager = dataManager else {
+            fatalError("Can't get propper data manager")
+        }
+        
+        let category = dataManager.create()
+        let viewModel = viewModelFactory.create(object: category, dataManager: dataManager)
+        
         viewModel.save()
+        
         reloadData()
         
         guard let visibleCells = tableView.visibleCells as? [CategoryCell] else {
@@ -63,35 +72,25 @@ class CategoriesVC: BaseTableVC {
     }
     
     fileprivate func reloadData() {
-        var rawData = dataManager.fetchObjects(ofType: Entity.self)
-        rawData = rawData.filter("typeId = \(self.categoryType.rawValue)")
+    
+        if self.categoryType == .credit {
+            dataManager = ExpenseCategoryManager()
+        } else if self.categoryType == .debit {
+            dataManager = IncomeCategoryManager()
+        }
         
-        categories = rawData.map { viewModelFactory.createCategoryViewModel(model: $0) }
+        if let dataManager = dataManager {
+            
+            var data = [Entity]()
+          
+            data = dataManager.getObjects()
+            
+            categories = data.map { viewModelFactory.create(object: $0, dataManager: dataManager) }
+        }
         
         self.tableView.reloadData()
     }
     
-    fileprivate func deleteEmptyCategory(viewModel: ViewModel) {
-        guard let model = dataManager.findObject(ofType: Entity.self, byId: viewModel.id) else {
-            return
-        }
-        dataManager.remove(model) { _ in }
-    }
-    
-    override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
-        let viewModel = categories[indexPath.row]
-        viewModel.remove { (error) in
-            if error != nil { return }
-            self.categories.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-    }
-}
-
-
-// MARK: UITableViewDelegate and UITableViewDataSource Methods
-
-extension CategoriesVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.count
     }
@@ -107,10 +106,14 @@ extension CategoriesVC {
         
         return cell
     }
+    
+    override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
+        let viewModel = categories[indexPath.row]
+        viewModel.delete()
+        categories.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
 }
-
-
-// MARK: UITableViewCellDelgate Methods
 
 extension CategoriesVC: UITableViewCellDelgate {
     func cellDidEndEditing(editingCell: UITableViewCell) {

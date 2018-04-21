@@ -12,9 +12,9 @@ class CategoryCell: BaseCell {
     
     @IBOutlet weak var categoryName: UITextField!
     
-    var viewModel: CategoryViewModel!
+    var viewModel: CategoryVM!
     
-    func configureCell(viewModel: CategoryViewModel) {
+    func configureCell(viewModel: CategoryVM) {
         setup()
         self.viewModel = viewModel
         self.categoryName.text = viewModel.title

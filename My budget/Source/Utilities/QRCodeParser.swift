@@ -92,9 +92,7 @@ class QRCodeParser: QRCodeParserProtocol {
     }
     
     private func parseSum(fromString string: String?) -> Float? {
-        guard let string = string else { return nil }
-        let value = (string as NSString).floatValue
-        
-        return value
+        guard let string = string as NSString? else { return nil }
+        return string.floatValue
     }
 }

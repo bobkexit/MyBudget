@@ -76,11 +76,11 @@ class SettingsVC: BaseTableVC {
             
             if selectedSetting == .incomings {
                 
-                destinationVC.categoryType = BaseViewModel.CategoryType.debit
+                destinationVC.categoryType = .debit
                 
             } else if selectedSetting == .expenses {
                 
-                destinationVC.categoryType = BaseViewModel.CategoryType.credit
+                destinationVC.categoryType = .credit
                 
             }
         }
