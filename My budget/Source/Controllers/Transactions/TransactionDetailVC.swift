@@ -59,9 +59,14 @@ class TransactionDetailVC: BaseVC {
             return
         }
         
-        updateData()
+        if let date = dateTxt.text, date != viewModel.date {
+            viewModel.set(date: date)
+        }
+        
         viewModel.save()
+        
         NotificationCenter.default.post(name: .transaction, object: nil)
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -187,12 +192,6 @@ class TransactionDetailVC: BaseVC {
         })
         
         return isValid
-    }
-    
-    fileprivate func updateData() {
-        if let date = dateTxt.text, date != viewModel.date {
-            viewModel.set(date: date)
-        }
     }
 }
 

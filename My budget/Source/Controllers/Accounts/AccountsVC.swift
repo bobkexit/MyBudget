@@ -39,15 +39,17 @@ class AccountsVC: BaseTableVC {
         reloadData()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        subscribe()
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        unSubscribe()
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .account, object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
 
     
     // MARK: - View Actions
@@ -80,16 +82,6 @@ class AccountsVC: BaseTableVC {
         viewModel.delete()
         viewModel.save()
     }
-    
-//    func subscribe() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .account, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .accountHasBeenCreated, object: nil)
-//    }
-//
-//    func unSubscribe() {
-//        NotificationCenter.default.removeObserver(self, name: .account, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: .accountHasBeenCreated, object: nil)
-//    }
 }
 
 

@@ -58,9 +58,14 @@ class CreateAccountVC: BaseVC {
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
-        if !validateForm() { return }
+        
+        if !validateForm() {
+            return
+        }
         
         viewModel.save()
+        
+        NotificationCenter.default.post(name: .account, object: nil)
         
         dismiss(animated: true, completion: nil)
     }
