@@ -9,7 +9,6 @@
 import Foundation
 
 enum CategoryType: Int, EnumCollection {
-    case none = 0
     case debit = 1
     case credit = 2
 }

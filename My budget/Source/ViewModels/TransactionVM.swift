@@ -49,6 +49,12 @@ class TransactionVM: BaseViewModel<Transaction> {
         return AccountType(rawValue: Int(accountTypeId))
     }
     
+    var accountID: URL? {
+        let account = object.account
+        let accountId = account?.objectID.uriRepresentation()
+        return accountId
+    }
+    
     var category: String? {
         let category = self.object.category
         return category?.title
@@ -62,9 +68,19 @@ class TransactionVM: BaseViewModel<Transaction> {
         return CategoryType(rawValue: Int(categoryTypeId))
     }
     
+    var categoryId: URL? {
+        let category = object.category
+        let categoryId = category?.objectID.uriRepresentation()
+        return categoryId
+    }
+    
     var date: String {
+        
+        guard let date = object.date else {
+            return dateFormatter.string(from: Date())
+        }
        
-        let value = self.dateFormatter.string(from: self.object.date!)
+        let value = dateFormatter.string(from: date)
         return value
     }
     
@@ -141,5 +157,15 @@ class TransactionVM: BaseViewModel<Transaction> {
     
     func set(comment: String?) {
         object.comment = comment
+    }
+    
+    func set(temp: Bool) {
+        object.temp = temp
+    }
+    
+    deinit {
+        if self.object.temp {
+            dataManager.context.delete(object)
+        }
     }
 }

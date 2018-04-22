@@ -11,7 +11,7 @@ import CoreData
 
 class BaseViewModel<Entity: NSManagedObject>: ViewModel {
     
-    let object: Entity
+    var object: Entity
     let dataManager: BaseDataManager<Entity>
     
     required init(object: Entity, dataManager: BaseDataManager<Entity>) {
@@ -20,6 +20,7 @@ class BaseViewModel<Entity: NSManagedObject>: ViewModel {
     }
     
     func save() {
+        //dataManager.add(object: object)
         dataManager.saveContext()
     }
     

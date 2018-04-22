@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class BaseDataManager<Entity: NSManagedObject>: DataManager {
+class BaseDataManager<Entity: NSManagedObject>: DataManager{
     
     private let appDelegate: AppDelegate
     let context: NSManagedObjectContext
@@ -42,15 +42,19 @@ class BaseDataManager<Entity: NSManagedObject>: DataManager {
     }
     
     func findObject(by url: URL) -> Entity? {
+        var object: Entity?
         
-        let coordinator = appDelegate.persistentContainer.persistentStoreCoordinator
+        let coordinator = context.persistentStoreCoordinator
         
-        guard let objectId = coordinator.managedObjectID(forURIRepresentation: url) else {
+        guard let objectId = coordinator?.managedObjectID(forURIRepresentation: url) else {
             return nil
         }
         
-        guard let object = context.object(with: objectId) as? Entity else {
-            return nil
+        do {
+            let existingObject = try context.existingObject(with: objectId)
+            object = existingObject as? Entity
+        } catch  {
+            //return nil
         }
         
         return object
@@ -59,6 +63,10 @@ class BaseDataManager<Entity: NSManagedObject>: DataManager {
     func create() -> Entity {
         let object = Entity(context: context)
         return object
+    }
+    
+    func add(object: Entity) {
+        context.insert(object)
     }
     
     func delete(object: Entity) {

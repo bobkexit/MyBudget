@@ -6,7 +6,5 @@ target 'My budget' do
   use_frameworks!
 
   # Pods for My budget
-  pod 'SwiftyJSON'
-  pod 'RealmSwift'
 
 end

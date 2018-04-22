@@ -19,6 +19,8 @@ protocol DataManager {
     
     func create() -> Entity
     
+    func add(object: Entity)
+    
     func delete(object: Entity)
     
     func saveContext()

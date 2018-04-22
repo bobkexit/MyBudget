@@ -36,6 +36,12 @@ class TransactionDetailVC: BaseVC {
     // MARK: - Properties    
     var viewModel: ViewModel!
     
+    let accountManager = BaseDataManager<Account>()
+    var categoryManager: BaseDataManager<Category>?
+    
+    var selectedAccount: Account?
+    var selectedCategory: Category?
+    
     fileprivate var selectedDate: Date?
     //fileprivate var operationType: CategoryType = .credit
     
@@ -79,6 +85,7 @@ class TransactionDetailVC: BaseVC {
         default:
             return
         }
+            
         reloadData()
         updateUI()
     }
@@ -137,9 +144,20 @@ class TransactionDetailVC: BaseVC {
     }
     
     override func updateUI() {
+        
         dateTxt.text = viewModel.date
         accountTxt.text = viewModel.account
+        
+        if let row = accounts.index(where: { $0.objectID.uriRepresentation() == viewModel.accountID }) {
+            accountPicker.selectRow(row, inComponent: 0, animated: true)
+        }
+    
         categoryTxt.text = viewModel.category
+        
+        if let row = categories.index(where: { $0.objectID.uriRepresentation() == viewModel.categoryId }) {
+            categoryPicker.selectRow(row, inComponent: 0, animated: true)
+        }
+        
         amountTxt.text = viewModel.amount
         
         if viewModel.operationType == .credit {
@@ -152,9 +170,6 @@ class TransactionDetailVC: BaseVC {
     // MARK: - Data Methods
     fileprivate func reloadData() {
         
-        let accountManager = BaseDataManager<Account>()
-        var categoryManager: BaseDataManager<Category>?
-        
         if viewModel.operationType == .credit {
             categoryManager = ExpenseCategoryManager()
         } else if viewModel.operationType == .debit {
@@ -163,6 +178,14 @@ class TransactionDetailVC: BaseVC {
 
         accounts = accountManager.getObjects()
         categories = categoryManager!.getObjects()
+        
+        if selectedAccount == nil {
+            selectedAccount = accounts.first
+        }
+        
+        if selectedCategory == nil {
+            selectedCategory = UserSettings.defaults.defaultCategory(forCategoryType: viewModel.operationType)
+        }
     }
     
     // FIXME: - DRY
@@ -222,11 +245,11 @@ extension TransactionDetailVC  {
     
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == accountPicker {
-            let account = accounts[row]
-            viewModel.set(account: account)
+            selectedAccount = accounts[row]
+            viewModel.set(account: selectedAccount!)
         } else if pickerView == categoryPicker {
-            let category = categories[row]
-            viewModel.set(category: category)
+            selectedCategory = categories[row]
+            viewModel.set(category: selectedCategory!)
         }
         updateUI()
     }

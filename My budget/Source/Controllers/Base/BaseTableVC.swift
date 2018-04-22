@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift // remove
 
 class BaseTableVC: UITableViewController {
     

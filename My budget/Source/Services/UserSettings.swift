@@ -15,6 +15,8 @@ final class UserSettings {
    
     lazy var accountManager = BaseDataManager<Account>()
     
+    lazy var categoryManager = BaseDataManager<Category>()
+    
     lazy var incomeCategoryManager = IncomeCategoryManager()
     
     lazy var expenseCategoryManager = ExpenseCategoryManager()
@@ -66,6 +68,28 @@ final class UserSettings {
     
     private init() {
         
+    }
+    
+    // MARK: - Methods
+    
+    func defaultCategory(forCategoryType categoryType: CategoryType) -> Category? {
+        
+        var url: URL?
+        
+        switch categoryType {
+        case .credit:
+            url = userDefaults.url(forKey: Keys.defaultExpenseCategoryId)
+        case .debit:
+            url = userDefaults.url(forKey: Keys.defaultIncomeCategoryId)
+        }
+        
+        guard let categoryUrl = url else {
+            return nil
+        }
+        
+        let category = categoryManager.findObject(by: categoryUrl)
+        
+        return category
     }
     
     // MARK: - Setters

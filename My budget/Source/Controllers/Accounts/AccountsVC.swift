@@ -36,21 +36,9 @@ class AccountsVC: BaseTableVC {
         super.viewDidLoad()
         
         title = "Accounts"
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .account, object: nil)
         reloadData()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .account, object: nil)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
-    }
-
     
     // MARK: - View Actions
     

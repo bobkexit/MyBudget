@@ -30,21 +30,10 @@ class TransactionsVC: BaseTableVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        reloadData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .transaction, object: nil)
+        reloadData()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     
     // MARK: - View Actions
     @IBAction func addBtnPressed(_ sender: Any) {
@@ -62,8 +51,7 @@ class TransactionsVC: BaseTableVC {
             if selectedTransaction != nil {
                 viewModel = selectedTransaction!
             } else {
-                let transaction = dataManager.create()
-                viewModel = viewModelFactory.create(object: transaction, dataManager: dataManager)
+                viewModel = createViewModel()
             }
             
             destinationVC.viewModel = viewModel
@@ -83,6 +71,23 @@ class TransactionsVC: BaseTableVC {
         viewModel.delete()
         transactions.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
+    func createViewModel() -> ViewModel {
+        
+        let transaction = dataManager.create()
+        let viewModel = viewModelFactory.create(object: transaction, dataManager: dataManager)
+        
+        if let account = UserSettings.defaults.account {
+            viewModel.set(account: account)
+        }
+        
+        if let categoryType = viewModel.categoryType, let category = UserSettings.defaults.defaultCategory(forCategoryType: categoryType) {
+            viewModel.set(category: category)
+            viewModel.set(temp: true)
+        }
+        
+        return viewModel
     }
 }
 

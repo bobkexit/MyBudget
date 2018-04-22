@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 protocol UITableViewCellDelgate {
     func cellDidBeginEditing(editingCell: UITableViewCell)

@@ -17,11 +17,13 @@ class IncomeCategoryManager: BaseDataManager<Category> {
        
         var result = [Category]()
         
-        let request: NSFetchRequest<Category> = Category.fetchRequest()
-        request.predicate = NSPredicate(format: "typeId = %@","\(categoryType.rawValue)")
+        let typeId = Int16(categoryType.rawValue)
+        
+        let query = NSFetchRequest<Category>(entityName: "Category")
+        query.predicate = NSPredicate(format: "typeId == \(typeId)")
         
         do {
-            result = try context.fetch(request)
+            result = try context.fetch(query)
         } catch  {
             print(error as Any)
         }

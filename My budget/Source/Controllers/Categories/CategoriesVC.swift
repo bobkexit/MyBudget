@@ -45,7 +45,6 @@ class CategoriesVC: BaseTableVC {
         
         let category = dataManager.create()
         let viewModel = viewModelFactory.create(object: category, dataManager: dataManager)
-        
         viewModel.save()
         
         reloadData()
@@ -132,6 +131,7 @@ extension CategoriesVC: UITableViewCellDelgate {
         } else {
             let viewModel = categories[indexPath.row]
             viewModel.set(title: title!)
+            viewModel.save()
         }
     }
 }

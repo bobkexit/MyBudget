@@ -100,8 +100,11 @@ class CreateAccountVC: BaseVC {
     override func textFieldDidEndEditing(_ textField: UITextField) {
         textField.text = textField.text?.capitalized
         textField.text = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        
         if textField == titleTxtField {
-            guard let title = textField.text, title.isEmpty else { return }
+            guard let title = textField.text,!title.isEmpty else {
+                return
+            }
             viewModel.set(title: title)
         }
         updateUI()
