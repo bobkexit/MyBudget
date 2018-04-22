@@ -82,10 +82,11 @@ class TransactionsVC: BaseTableVC {
             viewModel.set(account: account)
         }
         
-        if let categoryType = viewModel.categoryType, let category = UserSettings.defaults.defaultCategory(forCategoryType: categoryType) {
+        let categoryType = viewModel.operationType
+        if let category = UserSettings.defaults.defaultCategory(forCategoryType: categoryType) {
             viewModel.set(category: category)
-            viewModel.set(temp: true)
         }
+        viewModel.set(temp: true)
         
         return viewModel
     }

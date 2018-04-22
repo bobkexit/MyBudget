@@ -39,9 +39,6 @@ class TransactionDetailVC: BaseVC {
     let accountManager = BaseDataManager<Account>()
     var categoryManager: BaseDataManager<Category>?
     
-    var selectedAccount: Account?
-    var selectedCategory: Category?
-    
     fileprivate var selectedDate: Date?
     //fileprivate var operationType: CategoryType = .credit
     
@@ -77,16 +74,33 @@ class TransactionDetailVC: BaseVC {
     }
     
     @IBAction func indexChanged(_ sender: Any) {
+        
+        var incomeCategory  = UserSettings.defaults.defaultCategory(forCategoryType: .debit)
+        var expenseCategory = UserSettings.defaults.defaultCategory(forCategoryType: .credit)
+        
+        let row = categoryPicker.selectedRow(inComponent: 0)
+        
+        switch viewModel.operationType {
+        case .credit:
+            expenseCategory = categories[row]
+        case .debit:
+            incomeCategory = categories[row]
+        }
+        
+         reloadData()
+        
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             viewModel.operationType = .credit
+            viewModel.set(category: expenseCategory!)
         case 1:
             viewModel.operationType = .debit
+            viewModel.set(category: incomeCategory!)
         default:
             return
         }
-            
-        reloadData()
+        
+       
         updateUI()
     }
     
@@ -178,14 +192,6 @@ class TransactionDetailVC: BaseVC {
 
         accounts = accountManager.getObjects()
         categories = categoryManager!.getObjects()
-        
-        if selectedAccount == nil {
-            selectedAccount = accounts.first
-        }
-        
-        if selectedCategory == nil {
-            selectedCategory = UserSettings.defaults.defaultCategory(forCategoryType: viewModel.operationType)
-        }
     }
     
     // FIXME: - DRY
@@ -245,11 +251,11 @@ extension TransactionDetailVC  {
     
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == accountPicker {
-            selectedAccount = accounts[row]
-            viewModel.set(account: selectedAccount!)
+            let account = accounts[row]
+            viewModel.set(account: account)
         } else if pickerView == categoryPicker {
-            selectedCategory = categories[row]
-            viewModel.set(category: selectedCategory!)
+            let category = categories[row]
+            viewModel.set(category: category)
         }
         updateUI()
     }
