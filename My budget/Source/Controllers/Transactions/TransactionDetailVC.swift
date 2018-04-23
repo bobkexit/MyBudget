@@ -52,6 +52,7 @@ class TransactionDetailVC: BaseTransactionVC {
     // MARK: - View Methods
     
     override func setupUI() {
+        super.setupUI()
         
         setupDatePickerView(datePicker, action: #selector(datePickerValueChannged(_:)))
         
@@ -61,9 +62,6 @@ class TransactionDetailVC: BaseTransactionVC {
         setupTextField(amountTxt, withInputView: nil, andInputAccessoryView: toolBarForPicker)
         
         commentTxtView.delegate = self
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
     }
     
     override func setupViewTitle() {

@@ -112,7 +112,7 @@ class TransactionVM: BaseViewModel<Transaction> {
         currencyFormatter.currencyCode = currencyCode
         currencyFormatter.numberStyle = .currency
         
-        let number = NSNumber(value: self.object.amount)
+        let number = NSNumber(value: self.object.amount * (categoryType == .credit ? -1 : 1))
         let value = currencyFormatter.string(from: number)
         
         return value

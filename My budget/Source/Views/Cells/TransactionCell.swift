@@ -20,8 +20,7 @@ class TransactionCell: BaseCell {
     func configure() {
         accountImg.image = viewModel.accountType?.image
         categoryLbl.text = viewModel.category
-        amountLbl.text =  viewModel.amount 
-        //amountLbl.textColor = viewModel.credit ? Constants.DefaultColors.red : Constants.DefaultColors.green
+        amountLbl.text =  viewModel.currencyAmount
         dateLbl.text = viewModel.date
     }
 }

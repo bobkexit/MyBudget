@@ -17,8 +17,10 @@ class TransactionsVC: BaseTableVC {
     // MARK: - Properties
     
     var dataManager = BaseDataManager<Transaction>()
+    //BaseDataManager<Transaction>()
     
     var viewModelFactory = ViewModelFactory.shared
+    var dataManagerFactory = DataManagerFactory.shared
     
     var transactions = [TransactionVM]()
     
@@ -31,7 +33,6 @@ class TransactionsVC: BaseTableVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .transaction, object: nil)
         reloadData()

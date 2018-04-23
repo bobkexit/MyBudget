@@ -15,6 +15,7 @@
 		351E3E8C205BDBB4004A3414 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E8B205BDBB4004A3414 /* SettingsVC.swift */; };
 		351E3E8E205BDC22004A3414 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */; };
 		351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */; };
+		3522E11E208E45A10096E57C /* DataManagerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522E11D208E45A10096E57C /* DataManagerFactory.swift */; };
 		3531C595207E76080055D0B4 /* CategoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C594207E76080055D0B4 /* CategoryVM.swift */; };
 		3531C597207E7A500055D0B4 /* AccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C596207E7A500055D0B4 /* AccountVM.swift */; };
 		3531C599207E7C4B0055D0B4 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C598207E7C4B0055D0B4 /* BaseViewModel.swift */; };
@@ -70,6 +71,7 @@
 		351E3E8B205BDBB4004A3414 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExt.swift; sourceTree = "<group>"; };
+		3522E11D208E45A10096E57C /* DataManagerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerFactory.swift; sourceTree = "<group>"; };
 		3531C594207E76080055D0B4 /* CategoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVM.swift; sourceTree = "<group>"; };
 		3531C596207E7A500055D0B4 /* AccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVM.swift; sourceTree = "<group>"; };
 		3531C598207E7C4B0055D0B4 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				3566A7B2208B000F0099BE67 /* CategoryType.swift */,
 				3566A7B4208B00680099BE67 /* AccountType.swift */,
 				356B12DF208E0DE6007AF145 /* Operation.swift */,
+				3522E11D208E45A10096E57C /* DataManagerFactory.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				3531C597207E7A500055D0B4 /* AccountVM.swift in Sources */,
 				35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */,
 				356E06F2206A5699004034AE /* TransactionCell.swift in Sources */,
+				3522E11E208E45A10096E57C /* DataManagerFactory.swift in Sources */,
 				356B12DE208DF6C7007AF145 /* BaseTransactionVC.swift in Sources */,
 				3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */,
 				3531C59D207F2D730055D0B4 /* ViewModelFactory.swift in Sources */,
