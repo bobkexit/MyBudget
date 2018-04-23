@@ -20,8 +20,11 @@ class BaseViewModel<Entity: NSManagedObject>: ViewModel {
     }
     
     func save() {
-        //dataManager.add(object: object)
         dataManager.saveContext()
+    }
+    
+    func reset() {
+        dataManager.discardChanges(object: object)
     }
     
     func delete() {

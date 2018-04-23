@@ -22,7 +22,9 @@ class TransactionsVC: BaseTableVC {
     
     var transactions = [TransactionVM]()
     
-    var selectedTransaction: TransactionVM?
+    //var selectedTransaction: TransactionVM?
+    
+    var selectedOperation: Operation?
     
     
     // MARK: - View Life Cycle
@@ -37,24 +39,57 @@ class TransactionsVC: BaseTableVC {
     
     // MARK: - View Actions
     @IBAction func addBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: Constants.Segues.toTransactionDetailVC, sender: self)
+        
+        let alertController = UIAlertController(title: "Select operation", message: nil, preferredStyle: .actionSheet)
+        
+        let createIncome = UIAlertAction(title: Operation.income.rawValue, style: .default) { (action) in
+            self.selectedOperation = Operation.income
+            self.performSegue(withIdentifier: Constants.Segues.toCreateTransaction, sender: self)
+        }
+        let createExpense = UIAlertAction(title: Operation.expense.rawValue, style: .default) { (action) in
+            self.selectedOperation = Operation.expense
+            self.performSegue(withIdentifier: Constants.Segues.toCreateTransaction, sender: self)
+        }
+        
+        alertController.addAction(createIncome)
+        alertController.addAction(createExpense)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier, identifier == Constants.Segues.toTransactionDetailVC {
+        
+        var categoryManager: BaseDataManager<Category>!
+        let accountManager = BaseDataManager<Account>()
+        
+        
+        if segue.identifier == Constants.Segues.toTransactionDetailVC {
+            
             guard let destinationVC = segue.destination as? TransactionDetailVC else {
                 return
             }
             
-            var viewModel: ViewModel
-            
-            if selectedTransaction != nil {
-                viewModel = selectedTransaction!
-            } else {
-                viewModel = createViewModel()
+            guard let indexPath = tableView.indexPathForSelectedRow else {
+                return
             }
             
-            destinationVC.viewModel = viewModel
+            let selectedTransactionVM = transactions[indexPath.row]
+            
+            categoryManager = createCategoryManager(forTransaction: selectedTransactionVM)
+            
+            destinationVC.configure(viewModel: selectedTransactionVM, categoryManager: categoryManager, accountManager: accountManager)
+            
+        } else if segue.identifier == Constants.Segues.toCreateTransaction {
+            
+            guard let destinationVC = segue.destination as? CreateTransactionVC else {
+                return
+            }
+            
+            let newTransactionVM = createViewModel()
+            
+            categoryManager = createCategoryManager(forTransaction: newTransactionVM)
+            
+             destinationVC.configure(viewModel: newTransactionVM, categoryManager: categoryManager, accountManager: accountManager)
         }
     }
     
@@ -76,19 +111,42 @@ class TransactionsVC: BaseTableVC {
     func createViewModel() -> ViewModel {
         
         let transaction = dataManager.create()
+        transaction.date = Date()
+        
         let viewModel = viewModelFactory.create(object: transaction, dataManager: dataManager)
         
         if let account = UserSettings.defaults.account {
             viewModel.set(account: account)
         }
         
+        if selectedOperation == .income {
+            viewModel.operationType = .debit
+        } else if selectedOperation == .expense {
+            viewModel.operationType = .credit
+        }
+        
         let categoryType = viewModel.operationType
+        
         if let category = UserSettings.defaults.defaultCategory(forCategoryType: categoryType) {
             viewModel.set(category: category)
         }
-        viewModel.set(temp: true)
+        
+        //viewModel.set(temp: true)
         
         return viewModel
+    }
+    
+    func createCategoryManager(forTransaction transaction: ViewModel) -> BaseDataManager<Category> {
+        
+        var categoryManager: BaseDataManager<Category>!
+      
+        if transaction.categoryType == .debit {
+            categoryManager = IncomeCategoryManager()
+        } else if transaction.categoryType == .credit {
+            categoryManager = ExpenseCategoryManager()
+        }
+        
+        return categoryManager
     }
 }
 
@@ -112,7 +170,7 @@ extension TransactionsVC {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedTransaction = transactions[indexPath.row]
+        //selectedTransaction = transactions[indexPath.row]
         performSegue(withIdentifier: Constants.Segues.toTransactionDetailVC, sender: self)
     }
 }

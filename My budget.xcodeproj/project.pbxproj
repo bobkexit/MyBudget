@@ -37,6 +37,9 @@
 		3566A7B5208B00680099BE67 /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566A7B4208B00680099BE67 /* AccountType.swift */; };
 		3567747C205FA8EC00743FCA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3567747B205FA8EC00743FCA /* Constants.swift */; };
 		3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3567747E205FA9D200743FCA /* SettingsCell.swift */; };
+		356B12DA208DEE35007AF145 /* CreateTransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B12D9208DEE35007AF145 /* CreateTransactionVC.swift */; };
+		356B12DE208DF6C7007AF145 /* BaseTransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B12DD208DF6C7007AF145 /* BaseTransactionVC.swift */; };
+		356B12E0208E0DE6007AF145 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B12DF208E0DE6007AF145 /* Operation.swift */; };
 		356E06D8206666D7004034AE /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06D7206666D7004034AE /* UIViewExt.swift */; };
 		356E06E420683C7A004034AE /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06E320683C7A004034AE /* SettingsMenu.swift */; };
 		356E06EE2068D084004034AE /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 356E06ED2068D084004034AE /* currencies.json */; };
@@ -91,6 +94,9 @@
 		3566A7B4208B00680099BE67 /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
 		3567747B205FA8EC00743FCA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3567747E205FA9D200743FCA /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		356B12D9208DEE35007AF145 /* CreateTransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTransactionVC.swift; sourceTree = "<group>"; };
+		356B12DD208DF6C7007AF145 /* BaseTransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTransactionVC.swift; sourceTree = "<group>"; };
+		356B12DF208E0DE6007AF145 /* Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		356E06D7206666D7004034AE /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		356E06E320683C7A004034AE /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
 		356E06ED2068D084004034AE /* currencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = currencies.json; sourceTree = "<group>"; };
@@ -139,8 +145,10 @@
 		3509178D2074C4A10000045C /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				356B12DD208DF6C7007AF145 /* BaseTransactionVC.swift */,
 				351E3E89205BDB95004A3414 /* TransactionsVC.swift */,
 				356E06F3206A6C9C004034AE /* TransactionDetailVC.swift */,
+				356B12D9208DEE35007AF145 /* CreateTransactionVC.swift */,
 				3531C5A0208091AB0055D0B4 /* QRScannerVC.swift */,
 			);
 			path = Transactions;
@@ -196,6 +204,7 @@
 				3566A78F2087413A0099BE67 /* DataModel.xcdatamodeld */,
 				3566A7B2208B000F0099BE67 /* CategoryType.swift */,
 				3566A7B4208B00680099BE67 /* AccountType.swift */,
+				356B12DF208E0DE6007AF145 /* Operation.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -540,6 +549,7 @@
 				353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */,
 				3531C5A32081105C0055D0B4 /* QRCodeParser.swift in Sources */,
 				351410EE2084773C002F0D9E /* CreateAccountVC.swift in Sources */,
+				356B12DA208DEE35007AF145 /* CreateTransactionVC.swift in Sources */,
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
 				3566A7912087413A0099BE67 /* DataModel.xcdatamodeld in Sources */,
 				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
@@ -550,6 +560,7 @@
 				3531C597207E7A500055D0B4 /* AccountVM.swift in Sources */,
 				35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */,
 				356E06F2206A5699004034AE /* TransactionCell.swift in Sources */,
+				356B12DE208DF6C7007AF145 /* BaseTransactionVC.swift in Sources */,
 				3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */,
 				3531C59D207F2D730055D0B4 /* ViewModelFactory.swift in Sources */,
 				3531C599207E7C4B0055D0B4 /* BaseViewModel.swift in Sources */,
@@ -558,6 +569,7 @@
 				3566A7B3208B000F0099BE67 /* CategoryType.swift in Sources */,
 				35F012132063B9D7008EE633 /* InstallationManager.swift in Sources */,
 				3567747C205FA8EC00743FCA /* Constants.swift in Sources */,
+				356B12E0208E0DE6007AF145 /* Operation.swift in Sources */,
 				353B47C6205690B3008281B0 /* AppDelegate.swift in Sources */,
 				3566A7B5208B00680099BE67 /* AccountType.swift in Sources */,
 				356E06F6206A755E004034AE /* GradientView.swift in Sources */,

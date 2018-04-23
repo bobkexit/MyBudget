@@ -77,4 +77,8 @@ class BaseDataManager<Entity: NSManagedObject>: DataManager{
     func saveContext() {
         appDelegate.saveContext()
     }
+    
+    func discardChanges(object: Entity) {
+        context.refresh(object, mergeChanges: false)
+    }
 }

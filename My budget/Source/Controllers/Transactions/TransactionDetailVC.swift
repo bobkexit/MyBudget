@@ -8,117 +8,40 @@
 
 import UIKit
 
-class TransactionDetailVC: BaseVC {
+class TransactionDetailVC: BaseTransactionVC {
     
-    typealias Entity = Transaction
-    typealias ViewModel = TransactionVM
-  
     // MARK: - IBOutlets
     
     @IBOutlet weak var dateTxt: UITextField!
+    
     @IBOutlet weak var accountTxt: UITextField!
+    
     @IBOutlet weak var categoryTxt: UITextField!
+    
     @IBOutlet weak var amountTxt: UITextField!
+    
     @IBOutlet weak var commentTxtView: UITextView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var scanQRCodeBtn: UIButton!
     
-    // MARK: - Constants
-    fileprivate let toolBarForPicker = UIToolbar()
-    fileprivate let datePicker = UIDatePicker()
-    fileprivate let accountPicker = UIPickerView()
-    fileprivate let categoryPicker = UIPickerView()
+    // MARK: - Properies
     
-    var accounts = [Account]()
-    var categories = [Category]()
-    
-    
-    // MARK: - Properties    
-    var viewModel: ViewModel!
-    
-    let accountManager = BaseDataManager<Account>()
-    var categoryManager: BaseDataManager<Category>?
-    
-    fileprivate var selectedDate: Date?
-    //fileprivate var operationType: CategoryType = .credit
+    fileprivate var discardChanges = true
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        reloadData()
-        updateUI()
+        
     }
     
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if discardChanges {
+            viewModel.reset()
+        }
+    }
+        
     // MARK: - View Actions
-    
-    //TODO: - needs to refactoring
-    @IBAction func saveButtonPressed(_ sender: Any) {
-        
-        //FIXME: - don't work animation invalid fields
-        if !validateData() {
-            return
-        }
-        
-        if let date = dateTxt.text, date != viewModel.date {
-            viewModel.set(date: date)
-        }
-        
-        viewModel.save()
-        
-        NotificationCenter.default.post(name: .transaction, object: nil)
-        
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func indexChanged(_ sender: Any) {
-        
-        var incomeCategory  = UserSettings.defaults.defaultCategory(forCategoryType: .debit)
-        var expenseCategory = UserSettings.defaults.defaultCategory(forCategoryType: .credit)
-        
-        let row = categoryPicker.selectedRow(inComponent: 0)
-        
-        switch viewModel.operationType {
-        case .credit:
-            expenseCategory = categories[row]
-        case .debit:
-            incomeCategory = categories[row]
-        }
-        
-         reloadData()
-        
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            viewModel.operationType = .credit
-            viewModel.set(category: expenseCategory!)
-        case 1:
-            viewModel.operationType = .debit
-            viewModel.set(category: incomeCategory!)
-        default:
-            return
-        }
-        
-       
-        updateUI()
-    }
-    
-    @available(iOS 10.2, *)
-    @IBAction func scanQRCodeBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: Constants.Segues.toQRScannerVC, sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.Segues.toQRScannerVC {
-            if #available(iOS 10.2, *) {
-                guard let destinationVC = segue.destination as? QRScannerVC  else { return }
-                destinationVC.delegate = self
-            } else {
-                // Fallback on earlier versions
-            }
-        }
-    }
     
     @objc func datePickerValueChannged(_ sender: Any) {
         let dateFormatter = Helper.shared.getDateFormatter(timeStyle: .short)
@@ -126,15 +49,11 @@ class TransactionDetailVC: BaseVC {
         dateTxt.text = dateFormatter.string(from: selectedDate!)
     }
     
-    
     // MARK: - View Methods
     
     override func setupUI() {
-        setupToolbar(toolBarForPicker, withSelector: #selector(self.dismissKeyboard))
         
-        setupPickerView(accountPicker, delegate: self)
-        setupPickerView(categoryPicker, delegate: self)
-        setupDatePickerView(datePicker)
+        setupDatePickerView(datePicker, action: #selector(datePickerValueChannged(_:)))
         
         setupTextField(accountTxt, withInputView: accountPicker, andInputAccessoryView: toolBarForPicker)
         setupTextField(categoryTxt, withInputView: categoryPicker, andInputAccessoryView: toolBarForPicker)
@@ -147,124 +66,30 @@ class TransactionDetailVC: BaseVC {
         view.addGestureRecognizer(tap)
     }
     
-    override func setupTextField(_ textField: UITextField, withInputView inputView: UIView?, andInputAccessoryView inputAccessoryView: UIView?) {
-        super.setupTextField(textField, withInputView: inputView, andInputAccessoryView: inputAccessoryView)
-        textField.delegate = self
-    }
-    
-    fileprivate func setupDatePickerView(_ datePickerView: UIDatePicker) {
-        datePicker.addTarget(self, action: #selector(datePickerValueChannged(_:)), for: .valueChanged)
-        datePicker.timeZone = TimeZone.current
+    override func setupViewTitle() {
+        if viewModel.operationType == .debit {
+            title = "Income Trnasaction"
+        } else if viewModel.operationType == .credit {
+            title = "Expense Transacion"
+        }
     }
     
     override func updateUI() {
-        
+        super.updateUI()
+
         dateTxt.text = viewModel.date
         accountTxt.text = viewModel.account
-        
-        if let row = accounts.index(where: { $0.objectID.uriRepresentation() == viewModel.accountID }) {
-            accountPicker.selectRow(row, inComponent: 0, animated: true)
-        }
-    
         categoryTxt.text = viewModel.category
-        
-        if let row = categories.index(where: { $0.objectID.uriRepresentation() == viewModel.categoryId }) {
-            categoryPicker.selectRow(row, inComponent: 0, animated: true)
-        }
-        
         amountTxt.text = viewModel.amount
-        
-        if viewModel.operationType == .credit {
-            segmentedControl.selectedSegmentIndex = 0
-        } else {
-            segmentedControl.selectedSegmentIndex = 1
-        }
-    }
-    
-    // MARK: - Data Methods
-    fileprivate func reloadData() {
-        
-        if viewModel.operationType == .credit {
-            categoryManager = ExpenseCategoryManager()
-        } else if viewModel.operationType == .debit {
-            categoryManager = IncomeCategoryManager()
-        }
-
-        accounts = accountManager.getObjects()
-        categories = categoryManager!.getObjects()
-    }
-    
-    // FIXME: - DRY
-    fileprivate func validateData() -> Bool {
-        var isValid = true
-        var invalidFields = [UITextField]()
-        
-        if viewModel.account == nil {
-            isValid = false
-            invalidFields.append(accountTxt)
-        }
-        
-        if viewModel.category == nil {
-            isValid = false
-            invalidFields.append(categoryTxt)
-        }
-        
-        if viewModel.amount?.isEmpty ?? true {
-            isValid = false
-            invalidFields.append(categoryTxt)
-        }
-        
-        invalidFields.forEach({ textField in
-            UIView.animate(withDuration: 0, animations: {
-                textField.placeholderTextColor = .red
-            })
-        })
-        
-        return isValid
-    }
-}
-
-
-// MARK: - UIPickerViewDelegate, UIPickerViewDataSource Methods
-
-extension TransactionDetailVC  {
-    override func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == accountPicker {
-            return accounts.count
-        } else if pickerView == categoryPicker {
-            return categories.count
-        }
-        
-        return 0
-    }
-    
-    override func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if pickerView == accountPicker {
-            return accounts[row].title
-        } else if pickerView == categoryPicker {
-            return categories[row].title
-        }
-        
-        return nil
     }
     
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == accountPicker {
-            let account = accounts[row]
-            viewModel.set(account: account)
-        } else if pickerView == categoryPicker {
-            let category = categories[row]
-            viewModel.set(category: category)
-        }
+        super.pickerView(pickerView, didSelectRow: row, inComponent: component)
         updateUI()
     }
     
-}
-
-// MARK: - UITextFieldDelegate Methods
-
-extension TransactionDetailVC {
+    // MARK: - UITextFieldDelegate Methods
+    
     override func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == amountTxt {
             textField.text = ""
@@ -277,6 +102,7 @@ extension TransactionDetailVC {
     override func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == amountTxt {
             viewModel.set(amount: textField.text)
+            viewModel.save()
         }
         updateUI()
     }
@@ -294,22 +120,8 @@ extension TransactionDetailVC: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == commentTxtView {
             viewModel.set(comment: textView.text)
+            viewModel.save()
         }
         updateUI()
-    }
-}
-
-extension TransactionDetailVC: QRScannerVCDelegate {
-    func qrScanner(found code: String) {
-        QRCodeParser.shared.parse(code: code) { (date, sum) in
-            if let date = date {
-                viewModel.set(date: date)
-            }
-            
-            if let amount = sum {
-                viewModel.set(amount: amount)
-            }
-            updateUI()
-        }
     }
 }

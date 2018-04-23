@@ -40,6 +40,8 @@ struct Constants {
         static let toCreateAccountVC = "toCreateAccountVC"
         static let toCategoriesVC = "toCategoriesVC"
         static let toTransactionDetailVC = "toTransactionDetailVC"
+        static let toCreateTransaction = "toCreateTransaction"
+        
         static let toQRScannerVC = "toQRScannerVC"
         static let toDefaultsVC = "toDefaultsVC"
     }

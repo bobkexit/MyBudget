@@ -163,9 +163,9 @@ class TransactionVM: BaseViewModel<Transaction> {
         object.temp = temp
     }
     
-    deinit {
-        if self.object.temp {
-            dataManager.context.delete(object)
-        }
-    }
+//    deinit {
+//        if self.object.temp {
+//            dataManager.context.delete(object)
+//        }
+//    }
 }
