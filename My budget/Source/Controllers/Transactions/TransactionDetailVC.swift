@@ -22,9 +22,6 @@ class TransactionDetailVC: BaseTransactionVC {
     
     @IBOutlet weak var commentTxtView: UITextView!
     
-    // MARK: - Properies
-    
-    fileprivate var discardChanges = true
     
     // MARK: - View Life Cycle
     
@@ -33,16 +30,6 @@ class TransactionDetailVC: BaseTransactionVC {
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if discardChanges {
-            viewModel.reset()
-        } else {
-           saveChanges()
-        }
-    }
-        
     // MARK: - View Actions
     
     @objc func datePickerValueChannged(_ sender: Any) {
@@ -80,13 +67,12 @@ class TransactionDetailVC: BaseTransactionVC {
         dateTxt.text = viewModel.date
         accountTxt.text = viewModel.account
         categoryTxt.text = viewModel.category
-        amountTxt.text = viewModel.amount
+        amountTxt.text = viewModel.amountAbs
+        commentTxtView.text = viewModel.comment
     }
     
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         super.pickerView(pickerView, didSelectRow: row, inComponent: component)
-        //updateUI()
-        discardChanges = false
     }
     
     // MARK: - UITextFieldDelegate Methods
@@ -103,7 +89,6 @@ class TransactionDetailVC: BaseTransactionVC {
     override func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == amountTxt {
             viewModel.set(amount: textField.text)
-            discardChanges = false
         }
         updateUI()
     }
@@ -126,8 +111,7 @@ extension TransactionDetailVC: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == commentTxtView {
-            viewModel.set(comment: textView.text)
-            discardChanges = false
+            viewModel.set(textView.text, forKey: "comment")
         }
         updateUI()
     }

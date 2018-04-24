@@ -6,7 +6,7 @@
 //  Copyright © 2018 Николай Маторин. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class TransactionVM: BaseViewModel<Transaction> {
     
@@ -32,6 +32,8 @@ class TransactionVM: BaseViewModel<Transaction> {
     // MARK: - Public Properties
     
     var operationType: CategoryType = .credit
+    
+    var isNew: Bool = false
     
     var id: URL {
         return self.object.objectID.uriRepresentation()
@@ -94,6 +96,12 @@ class TransactionVM: BaseViewModel<Transaction> {
         return value
     }
     
+    var amountAbs: String? {
+        let number = NSNumber(value: fabsf(self.object.amount))
+        let value = numberFormatter.string(from: number)
+        return value
+    }
+    
     var currencyAmount: String? {
         guard let currencyCode = UserSettings.defaults.сurrencyCode else {
             return nil
@@ -112,10 +120,16 @@ class TransactionVM: BaseViewModel<Transaction> {
         currencyFormatter.currencyCode = currencyCode
         currencyFormatter.numberStyle = .currency
         
-        let number = NSNumber(value: self.object.amount * (categoryType == .credit ? -1 : 1))
+        let number = NSNumber(value: self.object.amount)
         let value = currencyFormatter.string(from: number)
         
         return value
+    }
+    
+    var color: UIColor {
+        let debitColor = Constants.DefaultColors.green
+        let creditColor = Constants.DefaultColors.red
+        return (self.object.amount < 0 ? creditColor : debitColor)
     }
     
     // MARK: - Setters
@@ -124,20 +138,9 @@ class TransactionVM: BaseViewModel<Transaction> {
         guard let value = self.dateFormatter.date(from: date) else {
             return
         }
-        self.object.date = value
+        set(value, forKey: "date")
     }
     
-    func set(date: Date) {
-        self.object.date = date
-    }
-    
-    func set(account: Account) {
-        object.account = account
-    }
-    
-    func set(category: Category) {
-        object.category = category
-    }
     
     func set(amount: String?) {
         guard let amount = amount, !amount.isEmpty else {
@@ -148,24 +151,22 @@ class TransactionVM: BaseViewModel<Transaction> {
             return
         }
         
-        object.amount = nummber.floatValue
+        set(amount: nummber.floatValue)
     }
     
     func set(amount: Float) {
-        object.amount = amount
+        let value = fabsf(amount) * (categoryType == .credit ? -1 : 1)
+        set(value, forKey: "amount")
     }
     
-    func set(comment: String?) {
-        object.comment = comment
+    override func save() {
+        super.save()
+        isNew = false
     }
     
-    func set(temp: Bool) {
-        object.temp = temp
+    deinit {
+        if self.isNew {
+            dataManager.context.delete(object)
+        }
     }
-    
-//    deinit {
-//        if self.object.temp {
-//            dataManager.context.delete(object)
-//        }
-//    }
 }

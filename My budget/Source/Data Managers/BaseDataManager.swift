@@ -65,6 +65,11 @@ class BaseDataManager<Entity: NSManagedObject>: DataManager{
         return object
     }
     
+    func createArray() -> [Entity] {
+        let array = [Entity]()
+        return array
+    }
+    
     func add(object: Entity) {
         context.insert(object)
     }

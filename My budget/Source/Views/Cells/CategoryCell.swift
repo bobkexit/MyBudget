@@ -12,12 +12,18 @@ class CategoryCell: BaseCell {
     
     @IBOutlet weak var categoryName: UITextField!
     
-    var viewModel: CategoryVM!
+    var categoryViewModel: CategoryVM!
     
-    func configureCell(viewModel: CategoryVM) {
+    override func configureCell(viewModel: SomeViewModel) {
+        
+        guard let viewModel = viewModel as? CategoryVM else {
+            fatalError("Cant cast SomeViewModel to CategoryViewModel")
+        }
+        
         setup()
-        self.viewModel = viewModel
-        self.categoryName.text = viewModel.title
+        
+        self.categoryViewModel = viewModel
+        self.categoryName.text = categoryViewModel.title
     }
     
     fileprivate func setup() {

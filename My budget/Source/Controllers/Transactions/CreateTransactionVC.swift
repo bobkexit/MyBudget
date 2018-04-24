@@ -24,10 +24,6 @@ class CreateTransactionVC: BaseTransactionVC {
     
     @IBOutlet weak var scanQRCodeBtn: UIButton!
     
-
-    // MARK: - Properties
-    fileprivate var transactionWasSaved = false
-    
     // MARK: - View Life Cycle Methods
     
     override func viewDidLoad() {
@@ -36,14 +32,6 @@ class CreateTransactionVC: BaseTransactionVC {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        if !transactionWasSaved {
-            viewModel.delete()
-        }
-    }
-
     override func setupUI() {
         super.setupUI()
         
@@ -65,8 +53,7 @@ class CreateTransactionVC: BaseTransactionVC {
         dateTxt.text = viewModel.date
         accountTxt.text = viewModel.account
         categoryTxt.text = viewModel.category
-        amountTxt.text = viewModel.amount
-        
+        amountTxt.text = viewModel.amountAbs
     }
     
     // MARK: - View Actions
@@ -78,7 +65,7 @@ class CreateTransactionVC: BaseTransactionVC {
         }
         
         viewModel.save()
-        transactionWasSaved = true
+        //transactionWasSaved = true
     
         NotificationCenter.default.post(name: .transaction, object: nil)
         self.navigationController?.popViewController(animated: true)
@@ -152,7 +139,7 @@ extension CreateTransactionVC: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == commentTxtView {
-            viewModel.set(comment: textView.text)
+            viewModel.set(textView.text, forKey: "comment")
         }
         updateUI()
     }
@@ -162,7 +149,7 @@ extension CreateTransactionVC: QRScannerVCDelegate {
     func qrScanner(found code: String) {
         QRCodeParser.shared.parse(code: code) { (date, sum) in
             if let date = date {
-                viewModel.set(date: date)
+                viewModel.set(date, forKey: "date")
             }
             
             if let amount = sum {

@@ -10,19 +10,22 @@ import UIKit
 
 class AccountCell: BaseCell {
     
-    var viewModel: AccountVM!
+    var accountViewModel: AccountVM!
     
     @IBOutlet weak var accountTypeImg: UIImageView!
     @IBOutlet weak var accountNameTxt: UITextField!
     @IBOutlet weak var accountCurrencyLbl: UILabel!
     
-    func configureCell() {
-        accountNameTxt.delegate = self
+    override func configureCell(viewModel: SomeViewModel) {
         
-        accountNameTxt.text = viewModel.title
-        // FIXME: - Should delete
-        //accountCurrencyLbl.text = viewModel.currencySymbol
-        accountTypeImg.image = viewModel.accountType.image
+        guard let viewModel = viewModel as? AccountVM else {
+            fatalError("Cant cast SomeViewModel to AccountViewModel")
+        }
+        
+        accountViewModel = viewModel
+        accountNameTxt.delegate = self
+        accountNameTxt.text = accountViewModel.title
+        accountTypeImg.image = accountViewModel.accountType.image
     }
 }
 

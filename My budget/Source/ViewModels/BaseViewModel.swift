@@ -27,6 +27,10 @@ class BaseViewModel<Entity: NSManagedObject>: ViewModel {
         dataManager.discardChanges(object: object)
     }
     
+    func set(_ value: Any?, forKey key: String) {
+        object.setValue(value, forKey: key)
+    }
+    
     func delete() {
         dataManager.delete(object: object)
     }

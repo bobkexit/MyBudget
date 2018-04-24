@@ -25,4 +25,8 @@ extension UITableViewCellDelgate {
 
 class BaseCell: UITableViewCell {
     var delegate: UITableViewCellDelgate?
+    
+    func configureCell(viewModel: SomeViewModel) {
+        
+    }
 }

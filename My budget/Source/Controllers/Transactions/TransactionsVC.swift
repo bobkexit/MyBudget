@@ -10,21 +10,21 @@ import UIKit
 
 class TransactionsVC: BaseTableVC {
     
-    typealias Entity = Transaction
+    //typealias Entity = Transaction
     
-    typealias ViewModel = TransactionVM
+    //typealias ViewModel = TransactionVM
     
     // MARK: - Properties
     
     var dataManager = BaseDataManager<Transaction>()
-    //BaseDataManager<Transaction>()
     
     var viewModelFactory = ViewModelFactory.shared
+    
     var dataManagerFactory = DataManagerFactory.shared
     
     let notificationCenter = NotificationCenter.default
     
-    var transactions = [TransactionVM]()
+    var transactions = [SomeViewModel]()
     
     //var selectedTransaction: TransactionVM?
     
@@ -124,7 +124,7 @@ class TransactionsVC: BaseTableVC {
     
     func reloadTransaction(trnasactionId: URL?) {
         
-        guard let row = transactions.index(where: {$0.id == trnasactionId}) else {
+        guard let row = transactions.index(where: {($0 as! TransactionVM).id == trnasactionId}) else {
             fatalError("Can't find index of upadted transaction")
         }
         
@@ -142,22 +142,23 @@ class TransactionsVC: BaseTableVC {
         tableView.reloadData()
     }
     
-    override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
         let viewModel = transactions[indexPath.row]
         viewModel.delete()
         transactions.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
-    func createViewModel() -> ViewModel {
+    func createViewModel() -> SomeViewModel {
         
         let transaction = dataManager.create()
         transaction.date = Date()
         
         let viewModel = viewModelFactory.create(object: transaction, dataManager: dataManager)
+        viewModel.isNew = true
         
         if let account = UserSettings.defaults.account {
-            viewModel.set(account: account)
+            viewModel.set(account, forKey: "account")
         }
         
         if selectedOperation == .income {
@@ -169,7 +170,7 @@ class TransactionsVC: BaseTableVC {
         let categoryType = viewModel.operationType
         
         if let category = UserSettings.defaults.defaultCategory(forCategoryType: categoryType) {
-            viewModel.set(category: category)
+            viewModel.set(category, forKey: "category")
         }
         
         //viewModel.set(temp: true)
@@ -177,7 +178,11 @@ class TransactionsVC: BaseTableVC {
         return viewModel
     }
     
-    func createCategoryManager(forTransaction transaction: ViewModel) -> BaseDataManager<Category> {
+    func createCategoryManager(forTransaction transaction: SomeViewModel) -> BaseDataManager<Category> {
+        
+        guard let transaction = transaction as? TransactionVM else {
+            fatalError("Cant cast SomeViewModel to TransactionViewModel")
+        }
         
         var categoryManager: BaseDataManager<Category>!
       
@@ -204,8 +209,7 @@ extension TransactionsVC {
             return UITableViewCell()
         }
         let transactionViewModel = transactions[indexPath.row]
-        cell.viewModel = transactionViewModel
-        cell.configure()
+        cell.configureCell(viewModel: transactionViewModel)
         
         return cell
     }

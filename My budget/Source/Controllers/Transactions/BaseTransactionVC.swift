@@ -10,10 +10,6 @@ import UIKit
 
 class BaseTransactionVC: BaseVC {
     
-    typealias Entity = Transaction
-    
-    typealias ViewModel = TransactionVM
-
     // MARK: - UI Elements
     
     let toolBarForPicker = UIToolbar()
@@ -26,7 +22,7 @@ class BaseTransactionVC: BaseVC {
     
     // MARK: - Properties
     
-    var viewModel: ViewModel!
+    var viewModel: TransactionVM!
     
     var categoryManager: BaseDataManager<Category>!
     
@@ -87,7 +83,12 @@ class BaseTransactionVC: BaseVC {
     }
     
     // MARK: - Data Methods
-    public func configure(viewModel: ViewModel, categoryManager: BaseDataManager<Category>, accountManager: BaseDataManager<Account>) {
+    public func configure(viewModel: SomeViewModel, categoryManager: BaseDataManager<Category>, accountManager: BaseDataManager<Account>) {
+        
+        guard let viewModel = viewModel as? TransactionVM else {
+            fatalError("Cant cast SomeViewModel to TransactionViewModel")
+        }
+        
         self.viewModel = viewModel
         self.accountManager = accountManager
         self.categoryManager = categoryManager
@@ -126,10 +127,10 @@ class BaseTransactionVC: BaseVC {
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == accountPicker {
             let account = accounts[row]
-            viewModel.set(account: account)
+            viewModel.set(account, forKey: "account")
         } else if pickerView == categoryPicker {
             let category = categories[row]
-            viewModel.set(category: category)
+            viewModel.set(category, forKey: "category")
         }
         updateUI()
     }

@@ -9,11 +9,7 @@
 import UIKit
 
 class CategoriesVC: BaseTableVC {
-    
-    typealias Entity = Category
-    
-    typealias ViewModel = CategoryVM
-    
+        
      // MARK: - Properties
     
     var dataManager: BaseDataManager<Category>?
@@ -22,7 +18,7 @@ class CategoriesVC: BaseTableVC {
     
     var categoryType: CategoryType!
     
-    var categories = [CategoryVM]()
+    var categories = [SomeViewModel]()
     
     
     // MARK: - View Life Cycle
@@ -53,7 +49,7 @@ class CategoriesVC: BaseTableVC {
             fatalError("Can't get visible category cells")
         }
         
-        let cell = visibleCells.first(where: {$0.viewModel?.id == viewModel.id })
+        let cell = visibleCells.first(where: {$0.categoryViewModel?.id == viewModel.id })
         cell?.categoryName.becomeFirstResponder()
     }
     
@@ -80,7 +76,7 @@ class CategoriesVC: BaseTableVC {
         
         if let dataManager = dataManager {
             
-            var data = [Entity]()
+            var data = dataManager.createArray()
           
             data = dataManager.getObjects()
             
@@ -106,7 +102,7 @@ class CategoriesVC: BaseTableVC {
         return cell
     }
     
-    override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
         let viewModel = categories[indexPath.row]
         viewModel.delete()
         categories.remove(at: indexPath.row)
@@ -127,10 +123,10 @@ extension CategoriesVC: UITableViewCellDelgate {
         let title = editingCell.categoryName.text
         
         if title?.isEmpty ?? true {
-            tablewView(tableView, actionsWhenRemoveRowAt: indexPath)
+            tableView(tableView, actionsWhenRemoveRowAt: indexPath)
         } else {
             let viewModel = categories[indexPath.row]
-            viewModel.set(title: title!)
+            viewModel.set(title!, forKey: "title")
             viewModel.save()
         }
     }

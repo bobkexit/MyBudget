@@ -9,12 +9,6 @@
 import UIKit
 
 class AccountsVC: BaseTableVC {
-
-    // MARK: - Type Alias
-    
-    typealias Entity = Account
-    
-    typealias ViewModel = AccountVM
    
     // MARK: - IBOutlets
     
@@ -28,7 +22,7 @@ class AccountsVC: BaseTableVC {
     
     let dataManager = BaseDataManager<Account>()
     
-    var accounts = [ViewModel]()
+    var accounts = [SomeViewModel]()
     
     // MARK: - View Life Cycle
     
@@ -65,10 +59,11 @@ class AccountsVC: BaseTableVC {
         tableView.reloadData()
     }
     
-    override func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
         let viewModel = accounts[indexPath.row]
         viewModel.delete()
-        viewModel.save()
+        accounts.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }
 
@@ -88,8 +83,7 @@ extension AccountsVC {
         
         let accountViewModel = accounts[indexPath.row]
         cell.delegate = self
-        cell.viewModel = accountViewModel
-        cell.configureCell()
+        cell.configureCell(viewModel: accountViewModel)
         
         return cell
     }
@@ -111,11 +105,12 @@ extension AccountsVC: UITableViewCellDelgate {
         let title = editingCell.accountNameTxt.text
         
         if title?.isEmpty ?? true {
-             tablewView(tableView, actionsWhenRemoveRowAt: indexPath)
+             tableView(tableView, actionsWhenRemoveRowAt: indexPath)
         } else
         {
             let viewModel = accounts[indexPath.row]
-            viewModel.set(title: title!)
+            viewModel.set(title, forKey: "title")
+            //viewModel.set(title: title!)
         }
     }
 }

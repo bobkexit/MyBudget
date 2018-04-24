@@ -9,7 +9,19 @@
 import Foundation
 import CoreData
 
-protocol ViewModel {
+protocol SomeViewModel: AnyObject {
+    
+    func save()
+    
+    func reset()
+    
+    func delete()
+    
+    func set(_ value: Any?, forKey key: String)
+    
+}
+
+protocol ViewModel: SomeViewModel {
     
     associatedtype Entity: NSManagedObject
     
@@ -36,6 +48,10 @@ final class ViewModelFactory {
     }
     
     func create(object: Transaction, dataManager: BaseDataManager<Transaction>) -> TransactionVM {
-        return TransactionVM(object: object, dataManager: dataManager)
+        if object.isInserted {
+           return TransactionVM(object: object, dataManager: dataManager)
+        } else {
+            return UpdatedTransactionVM(object: object, dataManager: dataManager)
+        }
     }
 }

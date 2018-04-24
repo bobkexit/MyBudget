@@ -30,14 +30,28 @@ class BaseTableVC: UITableViewController {
     
     final func getDeleteRowAction() -> UITableViewRowAction {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (row, indexPath) in
-            self.tablewView(self.tableView, actionsWhenRemoveRowAt: indexPath)
+            self.tableView(self.tableView, actionsWhenRemoveRowAt: indexPath)
         }
         deleteAction.backgroundColor = Constants.DefaultColors.red
         
         return deleteAction
     }
     
-    func tablewView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
-         self.tableView.deleteRows(at: [indexPath], with: .automatic)
+    func tableView(_ tableView: UITableView, actionsWhenRemoveRowAt indexPath: IndexPath) {
+         //self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+    }
+    
+    final func removeViewModel(fromTableView tableView: UITableView, andArry array: [SomeViewModel], atIndexPath indexPath: IndexPath, _ completion: ([SomeViewModel]) -> ()?) {
+        
+        //, _ completion: ([SomeViewModel]) -> ()?
+        var tempArray = array
+        
+        let viewModel = array[indexPath.row]
+        viewModel.delete()
+        tempArray.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+        completion(tempArray)
     }
 }
