@@ -38,6 +38,8 @@ class TransactionDetailVC: BaseTransactionVC {
         
         if discardChanges {
             viewModel.reset()
+        } else {
+           saveChanges()
         }
     }
         
@@ -83,7 +85,8 @@ class TransactionDetailVC: BaseTransactionVC {
     
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         super.pickerView(pickerView, didSelectRow: row, inComponent: component)
-        updateUI()
+        //updateUI()
+        discardChanges = false
     }
     
     // MARK: - UITextFieldDelegate Methods
@@ -100,9 +103,15 @@ class TransactionDetailVC: BaseTransactionVC {
     override func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == amountTxt {
             viewModel.set(amount: textField.text)
-            viewModel.save()
+            discardChanges = false
         }
         updateUI()
+    }
+    
+    func saveChanges() {
+        viewModel.save()
+        let userInfo = [ "transactionId" : viewModel.id ]
+        NotificationCenter.default.post(name: .transaction, object: nil, userInfo: userInfo)
     }
 }
 
@@ -118,7 +127,7 @@ extension TransactionDetailVC: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == commentTxtView {
             viewModel.set(comment: textView.text)
-            viewModel.save()
+            discardChanges = false
         }
         updateUI()
     }

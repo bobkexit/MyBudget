@@ -22,20 +22,27 @@ class TransactionsVC: BaseTableVC {
     var viewModelFactory = ViewModelFactory.shared
     var dataManagerFactory = DataManagerFactory.shared
     
+    let notificationCenter = NotificationCenter.default
+    
     var transactions = [TransactionVM]()
     
     //var selectedTransaction: TransactionVM?
     
     var selectedOperation: Operation?
-    
+
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .transaction, object: nil)
         reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        notificationCenter.addObserver(self, selector: #selector(incomingNotification(_:)), name: .transaction, object: nil)
     }
     
     // MARK: - View Actions
@@ -55,8 +62,17 @@ class TransactionsVC: BaseTableVC {
         alertController.addAction(createIncome)
         alertController.addAction(createExpense)
         
-        self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true) {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissAlertController))
+            alertController.view.superview?.subviews[0].addGestureRecognizer(tapGesture)
+        }
     }
+    
+    @objc func dismissAlertController(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -96,9 +112,33 @@ class TransactionsVC: BaseTableVC {
     
     
     // MARK: - View Methods
-    @objc func reloadData() {
+    @objc func incomingNotification(_ notification: Notification) {
+        
+        if let id = notification.userInfo?["trnsactionId"] as? URL {
+            reloadTransaction(trnasactionId: id)
+        } else {
+            reloadData()
+        }
+        
+    }
+    
+    func reloadTransaction(trnasactionId: URL?) {
+        
+        guard let row = transactions.index(where: {$0.id == trnasactionId}) else {
+            fatalError("Can't find index of upadted transaction")
+        }
+        
+        let indexPath = IndexPath(row: row, section: 0)
+        
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+    
+    func reloadData() {
         let data = dataManager.getObjects()
+        
         transactions = data.map { viewModelFactory.create(object: $0, dataManager: dataManager) }
+        
         tableView.reloadData()
     }
     
