@@ -11,6 +11,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Expenses ReportVC-->
+        <scene sceneID="gHU-Vq-fRV">
+            <objects>
+                <viewController id="GW9-E9-CRe" customClass="ExpensesReportVC" customModule="My_budget" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bmk-E1-Je0" customClass="GradientView" customModule="My_budget" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFT-or-sg9" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="10" y="74" width="355" height="534"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tFT-or-sg9" firstAttribute="leading" secondItem="t0m-a1-g8K" secondAttribute="leading" constant="10" id="TfR-Lf-jbP"/>
+                            <constraint firstItem="t0m-a1-g8K" firstAttribute="trailing" secondItem="tFT-or-sg9" secondAttribute="trailing" constant="10" id="eQW-Sa-EBE"/>
+                            <constraint firstItem="t0m-a1-g8K" firstAttribute="bottom" secondItem="tFT-or-sg9" secondAttribute="bottom" constant="10" id="qkV-qI-yqG"/>
+                            <constraint firstItem="tFT-or-sg9" firstAttribute="top" secondItem="t0m-a1-g8K" secondAttribute="top" constant="10" id="y1X-YW-dTF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="t0m-a1-g8K"/>
+                    </view>
+                    <connections>
+                        <outlet property="pieChart" destination="tFT-or-sg9" id="fjp-mt-sEj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7nE-ec-cRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3590" y="2726"/>
+        </scene>
         <!--ReportsVC-->
         <scene sceneID="vX9-Rc-Ffu">
             <objects>
@@ -20,7 +50,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1690696478" green="0.17971134189999999" blue="0.2190606296" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ILo-yU-0q1">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportCell" id="ILo-yU-0q1" customClass="ReportCell" customModule="My_budget" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ILo-yU-0q1" id="DHO-iQ-qoq">
@@ -36,6 +66,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="7yq-aY-Xpi"/>
+                    <connections>
+                        <segue destination="GW9-E9-CRe" kind="show" identifier="toExpensesReport" id="GrT-ru-m7K"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AuE-51-huM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

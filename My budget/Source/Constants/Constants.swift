@@ -44,6 +44,8 @@ struct Constants {
         
         static let toQRScannerVC = "toQRScannerVC"
         static let toDefaultsVC = "toDefaultsVC"
+        
+        static let toExpensesReport = "toExpensesReport"
     }
     
     struct UserSettings {
