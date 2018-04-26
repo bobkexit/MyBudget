@@ -46,11 +46,18 @@ class ExpensesReportVC: BaseReportVC {
             }
             
             let dataSet = PieChartDataSet(values: chartDataEntry, label: nil)
-            dataSet.colors = ChartColorTemplates.joyful()
-            dataSet.valueColors = [UIColor.black]
+            dataSet.colors = ChartColorTemplates.colorful()
+            dataSet.valueColors = [UIColor.white]
+            dataSet.sliceSpace = 2.0
+            dataSet.xValuePosition = UIDevice.current.orientation.isLandscape ? .outsideSlice : .insideSlice
             
+            let formatter = PercentageValueFormatter()
+    
             let data = PieChartData(dataSet: dataSet)
             self.pieChart.data = data
+            self.pieChart.data?.setValueFormatter(formatter)
+            
+            self.pieChart.animate(yAxisDuration: 1.5)
             
             //This must stay at end of function
             self.pieChart.notifyDataSetChanged()
@@ -59,6 +66,19 @@ class ExpensesReportVC: BaseReportVC {
     
     func pieChartSetup() {
         self.pieChart.legend.textColor = UIColor.gray
+        self.pieChart.usePercentValuesEnabled = true
+        self.pieChart.chartDescription = nil
+        self.pieChart.holeColor = .clear
+        self.pieChart.centerText = title
+        self.pieChart.holeRadiusPercent = 0.3
+        self.pieChart.transparentCircleRadiusPercent = 0.4
+        self.pieChart.legend.wordWrapEnabled = true
+        //self.pieChart.drawEntryLabelsEnabled = false
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        pieChartUpdate()
     }
 
     /*

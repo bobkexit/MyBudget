@@ -152,7 +152,7 @@ class TransactionsVC: BaseTableVC {
     func createViewModel() -> SomeViewModel {
         
         let transaction = dataManager.create()
-        transaction.date = Date()
+        //transaction.date = Date()
         
         let viewModel = viewModelFactory.create(object: transaction, dataManager: dataManager)
         viewModel.isNew = true
