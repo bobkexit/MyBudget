@@ -45,7 +45,7 @@ final class InstallationManager {
         
         // Create expense categories
         createExpenseCategory(title: "Products", setDefault: true)
-        createExpenseCategory(title: "Helath")
+        createExpenseCategory(title: "Health")
         createExpenseCategory(title: "Utilities")
         createExpenseCategory(title: "Entertainment")
         

@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 protocol Report: CustomStringConvertible {
+    
     typealias comletionHandler = (_ results: [AnyObject]?) -> ()
     
     var context: NSManagedObjectContext { get }
@@ -19,4 +20,5 @@ protocol Report: CustomStringConvertible {
     init(entityName: String, context: NSManagedObjectContext)
     
     func execute(_ completeion: comletionHandler?)
+    
 }

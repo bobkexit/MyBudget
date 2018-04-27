@@ -34,11 +34,6 @@ class AccountVM: BaseViewModel<Account> {
     
     // MARK: - Setters
     
-    func set(title: String) {
-        //object.title = title
-        object.setValue(title, forKey: "title")
-    }
-    
     func set(accountType: AccountType) {
         object.typeId = Int16(accountType.rawValue)
     }

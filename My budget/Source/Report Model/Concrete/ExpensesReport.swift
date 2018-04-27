@@ -9,22 +9,13 @@
 import Foundation
 import CoreData
 
-class ExpensesReport: Report {
+class ExpensesReport: BaseReport {
     
-    let context: NSManagedObjectContext
-    
-    let entityName: String
-    
-    var description: String {
+    override var description: String {
         return "Expenses"
     }
     
-    required init(entityName: String, context: NSManagedObjectContext) {
-        self.entityName = entityName
-        self.context = context
-    }
-    
-    func execute(_ completeion: Report.comletionHandler?) {
+    override func execute(_ completeion: Report.comletionHandler?) {
         
         var expressionDescriptions = [AnyObject]()
         expressionDescriptions.append(categoryColumn)

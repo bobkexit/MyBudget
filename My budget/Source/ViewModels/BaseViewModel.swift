@@ -12,8 +12,15 @@ import CoreData
 class BaseViewModel<Entity: NSManagedObject>: ViewModel {
     
     var object: Entity
+    
     let dataManager: BaseDataManager<Entity>
     
+    let dateFormatter = Helper.shared.createFormatter(for: .date) as! DateFormatter
+
+    let currencyFormatter = Helper.shared.createFormatter(for: .currency) as! NumberFormatter
+    
+    let decimalFormatter = Helper.shared.createFormatter(for: .decimal) as! NumberFormatter
+  
     required init(object: Entity, dataManager: BaseDataManager<Entity>) {
         self.object = object
         self.dataManager = dataManager
@@ -34,4 +41,6 @@ class BaseViewModel<Entity: NSManagedObject>: ViewModel {
     func delete() {
         dataManager.delete(object: object)
     }
+    
+   
 }

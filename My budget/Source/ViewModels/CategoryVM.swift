@@ -33,10 +33,6 @@ class CategoryVM: BaseViewModel<Category> {
     
     // MARK: - Setters
     
-    func set(title: String) {
-        object.title = title
-    }
-    
     func set(categoryType: CategoryType) {
         object.typeId = Int16(categoryType.rawValue)
     }

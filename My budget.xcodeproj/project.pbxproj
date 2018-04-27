@@ -18,7 +18,6 @@
 		3522AFE52091C2A900D17AAF /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFE42091C2A900D17AAF /* Report.swift */; };
 		3522AFE72091C3EC00D17AAF /* DatePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFE62091C3EC00D17AAF /* DatePeriod.swift */; };
 		3522AFE92091C49300D17AAF /* ReportFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFE82091C49300D17AAF /* ReportFactory.swift */; };
-		3522AFEB2091C5B000D17AAF /* Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFEA2091C5B000D17AAF /* Reports.swift */; };
 		3522AFED2091C60200D17AAF /* ExpensesReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFEC2091C60200D17AAF /* ExpensesReport.swift */; };
 		3522AFEF2091E1BD00D17AAF /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFEE2091E1BD00D17AAF /* ReportCell.swift */; };
 		3522AFF12091E4DB00D17AAF /* ExpensesReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFF02091E4DB00D17AAF /* ExpensesReportVC.swift */; };
@@ -26,6 +25,11 @@
 		3522AFF52092192300D17AAF /* TransactionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFF42092192300D17AAF /* TransactionExt.swift */; };
 		3522AFF82092331D00D17AAF /* PercentageValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFF72092331D00D17AAF /* PercentageValueFormatter.swift */; };
 		3522AFFA209235D000D17AAF /* CurrencyValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFF9209235D000D17AAF /* CurrencyValueFormatter.swift */; };
+		3522AFFC2092F78D00D17AAF /* BalanceReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFFB2092F78D00D17AAF /* BalanceReport.swift */; };
+		3522AFFE2092F7D200D17AAF /* BaseReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFFD2092F7D200D17AAF /* BaseReport.swift */; };
+		3522B0032092FBE300D17AAF /* BalanceReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522B0022092FBE300D17AAF /* BalanceReportVC.swift */; };
+		3522B0052093849300D17AAF /* AccountBalanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522B0042093849300D17AAF /* AccountBalanceCell.swift */; };
+		3522B0072093990300D17AAF /* AccountBalanceVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522B0062093990300D17AAF /* AccountBalanceVM.swift */; };
 		3522E11E208E45A10096E57C /* DataManagerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522E11D208E45A10096E57C /* DataManagerFactory.swift */; };
 		3522E120208FCA480096E57C /* UpdatedTransactionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522E11F208FCA480096E57C /* UpdatedTransactionVM.swift */; };
 		3531C595207E76080055D0B4 /* CategoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531C594207E76080055D0B4 /* CategoryVM.swift */; };
@@ -86,7 +90,6 @@
 		3522AFE42091C2A900D17AAF /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		3522AFE62091C3EC00D17AAF /* DatePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePeriod.swift; sourceTree = "<group>"; };
 		3522AFE82091C49300D17AAF /* ReportFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFactory.swift; sourceTree = "<group>"; };
-		3522AFEA2091C5B000D17AAF /* Reports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reports.swift; sourceTree = "<group>"; };
 		3522AFEC2091C60200D17AAF /* ExpensesReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesReport.swift; sourceTree = "<group>"; };
 		3522AFEE2091E1BD00D17AAF /* ReportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
 		3522AFF02091E4DB00D17AAF /* ExpensesReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesReportVC.swift; sourceTree = "<group>"; };
@@ -94,6 +97,11 @@
 		3522AFF42092192300D17AAF /* TransactionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionExt.swift; sourceTree = "<group>"; };
 		3522AFF72092331D00D17AAF /* PercentageValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageValueFormatter.swift; sourceTree = "<group>"; };
 		3522AFF9209235D000D17AAF /* CurrencyValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyValueFormatter.swift; sourceTree = "<group>"; };
+		3522AFFB2092F78D00D17AAF /* BalanceReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceReport.swift; sourceTree = "<group>"; };
+		3522AFFD2092F7D200D17AAF /* BaseReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseReport.swift; sourceTree = "<group>"; };
+		3522B0022092FBE300D17AAF /* BalanceReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceReportVC.swift; sourceTree = "<group>"; };
+		3522B0042093849300D17AAF /* AccountBalanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalanceCell.swift; sourceTree = "<group>"; };
+		3522B0062093990300D17AAF /* AccountBalanceVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalanceVM.swift; sourceTree = "<group>"; };
 		3522E11D208E45A10096E57C /* DataManagerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerFactory.swift; sourceTree = "<group>"; };
 		3522E11F208FCA480096E57C /* UpdatedTransactionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedTransactionVM.swift; sourceTree = "<group>"; };
 		3531C594207E76080055D0B4 /* CategoryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVM.swift; sourceTree = "<group>"; };
@@ -187,6 +195,7 @@
 				353B47C7205690B3008281B0 /* ReportsVC.swift */,
 				3522AFF22091E5B800D17AAF /* BaseReportVC.swift */,
 				3522AFF02091E4DB00D17AAF /* ExpensesReportVC.swift */,
+				3522B0022092FBE300D17AAF /* BalanceReportVC.swift */,
 			);
 			path = Reports;
 			sourceTree = "<group>";
@@ -230,11 +239,9 @@
 		3522AFE32091C29100D17AAF /* Report Model */ = {
 			isa = PBXGroup;
 			children = (
-				3522AFE42091C2A900D17AAF /* Report.swift */,
-				3522AFE62091C3EC00D17AAF /* DatePeriod.swift */,
-				3522AFE82091C49300D17AAF /* ReportFactory.swift */,
-				3522AFEA2091C5B000D17AAF /* Reports.swift */,
-				3522AFEC2091C60200D17AAF /* ExpensesReport.swift */,
+				3522AFFF2092F85000D17AAF /* Abstract */,
+				3522B0002092F87A00D17AAF /* Concrete */,
+				3522B0012092F8A700D17AAF /* Supported */,
 			);
 			path = "Report Model";
 			sourceTree = "<group>";
@@ -246,6 +253,33 @@
 				3522AFF9209235D000D17AAF /* CurrencyValueFormatter.swift */,
 			);
 			path = Formatters;
+			sourceTree = "<group>";
+		};
+		3522AFFF2092F85000D17AAF /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				3522AFE42091C2A900D17AAF /* Report.swift */,
+				3522AFFD2092F7D200D17AAF /* BaseReport.swift */,
+			);
+			path = Abstract;
+			sourceTree = "<group>";
+		};
+		3522B0002092F87A00D17AAF /* Concrete */ = {
+			isa = PBXGroup;
+			children = (
+				3522AFEC2091C60200D17AAF /* ExpensesReport.swift */,
+				3522AFFB2092F78D00D17AAF /* BalanceReport.swift */,
+			);
+			path = Concrete;
+			sourceTree = "<group>";
+		};
+		3522B0012092F8A700D17AAF /* Supported */ = {
+			isa = PBXGroup;
+			children = (
+				3522AFE82091C49300D17AAF /* ReportFactory.swift */,
+				3522AFE62091C3EC00D17AAF /* DatePeriod.swift */,
+			);
+			path = Supported;
 			sourceTree = "<group>";
 		};
 		353104DD208731EF00C8DE95 /* Data Model */ = {
@@ -270,6 +304,7 @@
 				3531C59A207E81BA0055D0B4 /* TransactionVM.swift */,
 				3531C59C207F2D730055D0B4 /* ViewModelFactory.swift */,
 				3522E11F208FCA480096E57C /* UpdatedTransactionVM.swift */,
+				3522B0062093990300D17AAF /* AccountBalanceVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -305,10 +340,10 @@
 		353B47D720593084008281B0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3567747A205FA8C500743FCA /* Constants */,
 				3522AFE32091C29100D17AAF /* Report Model */,
 				3566A7A7208A73680099BE67 /* Data Managers */,
 				353104DD208731EF00C8DE95 /* Data Model */,
-				3567747A205FA8C500743FCA /* Constants */,
 				35F012112063B960008EE633 /* Services */,
 				35EE3013206110DA0041F195 /* Utilities */,
 				3531C593207E75CA0055D0B4 /* ViewModels */,
@@ -398,6 +433,7 @@
 				35EE301B206118AC0041F195 /* AccountCell.swift */,
 				356E06F1206A5699004034AE /* TransactionCell.swift */,
 				3522AFEE2091E1BD00D17AAF /* ReportCell.swift */,
+				3522B0042093849300D17AAF /* AccountBalanceCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -586,6 +622,7 @@
 				351E3E8A205BDB95004A3414 /* TransactionsVC.swift in Sources */,
 				35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */,
 				3566A7AD208A79DD0099BE67 /* DataManager.swift in Sources */,
+				3522B0072093990300D17AAF /* AccountBalanceVM.swift in Sources */,
 				3522AFF32091E5B800D17AAF /* BaseReportVC.swift in Sources */,
 				35EE301E206118BA0041F195 /* BaseCell.swift in Sources */,
 				3531C595207E76080055D0B4 /* CategoryVM.swift in Sources */,
@@ -604,6 +641,7 @@
 				353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */,
 				3531C5A32081105C0055D0B4 /* QRCodeParser.swift in Sources */,
 				3522AFE52091C2A900D17AAF /* Report.swift in Sources */,
+				3522B0032092FBE300D17AAF /* BalanceReportVC.swift in Sources */,
 				351410EE2084773C002F0D9E /* CreateAccountVC.swift in Sources */,
 				356B12DA208DEE35007AF145 /* CreateTransactionVC.swift in Sources */,
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
@@ -616,18 +654,20 @@
 				351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */,
 				351410F02084890F002F0D9E /* UserSettings.swift in Sources */,
 				356E06F8206A802C004034AE /* GradientTableView.swift in Sources */,
-				3522AFEB2091C5B000D17AAF /* Reports.swift in Sources */,
 				3531C597207E7A500055D0B4 /* AccountVM.swift in Sources */,
 				35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */,
 				356E06F2206A5699004034AE /* TransactionCell.swift in Sources */,
 				3522E11E208E45A10096E57C /* DataManagerFactory.swift in Sources */,
+				3522B0052093849300D17AAF /* AccountBalanceCell.swift in Sources */,
 				356B12DE208DF6C7007AF145 /* BaseTransactionVC.swift in Sources */,
 				3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */,
 				3531C59D207F2D730055D0B4 /* ViewModelFactory.swift in Sources */,
 				3531C599207E7C4B0055D0B4 /* BaseViewModel.swift in Sources */,
 				357E0D2C206E9F2B00205970 /* Helper.swift in Sources */,
+				3522AFFC2092F78D00D17AAF /* BalanceReport.swift in Sources */,
 				35EE301C206118AC0041F195 /* AccountCell.swift in Sources */,
 				3566A7B3208B000F0099BE67 /* CategoryType.swift in Sources */,
+				3522AFFE2092F7D200D17AAF /* BaseReport.swift in Sources */,
 				35F012132063B9D7008EE633 /* InstallationManager.swift in Sources */,
 				3522AFE72091C3EC00D17AAF /* DatePeriod.swift in Sources */,
 				3567747C205FA8EC00743FCA /* Constants.swift in Sources */,

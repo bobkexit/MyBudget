@@ -77,7 +77,9 @@ class CreateTransactionVC: BaseTransactionVC {
     }
     
     @objc func datePickerValueChannged(_ sender: Any) {
-        let dateFormatter = Helper.shared.getDateFormatter(timeStyle: .short)
+        guard let dateFormatter = Helper.shared.createFormatter(for: .date) as? DateFormatter else {
+            return
+        }
         selectedDate = datePicker.date
         dateTxt.text = dateFormatter.string(from: selectedDate!)
     }

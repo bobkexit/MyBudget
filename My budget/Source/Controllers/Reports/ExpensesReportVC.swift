@@ -13,11 +13,8 @@ class ExpensesReportVC: BaseReportVC {
 
     @IBOutlet weak var pieChart: PieChartView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = report.description
         
         pieChartSetup()
         pieChartUpdate()
@@ -37,12 +34,12 @@ class ExpensesReportVC: BaseReportVC {
                     return
                 }
                 
-                let category = result["category"] as! String
-                let amount = result["totalAmount"] as! Double
-               
-                let entry = PieChartDataEntry(value: fabs(amount), label: category)
-                
-                chartDataEntry.append(entry)
+                if let category = result["category"] as? String, let amount = result["totalAmount"] as? NSNumber {
+                                       
+                    let entry = PieChartDataEntry(value: fabs(ceil(amount.doubleValue)), label: category)
+                    
+                    chartDataEntry.append(entry)
+                }
             }
             
             let dataSet = PieChartDataSet(values: chartDataEntry, label: nil)
@@ -65,11 +62,22 @@ class ExpensesReportVC: BaseReportVC {
     }
     
     func pieChartSetup() {
+        
         self.pieChart.legend.textColor = UIColor.gray
         self.pieChart.usePercentValuesEnabled = true
         self.pieChart.chartDescription = nil
         self.pieChart.holeColor = .clear
-        self.pieChart.centerText = title
+        
+        if UIDevice.current.orientation.isPortrait {
+          
+            let attributes = [ NSAttributedStringKey.foregroundColor : UIColor.white,
+                               NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]
+            
+            self.pieChart.centerAttributedText = NSAttributedString(string: title ?? "", attributes: attributes)
+        } else {
+            self.pieChart.centerAttributedText = nil
+        }
+        
         self.pieChart.holeRadiusPercent = 0.3
         self.pieChart.transparentCircleRadiusPercent = 0.4
         self.pieChart.legend.wordWrapEnabled = true
@@ -78,6 +86,7 @@ class ExpensesReportVC: BaseReportVC {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        pieChartSetup()
         pieChartUpdate()
     }
 

@@ -105,7 +105,7 @@ class CreateAccountVC: BaseVC {
             guard let title = textField.text,!title.isEmpty else {
                 return
             }
-            viewModel.set(title: title)
+            viewModel.set(title, forKey: "title")
         }
         updateUI()
     }

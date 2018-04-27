@@ -29,17 +29,19 @@ class CurrencyValueFormatter: IValueFormatter {
             return
         }
         
-        let currencyFormatter = NumberFormatter()
-        currencyFormatter.maximumFractionDigits = 2
-        currencyFormatter.minimumFractionDigits = 2
-        currencyFormatter.currencySymbol = currencySymbol
-        currencyFormatter.currencyCode = currencyCode
-        currencyFormatter.numberStyle = .currency
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        formatter.currencySymbol = currencySymbol
+        formatter.currencyCode = currencyCode
+        formatter.numberStyle = .currency
     }
     
     func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
         
-        let number = NSNumber(value: value)
+        let rawValue = entry.data as? Double
+        
+        let number = NSNumber(value: rawValue ?? value)
+        
         return formatter.string(from: number) ?? ""
     }
 }

@@ -10,26 +10,7 @@ import UIKit
 
 class TransactionVM: BaseViewModel<Transaction> {
     
-    // MARK: - Private Properties
-    
-    private var dateFormatter: DateFormatter {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
-        
-        return dateFormatter
-    }
-    
-    private var numberFormatter: NumberFormatter {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 2
-        
-        return numberFormatter
-    }
-    
-    // MARK: - Public Properties
+    // MARK: - Properties
     
     var operationType: CategoryType = .credit
     
@@ -92,34 +73,17 @@ class TransactionVM: BaseViewModel<Transaction> {
     
     var amount: String? {
         let number = NSNumber(value: self.object.amount)
-        let value = numberFormatter.string(from: number)
+        let value = decimalFormatter.string(from: number)
         return value
     }
     
     var amountAbs: String? {
         let number = NSNumber(value: fabsf(self.object.amount))
-        let value = numberFormatter.string(from: number)
+        let value = decimalFormatter.string(from: number)
         return value
     }
     
     var currencyAmount: String? {
-        guard let currencyCode = UserSettings.defaults.сurrencyCode else {
-            return nil
-        }
-        
-        let local = NSLocale(localeIdentifier: currencyCode)
-        
-        guard let currencySymbol = local.displayName(forKey: NSLocale.Key.currencySymbol, value: currencyCode) else {
-            return nil
-        }
-        
-        let currencyFormatter = NumberFormatter()
-        currencyFormatter.maximumFractionDigits = 2
-        currencyFormatter.minimumFractionDigits = 2
-        currencyFormatter.currencySymbol = currencySymbol
-        currencyFormatter.currencyCode = currencyCode
-        currencyFormatter.numberStyle = .currency
-        
         let number = NSNumber(value: self.object.amount)
         let value = currencyFormatter.string(from: number)
         
@@ -147,7 +111,7 @@ class TransactionVM: BaseViewModel<Transaction> {
             return
         }
         
-        guard let nummber = numberFormatter.number(from: amount) else {
+        guard let nummber = decimalFormatter.number(from: amount) else {
             return
         }
         

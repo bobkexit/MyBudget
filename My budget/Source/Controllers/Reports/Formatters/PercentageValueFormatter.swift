@@ -25,7 +25,7 @@ class PercentageValueFormatter: IValueFormatter {
     
     func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
         
-        let number = NSNumber(value: value)
+        let number = NSNumber(value: value )
         return formatter.string(from: number) ?? ""
     }
     

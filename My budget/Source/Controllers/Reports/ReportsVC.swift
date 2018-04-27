@@ -29,8 +29,6 @@ class ReportsVC: BaseTableVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print(Constants.CellIdentifiers.reportCell)
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.reportCell, for: indexPath) as? ReportCell else {
             return UITableViewCell()
         }

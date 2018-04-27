@@ -33,6 +33,7 @@ struct Constants {
         static let categoryCell = "CategoryCell"
         static let transactionCell = "TransactionCell"
         static let reportCell = "ReportCell"
+        static let accountBalanceCell = "AccountBalanceCell"
     }
     
     struct Segues {
@@ -46,6 +47,7 @@ struct Constants {
         static let toDefaultsVC = "toDefaultsVC"
         
         static let toExpensesReport = "toExpensesReport"
+        static let toBalanceReport = "toBalanceReport"
     }
     
     struct UserSettings {
