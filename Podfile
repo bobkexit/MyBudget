@@ -7,5 +7,6 @@ target 'My budget' do
 
   # Pods for My budget
   pod 'Charts'
+  pod 'TableFlip'
 
 end

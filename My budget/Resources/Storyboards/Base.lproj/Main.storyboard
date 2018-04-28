@@ -49,12 +49,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1690696478" green="0.17971134189999999" blue="0.2190606296" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" red="0.4823529412" green="0.4941176471" blue="0.5568627451" alpha="0.184057149" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReportCell" id="ILo-yU-0q1" customClass="ReportCell" customModule="My_budget" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReportCell" id="ILo-yU-0q1" customClass="ReportCell" customModule="My_budget" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ILo-yU-0q1" id="DHO-iQ-qoq">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1499,6 +1500,7 @@
                     <connections>
                         <outlet property="tableView" destination="an6-TP-8gX" id="RNO-wz-76j"/>
                         <outlet property="totalAmountLbl" destination="2Z6-vz-IPL" id="Gs3-Tw-f7t"/>
+                        <outlet property="totalAmountView" destination="1R5-PA-Tql" id="Ewe-s8-Lfc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mOy-v2-f0D" userLabel="First Responder" sceneMemberID="firstResponder"/>

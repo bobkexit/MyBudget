@@ -8,11 +8,13 @@
 
 import UIKit
 import Charts
+import TableFlip
 
 class BalanceReportVC: BaseReportVC {
     
     @IBOutlet weak var totalAmountLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var totalAmountView: UIView!
     
     var accounts = [SomeViewModel]()
     
@@ -22,11 +24,12 @@ class BalanceReportVC: BaseReportVC {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        loadData()
+        loadDataAsync()
     }
     
     fileprivate func loadData() {
         
+      
         self.report.execute { (results) in
             
             guard let result = results?.first as? [String : Any] else {
@@ -47,8 +50,25 @@ class BalanceReportVC: BaseReportVC {
             if let accounts = result["accounts"] as? [SomeViewModel] {
                 self.accounts = accounts
             }
-            
+        
+            self.tableView.reloadData()
+            self.animateView()
         }
+    }
+    
+    fileprivate func loadDataAsync() {
+        DispatchQueue.main.async {
+            self.loadData()
+        }
+    }
+    
+    fileprivate func animateView() {
+        let cellAnimation = TableViewAnimation.Cell.fade(duration: 1.3)
+        self.tableView.animate(animation: cellAnimation)
+        self.totalAmountView.alpha = 0
+        UIView.animate(withDuration: 1.3, animations: {
+            self.totalAmountView.alpha = 1
+        })
     }
 }
 

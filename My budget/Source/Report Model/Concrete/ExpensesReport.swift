@@ -12,7 +12,7 @@ import CoreData
 class ExpensesReport: BaseReport {
     
     override var description: String {
-        return "Expenses"
+        return "Expenses for the last month"
     }
     
     override func execute(_ completeion: Report.comletionHandler?) {
@@ -25,11 +25,25 @@ class ExpensesReport: BaseReport {
         // This is the column we are grouping by. Notice this is the only non aggregate column.
         request.propertiesToGroupBy = ["category.title"]
         // Specify we want dictionaries to be returned
+        request.propertiesToFetch = expressionDescriptions
         request.resultType = .dictionaryResultType
         request.predicate = NSPredicate(format: "category.typeId == \(CategoryType.credit.rawValue)")
-        request.sortDescriptors = [NSSortDescriptor(key: "category", ascending: true)]
         
-        request.propertiesToFetch = expressionDescriptions
+        
+        if let pastDate = Calendar.current.date(byAdding: .month, value: -1, to: Date()), let currentPredicate = request.predicate {
+            
+            let startDate = Calendar.current.startOfDay(for: pastDate)
+            let additionalPredicate =  NSPredicate(format: "date >= %@", startDate as NSDate)
+            let nextPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [currentPredicate, additionalPredicate])
+            
+            request.predicate = nextPredicate
+        }
+       
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "amount", ascending: false),
+                                   NSSortDescriptor(key: "category", ascending: true)]
+        request.fetchLimit = 5
+
         
         var results:[[String:AnyObject]]?
         

@@ -73,7 +73,7 @@ class ExpensesReportVC: BaseReportVC {
             let attributes = [ NSAttributedStringKey.foregroundColor : UIColor.white,
                                NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]
             
-            self.pieChart.centerAttributedText = NSAttributedString(string: title ?? "", attributes: attributes)
+            self.pieChart.centerAttributedText = NSAttributedString(string: "Expenses", attributes: attributes)
         } else {
             self.pieChart.centerAttributedText = nil
         }
