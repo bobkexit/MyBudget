@@ -3,7 +3,7 @@
     <entity name="Account" representedClassName="Account" syncable="YES" codeGenerationType="class">
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="typeId" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transaction" inverseName="account" inverseEntity="Transaction" syncable="YES"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Transaction" inverseName="account" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,7 +19,7 @@
         <relationship name="category" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="categories" inverseEntity="Category" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-63" positionY="-126" width="128" height="88"/>
+        <element name="Account" positionX="-63" positionY="-126" width="128" height="90"/>
         <element name="Category" positionX="-63" positionY="33" width="117" height="88"/>
         <element name="Transaction" positionX="162" positionY="-66" width="128" height="135"/>
     </elements>

@@ -61,7 +61,7 @@ class CreateTransactionVC: BaseTransactionVC {
     @IBAction func saveButtonPressed(_ sender: Any) {
         
         if let date = dateTxt.text, date != viewModel.date {
-            viewModel.set(date: date)
+            viewModel.set(date, forKey: "date")
         }
         
         viewModel.save()
@@ -126,7 +126,7 @@ extension CreateTransactionVC {
     
     override func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == amountTxt {
-            viewModel.set(amount: textField.text)
+            viewModel.set(textField.text, forKey: "amount")
         }
         updateUI()
     }
@@ -155,7 +155,7 @@ extension CreateTransactionVC: QRScannerVCDelegate {
             }
             
             if let amount = sum {
-                viewModel.set(amount: amount)
+                viewModel.set(amount, forKey: "amount")
             }
             updateUI()
         }

@@ -43,7 +43,10 @@ class CreateAccountVC: BaseVC {
         setupToolbar(toolBar, withSelector: #selector(BaseVC.dismissKeyboard))
         setupPickerView(accountTypePicker, delegate: self)
         setupTextField(accountTypeTxtField, withInputView: accountTypePicker, andInputAccessoryView: toolBar)
+        
         titleTxtField.delegate = self
+        balanceTxtField.delegate = self
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
@@ -92,7 +95,7 @@ class CreateAccountVC: BaseVC {
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == accountTypePicker {
             let accountType = accountTypes[row]
-            viewModel.set(accountType: accountType)
+            viewModel.set(accountType, forKey: "accountType")
         }
         updateUI()
     }
@@ -106,6 +109,11 @@ class CreateAccountVC: BaseVC {
                 return
             }
             viewModel.set(title, forKey: "title")
+        } else if textField == balanceTxtField {
+            guard let balance = textField.text,!balance.isEmpty else {
+                return
+            }
+            viewModel.set(balance, forKey: "balance")
         }
         updateUI()
     }
@@ -118,5 +126,9 @@ class CreateAccountVC: BaseVC {
             return false
         }
         return true
+    }
+    
+    fileprivate func initBalance() {
+    
     }
 }

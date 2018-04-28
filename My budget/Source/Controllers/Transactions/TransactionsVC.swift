@@ -135,9 +135,12 @@ class TransactionsVC: BaseTableVC {
     
     
     func reloadData() {
+        
         let data = dataManager.getObjects()
         
-        transactions = data.map { viewModelFactory.create(object: $0, dataManager: dataManager) }
+        let sortedData = data.sorted(by: {$0.date! > $1.date!})
+        
+        transactions = sortedData.map { viewModelFactory.create(object: $0, dataManager: dataManager) }
         
         tableView.reloadData()
     }
@@ -152,7 +155,6 @@ class TransactionsVC: BaseTableVC {
     func createViewModel() -> SomeViewModel {
         
         let transaction = dataManager.create()
-        //transaction.date = Date()
         
         let viewModel = viewModelFactory.create(object: transaction, dataManager: dataManager)
         viewModel.isNew = true
@@ -173,7 +175,6 @@ class TransactionsVC: BaseTableVC {
             viewModel.set(category, forKey: "category")
         }
         
-        //viewModel.set(temp: true)
         
         return viewModel
     }

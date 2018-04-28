@@ -12,6 +12,8 @@ import CoreData
 final class UserSettings {
     
     typealias Keys = Constants.UserSettings.Keys
+    
+    typealias BuildInData = Constants.UserSettings.BuildInData
    
     lazy var accountManager = BaseDataManager<Account>()
     
@@ -56,6 +58,16 @@ final class UserSettings {
     
     var incomeCategory: Category? {
         guard let url = userDefaults.url(forKey: Keys.defaultIncomeCategoryId)  else {
+            return nil
+        }
+        
+        let object = incomeCategoryManager.findObject(by: url)
+        
+        return object
+    }
+    
+    var initialBalance: Category? {
+        guard let url = userDefaults.url(forKey: BuildInData.initialBalanceId)  else {
             return nil
         }
         

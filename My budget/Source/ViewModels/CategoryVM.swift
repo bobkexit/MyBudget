@@ -32,8 +32,17 @@ class CategoryVM: BaseViewModel<Category> {
     
     
     // MARK: - Setters
-    
-    func set(categoryType: CategoryType) {
-        object.typeId = Int16(categoryType.rawValue)
+
+    override func set(_ value: Any?, forKey key: String) {
+        
+        var rawValue = value
+        var rawKey = key
+        
+        if key.lowercased() == "categorytype", let categoryType = value as? CategoryType  {
+            rawKey = "typeId"
+            rawValue = Int16(categoryType.rawValue)
+        }
+        
+        super.set(rawValue, forKey: rawKey)
     }
 }

@@ -90,7 +90,7 @@ class TransactionDetailVC: BaseTransactionVC {
     
     override func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == amountTxt {
-            viewModel.set(amount: textField.text)
+            viewModel.set(textField.text, forKey: "amount")
         }
         updateUI()
     }

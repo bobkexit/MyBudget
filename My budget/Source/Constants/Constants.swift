@@ -58,6 +58,10 @@ struct Constants {
             static let defaultExpenseCategoryId = "DEFAULT_EXPENSE_CATEGORY_ID"
             static let defaultIncomeCategoryId = "DEFAULT_INCOME_CATEGORY_ID"
         }
+        
+        struct BuildInData {
+            static let initialBalanceId = "INIT_BALANCE_ID"
+        }
     }
 }
 

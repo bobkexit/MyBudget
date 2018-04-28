@@ -39,7 +39,11 @@ final class ViewModelFactory {
         
     }
     
-    func create(object: Account, dataManager: BaseDataManager<Account>) -> AccountVM {
+    func create(object: Account, dataManager: BaseDataManager<Account>, isNew: Bool = false) -> AccountVM {
+        if isNew {
+            return CreateAccountVM(object: object, dataManager: dataManager)
+        }
+        
         return AccountVM(object: object, dataManager: dataManager)
     }
     

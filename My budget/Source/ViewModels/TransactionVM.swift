@@ -98,31 +98,46 @@ class TransactionVM: BaseViewModel<Transaction> {
     
     // MARK: - Setters
     
-    func set(date: String) {
-        guard let value = self.dateFormatter.date(from: date) else {
-            return
-        }
-        set(value, forKey: "date")
-    }
     
+    override func set(_ value: Any?, forKey key: String) {
+        
+        let key = key.lowercased()
+        
+        var rawValue = value
+        
+        if key == "date" && value is String {
+            
+            guard let date = self.dateFormatter.date(from: value as! String) else {
+                return
+            }
+            
+            rawValue = date
+            
+            
+        } else if key == "amount" {
+            
+            var amount: Float = 0
+            
+            if let value = value as? String {
+                
+                guard let nummber = decimalFormatter.number(from: value) else {
+                    return
+                }
+                
+                amount = nummber.floatValue
+                
+            } else if let value = value as? Float {
+                
+                amount = value
+                
+            } else { return }
     
-    func set(amount: String?) {
-        guard let amount = amount, !amount.isEmpty else {
-            return
+            rawValue = fabsf(amount) * (categoryType == .credit ? -1 : 1)
         }
         
-        guard let nummber = decimalFormatter.number(from: amount) else {
-            return
-        }
+        super.set(rawValue, forKey: key)
+    }
         
-        set(amount: nummber.floatValue)
-    }
-    
-    func set(amount: Float) {
-        let value = fabsf(amount) * (categoryType == .credit ? -1 : 1)
-        set(value, forKey: "amount")
-    }
-    
     override func save() {
         super.save()
         isNew = false

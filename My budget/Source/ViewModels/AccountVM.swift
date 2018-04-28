@@ -34,7 +34,16 @@ class AccountVM: BaseViewModel<Account> {
     
     // MARK: - Setters
     
-    func set(accountType: AccountType) {
-        object.typeId = Int16(accountType.rawValue)
+    override func set(_ value: Any?, forKey key: String) {
+        
+        var rawValue = value
+        var rawKey = key
+        
+        if key.lowercased() == "accounttype", let accountType = value as? AccountType  {
+            rawKey = "typeId"
+            rawValue = Int16(accountType.rawValue)
+        }
+        
+        super.set(rawValue, forKey: rawKey)
     }
 }

@@ -12,6 +12,10 @@ import CoreData
 final class InstallationManager {
     
     typealias Kyes = UserSettings.Keys
+    typealias BuildInData = Constants.UserSettings.BuildInData
+    
+    typealias CompletionHandler = (_ objectId: URL) -> ()
+    
     
     // MARK: - Properties
     
@@ -29,6 +33,12 @@ final class InstallationManager {
     
     public func installDataIfNeeded()  {
         
+        if userDefaults.url(forKey: BuildInData.initialBalanceId) == nil {
+            createIncomeCategory(title: "Initial account balance") { (objectId) in
+                self.userDefaults.set(objectId, forKey: BuildInData.initialBalanceId)
+            }
+        }
+        
         if userDefaults.bool(forKey: Kyes.firstLaunch) {
             return
         }
@@ -41,10 +51,15 @@ final class InstallationManager {
         createAccount(title: "Cash", type: .cash, setDefault: true)
     
         // Create income categories
-        createIncomeCategory(title: "Salary", setDefault: true)
+        createIncomeCategory(title: "Salary") { (objectId) in
+            self.userDefaults.set(objectId, forKey: Kyes.defaultIncomeCategoryId)
+        }
         
         // Create expense categories
-        createExpenseCategory(title: "Products", setDefault: true)
+        createExpenseCategory(title: "Products") { (objectId) in
+            self.userDefaults.set(objectId, forKey: Kyes.defaultExpenseCategoryId)
+        }
+        
         createExpenseCategory(title: "Health")
         createExpenseCategory(title: "Utilities")
         createExpenseCategory(title: "Entertainment")
@@ -70,7 +85,7 @@ final class InstallationManager {
         }
     }
     
-    private func createIncomeCategory(title: String, setDefault: Bool = false) {
+    private func createIncomeCategory(title: String, _ completion: CompletionHandler? = nil) {
         
         let dataManager = IncomeCategoryManager()
         
@@ -79,13 +94,13 @@ final class InstallationManager {
         
         dataManager.saveContext()
         
-        if setDefault {
+        if let completion = completion {
             let url = category.objectID.uriRepresentation()
-            userDefaults.set(url, forKey: Kyes.defaultIncomeCategoryId)
+            completion(url)
         }
     }
     
-    private func createExpenseCategory(title: String, setDefault: Bool = false) {
+    private func createExpenseCategory(title: String, _ completion: CompletionHandler? = nil) {
         
         let dataManager = ExpenseCategoryManager()
         
@@ -94,9 +109,9 @@ final class InstallationManager {
         
         dataManager.saveContext()
         
-        if setDefault {
+        if let completion = completion {
             let url = category.objectID.uriRepresentation()
-            userDefaults.set(url, forKey: Kyes.defaultExpenseCategoryId)
+            completion(url)
         }
     }
 }

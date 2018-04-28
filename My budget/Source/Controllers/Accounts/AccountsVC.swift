@@ -46,7 +46,7 @@ class AccountsVC: BaseTableVC {
                 fatalError("Can't find CreateAccountVC")
             }
             let account = dataManager.create()
-            let viewModel = viewModelFactory.create(object: account, dataManager: dataManager)
+            let viewModel = viewModelFactory.create(object: account, dataManager: dataManager, isNew: true)
             destinationVC.viewModel = viewModel
         }
     }
@@ -63,6 +63,7 @@ class AccountsVC: BaseTableVC {
         let viewModel = accounts[indexPath.row]
         viewModel.delete()
         accounts.remove(at: indexPath.row)
+        NotificationCenter.default.post(name: .transaction, object: nil)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }

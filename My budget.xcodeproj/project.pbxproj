@@ -45,6 +45,7 @@
 		353B47D0205690B3008281B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 353B47CE205690B3008281B0 /* LaunchScreen.storyboard */; };
 		3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563FF02205FD28C00B05E82 /* AccountsVC.swift */; };
 		3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563FF04205FD77900B05E82 /* BaseTableVC.swift */; };
+		35655C8F209493D4009FA85B /* CreateAccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35655C8E209493D4009FA85B /* CreateAccountVM.swift */; };
 		3566A7912087413A0099BE67 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3566A78F2087413A0099BE67 /* DataModel.xcdatamodeld */; };
 		3566A7A9208A73B80099BE67 /* BaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566A7A8208A73B80099BE67 /* BaseDataManager.swift */; };
 		3566A7AD208A79DD0099BE67 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566A7AC208A79DD0099BE67 /* DataManager.swift */; };
@@ -119,6 +120,7 @@
 		353B47D1205690B3008281B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3563FF02205FD28C00B05E82 /* AccountsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsVC.swift; sourceTree = "<group>"; };
 		3563FF04205FD77900B05E82 /* BaseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableVC.swift; sourceTree = "<group>"; };
+		35655C8E209493D4009FA85B /* CreateAccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVM.swift; sourceTree = "<group>"; };
 		3566A7902087413A0099BE67 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3566A7A8208A73B80099BE67 /* BaseDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDataManager.swift; sourceTree = "<group>"; };
 		3566A7AC208A79DD0099BE67 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -297,14 +299,15 @@
 		3531C593207E75CA0055D0B4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				3531C59C207F2D730055D0B4 /* ViewModelFactory.swift */,
 				356E06E320683C7A004034AE /* SettingsMenu.swift */,
 				3531C598207E7C4B0055D0B4 /* BaseViewModel.swift */,
 				3531C594207E76080055D0B4 /* CategoryVM.swift */,
 				3531C596207E7A500055D0B4 /* AccountVM.swift */,
 				3531C59A207E81BA0055D0B4 /* TransactionVM.swift */,
-				3531C59C207F2D730055D0B4 /* ViewModelFactory.swift */,
 				3522E11F208FCA480096E57C /* UpdatedTransactionVM.swift */,
 				3522B0062093990300D17AAF /* AccountBalanceVM.swift */,
+				35655C8E209493D4009FA85B /* CreateAccountVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
 				3566A7912087413A0099BE67 /* DataModel.xcdatamodeld in Sources */,
 				3522AFE92091C49300D17AAF /* ReportFactory.swift in Sources */,
+				35655C8F209493D4009FA85B /* CreateAccountVM.swift in Sources */,
 				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
 				3522AFEF2091E1BD00D17AAF /* ReportCell.swift in Sources */,
 				3522AFF82092331D00D17AAF /* PercentageValueFormatter.swift in Sources */,
