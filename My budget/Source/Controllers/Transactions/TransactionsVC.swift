@@ -10,10 +10,6 @@ import UIKit
 
 class TransactionsVC: BaseTableVC {
     
-    //typealias Entity = Transaction
-    
-    //typealias ViewModel = TransactionVM
-    
     // MARK: - Properties
     
     var dataManager = BaseDataManager<Transaction>()
@@ -48,13 +44,13 @@ class TransactionsVC: BaseTableVC {
     // MARK: - View Actions
     @IBAction func addBtnPressed(_ sender: Any) {
         
-        let alertController = UIAlertController(title: "Select operation", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: NSLocalizedString("Select operation", comment: ""), message: nil, preferredStyle: .actionSheet)
         
-        let createIncome = UIAlertAction(title: Operation.income.rawValue, style: .default) { (action) in
+        let createIncome = UIAlertAction(title: Operation.income.description, style: .default) { (action) in
             self.selectedOperation = Operation.income
             self.performSegue(withIdentifier: Constants.Segues.toCreateTransaction, sender: self)
         }
-        let createExpense = UIAlertAction(title: Operation.expense.rawValue, style: .default) { (action) in
+        let createExpense = UIAlertAction(title: Operation.expense.description, style: .default) { (action) in
             self.selectedOperation = Operation.expense
             self.performSegue(withIdentifier: Constants.Segues.toCreateTransaction, sender: self)
         }

@@ -43,6 +43,7 @@ class CreateAccountVC: BaseVC {
         setupToolbar(toolBar, withSelector: #selector(BaseVC.dismissKeyboard))
         setupPickerView(accountTypePicker, delegate: self)
         setupTextField(accountTypeTxtField, withInputView: accountTypePicker, andInputAccessoryView: toolBar)
+        setupTextField(balanceTxtField, withInputView: nil, andInputAccessoryView: toolBar)
         
         titleTxtField.delegate = self
         balanceTxtField.delegate = self

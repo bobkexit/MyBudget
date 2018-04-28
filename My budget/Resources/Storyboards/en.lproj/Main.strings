@@ -1,0 +1,144 @@
+
+/* Class = "UITextField"; placeholder = "Date"; ObjectID = "0uN-Qo-eEH"; */
+"0uN-Qo-eEH.placeholder" = "Date";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "10G-94-cEF"; */
+"10G-94-cEF.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "No QR code is detected"; ObjectID = "1BL-Z1-KpY"; */
+"1BL-Z1-KpY.text" = "No QR code is detected";
+
+/* Class = "UILabel"; text = "100 000 $"; ObjectID = "2Z6-vz-IPL"; */
+"2Z6-vz-IPL.text" = "100 000 $";
+
+/* Class = "UITextField"; placeholder = "select account"; ObjectID = "3hK-6r-2k4"; */
+"3hK-6r-2k4.placeholder" = "select account";
+
+/* Class = "UILabel"; text = "Currency:"; ObjectID = "3mY-ZN-a6E"; */
+"3mY-ZN-a6E.text" = "Currency:";
+
+/* Class = "UILabel"; text = "Amount:"; ObjectID = "3pu-eJ-mLK"; */
+"3pu-eJ-mLK.text" = "Amount:";
+
+/* Class = "UITextField"; placeholder = "enter title"; ObjectID = "4AS-Yq-W4w"; */
+"4AS-Yq-W4w.placeholder" = "enter title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "4es-Dj-O9R"; */
+"4es-Dj-O9R.text" = "Title";
+
+/* Class = "UILabel"; text = "Income:"; ObjectID = "4f9-dC-5xD"; */
+"4f9-dC-5xD.text" = "Income:";
+
+/* Class = "UILabel"; text = "Category"; ObjectID = "4w9-UP-2UT"; */
+"4w9-UP-2UT.text" = "Category";
+
+/* Class = "UILabel"; text = "Amount:"; ObjectID = "7mO-Kx-1xF"; */
+"7mO-Kx-1xF.text" = "Amount:";
+
+/* Class = "UILabel"; text = "Category:"; ObjectID = "GQk-G6-y04"; */
+"GQk-G6-y04.text" = "Category:";
+
+/* Class = "UILabel"; text = "Total Amount"; ObjectID = "Gzy-Jd-jW4"; */
+"Gzy-Jd-jW4.text" = "Total Amount";
+
+/* Class = "UILabel"; text = "Expense:"; ObjectID = "HAJ-zJ-JAE"; */
+"HAJ-zJ-JAE.text" = "Expense:";
+
+/* Class = "UITextField"; placeholder = "select category"; ObjectID = "HFj-F8-puC"; */
+"HFj-F8-puC.placeholder" = "select category";
+
+/* Class = "UITextField"; placeholder = "choose type account"; ObjectID = "IaM-fQ-Wb9"; */
+"IaM-fQ-Wb9.placeholder" = "choose type account";
+
+/* Class = "UITextField"; placeholder = "set amount"; ObjectID = "IbX-TU-ZTg"; */
+"IbX-TU-ZTg.placeholder" = "set amount";
+
+/* Class = "UITextField"; placeholder = "choose default account"; ObjectID = "Io1-cU-3id"; */
+"Io1-cU-3id.placeholder" = "choose default account";
+
+/* Class = "UITextField"; placeholder = "select category"; ObjectID = "MBp-QD-qWG"; */
+"MBp-QD-qWG.placeholder" = "select category";
+
+/* Class = "UITextField"; placeholder = "choose default currency"; ObjectID = "NFd-ow-3oG"; */
+"NFd-ow-3oG.placeholder" = "choose default currency";
+
+/* Class = "UITextField"; placeholder = "choose default income category"; ObjectID = "NWg-8q-yfb"; */
+"NWg-8q-yfb.placeholder" = "choose default income category";
+
+/* Class = "UITextField"; placeholder = "Date"; ObjectID = "O2Q-2x-ful"; */
+"O2Q-2x-ful.placeholder" = "Date";
+
+/* Class = "UILabel"; text = "Type:"; ObjectID = "Osb-zU-yTa"; */
+"Osb-zU-yTa.text" = "Type:";
+
+/* Class = "UITextField"; placeholder = "choose default expense category"; ObjectID = "Prn-WR-H5o"; */
+"Prn-WR-H5o.placeholder" = "choose default expense category";
+
+/* Class = "UITabBarItem"; title = "Reports"; ObjectID = "REB-JF-T25"; */
+"REB-JF-T25.title" = "Reports";
+
+/* Class = "UILabel"; text = "amount"; ObjectID = "Toi-QS-Hs1"; */
+"Toi-QS-Hs1.text" = "amount";
+
+/* Class = "UITextField"; placeholder = "enter balace (optional)"; ObjectID = "TuA-nI-nId"; */
+"TuA-nI-nId.placeholder" = "enter balace (optional)";
+
+/* Class = "UITextView"; text = "Comment"; ObjectID = "Uph-Pz-daK"; */
+"Uph-Pz-daK.text" = "Comment";
+
+/* Class = "UILabel"; text = "title"; ObjectID = "X1c-Zz-VPP"; */
+"X1c-Zz-VPP.text" = "title";
+
+/* Class = "UILabel"; text = "Title:"; ObjectID = "aDe-ss-ZCP"; */
+"aDe-ss-ZCP.text" = "Title:";
+
+/* Class = "UILabel"; text = "Category:"; ObjectID = "aMT-6R-fAe"; */
+"aMT-6R-fAe.text" = "Category:";
+
+/* Class = "UITextField"; placeholder = "New category"; ObjectID = "bm0-rL-pY1"; */
+"bm0-rL-pY1.placeholder" = "New category";
+
+/* Class = "UITextField"; text = "Category name"; ObjectID = "bm0-rL-pY1"; */
+"bm0-rL-pY1.text" = "Category name";
+
+/* Class = "UITextView"; text = "Comment"; ObjectID = "e5H-Gz-U66"; */
+"e5H-Gz-U66.text" = "Comment";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "gF4-kl-Ii8"; */
+"gF4-kl-Ii8.text" = "Amount";
+
+/* Class = "UILabel"; text = "Scan QR code"; ObjectID = "i06-LK-eMF"; */
+"i06-LK-eMF.text" = "Scan QR code";
+
+/* Class = "UILabel"; text = "date"; ObjectID = "j8d-Rj-SOS"; */
+"j8d-Rj-SOS.text" = "date";
+
+/* Class = "UITextField"; placeholder = "select account"; ObjectID = "lAc-AY-4JX"; */
+"lAc-AY-4JX.placeholder" = "select account";
+
+/* Class = "UILabel"; text = "Account:"; ObjectID = "lpY-ju-e5p"; */
+"lpY-ju-e5p.text" = "Account:";
+
+/* Class = "UILabel"; text = "Account:"; ObjectID = "mJr-Tc-5au"; */
+"mJr-Tc-5au.text" = "Account:";
+
+/* Class = "UITextField"; text = "account name"; ObjectID = "qyn-cX-dxA"; */
+"qyn-cX-dxA.text" = "account name";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "rMP-Yp-WkE"; */
+"rMP-Yp-WkE.title" = "Settings";
+
+/* Class = "UITabBarItem"; title = "Transactions"; ObjectID = "tEg-b2-Tyl"; */
+"tEg-b2-Tyl.title" = "Transactions";
+
+/* Class = "UITextField"; placeholder = "set amount"; ObjectID = "ubY-98-k1q"; */
+"ubY-98-k1q.placeholder" = "set amount";
+
+/* Class = "UILabel"; text = "Balance:"; ObjectID = "ycf-M5-I6v"; */
+"ycf-M5-I6v.text" = "Balance:";
+
+/* Class = "UILabel"; text = "Account:"; ObjectID = "zCA-l0-6p5"; */
+"zCA-l0-6p5.text" = "Account:";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "zIn-ke-144"; */
+"zIn-ke-144.normalTitle" = "Cancel";

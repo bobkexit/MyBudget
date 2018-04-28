@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  My budget
+
+  Created by Николай Маторин on 28.04.2018.
+  Copyright © 2018 Николай Маторин. All rights reserved.
+*/
+
+"Done" = "Готово";
+"Cash" = "Наличные";
+"Salary" = "Зарплата";
+"Health" = "Здоровье";
+"Utilities" = "Коммунальные услуги";
+"Entertainment" = "Развлечения";
+"Balance" = "Баланс";
+"Initial account balance" = "Ввод начального остатка";
+"payment card" = "платёжная карта";
+"cash" = "наличные";
+"web" = "веб";
+"bank account" = "банковский счёт";
+"income" = "приход";
+"expense" = "расход";
+"etc." = "прочее";
+"Expenses" = "Расходы";
+"Expenses for the last month" = "Расходы за последний месяц";
+"accounts" = "Счета";
+"incomings" = "Приходы";
+"expenses" = "Расходы";
+"defaults" = "Настройки по-умолчанию";
+"Create new income" = "Новый приход";
+"Create new expense" = "Новый расход";
+"Select operation" = "Выберете операцию";

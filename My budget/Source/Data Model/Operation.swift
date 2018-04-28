@@ -8,7 +8,17 @@
 
 import Foundation
 
-enum Operation: String {
+enum Operation: CustomStringConvertible {
+    
+    var description: String {
+        switch self {
+        case .expense:
+            return NSLocalizedString("expense", comment: "")
+        case .income:
+            return NSLocalizedString("income", comment: "")
+        }
+    }
+    
     case income
     case expense
 }

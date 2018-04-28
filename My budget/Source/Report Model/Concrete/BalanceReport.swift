@@ -12,7 +12,7 @@ import CoreData
 class BalanceReport: BaseReport {
     
     override var description: String {
-        return "Balance"
+        return NSLocalizedString("Balance", comment: "")
     }
     
     override func execute(_ completeion: Report.comletionHandler?) {

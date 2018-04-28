@@ -78,31 +78,4 @@ final class Helper {
         
         return formatter
     }
-    
-
-    
-//    func getCurrencySymbol(forCurrencyCode currencyCode: String) -> String? {
-//        let local = NSLocale(localeIdentifier: currencyCode)
-//        return local.displayName(forKey: NSLocale.Key.currencySymbol, value: currencyCode)
-//    }
-//
-//    func getCurrencies() -> [String] {
-//        return Locale.commonISOCurrencyCodes.sorted(by: {Locale.current.localizedString(forCurrencyCode: $0) ?? ""  < Locale.current.localizedString(forCurrencyCode: $1) ?? "" })
-//    }
-//
-//    func getLocal(forCurrencyCode currencyCode: String) -> Locale {
-//        let identifier = Locale.identifier(fromComponents: [NSLocale.Key.currencyCode.rawValue: currencyCode])
-//        return Locale(identifier: identifier)
-//    }
-//
-//    func formatCurrency(_ number: Double, currencyCode: String) -> String? {
-//        let formatter = NumberFormatter()
-//        formatter.numberStyle = .currency
-//        formatter.currencyCode = currencyCode
-//        if let currencySymbol = getCurrencySymbol(forCurrencyCode: currencyCode) {
-//             formatter.currencySymbol = currencySymbol
-//        }
-//        let formattedString = formatter.string(from: NSNumber(value: number))
-//        return formattedString
-//    }
 }

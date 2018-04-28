@@ -17,13 +17,13 @@ enum AccountType: Int, EnumCollection, CustomStringConvertible {
     var description: String {
         switch self {
         case .paymentCard:
-            return "payment card"
+            return NSLocalizedString("payment card", comment: "")
         case .cash:
-            return "cash"
+            return NSLocalizedString("cash", comment: "")
         case .web:
-            return "web"
+            return NSLocalizedString("web", comment: "")
         case .bankAccont:
-            return "bank account"
+            return NSLocalizedString("bank account", comment: "") 
         }
     }
     

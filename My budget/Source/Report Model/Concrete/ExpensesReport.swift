@@ -12,7 +12,7 @@ import CoreData
 class ExpensesReport: BaseReport {
     
     override var description: String {
-        return "Expenses for the last month"
+        return NSLocalizedString("Expenses for the last month", comment: "")
     }
     
     override func execute(_ completeion: Report.comletionHandler?) {

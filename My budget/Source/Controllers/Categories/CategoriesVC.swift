@@ -58,9 +58,9 @@ class CategoriesVC: BaseTableVC {
     fileprivate func setTitle() {
         switch categoryType {
         case .debit:
-            title = SettingsMenu.incomings.rawValue.capitalized
+            title = SettingsMenu.incomings.description
         case .credit:
-            title = SettingsMenu.expenses.rawValue.capitalized
+            title = SettingsMenu.expenses.description
         default:
             return
         }

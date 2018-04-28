@@ -43,7 +43,7 @@ class ExpensesReportVC: BaseReportVC {
             }
             
             let minEntry = chartDataEntry.min {a, b in a.value < b.value}
-            minEntry?.label = "etc."
+            minEntry?.label = NSLocalizedString("etc.", comment: "")
             
             let dataSet = PieChartDataSet(values: chartDataEntry, label: nil)
             dataSet.colors = ChartColorTemplates.colorful()
@@ -77,7 +77,7 @@ class ExpensesReportVC: BaseReportVC {
             let attributes = [ NSAttributedStringKey.foregroundColor : UIColor.white,
                                NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]
             
-            self.pieChart.centerAttributedText = NSAttributedString(string: "Expenses", attributes: attributes)
+            self.pieChart.centerAttributedText = NSAttributedString(string: NSLocalizedString("Expenses", comment: ""), attributes: attributes)
         } else {
             self.pieChart.centerAttributedText = nil
         }

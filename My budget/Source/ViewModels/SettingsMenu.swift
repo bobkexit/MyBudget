@@ -8,7 +8,21 @@
 
 import Foundation
 
-enum SettingsMenu: String, EnumCollection {
+enum SettingsMenu: EnumCollection, CustomStringConvertible {
+    
+    var description: String {
+        switch self {
+        case .accounts:
+            return NSLocalizedString("accounts", comment: "")
+        case .incomings:
+            return NSLocalizedString("incomings", comment: "")
+        case .expenses:
+            return NSLocalizedString("expenses", comment: "")
+        case .defaults:
+            return NSLocalizedString("defaults", comment: "")
+        }
+    }
+    
     case accounts
     case incomings
     case expenses

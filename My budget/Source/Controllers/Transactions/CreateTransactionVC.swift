@@ -88,9 +88,9 @@ class CreateTransactionVC: BaseTransactionVC {
     
     override func setupViewTitle() {
         if viewModel.operationType == .debit {
-            title = "Create new income"
+            title = NSLocalizedString("Create new income", comment: "")
         } else if viewModel.operationType == .credit {
-            title = "Create new expense"
+            title = NSLocalizedString("Create new expense", comment: "")
         }
     }
     

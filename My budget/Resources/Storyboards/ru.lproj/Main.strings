@@ -1,0 +1,144 @@
+
+/* Class = "UITextField"; placeholder = "Date"; ObjectID = "0uN-Qo-eEH"; */
+"0uN-Qo-eEH.placeholder" = "Дата";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "10G-94-cEF"; */
+"10G-94-cEF.normalTitle" = "Сохр.";
+
+/* Class = "UILabel"; text = "No QR code is detected"; ObjectID = "1BL-Z1-KpY"; */
+"1BL-Z1-KpY.text" = "QR код не найден";
+
+/* Class = "UILabel"; text = "100 000 $"; ObjectID = "2Z6-vz-IPL"; */
+"2Z6-vz-IPL.text" = "100 000 $";
+
+/* Class = "UITextField"; placeholder = "select account"; ObjectID = "3hK-6r-2k4"; */
+"3hK-6r-2k4.placeholder" = "выбирете счёт";
+
+/* Class = "UILabel"; text = "Currency:"; ObjectID = "3mY-ZN-a6E"; */
+"3mY-ZN-a6E.text" = "Валюта:";
+
+/* Class = "UILabel"; text = "Amount:"; ObjectID = "3pu-eJ-mLK"; */
+"3pu-eJ-mLK.text" = "Сумма:";
+
+/* Class = "UITextField"; placeholder = "enter title"; ObjectID = "4AS-Yq-W4w"; */
+"4AS-Yq-W4w.placeholder" = "введите название";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "4es-Dj-O9R"; */
+"4es-Dj-O9R.text" = "Название";
+
+/* Class = "UILabel"; text = "Income:"; ObjectID = "4f9-dC-5xD"; */
+"4f9-dC-5xD.text" = "Приход:";
+
+/* Class = "UILabel"; text = "Category"; ObjectID = "4w9-UP-2UT"; */
+"4w9-UP-2UT.text" = "Категория";
+
+/* Class = "UILabel"; text = "Amount:"; ObjectID = "7mO-Kx-1xF"; */
+"7mO-Kx-1xF.text" = "Сумма:";
+
+/* Class = "UILabel"; text = "Category:"; ObjectID = "GQk-G6-y04"; */
+"GQk-G6-y04.text" = "Категория:";
+
+/* Class = "UILabel"; text = "Total Amount"; ObjectID = "Gzy-Jd-jW4"; */
+"Gzy-Jd-jW4.text" = "Общая сумма";
+
+/* Class = "UILabel"; text = "Expense:"; ObjectID = "HAJ-zJ-JAE"; */
+"HAJ-zJ-JAE.text" = "Расход:";
+
+/* Class = "UITextField"; placeholder = "select category"; ObjectID = "HFj-F8-puC"; */
+"HFj-F8-puC.placeholder" = "выберете категорию";
+
+/* Class = "UITextField"; placeholder = "choose type account"; ObjectID = "IaM-fQ-Wb9"; */
+"IaM-fQ-Wb9.placeholder" = "выберете тип счёта";
+
+/* Class = "UITextField"; placeholder = "set amount"; ObjectID = "IbX-TU-ZTg"; */
+"IbX-TU-ZTg.placeholder" = "введите сумму";
+
+/* Class = "UITextField"; placeholder = "choose default account"; ObjectID = "Io1-cU-3id"; */
+"Io1-cU-3id.placeholder" = "выберете счёт по-умолчанию";
+
+/* Class = "UITextField"; placeholder = "select category"; ObjectID = "MBp-QD-qWG"; */
+"MBp-QD-qWG.placeholder" = "выберете категорию";
+
+/* Class = "UITextField"; placeholder = "choose default currency"; ObjectID = "NFd-ow-3oG"; */
+"NFd-ow-3oG.placeholder" = "выберете валюту по-умолчанию";
+
+/* Class = "UITextField"; placeholder = "choose default income category"; ObjectID = "NWg-8q-yfb"; */
+"NWg-8q-yfb.placeholder" = "выберете категорию прихода по-умолчанию";
+
+/* Class = "UITextField"; placeholder = "Date"; ObjectID = "O2Q-2x-ful"; */
+"O2Q-2x-ful.placeholder" = "Дата";
+
+/* Class = "UILabel"; text = "Type:"; ObjectID = "Osb-zU-yTa"; */
+"Osb-zU-yTa.text" = "Тип:";
+
+/* Class = "UITextField"; placeholder = "choose default expense category"; ObjectID = "Prn-WR-H5o"; */
+"Prn-WR-H5o.placeholder" = "выберете категорию расхода по-умолчанию";
+
+/* Class = "UITabBarItem"; title = "Reports"; ObjectID = "REB-JF-T25"; */
+"REB-JF-T25.title" = "Отчёты";
+
+/* Class = "UILabel"; text = "amount"; ObjectID = "Toi-QS-Hs1"; */
+"Toi-QS-Hs1.text" = "сумма";
+
+/* Class = "UITextField"; placeholder = "enter balace (optional)"; ObjectID = "TuA-nI-nId"; */
+"TuA-nI-nId.placeholder" = "введите баланс (не обязательно)";
+
+/* Class = "UITextView"; text = "Comment"; ObjectID = "Uph-Pz-daK"; */
+"Uph-Pz-daK.text" = "Комментарий";
+
+/* Class = "UILabel"; text = "title"; ObjectID = "X1c-Zz-VPP"; */
+"X1c-Zz-VPP.text" = "название";
+
+/* Class = "UILabel"; text = "Title:"; ObjectID = "aDe-ss-ZCP"; */
+"aDe-ss-ZCP.text" = "Название:";
+
+/* Class = "UILabel"; text = "Category:"; ObjectID = "aMT-6R-fAe"; */
+"aMT-6R-fAe.text" = "Категория:";
+
+/* Class = "UITextField"; placeholder = "New category"; ObjectID = "bm0-rL-pY1"; */
+"bm0-rL-pY1.placeholder" = "Новая категория";
+
+/* Class = "UITextField"; text = "Category name"; ObjectID = "bm0-rL-pY1"; */
+"bm0-rL-pY1.text" = "Название категории";
+
+/* Class = "UITextView"; text = "Comment"; ObjectID = "e5H-Gz-U66"; */
+"e5H-Gz-U66.text" = "Комментарий";
+
+/* Class = "UILabel"; text = "Amount"; ObjectID = "gF4-kl-Ii8"; */
+"gF4-kl-Ii8.text" = "Сумма";
+
+/* Class = "UILabel"; text = "Scan QR code"; ObjectID = "i06-LK-eMF"; */
+"i06-LK-eMF.text" = "Отсканируйте QR код";
+
+/* Class = "UILabel"; text = "date"; ObjectID = "j8d-Rj-SOS"; */
+"j8d-Rj-SOS.text" = "дата";
+
+/* Class = "UITextField"; placeholder = "select account"; ObjectID = "lAc-AY-4JX"; */
+"lAc-AY-4JX.placeholder" = "выберете счёт";
+
+/* Class = "UILabel"; text = "Account:"; ObjectID = "lpY-ju-e5p"; */
+"lpY-ju-e5p.text" = "Счёт:";
+
+/* Class = "UILabel"; text = "Account:"; ObjectID = "mJr-Tc-5au"; */
+"mJr-Tc-5au.text" = "Счёт:";
+
+/* Class = "UITextField"; text = "account name"; ObjectID = "qyn-cX-dxA"; */
+"qyn-cX-dxA.text" = "Название счёта";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "rMP-Yp-WkE"; */
+"rMP-Yp-WkE.title" = "Настройки";
+
+/* Class = "UITabBarItem"; title = "Transactions"; ObjectID = "tEg-b2-Tyl"; */
+"tEg-b2-Tyl.title" = "Операции";
+
+/* Class = "UITextField"; placeholder = "set amount"; ObjectID = "ubY-98-k1q"; */
+"ubY-98-k1q.placeholder" = "введите сумму";
+
+/* Class = "UILabel"; text = "Balance:"; ObjectID = "ycf-M5-I6v"; */
+"ycf-M5-I6v.text" = "Баланс:";
+
+/* Class = "UILabel"; text = "Account:"; ObjectID = "zCA-l0-6p5"; */
+"zCA-l0-6p5.text" = "Счёт:";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "zIn-ke-144"; */
+"zIn-ke-144.normalTitle" = "Отменить";

@@ -61,7 +61,7 @@ class DefaultsVC: BaseVC {
     // MARK: Overridden Base Class Methods
     override func setupUI() {
         
-        title = "Defaults"
+        title = NSLocalizedString("defaults", comment: "")
         
         setupToolbar(toolBar, withSelector: #selector(BaseVC.dismissKeyboard))
         

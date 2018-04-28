@@ -39,7 +39,7 @@ class BaseVC: UIViewController {
         toolBar.barTintColor = .clear
         toolBar.tintColor = .white
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: selector)
+        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: selector)
         
         toolBar.setItems([doneButton], animated: true)
         toolBar.isUserInteractionEnabled = true

@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  My budget
+
+  Created by Николай Маторин on 28.04.2018.
+  Copyright © 2018 Николай Маторин. All rights reserved.
+*/
+
+/*
+ case accounts:
+ case incomings:
+ case expenses:
+ case defaults:
+
+ */
+
+"Done" = "Done";
+"Cash" = "Cash";
+"Salary" = "Salary";
+"Health" = "Health";
+"Utilities" = "Utilities";
+"Entertainment" = "Entertainment";
+"Balance" = "Balance";
+"Initial account balance" = "Initial account balance";
+"payment card" = "payment card";
+"cash" = "cash";
+"web" = "web";
+"bank account" = "bank account";
+"income" = "income";
+"expense" = "expense";
+"etc." = "etc.";
+"Expenses" = "Expenses";
+"Expenses for the last month" = "Expenses for the last month";
+"accounts" = "Accounts";
+"incomings" = "Incomings";
+"expenses" = "Expenses";
+"defaults" = "Defaults";
+"Create new income" = "Create new income";
+"Create new expense" = "Create new expense";
+"Select operation" = "Select operation";
