@@ -53,6 +53,7 @@ class ExpensesReport: BaseReport {
             print(error as Any)
         }
         
+        
         if let completeion = completeion {
             completeion(results as [AnyObject]?)
         }

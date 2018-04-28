@@ -36,17 +36,21 @@ class ExpensesReportVC: BaseReportVC {
                 
                 if let category = result["category"] as? String, let amount = result["totalAmount"] as? NSNumber {
                                        
-                    let entry = PieChartDataEntry(value: fabs(ceil(amount.doubleValue)), label: category)
+                    let entry = PieChartDataEntry(value: fabs(amount.doubleValue), label: category)
                     
                     chartDataEntry.append(entry)
                 }
             }
+            
+            let minEntry = chartDataEntry.min {a, b in a.value < b.value}
+            minEntry?.label = "etc."
             
             let dataSet = PieChartDataSet(values: chartDataEntry, label: nil)
             dataSet.colors = ChartColorTemplates.colorful()
             dataSet.valueColors = [UIColor.white]
             dataSet.sliceSpace = 2.0
             dataSet.xValuePosition = UIDevice.current.orientation.isLandscape ? .outsideSlice : .insideSlice
+            
             
             let formatter = PercentageValueFormatter()
     
