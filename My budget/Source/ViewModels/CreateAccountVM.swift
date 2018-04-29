@@ -11,6 +11,7 @@ import Foundation
 class CreateAccountVM: AccountVM {
     
     public private(set) var balance: Float?
+    public private(set) var hasBeenSaved: Bool = false
     
     override func set(_ value: Any?, forKey key: String) {
         
@@ -35,7 +36,7 @@ class CreateAccountVM: AccountVM {
     
     override func save() {
         super.save()
-        
+        self.hasBeenSaved = true
         initBalance()
     }
     
@@ -61,5 +62,11 @@ class CreateAccountVM: AccountVM {
         transactionVM.save()
         
         NotificationCenter.default.post(name: .transaction, object: nil)
+    }
+    
+    deinit {
+        if !self.hasBeenSaved {
+            dataManager.context.delete(object)
+        }
     }
 }

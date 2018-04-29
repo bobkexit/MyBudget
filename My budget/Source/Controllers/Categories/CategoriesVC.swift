@@ -27,6 +27,10 @@ class CategoriesVC: BaseTableVC {
         super.viewDidLoad()
         
         setTitle()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        
         reloadData()
     }
     
@@ -64,6 +68,10 @@ class CategoriesVC: BaseTableVC {
         default:
             return
         }
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     fileprivate func reloadData() {

@@ -128,8 +128,4 @@ class CreateAccountVC: BaseVC {
         }
         return true
     }
-    
-    fileprivate func initBalance() {
-    
-    }
 }
