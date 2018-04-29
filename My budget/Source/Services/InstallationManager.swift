@@ -33,8 +33,6 @@ final class InstallationManager {
     
     public func installDataIfNeeded()  {
         
-       
-        
         if userDefaults.url(forKey: BuildInData.initialBalanceId) == nil {
             createIncomeCategory(title: NSLocalizedString("Initial account balance", comment: "")) { (objectId) in
                 self.userDefaults.set(objectId, forKey: BuildInData.initialBalanceId)
