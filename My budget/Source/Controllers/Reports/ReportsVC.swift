@@ -10,9 +10,9 @@ import UIKit
 
 class ReportsVC: BaseTableVC {
     
-    let reportManager = ReportFactory.shared
+    let reportManager = ReportManager.shared
     
-    var reports: [Report] = ReportFactory.shared.getAvailableReports()
+    var reports: [Report] = ReportManager.shared.getAvailableReports()
     
     var selectedReport: Report?
     

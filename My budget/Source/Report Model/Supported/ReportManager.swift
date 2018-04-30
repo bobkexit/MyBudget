@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-final class ReportFactory {
+final class ReportManager {
     
-    public static let shared = ReportFactory()
+    public static let shared = ReportManager()
     
     private let context: NSManagedObjectContext
     

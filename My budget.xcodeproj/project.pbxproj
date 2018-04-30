@@ -17,7 +17,7 @@
 		351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */; };
 		3522AFE52091C2A900D17AAF /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFE42091C2A900D17AAF /* Report.swift */; };
 		3522AFE72091C3EC00D17AAF /* DatePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFE62091C3EC00D17AAF /* DatePeriod.swift */; };
-		3522AFE92091C49300D17AAF /* ReportFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFE82091C49300D17AAF /* ReportFactory.swift */; };
+		3522AFE92091C49300D17AAF /* ReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFE82091C49300D17AAF /* ReportManager.swift */; };
 		3522AFED2091C60200D17AAF /* ExpensesReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFEC2091C60200D17AAF /* ExpensesReport.swift */; };
 		3522AFEF2091E1BD00D17AAF /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFEE2091E1BD00D17AAF /* ReportCell.swift */; };
 		3522AFF12091E4DB00D17AAF /* ExpensesReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFF02091E4DB00D17AAF /* ExpensesReportVC.swift */; };
@@ -90,7 +90,7 @@
 		351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExt.swift; sourceTree = "<group>"; };
 		3522AFE42091C2A900D17AAF /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		3522AFE62091C3EC00D17AAF /* DatePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePeriod.swift; sourceTree = "<group>"; };
-		3522AFE82091C49300D17AAF /* ReportFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFactory.swift; sourceTree = "<group>"; };
+		3522AFE82091C49300D17AAF /* ReportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportManager.swift; sourceTree = "<group>"; };
 		3522AFEC2091C60200D17AAF /* ExpensesReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesReport.swift; sourceTree = "<group>"; };
 		3522AFEE2091E1BD00D17AAF /* ReportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
 		3522AFF02091E4DB00D17AAF /* ExpensesReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesReportVC.swift; sourceTree = "<group>"; };
@@ -282,7 +282,7 @@
 		3522B0012092F8A700D17AAF /* Supported */ = {
 			isa = PBXGroup;
 			children = (
-				3522AFE82091C49300D17AAF /* ReportFactory.swift */,
+				3522AFE82091C49300D17AAF /* ReportManager.swift */,
 				3522AFE62091C3EC00D17AAF /* DatePeriod.swift */,
 			);
 			path = Supported;
@@ -656,7 +656,7 @@
 				356B12DA208DEE35007AF145 /* CreateTransactionVC.swift in Sources */,
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
 				3566A7912087413A0099BE67 /* DataModel.xcdatamodeld in Sources */,
-				3522AFE92091C49300D17AAF /* ReportFactory.swift in Sources */,
+				3522AFE92091C49300D17AAF /* ReportManager.swift in Sources */,
 				35655C8F209493D4009FA85B /* CreateAccountVM.swift in Sources */,
 				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
 				3522AFEF2091E1BD00D17AAF /* ReportCell.swift in Sources */,
