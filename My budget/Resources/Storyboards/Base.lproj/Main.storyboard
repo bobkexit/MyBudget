@@ -216,12 +216,20 @@
                                     <constraint firstItem="BLo-KQ-PUq" firstAttribute="leading" secondItem="6cQ-k1-NOR" secondAttribute="leading" constant="15" id="gIJ-YQ-cOJ"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*only for russian checks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOV-Ic-ohs">
+                                <rect key="frame" x="120" y="68" width="136" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1BL-Z1-KpY" firstAttribute="bottom" secondItem="cOT-25-hyh" secondAttribute="bottom" id="Hoy-Ku-TD4"/>
                             <constraint firstItem="1BL-Z1-KpY" firstAttribute="leading" secondItem="cOT-25-hyh" secondAttribute="leading" id="Mq9-S3-0va"/>
                             <constraint firstItem="6cQ-k1-NOR" firstAttribute="trailing" secondItem="cOT-25-hyh" secondAttribute="trailing" id="cuH-ey-Q6m"/>
+                            <constraint firstItem="TOV-Ic-ohs" firstAttribute="centerX" secondItem="hkx-6h-KSP" secondAttribute="centerX" id="e9l-It-Zk1"/>
+                            <constraint firstItem="TOV-Ic-ohs" firstAttribute="top" secondItem="6cQ-k1-NOR" secondAttribute="bottom" constant="8" id="etI-jI-Kik"/>
                             <constraint firstItem="6cQ-k1-NOR" firstAttribute="top" secondItem="hkx-6h-KSP" secondAttribute="top" id="gbw-PB-2AF"/>
                             <constraint firstItem="1BL-Z1-KpY" firstAttribute="trailing" secondItem="cOT-25-hyh" secondAttribute="trailing" id="heb-9z-3s6"/>
                             <constraint firstItem="6cQ-k1-NOR" firstAttribute="leading" secondItem="cOT-25-hyh" secondAttribute="leading" id="x8t-6R-NLz"/>
@@ -231,6 +239,7 @@
                     <navigationItem key="navigationItem" id="zU3-6e-C5e"/>
                     <connections>
                         <outlet property="messageLbl" destination="1BL-Z1-KpY" id="xqz-4f-E4n"/>
+                        <outlet property="tipsLabel" destination="TOV-Ic-ohs" id="ecI-iU-Qmv"/>
                         <outlet property="toolbarView" destination="6cQ-k1-NOR" id="XrG-FO-uT1"/>
                     </connections>
                 </viewController>

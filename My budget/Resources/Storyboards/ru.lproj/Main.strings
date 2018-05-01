@@ -142,3 +142,6 @@
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "zIn-ke-144"; */
 "zIn-ke-144.normalTitle" = "Отменить";
+
+/* Class = "UILabel"; text = "*only for russian checks:"; ObjectID = "TOV-Ic-ohs"; */
+"TOV-Ic-ohs.text" = "*только для российских чеков";

@@ -24,6 +24,7 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     @IBOutlet weak var messageLbl: UILabel!
     @IBOutlet weak var toolbarView: UIView!
+    @IBOutlet weak var tipsLabel: UILabel!
     
 
     override func viewDidLoad() {
@@ -148,6 +149,7 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func bringSubviewToFront() {
+        view.bringSubview(toFront: tipsLabel)
         view.bringSubview(toFront: messageLbl)
         view.bringSubview(toFront: toolbarView)
     }
