@@ -42,7 +42,7 @@ class ExpensesReport: BaseReport {
         
         request.sortDescriptors = [NSSortDescriptor(key: "amount", ascending: false),
                                    NSSortDescriptor(key: "category", ascending: true)]
-        request.fetchLimit = 5
+        request.fetchLimit = Constants.Reports.countCategoriesToShow 
 
         
         var results:[[String:AnyObject]]?

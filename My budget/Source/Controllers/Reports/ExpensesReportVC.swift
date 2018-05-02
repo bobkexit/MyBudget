@@ -42,9 +42,11 @@ class ExpensesReportVC: BaseReportVC {
                 }
             }
             
-            let minEntry = chartDataEntry.min {a, b in a.value < b.value}
-            minEntry?.label = NSLocalizedString("etc.", comment: "")
-            
+            if chartDataEntry.count == Constants.Reports.countCategoriesToShow {
+                let minEntry = chartDataEntry.min {a, b in a.value < b.value}
+                minEntry?.label = NSLocalizedString("etc.", comment: "")
+            }
+           
             let dataSet = PieChartDataSet(values: chartDataEntry, label: nil)
             dataSet.colors = ChartColorTemplates.colorful()
             dataSet.valueColors = [UIColor.white]

@@ -58,6 +58,14 @@ class TransactionsVC: BaseTableVC {
         alertController.addAction(createIncome)
         alertController.addAction(createExpense)
         
+        if let popoverPresentationController =  alertController.popoverPresentationController {
+            popoverPresentationController.permittedArrowDirections = .up
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.maxX, y: 0, width: 0, height: 0)
+        }
+        
+       
+        
         self.present(alertController, animated: true) {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissAlertController))
             alertController.view.superview?.subviews[0].addGestureRecognizer(tapGesture)

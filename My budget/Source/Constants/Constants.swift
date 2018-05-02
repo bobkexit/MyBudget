@@ -63,5 +63,9 @@ struct Constants {
             static let initialBalanceId = "INIT_BALANCE_ID"
         }
     }
+    
+    struct Reports {
+        static let countCategoriesToShow = 5
+    }
 }
 

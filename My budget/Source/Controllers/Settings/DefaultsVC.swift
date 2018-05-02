@@ -154,6 +154,7 @@ class DefaultsVC: BaseVC {
             
             let currencyCode = currencies[row]
             userSettings.set(defaultCurrencyCode: currencyCode)
+            NotificationCenter.default.post(name: .transaction, object: nil)
             
         } else if pickerView == accountPicker {
 

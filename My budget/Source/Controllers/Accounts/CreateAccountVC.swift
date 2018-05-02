@@ -67,6 +67,8 @@ class CreateAccountVC: BaseVC {
             return
         }
         
+        self.dismissKeyboard()
+        
         viewModel.save()
         
         NotificationCenter.default.post(name: .account, object: nil)
