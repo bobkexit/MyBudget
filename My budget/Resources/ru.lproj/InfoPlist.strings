@@ -8,3 +8,5 @@
 
 "CFBundleDisplayName" = "Fluent Budget";
 "CFBundleName" = "Fluent Budget";
+"NSHumanReadableCopyright" = "Copyright © 2018 Маторин Н.Ю.";
+"NSCameraUsageDescription" = "Приложению требуется доступ к камере, чтобы сканировать QR код";
