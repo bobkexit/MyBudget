@@ -65,9 +65,8 @@ class CreateTransactionVC: BaseTransactionVC {
         }
         
         viewModel.save()
-        //transactionWasSaved = true
-    
-        NotificationCenter.default.post(name: .transaction, object: nil)
+        
+        
         self.navigationController?.popViewController(animated: true)
     }
     

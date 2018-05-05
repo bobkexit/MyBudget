@@ -36,7 +36,7 @@ class ExpensesReportVC: BaseReportVC {
                 
                 if let category = result["category"] as? String, let amount = result["totalAmount"] as? NSNumber {
                                        
-                    let entry = PieChartDataEntry(value: fabs(amount.doubleValue), label: category)
+                    let entry = PieChartDataEntry(value: fabs(amount.doubleValue), label: Helper.shared.trancate(Phrase: category))
                     
                     chartDataEntry.append(entry)
                 }

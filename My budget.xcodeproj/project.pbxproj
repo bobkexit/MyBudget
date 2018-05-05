@@ -70,6 +70,7 @@
 		357E0D28206E858B00205970 /* UITextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D27206E858B00205970 /* UITextFieldExt.swift */; };
 		357E0D2A206E97F100205970 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D29206E97F100205970 /* BaseVC.swift */; };
 		357E0D2C206E9F2B00205970 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D2B206E9F2B00205970 /* Helper.swift */; };
+		3595DA6E209D777C008DFFA7 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595DA6D209D777C008DFFA7 /* StringExt.swift */; };
 		35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3011206108FE0041F195 /* CategoriesVC.swift */; };
 		35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3015206111230041F195 /* EnumCollectionExt.swift */; };
 		35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE30192061188A0041F195 /* CategoryCell.swift */; };
@@ -149,6 +150,7 @@
 		357E0D27206E858B00205970 /* UITextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
 		357E0D29206E97F100205970 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		357E0D2B206E9F2B00205970 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		3595DA6D209D777C008DFFA7 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		35EE3011206108FE0041F195 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		35EE3015206111230041F195 /* EnumCollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollectionExt.swift; sourceTree = "<group>"; };
 		35EE30192061188A0041F195 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 				35EE3015206111230041F195 /* EnumCollectionExt.swift */,
 				3515E0F92073655900ED0363 /* NotificationNameExt.swift */,
 				357E0D2B206E9F2B00205970 /* Helper.swift */,
+				3595DA6D209D777C008DFFA7 /* StringExt.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				3522AFE92091C49300D17AAF /* ReportManager.swift in Sources */,
 				35655C8F209493D4009FA85B /* CreateAccountVM.swift in Sources */,
 				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
+				3595DA6E209D777C008DFFA7 /* StringExt.swift in Sources */,
 				3522AFEF2091E1BD00D17AAF /* ReportCell.swift in Sources */,
 				3522AFF82092331D00D17AAF /* PercentageValueFormatter.swift in Sources */,
 				3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */,

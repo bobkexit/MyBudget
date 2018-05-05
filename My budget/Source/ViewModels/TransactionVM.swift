@@ -139,8 +139,15 @@ class TransactionVM: BaseViewModel<Transaction> {
     }
         
     override func save() {
+        
+        if self.object.amount == 0 {
+            return
+        }
+        
         super.save()
+        
         isNew = false
+        NotificationCenter.default.post(name: .transaction, object: nil)
     }
     
     deinit {

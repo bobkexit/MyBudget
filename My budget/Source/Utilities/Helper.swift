@@ -22,6 +22,22 @@ final class Helper {
         
     }
     
+    func trancate(Phrase phrase: String) -> String {
+            
+        var trancatedWords = [String]()
+        
+        let words = phrase.components(separatedBy: " ")
+        words.forEach {
+            let length = ($0.count > 10 ? 3 : $0.count)
+            let trancatedWord = $0.trunc(length: length, trailing: ".")
+            trancatedWords.append(trancatedWord)
+        }
+        
+        let result = trancatedWords.joined(separator: " ")
+        
+        return result
+    }
+    
     func createFormatter(for type: FormatterType) -> Formatter {
         
         switch type {

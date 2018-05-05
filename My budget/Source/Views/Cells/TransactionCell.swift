@@ -26,7 +26,11 @@ class TransactionCell: BaseCell {
         self.transactionViewModel = viewModel
         
         accountImg.image = transactionViewModel.accountType?.image
-        categoryLbl.text = transactionViewModel.category
+        
+        if let categoryName = transactionViewModel.category {
+              categoryLbl.text = Helper.shared.trancate(Phrase: categoryName)
+        }
+        
         amountLbl.text =  transactionViewModel.currencyAmount
         amountLbl.textColor = transactionViewModel.color
         dateLbl.text = transactionViewModel.date
