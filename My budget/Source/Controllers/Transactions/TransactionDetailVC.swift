@@ -33,11 +33,8 @@ class TransactionDetailVC: BaseTransactionVC {
     // MARK: - View Actions
     
     @objc func datePickerValueChannged(_ sender: Any) {
-        guard let dateFormatter = Helper.shared.createFormatter(for: .date) as? DateFormatter else {
-            return
-        }
-        selectedDate = datePicker.date
-        dateTxt.text = dateFormatter.string(from: selectedDate!)
+        viewModel.set(datePicker.date, forKey: "date")
+        updateUI()
     }
     
     // MARK: - View Methods
@@ -45,7 +42,8 @@ class TransactionDetailVC: BaseTransactionVC {
     override func setupUI() {
         super.setupUI()
         
-        setupDatePickerView(datePicker, action: #selector(datePickerValueChannged(_:)))
+        datePicker.addTarget(self, action: #selector(datePickerValueChannged(_:)), for: .valueChanged)
+        //setupDatePickerView(datePicker, action: #selector(datePickerValueChannged(_:)))
         
         setupTextField(accountTxt, withInputView: accountPicker, andInputAccessoryView: toolBarForPicker)
         setupTextField(categoryTxt, withInputView: categoryPicker, andInputAccessoryView: toolBarForPicker)
