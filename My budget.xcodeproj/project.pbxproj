@@ -511,7 +511,6 @@
 				353B47BF205690B3008281B0 /* Frameworks */,
 				353B47C0205690B3008281B0 /* Resources */,
 				10151550EBA8810B03B16E3D /* [CP] Embed Pods Frameworks */,
-				A2A2DCB9A98F9C7683889771 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -579,7 +578,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-My budget/Pods-My budget-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-My budget/Pods-My budget-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/TableFlip/TableFlip.framework",
 			);
@@ -590,22 +589,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-My budget/Pods-My budget-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A2A2DCB9A98F9C7683889771 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-My budget/Pods-My budget-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-My budget/Pods-My budget-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B81FA6B33ADB550D7132DB4F /* [CP] Check Pods Manifest.lock */ = {
