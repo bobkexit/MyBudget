@@ -22,8 +22,8 @@ class SettingsCoordinator: BaseCoordinator {
     }
     
     private func showSettings() {
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .red
+        let viewController = SettingsViewController()
+        viewController.tabBarItem = UITabBarItem(title: "Settings", image: .gearShape, tag: 3)
         navigationConttroller.setViewControllers([viewController], animated: true)
     }
 }

@@ -22,8 +22,8 @@ class ReportsCoordinator: BaseCoordinator {
     }
     
     private func showReports() {
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .blue
+        let viewController = ReportsViewController()
+        viewController.tabBarItem = UITabBarItem(title: "Reports", image: .chartBarDocHorizontal, tag: 1)
         navigationConttroller.setViewControllers([viewController], animated: true)
     }
 }

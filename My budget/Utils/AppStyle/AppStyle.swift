@@ -17,3 +17,11 @@ extension UIColor {
     public static let richBlackForga29 = UIColor(hex: "#010B14")
     public static let richBlackForga30 = UIColor(hex: "#011627")
 }
+
+extension UIImage {
+    public static let rubleSign = UIImage(systemName: "rublesign.circle")
+    public static let dollarSign = UIImage(systemName: "dollarsign.circle")
+    public static let euroSign = UIImage(systemName: "eurosign.circle")
+    public static let gearShape = UIImage(named: "gearshape.2")
+    public static let chartBarDocHorizontal = UIImage(named: "chart.bar.doc.horizontal")
+}

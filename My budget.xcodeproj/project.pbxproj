@@ -88,6 +88,9 @@
 		3598144C24C0C7BF00788E84 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598144B24C0C7BF00788E84 /* UIColor+Ext.swift */; };
 		3598144E24C0C7F300788E84 /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598144D24C0C7F300788E84 /* AppStyle.swift */; };
 		3598145024C0D1BA00788E84 /* LoadingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598144F24C0D1BA00788E84 /* LoadingPresenter.swift */; };
+		3598145624C0E76000788E84 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145524C0E76000788E84 /* ReportsViewController.swift */; };
+		3598145824C0E77100788E84 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145724C0E77100788E84 /* TransactionsViewController.swift */; };
+		3598145A24C0E77C00788E84 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145924C0E77C00788E84 /* SettingsViewController.swift */; };
 		35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3011206108FE0041F195 /* CategoriesVC.swift */; };
 		35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3015206111230041F195 /* EnumCollectionExt.swift */; };
 		35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE30192061188A0041F195 /* CategoryCell.swift */; };
@@ -182,6 +185,9 @@
 		3598144B24C0C7BF00788E84 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		3598144D24C0C7F300788E84 /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
 		3598144F24C0D1BA00788E84 /* LoadingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPresenter.swift; sourceTree = "<group>"; };
+		3598145524C0E76000788E84 /* ReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
+		3598145724C0E77100788E84 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
+		3598145924C0E77C00788E84 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		35EE3011206108FE0041F195 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		35EE3015206111230041F195 /* EnumCollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollectionExt.swift; sourceTree = "<group>"; };
 		35EE30192061188A0041F195 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -542,6 +548,9 @@
 			isa = PBXGroup;
 			children = (
 				3598143724C0BAC200788E84 /* Loading */,
+				3598145224C0E72700788E84 /* Reports */,
+				3598145324C0E73300788E84 /* Transactions */,
+				3598145424C0E73B00788E84 /* Settings */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -595,6 +604,30 @@
 				3598144624C0C45900788E84 /* loading4.json */,
 			);
 			path = animations;
+			sourceTree = "<group>";
+		};
+		3598145224C0E72700788E84 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				3598145524C0E76000788E84 /* ReportsViewController.swift */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
+		3598145324C0E73300788E84 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				3598145724C0E77100788E84 /* TransactionsViewController.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		3598145424C0E73B00788E84 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3598145924C0E77C00788E84 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		35EE3013206110DA0041F195 /* Utilities */ = {
@@ -766,10 +799,12 @@
 			files = (
 				3566A7A9208A73B80099BE67 /* BaseDataManager.swift in Sources */,
 				351E3E8E205BDC22004A3414 /* BaseTabBarController.swift in Sources */,
+				3598145824C0E77100788E84 /* TransactionsViewController.swift in Sources */,
 				3566A7AF208A89930099BE67 /* IncomeCategoryManager.swift in Sources */,
 				3598144E24C0C7F300788E84 /* AppStyle.swift in Sources */,
 				357E0D2A206E97F100205970 /* BaseVC.swift in Sources */,
 				351E3E8A205BDB95004A3414 /* TransactionsVC.swift in Sources */,
+				3598145A24C0E77C00788E84 /* SettingsViewController.swift in Sources */,
 				35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */,
 				3566A7AD208A79DD0099BE67 /* DataManager.swift in Sources */,
 				3522B0072093990300D17AAF /* AccountBalanceVM.swift in Sources */,
@@ -816,6 +851,7 @@
 				3522B0052093849300D17AAF /* AccountBalanceCell.swift in Sources */,
 				356B12DE208DF6C7007AF145 /* BaseTransactionVC.swift in Sources */,
 				3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */,
+				3598145624C0E76000788E84 /* ReportsViewController.swift in Sources */,
 				3531C59D207F2D730055D0B4 /* ViewModelFactory.swift in Sources */,
 				3531C599207E7C4B0055D0B4 /* BaseViewModel.swift in Sources */,
 				355BB03D24C04FA20080BE13 /* ReportsCoordinator.swift in Sources */,

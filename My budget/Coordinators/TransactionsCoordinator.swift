@@ -22,8 +22,8 @@ class TransactionsCoordinator: BaseCoordinator {
     }
     
     private func showTransactions() {
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .orange
+        let viewController = TransactionsViewController()
+        viewController.tabBarItem = UITabBarItem(title: "Transactions", image: .rubleSign, tag: 2)
         navigationConttroller.setViewControllers([viewController], animated: true)
     }
 }

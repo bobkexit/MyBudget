@@ -53,17 +53,20 @@ class AppCoordinator: BaseCoordinator {
     private func configureMainScene() {
         var viewControllers: [UINavigationController] = []
         
-        let transactionsCoordinator = TransactionsCoordinator()
-        viewControllers.append(transactionsCoordinator.navigationConttroller)
-    
         let reportsCoordinator = ReportsCoordinator()
         viewControllers.append(reportsCoordinator.navigationConttroller)
+        
+        let transactionsCoordinator = TransactionsCoordinator()
+        viewControllers.append(transactionsCoordinator.navigationConttroller)
         
         let settingsCoordinator = SettingsCoordinator()
         viewControllers.append(settingsCoordinator.navigationConttroller)
       
-        rootViewController.setViewControllers(viewControllers, animated: true)
-        
         add(transactionsCoordinator, reportsCoordinator, settingsCoordinator)
+        
+        rootViewController.setViewControllers(viewControllers, animated: false)
+        rootViewController.tabBar.tintColor = .orangePeel
+        rootViewController.tabBar.barTintColor = .richBlackForga29
+        rootViewController.selectedIndex = 1
     }
 }
