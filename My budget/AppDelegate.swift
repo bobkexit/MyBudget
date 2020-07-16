@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,9 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        //InstallationManager.shared.installDataIfNeeded()
+        InstallationManager.shared.installDataIfNeeded()
         
-        
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        self.window = window
+        coordinator = AppCoordinator(window: window, realm: realm, persistentContainer: persistentContainer)
+        coordinator?.start()
     
         return true
     }
@@ -47,6 +51,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         self.saveContext()
     }
+    
+    // MARK: - Realm
+    
+    private lazy var realm: Realm = {
+        var config = Realm.Configuration.defaultConfiguration
+        config.schemaVersion = 1
+        config.deleteRealmIfMigrationNeeded = true
+        
+        Realm.Configuration.defaultConfiguration = config
+        
+        do {
+            let realm = try Realm()
+            return realm
+        } catch {
+            fatalError("Failed to create realm instance")
+        }
+    } ()
     
     // MARK: - Core Data stack
     
@@ -80,6 +101,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data Saving support
     
     func saveContext () {
+        //persistentContainer.persistentStoreCoordinator.managedObjectID(forURIRepresentation: <#T##URL#>)
+        
+        
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -92,7 +116,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
-
 }
 

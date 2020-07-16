@@ -15,14 +15,10 @@ protocol Coordinator: AnyObject {
 class BaseCoordinator: Coordinator {
     private var childCoordinators: [Coordinator] = []
     
-    init() {
-        
-    }
-    
-    func start() {
-        
-    }
-    
+    func start() { }
+}
+
+extension BaseCoordinator {
     func add(_ child: Coordinator) {
         childCoordinators.append(child)
     }
@@ -30,5 +26,12 @@ class BaseCoordinator: Coordinator {
     func remove(_ child: Coordinator) {
         guard let index = childCoordinators.firstIndex(where: { $0 === child }) else { return }
         childCoordinators.remove(at: index)
+    }
+    
+    func add(_ children: Coordinator...) {
+        for child in children {
+            add(child)
+            child.start()
+        }
     }
 }

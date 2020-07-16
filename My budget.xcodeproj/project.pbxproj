@@ -78,6 +78,16 @@
 		357E0D2A206E97F100205970 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D29206E97F100205970 /* BaseVC.swift */; };
 		357E0D2C206E9F2B00205970 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D2B206E9F2B00205970 /* Helper.swift */; };
 		3595DA6E209D777C008DFFA7 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595DA6D209D777C008DFFA7 /* StringExt.swift */; };
+		3598142E24C05B8F00788E84 /* AccountObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598142D24C05B8F00788E84 /* AccountObject.swift */; };
+		3598143024C05E4600788E84 /* CategoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598142F24C05E4600788E84 /* CategoryObject.swift */; };
+		3598143224C05E5E00788E84 /* TransactionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598143124C05E5E00788E84 /* TransactionObject.swift */; };
+		3598143524C0691700788E84 /* RealmMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598143424C0691700788E84 /* RealmMigration.swift */; };
+		3598143924C0BAD700788E84 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598143824C0BAD700788E84 /* LoadingViewController.swift */; };
+		3598143C24C0BC6D00788E84 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3598143B24C0BC6D00788E84 /* Lottie */; };
+		3598144724C0C45A00788E84 /* loading4.json in Resources */ = {isa = PBXBuildFile; fileRef = 3598144624C0C45900788E84 /* loading4.json */; };
+		3598144C24C0C7BF00788E84 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598144B24C0C7BF00788E84 /* UIColor+Ext.swift */; };
+		3598144E24C0C7F300788E84 /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598144D24C0C7F300788E84 /* AppStyle.swift */; };
+		3598145024C0D1BA00788E84 /* LoadingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598144F24C0D1BA00788E84 /* LoadingPresenter.swift */; };
 		35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3011206108FE0041F195 /* CategoriesVC.swift */; };
 		35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3015206111230041F195 /* EnumCollectionExt.swift */; };
 		35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE30192061188A0041F195 /* CategoryCell.swift */; };
@@ -163,6 +173,15 @@
 		357E0D29206E97F100205970 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		357E0D2B206E9F2B00205970 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		3595DA6D209D777C008DFFA7 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		3598142D24C05B8F00788E84 /* AccountObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountObject.swift; sourceTree = "<group>"; };
+		3598142F24C05E4600788E84 /* CategoryObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryObject.swift; sourceTree = "<group>"; };
+		3598143124C05E5E00788E84 /* TransactionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionObject.swift; sourceTree = "<group>"; };
+		3598143424C0691700788E84 /* RealmMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigration.swift; sourceTree = "<group>"; };
+		3598143824C0BAD700788E84 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		3598144624C0C45900788E84 /* loading4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading4.json; sourceTree = "<group>"; };
+		3598144B24C0C7BF00788E84 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		3598144D24C0C7F300788E84 /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
+		3598144F24C0D1BA00788E84 /* LoadingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPresenter.swift; sourceTree = "<group>"; };
 		35EE3011206108FE0041F195 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		35EE3015206111230041F195 /* EnumCollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollectionExt.swift; sourceTree = "<group>"; };
 		35EE30192061188A0041F195 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -185,6 +204,7 @@
 				355BB03324C04C800080BE13 /* RealmSwift in Frameworks */,
 				355BB03124C04C800080BE13 /* Realm in Frameworks */,
 				615AA698DB21FF966812962E /* Pods_My_budget.framework in Frameworks */,
+				3598143C24C0BC6D00788E84 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,9 +376,13 @@
 		353B47C4205690B3008281B0 /* My budget */ = {
 			isa = PBXGroup;
 			children = (
+				3598144924C0C7A700788E84 /* Utils */,
 				353B47C5205690B3008281B0 /* AppDelegate.swift */,
 				355BB03524C04C9E0080BE13 /* Coordinators */,
 				355BB03424C04C8A0080BE13 /* Models */,
+				3598143324C068F900788E84 /* DataBaseMigration */,
+				3598143624C0BAAB00788E84 /* Scenes */,
+				3598143D24C0BC7400788E84 /* Assets */,
 				355BB02E24C04B380080BE13 /* Legacy */,
 				353B47D9205930B6008281B0 /* Resources */,
 			);
@@ -395,7 +419,6 @@
 			isa = PBXGroup;
 			children = (
 				35FC07A9209AD60B00A9D210 /* Info.plist */,
-				356E06EF20693E25004034AE /* Assets.xcassets */,
 				353B47D8205930A6008281B0 /* Storyboards */,
 				35655C922094CC5B009FA85B /* Localizable.strings */,
 				35FC07B3209AE1A800A9D210 /* InfoPlist.strings */,
@@ -444,6 +467,9 @@
 		355BB03424C04C8A0080BE13 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3598142D24C05B8F00788E84 /* AccountObject.swift */,
+				3598142F24C05E4600788E84 /* CategoryObject.swift */,
+				3598143124C05E5E00788E84 /* TransactionObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -502,6 +528,73 @@
 				357E0D27206E858B00205970 /* UITextFieldExt.swift */,
 			);
 			path = Extentions;
+			sourceTree = "<group>";
+		};
+		3598143324C068F900788E84 /* DataBaseMigration */ = {
+			isa = PBXGroup;
+			children = (
+				3598143424C0691700788E84 /* RealmMigration.swift */,
+			);
+			path = DataBaseMigration;
+			sourceTree = "<group>";
+		};
+		3598143624C0BAAB00788E84 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3598143724C0BAC200788E84 /* Loading */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3598143724C0BAC200788E84 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				3598143824C0BAD700788E84 /* LoadingViewController.swift */,
+				3598144F24C0D1BA00788E84 /* LoadingPresenter.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		3598143D24C0BC7400788E84 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				3598145124C0DAB300788E84 /* animations */,
+				356E06EF20693E25004034AE /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		3598144824C0C78500788E84 /* AppStyle */ = {
+			isa = PBXGroup;
+			children = (
+				3598144D24C0C7F300788E84 /* AppStyle.swift */,
+			);
+			path = AppStyle;
+			sourceTree = "<group>";
+		};
+		3598144924C0C7A700788E84 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3598144824C0C78500788E84 /* AppStyle */,
+				3598144A24C0C7B100788E84 /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3598144A24C0C7B100788E84 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3598144B24C0C7BF00788E84 /* UIColor+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3598145124C0DAB300788E84 /* animations */ = {
+			isa = PBXGroup;
+			children = (
+				3598144624C0C45900788E84 /* loading4.json */,
+			);
+			path = animations;
 			sourceTree = "<group>";
 		};
 		35EE3013206110DA0041F195 /* Utilities */ = {
@@ -563,6 +656,7 @@
 			packageProductDependencies = (
 				355BB03024C04C800080BE13 /* Realm */,
 				355BB03224C04C800080BE13 /* RealmSwift */,
+				3598143B24C0BC6D00788E84 /* Lottie */,
 			);
 			productName = "My budget";
 			productReference = 353B47C2205690B3008281B0 /* My budget.app */;
@@ -597,6 +691,7 @@
 			mainGroup = 353B47B9205690B3008281B0;
 			packageReferences = (
 				355BB02F24C04C800080BE13 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				3598143A24C0BC6D00788E84 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 353B47C3205690B3008281B0 /* Products */;
 			projectDirPath = "";
@@ -614,6 +709,7 @@
 			files = (
 				35655C942094CC5B009FA85B /* Localizable.strings in Resources */,
 				353B47D0205690B3008281B0 /* LaunchScreen.storyboard in Resources */,
+				3598144724C0C45A00788E84 /* loading4.json in Resources */,
 				353B47CB205690B3008281B0 /* Main.storyboard in Resources */,
 				356E06F020693E26004034AE /* Assets.xcassets in Resources */,
 				35FC07B1209AE1A800A9D210 /* InfoPlist.strings in Resources */,
@@ -671,6 +767,7 @@
 				3566A7A9208A73B80099BE67 /* BaseDataManager.swift in Sources */,
 				351E3E8E205BDC22004A3414 /* BaseTabBarController.swift in Sources */,
 				3566A7AF208A89930099BE67 /* IncomeCategoryManager.swift in Sources */,
+				3598144E24C0C7F300788E84 /* AppStyle.swift in Sources */,
 				357E0D2A206E97F100205970 /* BaseVC.swift in Sources */,
 				351E3E8A205BDB95004A3414 /* TransactionsVC.swift in Sources */,
 				35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */,
@@ -679,6 +776,7 @@
 				3522AFF32091E5B800D17AAF /* BaseReportVC.swift in Sources */,
 				35EE301E206118BA0041F195 /* BaseCell.swift in Sources */,
 				3531C595207E76080055D0B4 /* CategoryVM.swift in Sources */,
+				3598143924C0BAD700788E84 /* LoadingViewController.swift in Sources */,
 				357E0D28206E858B00205970 /* UITextFieldExt.swift in Sources */,
 				356E06FA206D59E1004034AE /* DesignableViews.swift in Sources */,
 				356E06F4206A6C9C004034AE /* TransactionDetailVC.swift in Sources */,
@@ -728,14 +826,20 @@
 				3522AFFE2092F7D200D17AAF /* BaseReport.swift in Sources */,
 				35F012132063B9D7008EE633 /* InstallationManager.swift in Sources */,
 				3522AFE72091C3EC00D17AAF /* DatePeriod.swift in Sources */,
+				3598143524C0691700788E84 /* RealmMigration.swift in Sources */,
 				355BB03B24C04E950080BE13 /* TransactionsCoordinator.swift in Sources */,
 				3567747C205FA8EC00743FCA /* Constants.swift in Sources */,
 				356B12E0208E0DE6007AF145 /* Operation.swift in Sources */,
+				3598143224C05E5E00788E84 /* TransactionObject.swift in Sources */,
 				353B47C6205690B3008281B0 /* AppDelegate.swift in Sources */,
 				3566A7B5208B00680099BE67 /* AccountType.swift in Sources */,
 				355BB03F24C04FE60080BE13 /* SettingsCoordinator.swift in Sources */,
+				3598142E24C05B8F00788E84 /* AccountObject.swift in Sources */,
+				3598144C24C0C7BF00788E84 /* UIColor+Ext.swift in Sources */,
 				3522AFF52092192300D17AAF /* TransactionExt.swift in Sources */,
+				3598145024C0D1BA00788E84 /* LoadingPresenter.swift in Sources */,
 				356E06F6206A755E004034AE /* GradientView.swift in Sources */,
+				3598143024C05E4600788E84 /* CategoryObject.swift in Sources */,
 				351E3E8C205BDBB4004A3414 /* SettingsVC.swift in Sources */,
 				3566A7B1208A8ADD0099BE67 /* ExpenseCategoryManager.swift in Sources */,
 				3522AFFA209235D000D17AAF /* CurrencyValueFormatter.swift in Sources */,
@@ -971,6 +1075,14 @@
 				minimumVersion = 5.3.0;
 			};
 		};
+		3598143A24C0BC6D00788E84 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.8;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -983,6 +1095,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 355BB02F24C04C800080BE13 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		3598143B24C0BC6D00788E84 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3598143A24C0BC6D00788E84 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 

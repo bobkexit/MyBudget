@@ -7,43 +7,63 @@
 //
 
 import UIKit
+import CoreData
+import RealmSwift
 
 class AppCoordinator: BaseCoordinator {
     
     private var window: UIWindow
     
+    private let persistentContainer: NSPersistentContainer
+    
+    private let realm: Realm
+    
+    private lazy var migration = RealmMigration(viewContext: persistentContainer.viewContext, realm: realm)
+    
     private lazy var rootViewController: UITabBarController = UITabBarController()
     
-    init(window: UIWindow) {
+    init(window: UIWindow, realm: Realm, persistentContainer: NSPersistentContainer) {
         self.window = window
+        self.persistentContainer = persistentContainer
+        self.realm = realm
     }
     
     override func start() {
-        configureRootViewController()
-        window.rootViewController = rootViewController
+        migration.isCompleted ? showMainScene() : showLoadingScene()
         window.makeKeyAndVisible()
     }
+            
+    private func showLoadingScene() {
+        let viewController = LoadingViewController()
+        
+        let presenter = LoadingPresenter(migration: migration, view: viewController) { [unowned self] in
+            self.showMainScene()
+        }
+        migration.delegate = presenter
+        viewController.presenter = presenter
+        
+        window.rootViewController = viewController
+    }
     
-    private func configureRootViewController() {
+    private func showMainScene() {
+        configureMainScene()
+        window.rootViewController = rootViewController
+    }
+    
+    private func configureMainScene() {
         var viewControllers: [UINavigationController] = []
         
         let transactionsCoordinator = TransactionsCoordinator()
         viewControllers.append(transactionsCoordinator.navigationConttroller)
-        transactionsCoordinator.start()
-        add(transactionsCoordinator)
-        
+    
         let reportsCoordinator = ReportsCoordinator()
         viewControllers.append(reportsCoordinator.navigationConttroller)
-        reportsCoordinator.start()
-        add(reportsCoordinator)
-        
         
         let settingsCoordinator = SettingsCoordinator()
         viewControllers.append(settingsCoordinator.navigationConttroller)
-        settingsCoordinator.start()
-        add(settingsCoordinator)
-        
+      
         rootViewController.setViewControllers(viewControllers, animated: true)
+        
+        add(transactionsCoordinator, reportsCoordinator, settingsCoordinator)
     }
-    
 }
