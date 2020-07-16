@@ -59,11 +59,11 @@ class BaseTransactionVC: BaseVC {
     override func updateUI() {
         super.updateUI()
         
-        if let row = accounts.index(where: { $0.objectID.uriRepresentation() == viewModel.accountID }) {
+        if let row = accounts.firstIndex(where: { $0.objectID.uriRepresentation() == viewModel.accountID }) {
             accountPicker.selectRow(row, inComponent: 0, animated: true)
         }
         
-        if let row = categories.index(where: { $0.objectID.uriRepresentation() == viewModel.categoryId }) {
+        if let row = categories.firstIndex(where: { $0.objectID.uriRepresentation() == viewModel.categoryId }) {
             categoryPicker.selectRow(row, inComponent: 0, animated: true)
         }
     }

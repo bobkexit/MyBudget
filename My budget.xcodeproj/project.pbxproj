@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -43,6 +43,13 @@
 		353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B47C7205690B3008281B0 /* ReportsVC.swift */; };
 		353B47CB205690B3008281B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 353B47C9205690B3008281B0 /* Main.storyboard */; };
 		353B47D0205690B3008281B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 353B47CE205690B3008281B0 /* LaunchScreen.storyboard */; };
+		355BB03124C04C800080BE13 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 355BB03024C04C800080BE13 /* Realm */; };
+		355BB03324C04C800080BE13 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 355BB03224C04C800080BE13 /* RealmSwift */; };
+		355BB03724C04CB40080BE13 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355BB03624C04CB40080BE13 /* Coordinator.swift */; };
+		355BB03924C04CCD0080BE13 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355BB03824C04CCD0080BE13 /* AppCoordinator.swift */; };
+		355BB03B24C04E950080BE13 /* TransactionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355BB03A24C04E950080BE13 /* TransactionsCoordinator.swift */; };
+		355BB03D24C04FA20080BE13 /* ReportsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355BB03C24C04FA20080BE13 /* ReportsCoordinator.swift */; };
+		355BB03F24C04FE60080BE13 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355BB03E24C04FE50080BE13 /* SettingsCoordinator.swift */; };
 		3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563FF02205FD28C00B05E82 /* AccountsVC.swift */; };
 		3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563FF04205FD77900B05E82 /* BaseTableVC.swift */; };
 		35655C8F209493D4009FA85B /* CreateAccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35655C8E209493D4009FA85B /* CreateAccountVM.swift */; };
@@ -119,6 +126,11 @@
 		353B47C7205690B3008281B0 /* ReportsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsVC.swift; sourceTree = "<group>"; };
 		353B47CA205690B3008281B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		353B47CF205690B3008281B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		355BB03624C04CB40080BE13 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		355BB03824C04CCD0080BE13 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		355BB03A24C04E950080BE13 /* TransactionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsCoordinator.swift; sourceTree = "<group>"; };
+		355BB03C24C04FA20080BE13 /* ReportsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsCoordinator.swift; sourceTree = "<group>"; };
+		355BB03E24C04FE50080BE13 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		3563FF02205FD28C00B05E82 /* AccountsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsVC.swift; sourceTree = "<group>"; };
 		3563FF04205FD77900B05E82 /* BaseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableVC.swift; sourceTree = "<group>"; };
 		35655C8E209493D4009FA85B /* CreateAccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVM.swift; sourceTree = "<group>"; };
@@ -170,6 +182,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				355BB03324C04C800080BE13 /* RealmSwift in Frameworks */,
+				355BB03124C04C800080BE13 /* Realm in Frameworks */,
 				615AA698DB21FF966812962E /* Pods_My_budget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,7 +356,10 @@
 		353B47C4205690B3008281B0 /* My budget */ = {
 			isa = PBXGroup;
 			children = (
-				353B47D720593084008281B0 /* Source */,
+				353B47C5205690B3008281B0 /* AppDelegate.swift */,
+				355BB03524C04C9E0080BE13 /* Coordinators */,
+				355BB03424C04C8A0080BE13 /* Models */,
+				355BB02E24C04B380080BE13 /* Legacy */,
 				353B47D9205930B6008281B0 /* Resources */,
 			);
 			path = "My budget";
@@ -389,7 +406,6 @@
 		353B47DA205930F8008281B0 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				353B47C5205690B3008281B0 /* AppDelegate.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -415,6 +431,33 @@
 				356E06D9206666E3004034AE /* Extentions */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		355BB02E24C04B380080BE13 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				353B47D720593084008281B0 /* Source */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
+		355BB03424C04C8A0080BE13 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		355BB03524C04C9E0080BE13 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				355BB03624C04CB40080BE13 /* Coordinator.swift */,
+				355BB03824C04CCD0080BE13 /* AppCoordinator.swift */,
+				355BB03A24C04E950080BE13 /* TransactionsCoordinator.swift */,
+				355BB03C24C04FA20080BE13 /* ReportsCoordinator.swift */,
+				355BB03E24C04FE50080BE13 /* SettingsCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		3566A7A7208A73680099BE67 /* Data Managers */ = {
@@ -517,6 +560,10 @@
 			dependencies = (
 			);
 			name = "My budget";
+			packageProductDependencies = (
+				355BB03024C04C800080BE13 /* Realm */,
+				355BB03224C04C800080BE13 /* RealmSwift */,
+			);
 			productName = "My budget";
 			productReference = 353B47C2205690B3008281B0 /* My budget.app */;
 			productType = "com.apple.product-type.application";
@@ -533,6 +580,7 @@
 				TargetAttributes = {
 					353B47C1205690B3008281B0 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1160;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -547,6 +595,9 @@
 				ru,
 			);
 			mainGroup = 353B47B9205690B3008281B0;
+			packageReferences = (
+				355BB02F24C04C800080BE13 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 353B47C3205690B3008281B0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -652,6 +703,8 @@
 				35655C8F209493D4009FA85B /* CreateAccountVM.swift in Sources */,
 				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
 				3595DA6E209D777C008DFFA7 /* StringExt.swift in Sources */,
+				355BB03724C04CB40080BE13 /* Coordinator.swift in Sources */,
+				355BB03924C04CCD0080BE13 /* AppCoordinator.swift in Sources */,
 				3522AFEF2091E1BD00D17AAF /* ReportCell.swift in Sources */,
 				3522AFF82092331D00D17AAF /* PercentageValueFormatter.swift in Sources */,
 				3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */,
@@ -667,6 +720,7 @@
 				3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */,
 				3531C59D207F2D730055D0B4 /* ViewModelFactory.swift in Sources */,
 				3531C599207E7C4B0055D0B4 /* BaseViewModel.swift in Sources */,
+				355BB03D24C04FA20080BE13 /* ReportsCoordinator.swift in Sources */,
 				357E0D2C206E9F2B00205970 /* Helper.swift in Sources */,
 				3522AFFC2092F78D00D17AAF /* BalanceReport.swift in Sources */,
 				35EE301C206118AC0041F195 /* AccountCell.swift in Sources */,
@@ -674,10 +728,12 @@
 				3522AFFE2092F7D200D17AAF /* BaseReport.swift in Sources */,
 				35F012132063B9D7008EE633 /* InstallationManager.swift in Sources */,
 				3522AFE72091C3EC00D17AAF /* DatePeriod.swift in Sources */,
+				355BB03B24C04E950080BE13 /* TransactionsCoordinator.swift in Sources */,
 				3567747C205FA8EC00743FCA /* Constants.swift in Sources */,
 				356B12E0208E0DE6007AF145 /* Operation.swift in Sources */,
 				353B47C6205690B3008281B0 /* AppDelegate.swift in Sources */,
 				3566A7B5208B00680099BE67 /* AccountType.swift in Sources */,
+				355BB03F24C04FE60080BE13 /* SettingsCoordinator.swift in Sources */,
 				3522AFF52092192300D17AAF /* TransactionExt.swift in Sources */,
 				356E06F6206A755E004034AE /* GradientView.swift in Sources */,
 				351E3E8C205BDBB4004A3414 /* SettingsVC.swift in Sources */,
@@ -837,7 +893,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -850,11 +907,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M64J2FC2KN;
 				INFOPLIST_FILE = "$(SRCROOT)/My budget/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bobkexit.My-budget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -867,11 +927,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M64J2FC2KN;
 				INFOPLIST_FILE = "$(SRCROOT)/My budget/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bobkexit.My-budget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -898,6 +961,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		355BB02F24C04C800080BE13 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		355BB03024C04C800080BE13 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 355BB02F24C04C800080BE13 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		355BB03224C04C800080BE13 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 355BB02F24C04C800080BE13 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		3566A78F2087413A0099BE67 /* DataModel.xcdatamodeld */ = {

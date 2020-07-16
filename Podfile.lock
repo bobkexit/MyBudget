@@ -1,8 +1,8 @@
 PODS:
-  - Charts (3.1.1):
-    - Charts/Core (= 3.1.1)
-  - Charts/Core (3.1.1)
-  - TableFlip (1.2)
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
+  - TableFlip (1.3)
 
 DEPENDENCIES:
   - Charts
@@ -14,9 +14,9 @@ SPEC REPOS:
     - TableFlip
 
 SPEC CHECKSUMS:
-  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
-  TableFlip: 2ae22773412b295a7cbc54d95b44085bb28092f6
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  TableFlip: 2bd0375d9d0b29f7bbd500a236dba560a0e00618
 
 PODFILE CHECKSUM: 6f5b3c4fb9221d5ef1aeb0e73d8076c2e515ff74
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

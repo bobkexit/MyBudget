@@ -47,7 +47,7 @@ class ExpensesReportVC: BaseReportVC {
                 minEntry?.label = NSLocalizedString("etc.", comment: "")
             }
            
-            let dataSet = PieChartDataSet(values: chartDataEntry, label: nil)
+            let dataSet = PieChartDataSet(entries: chartDataEntry, label: nil)
             dataSet.colors = ChartColorTemplates.colorful()
             dataSet.valueColors = [UIColor.white]
             dataSet.sliceSpace = 2.0
@@ -76,8 +76,8 @@ class ExpensesReportVC: BaseReportVC {
         
         if UIDevice.current.orientation.isPortrait {
           
-            let attributes = [ NSAttributedStringKey.foregroundColor : UIColor.white,
-                               NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]
+            let attributes = [ NSAttributedString.Key.foregroundColor : UIColor.white,
+                               NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
             
             self.pieChart.centerAttributedText = NSAttributedString(string: NSLocalizedString("Expenses", comment: ""), attributes: attributes)
         } else {

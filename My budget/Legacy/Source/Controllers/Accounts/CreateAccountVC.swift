@@ -56,7 +56,7 @@ class CreateAccountVC: BaseVC {
         titleTxtField.text = viewModel.title
         accountTypeTxtField.text = viewModel.accountType.description
         
-        if let row = accountTypes.index(of: viewModel.accountType) {
+        if let row = accountTypes.firstIndex(of: viewModel.accountType) {
              accountTypePicker.selectRow(row, inComponent: 0, animated: true)
         }
     }
