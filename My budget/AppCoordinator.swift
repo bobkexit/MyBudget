@@ -51,12 +51,15 @@ class AppCoordinator: BaseCoordinator {
     }
     
     private func configureMainScene() {
+        let repository = Repository(realm: realm)
+        
         var viewControllers: [UINavigationController] = []
         
         let reportsCoordinator = ReportsCoordinator(navigationConttroller: makeNavigationController())
         viewControllers.append(reportsCoordinator.navigationConttroller)
         
-        let transactionsCoordinator = TransactionsCoordinator(navigationConttroller: makeNavigationController())
+        let transactionsCoordinator = TransactionsCoordinator(navigationConttroller: makeNavigationController(),
+                                                              repository: repository)
         viewControllers.append(transactionsCoordinator.navigationConttroller)
         
         let settingsCoordinator = SettingsCoordinator(navigationConttroller: makeNavigationController())

@@ -12,7 +12,7 @@ class TransactionCell: UITableViewCell {
     
     public static let reuseIdentifier = String(describing: TransactionCell.self)
     
-    private lazy var primaryLabel: UILabel = {
+    private(set) lazy var primaryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 17.0, weight: .regular)
@@ -20,7 +20,7 @@ class TransactionCell: UITableViewCell {
         return label
     } ()
     
-    private lazy var secondaryLabel: UILabel = {
+    private(set) lazy var secondaryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 12, weight: .regular)
@@ -28,7 +28,7 @@ class TransactionCell: UITableViewCell {
         return label
     } ()
     
-    private lazy var tertiaryLabel: UILabel = {
+    private(set) lazy var tertiaryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 17, weight: .regular)
@@ -78,13 +78,5 @@ class TransactionCell: UITableViewCell {
             primaryStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             primaryStackView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
         ])
-    }
-}
-
-extension TransactionCell {
-    func mockup() {
-        primaryLabel.text = "Long lnong long category "
-        secondaryLabel.text = "11:20 - Credit card blah blah blah"
-        tertiaryLabel.text = "-15 500.30 ₽"
     }
 }

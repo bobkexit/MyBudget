@@ -85,9 +85,6 @@ class RealmMigration: DataBaseMigration {
                 
                 categoriesMigration[$0] = newCategory
             }
-            
-            print(categoriesMigration.values)
-            
         } catch let error as NSError {
             delegate?.realmMigration(self, didFailWithError: error)
         }
@@ -141,7 +138,7 @@ class RealmMigration: DataBaseMigration {
                     
                     let newTransaction = TransactionObject()
                     newTransaction.date = date
-                    newTransaction.ammount = $0.amount
+                    newTransaction.ammount = abs($0.amount)
                     newTransaction.category = category
                     newTransaction.account = account
                     newTransaction.comment = $0.comment ?? ""

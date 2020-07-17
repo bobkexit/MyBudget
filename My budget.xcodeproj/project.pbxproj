@@ -15,6 +15,12 @@
 		351E3E8C205BDBB4004A3414 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E8B205BDBB4004A3414 /* SettingsVC.swift */; };
 		351E3E8E205BDC22004A3414 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */; };
 		351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */; };
+		351EEFD324C1B12A00EE5254 /* AccountDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351EEFD224C1B12A00EE5254 /* AccountDTO.swift */; };
+		351EEFD524C1B27100EE5254 /* CategoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351EEFD424C1B27100EE5254 /* CategoryDTO.swift */; };
+		351EEFD724C1B2EA00EE5254 /* TransactionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351EEFD624C1B2EA00EE5254 /* TransactionDTO.swift */; };
+		351EEFDA24C1B68D00EE5254 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351EEFD924C1B68D00EE5254 /* Repository.swift */; };
+		351EEFE224C2376700EE5254 /* TransactionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351EEFE124C2376700EE5254 /* TransactionsController.swift */; };
+		351EEFE424C2402600EE5254 /* TransactionCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351EEFE324C2402600EE5254 /* TransactionCellConfigurator.swift */; };
 		3522AFE52091C2A900D17AAF /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFE42091C2A900D17AAF /* Report.swift */; };
 		3522AFE72091C3EC00D17AAF /* DatePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFE62091C3EC00D17AAF /* DatePeriod.swift */; };
 		3522AFE92091C49300D17AAF /* ReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522AFE82091C49300D17AAF /* ReportManager.swift */; };
@@ -111,6 +117,12 @@
 		351E3E8B205BDBB4004A3414 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		351E3E8D205BDC22004A3414 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		351E3E95205BED6D004A3414 /* CAGradientLayerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExt.swift; sourceTree = "<group>"; };
+		351EEFD224C1B12A00EE5254 /* AccountDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDTO.swift; sourceTree = "<group>"; };
+		351EEFD424C1B27100EE5254 /* CategoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDTO.swift; sourceTree = "<group>"; };
+		351EEFD624C1B2EA00EE5254 /* TransactionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDTO.swift; sourceTree = "<group>"; };
+		351EEFD924C1B68D00EE5254 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		351EEFE124C2376700EE5254 /* TransactionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsController.swift; sourceTree = "<group>"; };
+		351EEFE324C2402600EE5254 /* TransactionCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCellConfigurator.swift; sourceTree = "<group>"; };
 		3522AFE42091C2A900D17AAF /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		3522AFE62091C3EC00D17AAF /* DatePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePeriod.swift; sourceTree = "<group>"; };
 		3522AFE82091C49300D17AAF /* ReportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportManager.swift; sourceTree = "<group>"; };
@@ -289,6 +301,49 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		351EEFD124C1B11200EE5254 /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				351EEFD224C1B12A00EE5254 /* AccountDTO.swift */,
+				351EEFD424C1B27100EE5254 /* CategoryDTO.swift */,
+				351EEFD624C1B2EA00EE5254 /* TransactionDTO.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
+		351EEFE524C252DD00EE5254 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				351EEFE324C2402600EE5254 /* TransactionCellConfigurator.swift */,
+				3598145B24C18BEC00788E84 /* TransactionCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		351EEFE624C252E500EE5254 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3598145724C0E77100788E84 /* TransactionsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		351EEFE724C252FC00EE5254 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				355BB03A24C04E950080BE13 /* TransactionsCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		351EEFE824C2531900EE5254 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				351EEFE124C2376700EE5254 /* TransactionsController.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		3522AFE32091C29100D17AAF /* Report Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,8 +440,10 @@
 			isa = PBXGroup;
 			children = (
 				353B47C5205690B3008281B0 /* AppDelegate.swift */,
+				355BB03824C04CCD0080BE13 /* AppCoordinator.swift */,
 				3598144924C0C7A700788E84 /* Utils */,
 				355BB03524C04C9E0080BE13 /* Coordinators */,
+				351EEFD124C1B11200EE5254 /* DTOs */,
 				355BB03424C04C8A0080BE13 /* Models */,
 				3598143324C068F900788E84 /* DataBaseMigration */,
 				3598143624C0BAAB00788E84 /* Scenes */,
@@ -475,6 +532,7 @@
 		355BB03424C04C8A0080BE13 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				351EEFD924C1B68D00EE5254 /* Repository.swift */,
 				3598142D24C05B8F00788E84 /* AccountObject.swift */,
 				3598142F24C05E4600788E84 /* CategoryObject.swift */,
 				3598143124C05E5E00788E84 /* TransactionObject.swift */,
@@ -486,8 +544,6 @@
 			isa = PBXGroup;
 			children = (
 				355BB03624C04CB40080BE13 /* Coordinator.swift */,
-				355BB03824C04CCD0080BE13 /* AppCoordinator.swift */,
-				355BB03A24C04E950080BE13 /* TransactionsCoordinator.swift */,
 				355BB03C24C04FA20080BE13 /* ReportsCoordinator.swift */,
 				355BB03E24C04FE50080BE13 /* SettingsCoordinator.swift */,
 			);
@@ -619,8 +675,10 @@
 		3598145324C0E73300788E84 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
-				3598145724C0E77100788E84 /* TransactionsViewController.swift */,
-				3598145B24C18BEC00788E84 /* TransactionCell.swift */,
+				351EEFE724C252FC00EE5254 /* Coordinators */,
+				351EEFE824C2531900EE5254 /* Models */,
+				351EEFE624C252E500EE5254 /* ViewControllers */,
+				351EEFE524C252DD00EE5254 /* Views */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -802,11 +860,13 @@
 			files = (
 				3566A7A9208A73B80099BE67 /* BaseDataManager.swift in Sources */,
 				351E3E8E205BDC22004A3414 /* BaseTabBarController.swift in Sources */,
+				351EEFDA24C1B68D00EE5254 /* Repository.swift in Sources */,
 				3598145824C0E77100788E84 /* TransactionsViewController.swift in Sources */,
 				3566A7AF208A89930099BE67 /* IncomeCategoryManager.swift in Sources */,
 				3598144E24C0C7F300788E84 /* AppStyle.swift in Sources */,
 				357E0D2A206E97F100205970 /* BaseVC.swift in Sources */,
 				351E3E8A205BDB95004A3414 /* TransactionsVC.swift in Sources */,
+				351EEFD524C1B27100EE5254 /* CategoryDTO.swift in Sources */,
 				3598145A24C0E77C00788E84 /* SettingsViewController.swift in Sources */,
 				35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */,
 				3566A7AD208A79DD0099BE67 /* DataManager.swift in Sources */,
@@ -817,6 +877,7 @@
 				3598143924C0BAD700788E84 /* LoadingViewController.swift in Sources */,
 				357E0D28206E858B00205970 /* UITextFieldExt.swift in Sources */,
 				356E06FA206D59E1004034AE /* DesignableViews.swift in Sources */,
+				351EEFD724C1B2EA00EE5254 /* TransactionDTO.swift in Sources */,
 				356E06F4206A6C9C004034AE /* TransactionDetailVC.swift in Sources */,
 				356E06D8206666D7004034AE /* UIViewExt.swift in Sources */,
 				3531C5A1208091AB0055D0B4 /* QRScannerVC.swift in Sources */,
@@ -835,6 +896,7 @@
 				356B12DA208DEE35007AF145 /* CreateTransactionVC.swift in Sources */,
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
 				3566A7912087413A0099BE67 /* DataModel.xcdatamodeld in Sources */,
+				351EEFE224C2376700EE5254 /* TransactionsController.swift in Sources */,
 				3522AFE92091C49300D17AAF /* ReportManager.swift in Sources */,
 				35655C8F209493D4009FA85B /* CreateAccountVM.swift in Sources */,
 				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
@@ -843,6 +905,7 @@
 				355BB03924C04CCD0080BE13 /* AppCoordinator.swift in Sources */,
 				3522AFEF2091E1BD00D17AAF /* ReportCell.swift in Sources */,
 				3598145C24C18BEC00788E84 /* TransactionCell.swift in Sources */,
+				351EEFD324C1B12A00EE5254 /* AccountDTO.swift in Sources */,
 				3522AFF82092331D00D17AAF /* PercentageValueFormatter.swift in Sources */,
 				3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */,
 				351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */,
@@ -855,6 +918,7 @@
 				3522B0052093849300D17AAF /* AccountBalanceCell.swift in Sources */,
 				356B12DE208DF6C7007AF145 /* BaseTransactionVC.swift in Sources */,
 				3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */,
+				351EEFE424C2402600EE5254 /* TransactionCellConfigurator.swift in Sources */,
 				3598145624C0E76000788E84 /* ReportsViewController.swift in Sources */,
 				3531C59D207F2D730055D0B4 /* ViewModelFactory.swift in Sources */,
 				3531C599207E7C4B0055D0B4 /* BaseViewModel.swift in Sources */,

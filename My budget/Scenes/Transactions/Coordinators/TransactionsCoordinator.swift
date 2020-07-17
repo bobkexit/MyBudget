@@ -12,8 +12,11 @@ class TransactionsCoordinator: BaseCoordinator {
     
     let navigationConttroller: UINavigationController
     
-    init(navigationConttroller: UINavigationController) {
+    let repository: Repository
+    
+    init(navigationConttroller: UINavigationController, repository: Repository) {
         self.navigationConttroller = navigationConttroller
+        self.repository = repository
         super.init()
     }
     
@@ -22,7 +25,8 @@ class TransactionsCoordinator: BaseCoordinator {
     }
     
     private func showTransactions() {
-        let viewController = TransactionsViewController()
+        let transactionsController = TransactionsController(repository: repository)
+        let viewController = TransactionsViewController(transactionsController: transactionsController)
         viewController.tabBarItem = UITabBarItem(title: "Transactions", image: .rubleSign, tag: 2)
         navigationConttroller.setViewControllers([viewController], animated: true)
     }
