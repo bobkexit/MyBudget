@@ -23,8 +23,7 @@ struct TransactionFilter {
 }
 
 struct TransactionsHandlers {
-    var firstLoading: (() -> Void)?
-    var didReload: (() -> Void)?
+    var didFetchTransactions: ((_ isFirstLoading: Bool) -> Void)?
     var didFail: ((_ error: Error) -> Void)?
 }
 
@@ -91,9 +90,9 @@ class TransactionsController: TransactionsControllerProtocol {
             
             switch changes {
             case .initial:
-                handlers.firstLoading?()
+                handlers.didFetchTransactions?(true)
             case .update:
-                handlers.didReload?()
+                handlers.didFetchTransactions?(false)
             case .error(let err):
                 handlers.didFail?(err)
             }

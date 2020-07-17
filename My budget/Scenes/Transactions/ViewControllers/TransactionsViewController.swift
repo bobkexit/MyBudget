@@ -55,15 +55,11 @@ class TransactionsViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = dataSource
-       
+        
         transactionsController?.handlers = TransactionsHandlers(
-            firstLoading: { [weak self] in
-                self?.updateUI(animated: false)
-            },
-            didReload: { [weak self] in
-                self?.updateUI(animated: true)
-            },
-            didFail: nil)
+            didFetchTransactions: { [weak self] isFirstLoading in
+                self?.updateUI(animated: !isFirstLoading)
+            }, didFail: nil)
     }
     
     @objc private func addTransactionButtonTapped(_ sender: UIButton) {
@@ -112,11 +108,10 @@ private extension TransactionsViewController {
                 guard let cell = tableView.dequeueReusableCell(
                     withIdentifier: reuseIdentifier,
                     for: indexPath) as? TransactionCell else { return nil }
-
+                
                 TransactionCellConfigurator(cell: cell, transaction: transaction).configureCell()
                 
-                return cell
-            }
+                return cell }
         )
     }
     
