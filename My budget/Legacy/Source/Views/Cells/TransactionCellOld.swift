@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransactionCell: BaseCell {
+class TransactionCellOld: BaseCell {
     
     @IBOutlet weak var accountImg: UIImageView!
     @IBOutlet weak var categoryLbl: UILabel!

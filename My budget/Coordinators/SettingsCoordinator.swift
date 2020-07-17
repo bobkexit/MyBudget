@@ -10,17 +10,17 @@ import UIKit
 
 class SettingsCoordinator: BaseCoordinator {
     
-    private(set) lazy var navigationConttroller: UINavigationController = UINavigationController()
+    let navigationConttroller: UINavigationController
+    
+    init(navigationConttroller: UINavigationController) {
+        self.navigationConttroller = navigationConttroller
+        super.init()
+    }
     
     override func start() {
-        configureNavigationConttroller()
         showSettings()
     }
-    
-    private func configureNavigationConttroller() {
         
-    }
-    
     private func showSettings() {
         let viewController = SettingsViewController()
         viewController.tabBarItem = UITabBarItem(title: "Settings", image: .gearShape, tag: 3)

@@ -53,13 +53,13 @@ class AppCoordinator: BaseCoordinator {
     private func configureMainScene() {
         var viewControllers: [UINavigationController] = []
         
-        let reportsCoordinator = ReportsCoordinator()
+        let reportsCoordinator = ReportsCoordinator(navigationConttroller: makeNavigationController())
         viewControllers.append(reportsCoordinator.navigationConttroller)
         
-        let transactionsCoordinator = TransactionsCoordinator()
+        let transactionsCoordinator = TransactionsCoordinator(navigationConttroller: makeNavigationController())
         viewControllers.append(transactionsCoordinator.navigationConttroller)
         
-        let settingsCoordinator = SettingsCoordinator()
+        let settingsCoordinator = SettingsCoordinator(navigationConttroller: makeNavigationController())
         viewControllers.append(settingsCoordinator.navigationConttroller)
       
         add(transactionsCoordinator, reportsCoordinator, settingsCoordinator)
@@ -68,5 +68,23 @@ class AppCoordinator: BaseCoordinator {
         rootViewController.tabBar.tintColor = .orangePeel
         rootViewController.tabBar.barTintColor = .richBlackForga29
         rootViewController.selectedIndex = 1
+    }
+    
+    private func makeNavigationController() -> UINavigationController {
+        let navigationController = UINavigationController()
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        
+        let textAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.babyPowder]
+        appearance.largeTitleTextAttributes = textAttributes
+        appearance.titleTextAttributes = textAttributes
+    
+        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationBar.standardAppearance = appearance
+        navigationController.navigationBar.compactAppearance = appearance
+        navigationController.navigationBar.scrollEdgeAppearance = appearance
+        navigationController.navigationBar.tintColor = .orangePeel
+        
+        return navigationController
     }
 }

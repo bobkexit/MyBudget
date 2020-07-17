@@ -24,4 +24,6 @@ extension UIImage {
     public static let euroSign = UIImage(systemName: "eurosign.circle")
     public static let gearShape = UIImage(named: "gearshape.2")
     public static let chartBarDocHorizontal = UIImage(named: "chart.bar.doc.horizontal")
+    public static let plus = UIImage(systemName: "plus")
+    public static let sliderHorizontal = UIImage(systemName: "slider.horizontal.3")
 }

@@ -210,7 +210,7 @@ extension TransactionsVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.transactionCell) as? TransactionCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.transactionCell) as? TransactionCellOld else {
             return UITableViewCell()
         }
         let transactionViewModel = transactions[indexPath.row]

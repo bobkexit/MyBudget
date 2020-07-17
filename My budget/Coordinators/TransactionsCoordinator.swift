@@ -10,15 +10,15 @@ import UIKit
 
 class TransactionsCoordinator: BaseCoordinator {
     
-    private(set) lazy var navigationConttroller: UINavigationController = UINavigationController()
+    let navigationConttroller: UINavigationController
     
-    override func start() {
-        configureNavigationConttroller()
-        showTransactions()
+    init(navigationConttroller: UINavigationController) {
+        self.navigationConttroller = navigationConttroller
+        super.init()
     }
     
-    private func configureNavigationConttroller() {
-        
+    override func start() {
+        showTransactions()
     }
     
     private func showTransactions() {

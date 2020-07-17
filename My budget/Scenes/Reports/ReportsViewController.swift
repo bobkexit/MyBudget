@@ -13,6 +13,8 @@ class ReportsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Reports"
         view.backgroundColor = .richBlackForga30
+        navigationItem.largeTitleDisplayMode = .always
     }
 }

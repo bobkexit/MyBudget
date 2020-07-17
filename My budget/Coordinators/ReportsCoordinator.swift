@@ -10,7 +10,12 @@ import UIKit
 
 class ReportsCoordinator: BaseCoordinator {
     
-    private(set) lazy var navigationConttroller: UINavigationController = UINavigationController()
+    let navigationConttroller: UINavigationController
+    
+    init(navigationConttroller: UINavigationController) {
+        self.navigationConttroller = navigationConttroller
+        super.init()
+    }
     
     override func start() {
         configureNavigationConttroller()

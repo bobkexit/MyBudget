@@ -69,7 +69,7 @@
 		356E06D8206666D7004034AE /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06D7206666D7004034AE /* UIViewExt.swift */; };
 		356E06E420683C7A004034AE /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06E320683C7A004034AE /* SettingsMenu.swift */; };
 		356E06F020693E26004034AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 356E06EF20693E25004034AE /* Assets.xcassets */; };
-		356E06F2206A5699004034AE /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F1206A5699004034AE /* TransactionCell.swift */; };
+		356E06F2206A5699004034AE /* TransactionCellOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F1206A5699004034AE /* TransactionCellOld.swift */; };
 		356E06F4206A6C9C004034AE /* TransactionDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F3206A6C9C004034AE /* TransactionDetailVC.swift */; };
 		356E06F6206A755E004034AE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F5206A755E004034AE /* GradientView.swift */; };
 		356E06F8206A802C004034AE /* GradientTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F7206A802C004034AE /* GradientTableView.swift */; };
@@ -91,6 +91,7 @@
 		3598145624C0E76000788E84 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145524C0E76000788E84 /* ReportsViewController.swift */; };
 		3598145824C0E77100788E84 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145724C0E77100788E84 /* TransactionsViewController.swift */; };
 		3598145A24C0E77C00788E84 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145924C0E77C00788E84 /* SettingsViewController.swift */; };
+		3598145C24C18BEC00788E84 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145B24C18BEC00788E84 /* TransactionCell.swift */; };
 		35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3011206108FE0041F195 /* CategoriesVC.swift */; };
 		35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3015206111230041F195 /* EnumCollectionExt.swift */; };
 		35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE30192061188A0041F195 /* CategoryCell.swift */; };
@@ -167,7 +168,7 @@
 		356E06D7206666D7004034AE /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		356E06E320683C7A004034AE /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
 		356E06EF20693E25004034AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		356E06F1206A5699004034AE /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		356E06F1206A5699004034AE /* TransactionCellOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCellOld.swift; sourceTree = "<group>"; };
 		356E06F3206A6C9C004034AE /* TransactionDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailVC.swift; sourceTree = "<group>"; };
 		356E06F5206A755E004034AE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		356E06F7206A802C004034AE /* GradientTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTableView.swift; sourceTree = "<group>"; };
@@ -188,6 +189,7 @@
 		3598145524C0E76000788E84 /* ReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
 		3598145724C0E77100788E84 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		3598145924C0E77C00788E84 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3598145B24C18BEC00788E84 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		35EE3011206108FE0041F195 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		35EE3015206111230041F195 /* EnumCollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollectionExt.swift; sourceTree = "<group>"; };
 		35EE30192061188A0041F195 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -382,8 +384,8 @@
 		353B47C4205690B3008281B0 /* My budget */ = {
 			isa = PBXGroup;
 			children = (
-				3598144924C0C7A700788E84 /* Utils */,
 				353B47C5205690B3008281B0 /* AppDelegate.swift */,
+				3598144924C0C7A700788E84 /* Utils */,
 				355BB03524C04C9E0080BE13 /* Coordinators */,
 				355BB03424C04C8A0080BE13 /* Models */,
 				3598143324C068F900788E84 /* DataBaseMigration */,
@@ -519,7 +521,7 @@
 				3567747E205FA9D200743FCA /* SettingsCell.swift */,
 				35EE30192061188A0041F195 /* CategoryCell.swift */,
 				35EE301B206118AC0041F195 /* AccountCell.swift */,
-				356E06F1206A5699004034AE /* TransactionCell.swift */,
+				356E06F1206A5699004034AE /* TransactionCellOld.swift */,
 				3522AFEE2091E1BD00D17AAF /* ReportCell.swift */,
 				3522B0042093849300D17AAF /* AccountBalanceCell.swift */,
 			);
@@ -618,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				3598145724C0E77100788E84 /* TransactionsViewController.swift */,
+				3598145B24C18BEC00788E84 /* TransactionCell.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -839,6 +842,7 @@
 				355BB03724C04CB40080BE13 /* Coordinator.swift in Sources */,
 				355BB03924C04CCD0080BE13 /* AppCoordinator.swift in Sources */,
 				3522AFEF2091E1BD00D17AAF /* ReportCell.swift in Sources */,
+				3598145C24C18BEC00788E84 /* TransactionCell.swift in Sources */,
 				3522AFF82092331D00D17AAF /* PercentageValueFormatter.swift in Sources */,
 				3567747F205FA9D200743FCA /* SettingsCell.swift in Sources */,
 				351E3E96205BED6D004A3414 /* CAGradientLayerExt.swift in Sources */,
@@ -846,7 +850,7 @@
 				356E06F8206A802C004034AE /* GradientTableView.swift in Sources */,
 				3531C597207E7A500055D0B4 /* AccountVM.swift in Sources */,
 				35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */,
-				356E06F2206A5699004034AE /* TransactionCell.swift in Sources */,
+				356E06F2206A5699004034AE /* TransactionCellOld.swift in Sources */,
 				3522E11E208E45A10096E57C /* DataManagerFactory.swift in Sources */,
 				3522B0052093849300D17AAF /* AccountBalanceCell.swift in Sources */,
 				356B12DE208DF6C7007AF145 /* BaseTransactionVC.swift in Sources */,
