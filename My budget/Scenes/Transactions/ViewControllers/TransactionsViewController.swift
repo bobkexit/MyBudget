@@ -25,19 +25,19 @@ class TransactionsViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
+        tableView.separatorColor = .clear
         tableView.register(TransactionCell.self, forCellReuseIdentifier: TransactionCell.reuseIdentifier)
         tableView.tableFooterView = UIView(frame: CGRect(origin: .zero, size: CGSize(width:  tableView.frame.size.width, height: 60.0)))
         return tableView
     } ()
     
     private lazy var addTransactionButton: UIButton = {
-        let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 40.0, height: 40.0)))
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(.plus, for: .normal)
         button.backgroundColor = .orangePeel
         button.tintColor = .richBlackForga30
         button.addTarget(self, action: #selector(addTransactionButtonTapped(_:)), for: .touchUpInside)
-        button.layer.cornerRadius = button.bounds.height / 2
         return button
     } ()
     
@@ -59,6 +59,11 @@ class TransactionsViewController: UIViewController {
             didFetchTransactions: { [weak self] isFirstLoading in
                 self?.updateUI(animated: !isFirstLoading)
             }, didFail: nil)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        addTransactionButton.layer.cornerRadius = addTransactionButton.bounds.height / 2
     }
     
     @objc private func addTransactionButtonTapped(_ sender: UIButton) {
@@ -90,9 +95,9 @@ class TransactionsViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            addTransactionButton.heightAnchor.constraint(equalToConstant: 40.0),
+            addTransactionButton.heightAnchor.constraint(equalToConstant: 48.0),
             addTransactionButton.widthAnchor.constraint(equalTo: addTransactionButton.heightAnchor),
-            addTransactionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            addTransactionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             addTransactionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
     }

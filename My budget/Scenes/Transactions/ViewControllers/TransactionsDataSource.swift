@@ -21,6 +21,7 @@ class TransactionsDataSource: UITableViewDiffableDataSource<Date, TransactionDTO
     
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
+        formatter.doesRelativeDateFormatting = true
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.locale = Locale.current

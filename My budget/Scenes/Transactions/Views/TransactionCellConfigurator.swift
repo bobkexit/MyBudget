@@ -20,7 +20,7 @@ class TransactionCellConfigurator: CellConfigurable {
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .none
-        formatter.timeStyle = .medium
+        formatter.timeStyle = .short
         formatter.locale = Locale.current
         return formatter
     } ()
