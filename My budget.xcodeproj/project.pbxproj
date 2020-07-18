@@ -104,6 +104,8 @@
 		35EE301C206118AC0041F195 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE301B206118AC0041F195 /* AccountCell.swift */; };
 		35EE301E206118BA0041F195 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE301D206118BA0041F195 /* BaseCell.swift */; };
 		35F012132063B9D7008EE633 /* InstallationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F012122063B9D7008EE633 /* InstallationManager.swift */; };
+		35F4E67A24C2F06000B21151 /* OperationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F4E67924C2F06000B21151 /* OperationCoordinator.swift */; };
+		35F4E67C24C2FBFD00B21151 /* TransactionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F4E67B24C2FBFD00B21151 /* TransactionsDataSource.swift */; };
 		35FC07B1209AE1A800A9D210 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35FC07B3209AE1A800A9D210 /* InfoPlist.strings */; };
 		615AA698DB21FF966812962E /* Pods_My_budget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DEC8F5A04C9758775ECEB6 /* Pods_My_budget.framework */; };
 /* End PBXBuildFile section */
@@ -208,6 +210,8 @@
 		35EE301B206118AC0041F195 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		35EE301D206118BA0041F195 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		35F012122063B9D7008EE633 /* InstallationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationManager.swift; sourceTree = "<group>"; };
+		35F4E67924C2F06000B21151 /* OperationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationCoordinator.swift; sourceTree = "<group>"; };
+		35F4E67B24C2FBFD00B21151 /* TransactionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsDataSource.swift; sourceTree = "<group>"; };
 		35FC07A9209AD60B00A9D210 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35FC07B2209AE1A800A9D210 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		35FC07B4209AE1AD00A9D210 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -324,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				3598145724C0E77100788E84 /* TransactionsViewController.swift */,
+				35F4E67B24C2FBFD00B21151 /* TransactionsDataSource.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -605,6 +610,7 @@
 		3598143624C0BAAB00788E84 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				35F4E67724C2F02700B21151 /* Operations */,
 				3598143724C0BAC200788E84 /* Loading */,
 				3598145224C0E72700788E84 /* Reports */,
 				3598145324C0E73300788E84 /* Transactions */,
@@ -710,6 +716,22 @@
 				351410EF2084890F002F0D9E /* UserSettings.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		35F4E67724C2F02700B21151 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				35F4E67924C2F06000B21151 /* OperationCoordinator.swift */,
+				35F4E67824C2F03800B21151 /* Expense */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		35F4E67824C2F03800B21151 /* Expense */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Expense;
 			sourceTree = "<group>";
 		};
 		BBE7EB3DA86593D62296FA15 /* Frameworks */ = {
@@ -895,9 +917,11 @@
 				351410EE2084773C002F0D9E /* CreateAccountVC.swift in Sources */,
 				356B12DA208DEE35007AF145 /* CreateTransactionVC.swift in Sources */,
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
+				35F4E67C24C2FBFD00B21151 /* TransactionsDataSource.swift in Sources */,
 				3566A7912087413A0099BE67 /* DataModel.xcdatamodeld in Sources */,
 				351EEFE224C2376700EE5254 /* TransactionsController.swift in Sources */,
 				3522AFE92091C49300D17AAF /* ReportManager.swift in Sources */,
+				35F4E67A24C2F06000B21151 /* OperationCoordinator.swift in Sources */,
 				35655C8F209493D4009FA85B /* CreateAccountVM.swift in Sources */,
 				3563FF03205FD28C00B05E82 /* AccountsVC.swift in Sources */,
 				3595DA6E209D777C008DFFA7 /* StringExt.swift in Sources */,

@@ -29,6 +29,7 @@ class AppCoordinator: BaseCoordinator {
     }
     
     override func start() {
+        //migration.reset()
         migration.isCompleted ? showMainScene() : showLoadingScene()
         window.makeKeyAndVisible()
     }
@@ -55,14 +56,13 @@ class AppCoordinator: BaseCoordinator {
         
         var viewControllers: [UINavigationController] = []
         
-        let reportsCoordinator = ReportsCoordinator(navigationConttroller: makeNavigationController())
+        let reportsCoordinator = ReportsCoordinator()
         viewControllers.append(reportsCoordinator.navigationConttroller)
         
-        let transactionsCoordinator = TransactionsCoordinator(navigationConttroller: makeNavigationController(),
-                                                              repository: repository)
+        let transactionsCoordinator = TransactionsCoordinator(repository: repository)
         viewControllers.append(transactionsCoordinator.navigationConttroller)
         
-        let settingsCoordinator = SettingsCoordinator(navigationConttroller: makeNavigationController())
+        let settingsCoordinator = SettingsCoordinator()
         viewControllers.append(settingsCoordinator.navigationConttroller)
       
         add(transactionsCoordinator, reportsCoordinator, settingsCoordinator)
@@ -71,23 +71,5 @@ class AppCoordinator: BaseCoordinator {
         rootViewController.tabBar.tintColor = .orangePeel
         rootViewController.tabBar.barTintColor = .richBlackForga29
         rootViewController.selectedIndex = 1
-    }
-    
-    private func makeNavigationController() -> UINavigationController {
-        let navigationController = UINavigationController()
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        
-        let textAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.babyPowder]
-        appearance.largeTitleTextAttributes = textAttributes
-        appearance.titleTextAttributes = textAttributes
-    
-        navigationController.navigationBar.prefersLargeTitles = true
-        navigationController.navigationBar.standardAppearance = appearance
-        navigationController.navigationBar.compactAppearance = appearance
-        navigationController.navigationBar.scrollEdgeAppearance = appearance
-        navigationController.navigationBar.tintColor = .orangePeel
-        
-        return navigationController
     }
 }

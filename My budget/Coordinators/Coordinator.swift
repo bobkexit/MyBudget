@@ -6,16 +6,24 @@
 //  Copyright © 2020 Николай Маторин. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol Coordinator: AnyObject {
     func start()
 }
 
-class BaseCoordinator: Coordinator {
+class BaseCoordinator: NSObject, Coordinator {
     private var childCoordinators: [Coordinator] = []
     
+    var onComplete: ((BaseCoordinator) -> Void)?
+    
     func start() { }
+}
+
+extension BaseCoordinator: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        onComplete?(self)
+    }
 }
 
 extension BaseCoordinator {
@@ -34,4 +42,25 @@ extension BaseCoordinator {
             child.start()
         }
     }
+    
+    public func makeNavigationController() -> UINavigationController {
+        let navigationController = UINavigationController()
+        navigationController.presentationController?.delegate = self
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        
+        let textAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.babyPowder]
+        appearance.largeTitleTextAttributes = textAttributes
+        appearance.titleTextAttributes = textAttributes
+        
+        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationBar.standardAppearance = appearance
+        navigationController.navigationBar.compactAppearance = appearance
+        navigationController.navigationBar.scrollEdgeAppearance = appearance
+        navigationController.navigationBar.tintColor = .orangePeel
+        
+        return navigationController
+    }
 }
+

@@ -10,6 +10,13 @@ import UIKit
 
 class TransactionsViewController: UIViewController {
     
+    struct Actions {
+        var createOperation: (() -> Void)?
+        var showFilters: (() -> Void)?
+    }
+    
+    var actions: Actions = Actions()
+    
     var transactionsController: TransactionsControllerProtocol!
     
     private lazy var dataSource = makeDataSource()
@@ -34,14 +41,6 @@ class TransactionsViewController: UIViewController {
         return button
     } ()
     
-    private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        formatter.locale = Locale.current
-        return formatter
-    } ()
-    
     convenience init(transactionsController: TransactionsControllerProtocol) {
         self.init()
         self.transactionsController = transactionsController
@@ -53,7 +52,7 @@ class TransactionsViewController: UIViewController {
         configureViews()
         configureNavigationBar()
         
-        tableView.delegate = self
+        tableView.delegate = dataSource
         tableView.dataSource = dataSource
         
         transactionsController?.handlers = TransactionsHandlers(
@@ -63,11 +62,11 @@ class TransactionsViewController: UIViewController {
     }
     
     @objc private func addTransactionButtonTapped(_ sender: UIButton) {
-        
+        actions.createOperation?()
     }
     
     @objc private func filterButtonTapped(_ sender: UIBarButtonItem) {
-        
+        actions.showFilters?()
     }
     
     private func configureNavigationBar() {
@@ -77,6 +76,7 @@ class TransactionsViewController: UIViewController {
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(filterButtonTapped(_:)))
+        navigationItem.rightBarButtonItem?.tintColor = .babyPowder
     }
     
     private func configureViews() {
@@ -99,22 +99,15 @@ class TransactionsViewController: UIViewController {
 }
 
 private extension TransactionsViewController {
-    func makeDataSource() -> UITableViewDiffableDataSource<Date, TransactionDTO> {
-        let reuseIdentifier = TransactionCell.reuseIdentifier
-        
-        return UITableViewDiffableDataSource(
-            tableView: tableView,
-            cellProvider: {  tableView, indexPath, transaction in
-                guard let cell = tableView.dequeueReusableCell(
-                    withIdentifier: reuseIdentifier,
-                    for: indexPath) as? TransactionCell else { return nil }
-                
-                TransactionCellConfigurator(cell: cell, transaction: transaction).configureCell()
-                
-                return cell }
-        )
+    func makeDataSource() -> TransactionsDataSource {
+        let dataSource = TransactionsDataSource(tableView: tableView, transactionsController: transactionsController)
+        dataSource.actions = TransactionsDataSource.Actions(deleteTransaction: { [weak self] (transaction) in
+            guard let controller = self?.transactionsController else { return }
+            controller.delete(transaction)
+        })
+        return dataSource
     }
-    
+
     func updateUI(animated: Bool) {
         guard let controller = transactionsController else { return }
         let dates = controller.getDates()
@@ -128,40 +121,5 @@ private extension TransactionsViewController {
         }
         
         dataSource.apply(snapshot, animatingDifferences: animated)
-    }
-}
-
-extension TransactionsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30.0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let controller = transactionsController else { return nil }
-        let label = makeSectionLabel()
-        let dates = controller.getDates()
-        let date = dates[section]
-        label.text = dateFormatter.string(from: date)
-        return label
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
-    
-    private func makeSectionLabel() -> UILabel {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = UIColor.babyPowder.withAlphaComponent(0.6)
-        label.font = .systemFont(ofSize: 17.0, weight: .semibold)
-        return label
     }
 }

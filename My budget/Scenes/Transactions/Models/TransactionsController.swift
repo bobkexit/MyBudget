@@ -14,6 +14,7 @@ protocol TransactionsControllerProtocol {
     func apply(_ filter: TransactionFilter?)
     func getDates() -> [Date]
     func getTransactions(for date: Date) -> [TransactionDTO]
+    func delete(_ transaction: TransactionDTO) 
 }
 
 struct TransactionFilter {
@@ -53,7 +54,7 @@ class TransactionsController: TransactionsControllerProtocol {
     
     func getDates() -> [Date] {
         let dates = Set(results.map { Calendar.current.startOfDay(for: $0.date) })
-        return Array(dates)
+        return Array(dates).sorted().reversed()
     }
     
     func getTransactions(for date: Date) -> [TransactionDTO] {
@@ -61,13 +62,20 @@ class TransactionsController: TransactionsControllerProtocol {
         return transactions.filter { Calendar.current.isDate(date, inSameDayAs: $0.date) }
     }
     
+    func delete(_ transaction: TransactionDTO) {
+        guard let transaction = repository.find(TransactionObject.self, byID: transaction.id) else {
+            return
+        }
+        repository.remove(transaction)
+    }
+    
     private func fetchTransactions(with filter: TransactionFilter? = nil) -> Results<TransactionObject> {
         var results: Results<TransactionObject>
         
         if let accountDTO = filter?.account, let account = repository.find(AccountObject.self, byID: accountDTO.id) {
-            results = account.transactions.sorted(byKeyPath: "date")
+            results = account.transactions.sorted(byKeyPath: "date", ascending: true)
         } else {
-            results = repository.fetch(TransactionObject.self).sorted(byKeyPath: "date")
+            results = repository.fetch(TransactionObject.self).sorted(byKeyPath: "date", ascending: true)
         }
         
         if let starTime = filter?.startTime {

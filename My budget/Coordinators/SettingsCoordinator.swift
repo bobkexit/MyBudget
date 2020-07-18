@@ -10,12 +10,7 @@ import UIKit
 
 class SettingsCoordinator: BaseCoordinator {
     
-    let navigationConttroller: UINavigationController
-    
-    init(navigationConttroller: UINavigationController) {
-        self.navigationConttroller = navigationConttroller
-        super.init()
-    }
+    private(set) lazy var navigationConttroller: UINavigationController = makeNavigationController()
     
     override func start() {
         showSettings()
