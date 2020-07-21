@@ -19,7 +19,7 @@ class TransactionsViewController: UIViewController {
     
     var transactionsController: TransactionsControllerProtocol!
     
-    private lazy var dataSource = makeDataSource()
+    private lazy var dataSource: TransactionsDataSource = makeDataSource()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)

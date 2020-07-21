@@ -35,7 +35,9 @@ class OperationCoordinator: BaseCoordinator {
     private func showEmptyScene() {
         let viewController = UIViewController()
         viewController.view.backgroundColor = .richBlackForga30
-        viewController.title = "Create " + currentOperation.rawValue
+        viewController.navigationItem.title = "New " + currentOperation.rawValue
+        viewController.navigationItem.largeTitleDisplayMode = .never
+        viewController.navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .close, target: nil, action: nil)
         navigationConttroller.setViewControllers([viewController], animated: true)
     }
 }

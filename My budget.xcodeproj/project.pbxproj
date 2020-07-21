@@ -550,7 +550,6 @@
 			children = (
 				355BB03624C04CB40080BE13 /* Coordinator.swift */,
 				355BB03C24C04FA20080BE13 /* ReportsCoordinator.swift */,
-				355BB03E24C04FE50080BE13 /* SettingsCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -692,6 +691,7 @@
 		3598145424C0E73B00788E84 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				355BB03E24C04FE50080BE13 /* SettingsCoordinator.swift */,
 				3598145924C0E77C00788E84 /* SettingsViewController.swift */,
 			);
 			path = Settings;
