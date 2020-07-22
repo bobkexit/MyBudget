@@ -12,6 +12,13 @@ class SettingsCoordinator: BaseCoordinator {
     
     private(set) lazy var navigationConttroller: UINavigationController = makeNavigationController()
     
+    let repository: Repository
+    
+    init(repository: Repository) {
+        self.repository = repository
+        super.init()
+    }
+    
     override func start() {
         showSettings()
     }
@@ -38,11 +45,8 @@ class SettingsCoordinator: BaseCoordinator {
     }
     
     private func showAccounts() {
-        let viewController = UIViewController()
-        viewController.navigationItem.title = "Accounts"
-        viewController.navigationItem.largeTitleDisplayMode = .never
-        viewController.view.backgroundColor = .blue
-        
+        let accountsController = AccountsController(repository: repository)
+        let viewController = AccountsViewController(accountsController: accountsController)
         navigationConttroller.pushViewController(viewController, animated: true)
     }
     

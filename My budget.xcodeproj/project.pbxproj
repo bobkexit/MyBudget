@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3513738C24C82360001E7697 /* AccountsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513738B24C82360001E7697 /* AccountsController.swift */; };
+		3513738E24C82702001E7697 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513738D24C82702001E7697 /* AccountsViewController.swift */; };
+		3513739024C82723001E7697 /* AccountsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3513738F24C82723001E7697 /* AccountsDataSource.swift */; };
 		351410EE2084773C002F0D9E /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351410ED2084773C002F0D9E /* CreateAccountVC.swift */; };
 		351410F02084890F002F0D9E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351410EF2084890F002F0D9E /* UserSettings.swift */; };
 		351410F220850698002F0D9E /* DefaultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351410F120850698002F0D9E /* DefaultsVC.swift */; };
@@ -111,6 +114,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3513738B24C82360001E7697 /* AccountsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsController.swift; sourceTree = "<group>"; };
+		3513738D24C82702001E7697 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
+		3513738F24C82723001E7697 /* AccountsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataSource.swift; sourceTree = "<group>"; };
 		351410ED2084773C002F0D9E /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		351410EF2084890F002F0D9E /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		351410F120850698002F0D9E /* DefaultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsVC.swift; sourceTree = "<group>"; };
@@ -305,6 +311,16 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		3513738A24C82338001E7697 /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				3513738B24C82360001E7697 /* AccountsController.swift */,
+				3513738D24C82702001E7697 /* AccountsViewController.swift */,
+				3513738F24C82723001E7697 /* AccountsDataSource.swift */,
+			);
+			path = Accounts;
+			sourceTree = "<group>";
+		};
 		351EEFD124C1B11200EE5254 /* DTOs */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,7 +461,6 @@
 			isa = PBXGroup;
 			children = (
 				353B47C5205690B3008281B0 /* AppDelegate.swift */,
-				355BB03824C04CCD0080BE13 /* AppCoordinator.swift */,
 				3598144924C0C7A700788E84 /* Utils */,
 				355BB03524C04C9E0080BE13 /* Coordinators */,
 				351EEFD124C1B11200EE5254 /* DTOs */,
@@ -549,6 +564,7 @@
 			isa = PBXGroup;
 			children = (
 				355BB03624C04CB40080BE13 /* Coordinator.swift */,
+				355BB03824C04CCD0080BE13 /* AppCoordinator.swift */,
 				355BB03C24C04FA20080BE13 /* ReportsCoordinator.swift */,
 			);
 			path = Coordinators;
@@ -609,6 +625,7 @@
 		3598143624C0BAAB00788E84 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				3513738A24C82338001E7697 /* Accounts */,
 				35F4E67724C2F02700B21151 /* Operations */,
 				3598143724C0BAC200788E84 /* Loading */,
 				3598145224C0E72700788E84 /* Reports */,
@@ -896,9 +913,11 @@
 				3522AFF32091E5B800D17AAF /* BaseReportVC.swift in Sources */,
 				35EE301E206118BA0041F195 /* BaseCell.swift in Sources */,
 				3531C595207E76080055D0B4 /* CategoryVM.swift in Sources */,
+				3513738E24C82702001E7697 /* AccountsViewController.swift in Sources */,
 				3598143924C0BAD700788E84 /* LoadingViewController.swift in Sources */,
 				357E0D28206E858B00205970 /* UITextFieldExt.swift in Sources */,
 				356E06FA206D59E1004034AE /* DesignableViews.swift in Sources */,
+				3513738C24C82360001E7697 /* AccountsController.swift in Sources */,
 				351EEFD724C1B2EA00EE5254 /* TransactionDTO.swift in Sources */,
 				356E06F4206A6C9C004034AE /* TransactionDetailVC.swift in Sources */,
 				356E06D8206666D7004034AE /* UIViewExt.swift in Sources */,
@@ -906,6 +925,7 @@
 				356E06E420683C7A004034AE /* SettingsMenu.swift in Sources */,
 				3531C59B207E81BA0055D0B4 /* TransactionVM.swift in Sources */,
 				3522AFED2091C60200D17AAF /* ExpensesReport.swift in Sources */,
+				3513739024C82723001E7697 /* AccountsDataSource.swift in Sources */,
 				3522AFF12091E4DB00D17AAF /* ExpensesReportVC.swift in Sources */,
 				3522E120208FCA480096E57C /* UpdatedTransactionVM.swift in Sources */,
 				35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */,

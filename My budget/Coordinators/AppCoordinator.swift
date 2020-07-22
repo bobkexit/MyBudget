@@ -62,7 +62,7 @@ class AppCoordinator: BaseCoordinator {
         let transactionsCoordinator = TransactionsCoordinator(repository: repository)
         viewControllers.append(transactionsCoordinator.navigationConttroller)
         
-        let settingsCoordinator = SettingsCoordinator()
+        let settingsCoordinator = SettingsCoordinator(repository: repository)
         viewControllers.append(settingsCoordinator.navigationConttroller)
       
         add(transactionsCoordinator, reportsCoordinator, settingsCoordinator)

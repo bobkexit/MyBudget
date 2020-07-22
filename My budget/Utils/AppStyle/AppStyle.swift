@@ -12,6 +12,7 @@ extension UIColor {
     public static let orangePeel = UIColor(hex: "#FF9F1C")
     public static let turquoise = UIColor(hex: "#41EAD4")
     public static let babyPowder = UIColor(hex: "#FDFFFC")
+    public static let babyPowder60 = UIColor.babyPowder.withAlphaComponent(0.6)
     public static let imperialRed = UIColor(hex: "#F71735")
     public static let oxfordBlue = UIColor(hex: "#02223C")
     public static let richBlackForga29 = UIColor(hex: "#010B14")

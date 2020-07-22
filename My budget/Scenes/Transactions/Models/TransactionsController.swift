@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 protocol TransactionsControllerProtocol {
-    var handlers: TransactionsHandlers? { get set }
+    var handlers: FetchDataHandlers { get set }
     func apply(_ filter: TransactionFilter?)
     func getDates() -> [Date]
     func getTransactions(for date: Date) -> [TransactionDTO]
@@ -23,20 +23,20 @@ struct TransactionFilter {
     let endTime: Date?
 }
 
-struct TransactionsHandlers {
-    var didFetchTransactions: ((_ isFirstLoading: Bool) -> Void)?
+struct FetchDataHandlers {
+    var didFetchData: ((_ isFirstLoading: Bool) -> Void)?
     var didFail: ((_ error: Error) -> Void)?
 }
 
 class TransactionsController: TransactionsControllerProtocol {
     
-    var handlers: TransactionsHandlers?
+    var handlers: FetchDataHandlers = FetchDataHandlers()
     
     private var notificationToken: NotificationToken?
     
     private let repository: Repository
     
-    private lazy var results = fetchTransactions()
+    private lazy var results: Results<TransactionObject>  = fetchTransactions()
     
     init(repository: Repository) {
         self.repository = repository
@@ -66,7 +66,12 @@ class TransactionsController: TransactionsControllerProtocol {
         guard let transaction = repository.find(TransactionObject.self, byID: transaction.id) else {
             return
         }
-        repository.remove(transaction)
+        
+        do {
+            try repository.remove(transaction)
+        } catch let error {
+            print("Failed to remove data = \(error)")
+        }
     }
     
     private func fetchTransactions(with filter: TransactionFilter? = nil) -> Results<TransactionObject> {
@@ -98,9 +103,9 @@ class TransactionsController: TransactionsControllerProtocol {
             
             switch changes {
             case .initial:
-                handlers.didFetchTransactions?(true)
+                handlers.didFetchData?(true)
             case .update:
-                handlers.didFetchTransactions?(false)
+                handlers.didFetchData?(false)
             case .error(let err):
                 handlers.didFail?(err)
             }

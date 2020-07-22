@@ -55,8 +55,8 @@ class TransactionsViewController: UIViewController {
         tableView.delegate = dataSource
         tableView.dataSource = dataSource
         
-        transactionsController?.handlers = TransactionsHandlers(
-            didFetchTransactions: { [weak self] isFirstLoading in
+        transactionsController?.handlers = FetchDataHandlers(
+            didFetchData: { [weak self] isFirstLoading in
                 self?.updateUI(animated: !isFirstLoading)
             }, didFail: nil)
     }

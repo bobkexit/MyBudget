@@ -54,23 +54,21 @@ class Repository {
         }
     }
     
-    func remove<T: Object>(_ object: T) {
-        do {
-            try realm.write {
-                realm.delete(object)
-            }
-        } catch let error {
-            print("Failed to remove data = \(error)")
+    func remove<T: Object>(_ object: T) throws {
+        try realm.write {
+            realm.delete(object)
         }
     }
     
-    func remove<T: Object>(_ objects: [T]) {
-        do {
-            try realm.write {
-                realm.delete(objects)
-            }
-        } catch let error {
-            print("Failed to remove data = \(error)")
+    func remove<T: Object>(_ objects: [T]) throws {
+        try realm.write {
+            realm.delete(objects)
+        }
+    }
+    
+    func remove<T: Object>(_ objects: LinkingObjects<T>) throws {
+        try realm.write {
+            realm.delete(objects)
         }
     }
     
