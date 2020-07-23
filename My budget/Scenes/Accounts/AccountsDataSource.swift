@@ -30,10 +30,16 @@ class AccountsDataSource: UITableViewDiffableDataSource<AccountsDataSource.Secti
         
         self.init(tableView: tableView) { tableView, indexPath, account in
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier)
-            cell.textLabel?.text = account.name
+            var text = account.name
             
+            if let currencyCode = account.currencyCode {
+               text += " → \(currencyCode)"
+            }
+            
+            cell.textLabel?.text  = text
+        
             if let type = account.kind.description() {
-                cell.detailTextLabel?.text = "type: \(type)"
+                cell.detailTextLabel?.text = "type".localized() + ": \(type)" 
             }
             
             cell.backgroundColor = .clear

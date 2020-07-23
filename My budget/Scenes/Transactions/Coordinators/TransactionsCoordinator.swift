@@ -35,18 +35,22 @@ class TransactionsCoordinator: BaseCoordinator {
                 self.showFilters(for: viewController)
         })
         
-        viewController.tabBarItem = UITabBarItem(title: "Transactions", image: .rubleSign, tag: 2)
+        let title = "transactions".localizeCapitalizingFirstLetter()
+        viewController.tabBarItem = UITabBarItem(title: title, image: .rubleSign, tag: 2)
         navigationConttroller.setViewControllers([viewController], animated: true)
     }
     
     private func showOperationsMenu(for viewController: UIViewController) {
-        let alert = UIAlertController(title: nil, message: "Select operation", preferredStyle: .actionSheet)
+        
+        let message = "select operation".localizeCapitalizingFirstLetter()
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
          
         let incomeOperation = makeAction(.income, for: viewController)
         let expenseOperation = makeAction(.expense, for: viewController)
         let transferOperation = makeAction(.interAccountTransfer, for: viewController)
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "cancel".localizeCapitalizingFirstLetter(),
+                                   style: .cancel, handler: nil)
     
         alert.addAction(transferOperation)
         alert.addAction(incomeOperation)
@@ -61,7 +65,8 @@ class TransactionsCoordinator: BaseCoordinator {
     }
     
     private func makeAction(_ operation:  OperationCoordinator.Operation, for viewController: UIViewController) -> UIAlertAction {
-        return UIAlertAction(title: operation.rawValue, style: .default) { [unowned self] _ in
+        return UIAlertAction(title: operation.rawValue.localizeCapitalizingFirstLetter(),
+                             style: .default) { [unowned self] _ in
             let coordinator = OperationCoordinator(currentOperation: operation)
             coordinator.onComplete = { [unowned self] child in
                 self.remove(child)

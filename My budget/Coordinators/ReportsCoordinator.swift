@@ -18,7 +18,8 @@ class ReportsCoordinator: BaseCoordinator {
     
     private func showReports() {
         let viewController = ReportsViewController()
-        viewController.tabBarItem = UITabBarItem(title: "Reports", image: .chartBarDocHorizontal, tag: 1)
+        viewController.tabBarItem = UITabBarItem(title: "reports".localizeCapitalizingFirstLetter(),
+                                                 image: .chartBarDocHorizontal, tag: 1)
         navigationConttroller.setViewControllers([viewController], animated: true)
     }
 }

@@ -44,7 +44,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Settings"
+        navigationItem.title = "settings".localizeCapitalizingFirstLetter()
         navigationItem.largeTitleDisplayMode = .always
         
         tableView.dataSource = dataSource
@@ -72,7 +72,7 @@ extension SettingsViewController {
         let reuseIdentifier = self.reuseIdentifier
         return UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { tableView, indexPath, item -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-            cell.textLabel?.text = item.rawValue
+            cell.textLabel?.text = item.rawValue.localizeCapitalizingFirstLetter()
             cell.textLabel?.textColor = .babyPowder
             cell.backgroundColor = .richBlackForga29
             cell.accessoryType = .disclosureIndicator
@@ -101,5 +101,9 @@ extension SettingsViewController: UITableViewDelegate {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         actions.didSelectSetting?(item)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
     }
 }

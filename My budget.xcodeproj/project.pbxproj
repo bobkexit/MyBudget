@@ -101,6 +101,7 @@
 		3598145824C0E77100788E84 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145724C0E77100788E84 /* TransactionsViewController.swift */; };
 		3598145A24C0E77C00788E84 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145924C0E77C00788E84 /* SettingsViewController.swift */; };
 		3598145C24C18BEC00788E84 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145B24C18BEC00788E84 /* TransactionCell.swift */; };
+		35E9E22B24C852020085AA06 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E9E22A24C852020085AA06 /* String+Ext.swift */; };
 		35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3011206108FE0041F195 /* CategoriesVC.swift */; };
 		35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3015206111230041F195 /* EnumCollectionExt.swift */; };
 		35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE30192061188A0041F195 /* CategoryCell.swift */; };
@@ -210,6 +211,7 @@
 		3598145724C0E77100788E84 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		3598145924C0E77C00788E84 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3598145B24C18BEC00788E84 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		35E9E22A24C852020085AA06 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		35EE3011206108FE0041F195 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		35EE3015206111230041F195 /* EnumCollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollectionExt.swift; sourceTree = "<group>"; };
 		35EE30192061188A0041F195 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 			isa = PBXGroup;
 			children = (
 				3598144B24C0C7BF00788E84 /* UIColor+Ext.swift */,
+				35E9E22A24C852020085AA06 /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -910,6 +913,7 @@
 				35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */,
 				3566A7AD208A79DD0099BE67 /* DataManager.swift in Sources */,
 				3522B0072093990300D17AAF /* AccountBalanceVM.swift in Sources */,
+				35E9E22B24C852020085AA06 /* String+Ext.swift in Sources */,
 				3522AFF32091E5B800D17AAF /* BaseReportVC.swift in Sources */,
 				35EE301E206118BA0041F195 /* BaseCell.swift in Sources */,
 				3531C595207E76080055D0B4 /* CategoryVM.swift in Sources */,

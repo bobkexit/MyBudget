@@ -15,16 +15,20 @@ enum AccountKind: Int, CaseIterable {
 
 extension AccountKind {
     func description() -> String? {
+        var result: String? = nil
+        
         switch self {
         case .cash:
-            return "cash"
+            result = "cash"
         case .bankCard:
-            return "bank card"
+            result = "bank card"
         case .bankAccount:
-            return "bank account"
+            result = "bank account"
         case .other:
-            return "other"
+            result = "other"
         }
+        
+        return result?.localized()
     }
 }
 

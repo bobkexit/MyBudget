@@ -75,7 +75,7 @@ class TransactionsViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        title = "Transactions"
+        navigationItem.title = "transactions".localizeCapitalizingFirstLetter()
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .sliderHorizontal,
                                                             style: .plain,

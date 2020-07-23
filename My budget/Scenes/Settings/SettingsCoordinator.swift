@@ -29,7 +29,9 @@ class SettingsCoordinator: BaseCoordinator {
             didSelectSetting: { [unowned self] setting in
                 self.show(setting)
         })
-        viewController.tabBarItem = UITabBarItem(title: "Settings", image: .gearShape, tag: 3)
+    
+        let title = "settings".localizeCapitalizingFirstLetter()
+        viewController.tabBarItem = UITabBarItem(title: title, image: .gearShape, tag: 3)
         navigationConttroller.setViewControllers([viewController], animated: true)
     }
     

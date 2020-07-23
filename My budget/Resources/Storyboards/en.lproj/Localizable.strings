@@ -24,19 +24,32 @@
 "Balance" = "Balance";
 "Initial account balance" = "Initial account balance";
 "payment card" = "payment card";
-"cash" = "cash";
 "web" = "web";
-"bank account" = "bank account";
-"income" = "income";
-"expense" = "expense";
 "etc." = "etc.";
-"Expenses" = "Expenses";
 "Expenses for the last month" = "Expenses for the last month";
-"accounts" = "Accounts";
 "incomings" = "Incomings";
-"expenses" = "Expenses";
 "defaults" = "Defaults";
 "Create new income" = "Create new income";
 "Create new expense" = "Create new expense";
-"Select operation" = "Select operation";
 "Delete" = "DELETE";
+
+// MARK: - NEW
+
+"accounts" = "accounts";
+"inner transfer" = "inner transfer";
+"income" = "income";
+"expense" = "expense";
+"incomes" = "incomes";
+"expenses" = "expenses";
+"new" = "new";
+"select operation" = "select operation";
+"transaction" = "transaction";
+"transactions" = "transactions";
+"reports" = "reports";
+"settings" = "settings";
+"cash" = "cash";
+"bank card" = "bank card";
+"bank account" = "bank account";
+"other" = "other";
+"type" = "type";
+"cancel" = "cancel";

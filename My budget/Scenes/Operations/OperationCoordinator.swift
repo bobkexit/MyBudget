@@ -10,9 +10,9 @@ import UIKit
 
 class OperationCoordinator: BaseCoordinator {
     enum Operation: String, CaseIterable {
-        case interAccountTransfer = "Inner transfer"
-        case income = "Income"
-        case expense = "Expense"
+        case interAccountTransfer = "inner transfer"
+        case income = "income"
+        case expense = "expense"
     }
     
     private let currentOperation: Operation
@@ -33,9 +33,10 @@ class OperationCoordinator: BaseCoordinator {
     }
     
     private func showEmptyScene() {
+        let title = "new".combine(with: currentOperation.rawValue)
         let viewController = UIViewController()
         viewController.view.backgroundColor = .richBlackForga30
-        viewController.navigationItem.title = "New " + currentOperation.rawValue
+        viewController.navigationItem.title = title
         viewController.navigationItem.largeTitleDisplayMode = .never
         viewController.navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .close, target: nil, action: nil)
         navigationConttroller.setViewControllers([viewController], animated: true)
