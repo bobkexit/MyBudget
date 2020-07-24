@@ -53,20 +53,24 @@ class SettingsCoordinator: BaseCoordinator {
     }
     
     private func showIncomes() {
-        let viewController = UIViewController()
-        viewController.navigationItem.title = "Incomes"
-        viewController.navigationItem.largeTitleDisplayMode = .never
-        viewController.view.backgroundColor = .yellow
-        
+        let viewController = makeCategoriesViewController(for: .income)
         navigationConttroller.pushViewController(viewController, animated: true)
     }
     
     private func showExpenses() {
-        let viewController = UIViewController()
-        viewController.navigationItem.title = "Expenses"
-        viewController.navigationItem.largeTitleDisplayMode = .never
-        viewController.view.backgroundColor = .green
-        
+        let viewController = makeCategoriesViewController(for: .expense)
         navigationConttroller.pushViewController(viewController, animated: true)
+    }
+    
+    private func makeCategoriesViewController(for categoryType: CategoryKind) -> CategoriesViewController {
+        let categoriesController = CategoriesController(categoryType: categoryType, repository: repository)
+        let viewController = CategoriesViewController(categoriesController: categoriesController)
+        switch categoryType {
+        case .income:
+            viewController.navigationItem.title = "incomes".localizeCapitalizingFirstLetter()
+        case .expense:
+            viewController.navigationItem.title = "expenses".localizeCapitalizingFirstLetter()
+        }
+        return viewController
     }
 }

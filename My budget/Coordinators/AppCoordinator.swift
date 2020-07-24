@@ -30,6 +30,7 @@ class AppCoordinator: BaseCoordinator {
     
     override func start() {
         //migration.reset()
+        
         migration.isCompleted ? showMainScene() : showLoadingScene()
         window.makeKeyAndVisible()
     }

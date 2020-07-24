@@ -40,7 +40,7 @@ class AccountsController: AccountsControllerProtocol {
     }
     
     func getAccounts(for type: AccountKind) -> [AccountDTO] {
-        let predicate = NSPredicate(format: "kind == %@", type.rawValue)
+        let predicate = NSPredicate(format: "kind == %@", NSNumber(value: type.rawValue))
         let accounts = results.sorted(byKeyPath: "name").filter(predicate)
         return accounts.compactMap { AccountDTO(account: $0) }
     }

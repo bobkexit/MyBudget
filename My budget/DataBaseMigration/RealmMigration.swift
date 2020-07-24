@@ -70,19 +70,25 @@ class RealmMigration: DataBaseMigration {
         do {
             let categories = try viewContext.fetch(categoriesFetchRequest)
             
+            var expenseSortIndex = 1
+            var incomeSortIndex = 1
+            
             categories.forEach {
-                
                 let newCategory = CategoryObject()
                 newCategory.name = $0.title ?? "New category"
-                
+               
                 let categoryType = CategoryType(rawValue: Int($0.typeId))!
                 switch categoryType {
                 case .credit:
                     newCategory.kind = CategoryKind.expense.rawValue
+                    newCategory.sortIndex = expenseSortIndex
+                    expenseSortIndex += 1
                 case .debit:
                     newCategory.kind = CategoryKind.income.rawValue
+                    newCategory.sortIndex = incomeSortIndex
+                    incomeSortIndex += 1
                 }
-                
+            
                 categoriesMigration[$0] = newCategory
             }
         } catch let error as NSError {

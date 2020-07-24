@@ -34,13 +34,9 @@ class Repository {
         }
     }
     
-    func save<T: Object>(_ object: T) {
-        do {
-            try realm.write {
-                realm.add(object, update: .modified)
-            }
-        } catch let error {
-            print("Failed to save data = \(error)")
+    func save<T: Object>(_ object: T) throws {
+        try realm.write {
+            realm.add(object, update: .modified)
         }
     }
     

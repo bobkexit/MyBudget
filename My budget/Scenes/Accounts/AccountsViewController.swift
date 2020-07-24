@@ -30,13 +30,13 @@ class AccountsViewController: UIViewController {
         return tableView
     } ()
     
-    private lazy var addAccountButton: UIButton = {
+    private lazy var addButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(.plus, for: .normal)
         button.backgroundColor = .orangePeel
         button.tintColor = .richBlackForga30
-        button.addTarget(self, action: #selector(addAccountButtonTapped(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
         return button
     } ()
     
@@ -62,10 +62,10 @@ class AccountsViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        addAccountButton.layer.cornerRadius = addAccountButton.bounds.height / 2
+        addButton.layer.cornerRadius = addButton.bounds.height / 2
     }
     
-    @objc private func addAccountButtonTapped(_ sender: UIButton) {
+    @objc private func addButtonTapped(_ sender: UIButton) {
         actions.createOperation?()
     }
     
@@ -78,7 +78,7 @@ class AccountsViewController: UIViewController {
     private func configureViews() {
         view.backgroundColor = .richBlackForga30
         view.addSubview(tableView)
-        view.addSubview(addAccountButton)
+        view.addSubview(addButton)
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -86,10 +86,10 @@ class AccountsViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            addAccountButton.heightAnchor.constraint(equalToConstant: 48.0),
-            addAccountButton.widthAnchor.constraint(equalTo: addAccountButton.heightAnchor),
-            addAccountButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            addAccountButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+            addButton.heightAnchor.constraint(equalToConstant: 48.0),
+            addButton.widthAnchor.constraint(equalTo: addButton.heightAnchor),
+            addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
     }
 }

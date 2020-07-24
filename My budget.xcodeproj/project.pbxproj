@@ -83,6 +83,10 @@
 		356E06F6206A755E004034AE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F5206A755E004034AE /* GradientView.swift */; };
 		356E06F8206A802C004034AE /* GradientTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F7206A802C004034AE /* GradientTableView.swift */; };
 		356E06FA206D59E1004034AE /* DesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E06F9206D59E1004034AE /* DesignableViews.swift */; };
+		357CB31624C99ED400EFE2B8 /* CategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357CB31524C99ED400EFE2B8 /* CategoriesController.swift */; };
+		357CB31824C9A21200EFE2B8 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357CB31724C9A21200EFE2B8 /* CategoriesViewController.swift */; };
+		357CB31A24C9A7B100EFE2B8 /* CategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357CB31924C9A7B100EFE2B8 /* CategoriesDataSource.swift */; };
+		357CB31C24C9C91900EFE2B8 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357CB31B24C9C91900EFE2B8 /* TextFieldCell.swift */; };
 		357E0D28206E858B00205970 /* UITextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D27206E858B00205970 /* UITextFieldExt.swift */; };
 		357E0D2A206E97F100205970 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D29206E97F100205970 /* BaseVC.swift */; };
 		357E0D2C206E9F2B00205970 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D2B206E9F2B00205970 /* Helper.swift */; };
@@ -194,6 +198,10 @@
 		356E06F5206A755E004034AE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		356E06F7206A802C004034AE /* GradientTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTableView.swift; sourceTree = "<group>"; };
 		356E06F9206D59E1004034AE /* DesignableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableViews.swift; sourceTree = "<group>"; };
+		357CB31524C99ED400EFE2B8 /* CategoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesController.swift; sourceTree = "<group>"; };
+		357CB31724C9A21200EFE2B8 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		357CB31924C9A7B100EFE2B8 /* CategoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataSource.swift; sourceTree = "<group>"; };
+		357CB31B24C9C91900EFE2B8 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		357E0D27206E858B00205970 /* UITextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
 		357E0D29206E97F100205970 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		357E0D2B206E9F2B00205970 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -616,6 +624,17 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		357CB31424C99EB800EFE2B8 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				357CB31524C99ED400EFE2B8 /* CategoriesController.swift */,
+				357CB31724C9A21200EFE2B8 /* CategoriesViewController.swift */,
+				357CB31924C9A7B100EFE2B8 /* CategoriesDataSource.swift */,
+				357CB31B24C9C91900EFE2B8 /* TextFieldCell.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		3598143324C068F900788E84 /* DataBaseMigration */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +646,7 @@
 		3598143624C0BAAB00788E84 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				357CB31424C99EB800EFE2B8 /* Categories */,
 				3513738A24C82338001E7697 /* Accounts */,
 				35F4E67724C2F02700B21151 /* Operations */,
 				3598143724C0BAC200788E84 /* Loading */,
@@ -860,15 +880,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-My budget/Pods-My budget-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/TableFlip/TableFlip.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-My budget/Pods-My budget-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TableFlip.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-My budget/Pods-My budget-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -920,6 +937,7 @@
 				3513738E24C82702001E7697 /* AccountsViewController.swift in Sources */,
 				3598143924C0BAD700788E84 /* LoadingViewController.swift in Sources */,
 				357E0D28206E858B00205970 /* UITextFieldExt.swift in Sources */,
+				357CB31A24C9A7B100EFE2B8 /* CategoriesDataSource.swift in Sources */,
 				356E06FA206D59E1004034AE /* DesignableViews.swift in Sources */,
 				3513738C24C82360001E7697 /* AccountsController.swift in Sources */,
 				351EEFD724C1B2EA00EE5254 /* TransactionDTO.swift in Sources */,
@@ -939,6 +957,7 @@
 				3522AFE52091C2A900D17AAF /* Report.swift in Sources */,
 				3522B0032092FBE300D17AAF /* BalanceReportVC.swift in Sources */,
 				351410EE2084773C002F0D9E /* CreateAccountVC.swift in Sources */,
+				357CB31824C9A21200EFE2B8 /* CategoriesViewController.swift in Sources */,
 				356B12DA208DEE35007AF145 /* CreateTransactionVC.swift in Sources */,
 				3563FF05205FD77900B05E82 /* BaseTableVC.swift in Sources */,
 				35F4E67C24C2FBFD00B21151 /* TransactionsDataSource.swift in Sources */,
@@ -963,8 +982,10 @@
 				35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */,
 				356E06F2206A5699004034AE /* TransactionCellOld.swift in Sources */,
 				3522E11E208E45A10096E57C /* DataManagerFactory.swift in Sources */,
+				357CB31624C99ED400EFE2B8 /* CategoriesController.swift in Sources */,
 				3522B0052093849300D17AAF /* AccountBalanceCell.swift in Sources */,
 				356B12DE208DF6C7007AF145 /* BaseTransactionVC.swift in Sources */,
+				357CB31C24C9C91900EFE2B8 /* TextFieldCell.swift in Sources */,
 				3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */,
 				351EEFE424C2402600EE5254 /* TransactionCellConfigurator.swift in Sources */,
 				3598145624C0E76000788E84 /* ReportsViewController.swift in Sources */,

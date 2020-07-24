@@ -16,6 +16,7 @@ enum CategoryKind: Int, CaseIterable {
 @objcMembers
 final class CategoryObject: Object {
     dynamic var id: String = UUID().uuidString
+    dynamic var sortIndex: Int = 0
     dynamic var name: String = ""
     dynamic var kind: Int = CategoryKind.expense.rawValue
     let transactions = LinkingObjects(fromType: TransactionObject.self, property: "category")

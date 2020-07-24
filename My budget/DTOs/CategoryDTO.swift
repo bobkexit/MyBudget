@@ -12,16 +12,18 @@ struct CategoryDTO: Hashable {
     let id: String
     let name: String
     let kind: CategoryKind
+    let sortIndex: Int
 }
 
 extension CategoryDTO {
-    func copy(name: String? = nil, kind: CategoryKind? = nil) -> CategoryDTO {
-        return CategoryDTO(id: id, name: name ?? self.name, kind: kind ?? self.kind)
+    func copy(name: String? = nil, kind: CategoryKind? = nil, sortIndex: Int? = nil) -> CategoryDTO {
+        return CategoryDTO(id: id, name: name ?? self.name, kind: kind ?? self.kind, sortIndex: sortIndex ?? self.sortIndex)
     }
     
     init(category: CategoryObject) {
         self.id = category.id
         self.name = category.name
         self.kind = CategoryKind(rawValue: category.kind)!
+        self.sortIndex = category.sortIndex
     }
 }
