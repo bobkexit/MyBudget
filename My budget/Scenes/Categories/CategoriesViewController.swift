@@ -18,7 +18,7 @@ class CategoriesViewController: UIViewController {
     
     var actions: Actions = Actions()
     
-    private var newCategory: CategoryDTO?
+    private var categoryName: String?
     
     private let cellReuseIdentifier = "CategoryCell"
     
@@ -71,9 +71,10 @@ class CategoriesViewController: UIViewController {
         
         configureViews()
         configureNavigationBar()
+        configureSearchController()
         
-        //tableView.delegate = self
         tableView.dataSource = dataSource
+        tableView.delegate = self
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
         view.addGestureRecognizer(tap)
@@ -93,7 +94,14 @@ class CategoriesViewController: UIViewController {
     private func configureNavigationBar() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItem?.tintColor = .babyPowder
+    }
+    
+    private func configureSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search Category"
+        searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     private func configureViews() {
@@ -143,13 +151,13 @@ private extension CategoriesViewController {
         guard let controller = categoriesController else { return }
     
         var snapshot = NSDiffableDataSourceSnapshot<CategoriesDataSource.Section, CategoryDTO>()
-        let categories = controller.getCategories()
+        let categories = controller.getCategories(filteredByName: categoryName)
         snapshot.appendSections([.main])
         snapshot.appendItems(categories, toSection: .main)
         
         dataSource.apply(snapshot, animatingDifferences: animated)
     }
-    
+        
     func addNewCategory() {
         guard let controller = categoriesController else { return }
         
@@ -163,7 +171,6 @@ private extension CategoriesViewController {
             let cell = tableView.cellForRow(at: indexPath) as? TextFieldCell {
             cell.textField.becomeFirstResponder()
         }
-        
     }
 }
 
@@ -180,5 +187,19 @@ extension CategoriesViewController: TextFieldCellDelegate {
             let newCategory = category.copy(name: categoryName)
             categoriesController?.save(newCategory)
         }
+    }
+}
+
+extension CategoriesViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        categoryName = searchBar.text
+        updateUI(animated: true)
+    }
+}
+
+extension CategoriesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }

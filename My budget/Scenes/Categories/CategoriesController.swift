@@ -11,7 +11,7 @@ import RealmSwift
 
 protocol CategoriesControllerProtocol: AnyObject {
     var handlers: CategoriesHandlers { get set }
-    func getCategories() -> [CategoryDTO]
+    func getCategories(filteredByName name: String?) -> [CategoryDTO]
     func createCategory(withName name: String) -> CategoryDTO
     func save(_ category: CategoryDTO)
     func delete(_ category: CategoryDTO)
@@ -47,8 +47,18 @@ class CategoriesController: CategoriesControllerProtocol {
         notificationToken?.invalidate()
     }
     
-    func getCategories() -> [CategoryDTO] {
-        return results.sorted(byKeyPath: "sortIndex").compactMap { CategoryDTO(category: $0) }
+    func getCategories(filteredByName name: String?) -> [CategoryDTO] {
+        if let name = name, !name.isEmpty {
+            let predicate = NSPredicate(format: "name CONTAINS %@", name)
+            return results
+                .filter(predicate)
+                .sorted(byKeyPath: "sortIndex")
+                .compactMap { CategoryDTO(category: $0) }
+        } else {
+            return results
+                .sorted(byKeyPath: "sortIndex")
+                .compactMap { CategoryDTO(category: $0) }
+        }
     }
     
     func createCategory(withName name: String) -> CategoryDTO {
@@ -61,12 +71,12 @@ class CategoriesController: CategoriesControllerProtocol {
     func save(_ category: CategoryDTO) {
         if let categoryObject = repository.find(CategoryObject.self, byID: category.id) {
             repository.update {
-                categoryObject.name = category.name
+                categoryObject.name = category.name.trimmingCharacters(in: .whitespaces)
             }
         } else {
             let categoryObject = CategoryObject()
             categoryObject.id = category.id
-            categoryObject.name = category.name
+            categoryObject.name = category.name.trimmingCharacters(in: .whitespaces)
             categoryObject.kind = categoryType.rawValue
             categoryObject.sortIndex = results.count + 1
             
