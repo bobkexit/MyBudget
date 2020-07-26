@@ -47,9 +47,3 @@ class TextFieldCell: UITableViewCell {
         delegate?.textFieldCell(self, didEndEditingTextField: sender)
     }
 }
-
-extension TextFieldCell: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        delegate?.textFieldCell(self, didEndEditingTextField: textField)
-    }
-}

@@ -49,7 +49,21 @@ class SettingsCoordinator: BaseCoordinator {
     private func showAccounts() {
         let accountsController = AccountsController(repository: repository)
         let viewController = AccountsViewController(accountsController: accountsController)
+        viewController.actions.createOperation = { [weak self] in
+            self?.showCreateAccountScene()
+        }
         navigationConttroller.pushViewController(viewController, animated: true)
+    }
+    
+    private func showCreateAccountScene() {
+        let account = AccountDTO(account: AccountObject())
+        let accountCoordinator = AccountCoordinator(repository: repository, account: account)
+        accountCoordinator.onComplete = { [weak self] childCoordinator in
+            self?.remove(childCoordinator)
+        }
+        add(accountCoordinator)
+        accountCoordinator.start()
+        navigationConttroller.present(accountCoordinator.navigationConttroller, animated: true)
     }
     
     private func showIncomes() {

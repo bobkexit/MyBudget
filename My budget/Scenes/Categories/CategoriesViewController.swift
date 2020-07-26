@@ -64,14 +64,13 @@ class CategoriesViewController: UIViewController {
         self.categoriesController = categoriesController
     }
     
-    var removeAnimated: Bool = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViews()
         configureNavigationBar()
         configureSearchController()
+        setupObservers()
         
         tableView.dataSource = dataSource
         tableView.delegate = self
@@ -91,6 +90,10 @@ class CategoriesViewController: UIViewController {
             }, didFail: nil)
     }
     
+    deinit {
+        print(#function)
+    }
+    
     private func configureNavigationBar() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItem?.tintColor = .babyPowder
@@ -98,7 +101,7 @@ class CategoriesViewController: UIViewController {
     
     private func configureSearchController() {
         searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search Category"
+        searchController.searchBar.placeholder = "search category".localizeCapitalizingFirstLetter()
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
         definesPresentationContext = true
@@ -122,34 +125,62 @@ class CategoriesViewController: UIViewController {
         ])
     }
     
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(_:)),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(_:)),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     @objc private func viewTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
+        guard let keyboardHeight = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight.cgRectValue.size.height, right: 0)
+    }
+    
+    @objc private func keyboardWillHide(_ notification: NSNotification) {
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
 
 private extension CategoriesViewController {
     func makeDataSource() -> UITableViewDiffableDataSource<CategoriesDataSource.Section, CategoryDTO> {
         let reuseIdentifier = cellReuseIdentifier
-        return CategoriesDataSource(tableView: tableView,
-                                    categoriesController: categoriesController) { tableView, indexPath, category in
-                                        
-                                        guard let cell = tableView.dequeueReusableCell(
-                                            withIdentifier: reuseIdentifier, for: indexPath) as? TextFieldCell else { return nil }
-                                        
-                                        cell.textField.text = category.name
-                                        cell.textField.textColor = .babyPowder
-                                        cell.textField.backgroundColor = .clear
-                                        cell.backgroundColor = .clear
-                                        cell.delegate = self
-                                        cell.selectionStyle = .none
-                                        
-                                        return cell
+        let dataSource = CategoriesDataSource(tableView: tableView) { [weak self] tableView, indexPath, category in
+            
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: reuseIdentifier, for: indexPath) as? TextFieldCell else { return nil }
+            
+            cell.textField.text = category.name
+            cell.textField.textColor = .babyPowder
+            cell.textField.textColor = .orangePeel
+            cell.textField.backgroundColor = .clear
+            cell.backgroundColor = .clear
+            cell.delegate = self
+            cell.selectionStyle = .none
+            
+            return cell
         }
+        
+        dataSource.actions = CategoriesDataSource.Actions(deleteCategory: { [weak categoriesController] category in
+            categoriesController?.delete(category)
+        })
+        
+        return dataSource
     }
     
     func updateUI(animated: Bool) {
         guard let controller = categoriesController else { return }
-    
+        
         var snapshot = NSDiffableDataSourceSnapshot<CategoriesDataSource.Section, CategoryDTO>()
         let categories = controller.getCategories(filteredByName: categoryName)
         snapshot.appendSections([.main])
@@ -157,7 +188,7 @@ private extension CategoriesViewController {
         
         dataSource.apply(snapshot, animatingDifferences: animated)
     }
-        
+    
     func addNewCategory() {
         guard let controller = categoriesController else { return }
         
