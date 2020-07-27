@@ -107,6 +107,11 @@ class AccountViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         saveButton.layer.cornerRadius = saveButton.bounds.height / 2
+        
+        if let accountType = accountContoller?.accountType,
+            let indexPath = accountTypesDataSource.indexPath(for: accountType) {
+            collectionView.scrollToItem(at: indexPath, at: [.centeredHorizontally, .centeredVertically], animated: true)
+        }
     }
     
     private func configureNavigationBar() {
@@ -133,6 +138,12 @@ class AccountViewController: UIViewController {
     }
     
     @objc private func saveButtonTapped(_ sender: UIButton) {
+        let accountName = accountContoller?.accountName
+        if accountName == nil || accountName?.isEmpty == true   {
+            accountContoller?.updateAccount(name: "new account".localizeCapitalizingFirstLetter())
+        }
+        
+        accountContoller?.saveAccount()
         delegate?.accountViewControllerDidSaveAccount(self)
     }
     
