@@ -8,12 +8,14 @@
 
 import UIKit
 
+protocol AccountViewControllerDelegate: AnyObject {
+    func accountViewController(_ viewController: AccountViewController, didSelectCurrencyCode currencyCode: String?)
+    func accountViewControllerDidSaveAccount(_ viewController: AccountViewController)
+}
+
 class AccountViewController: UIViewController {
     
-    struct Actions {
-        var didSelectCurrencyCode: ((_ currencyCode: String?) -> Void)?
-        var didSaveAccount: (() -> Void)?
-    }
+    weak var delegate: AccountViewControllerDelegate?
     
     enum Section: Int, CaseIterable {
         case name
@@ -31,12 +33,6 @@ class AccountViewController: UIViewController {
             }
         }
     }
-    
-    enum Item {
-        case name, currency, type
-    }
-    
-    var actions: Actions = Actions()
     
     private var accountContoller: AccountContollerProtocol?
     
@@ -137,7 +133,7 @@ class AccountViewController: UIViewController {
     }
     
     @objc private func saveButtonTapped(_ sender: UIButton) {
-        actions.didSaveAccount?()
+        delegate?.accountViewControllerDidSaveAccount(self)
     }
     
     @objc private func viewTapped(_ sender: UITapGestureRecognizer) {
@@ -268,7 +264,8 @@ extension AccountViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let section = Section(rawValue: indexPath.section), section == .currency {
             tableView.deselectRow(at: indexPath, animated: true)
-            actions.didSelectCurrencyCode?(accountContoller?.currencyCode)
+            let currencyCode = accountContoller?.currencyCode
+            delegate?.accountViewController(self, didSelectCurrencyCode: currencyCode)
         }
     }
 }

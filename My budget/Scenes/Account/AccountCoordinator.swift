@@ -33,17 +33,7 @@ class AccountCoordinator: BaseCoordinator {
     private func showAccount() {
         let accountController = AccountContoller(repository: repository, account: account)
         let viewController = AccountViewController(accountContoller: accountController)
-        
-        viewController.actions = AccountViewController.Actions(
-            didSelectCurrencyCode: { [weak self, viewController] currencyCode in
-                guard let self = self else { return }
-                self.showCurrencies(selectedCurrencyCode: currencyCode, delegate: viewController)
-            }, didSaveAccount: { [weak self] in
-                self?.navigationConttroller.dismiss(animated: true) { [weak self] in
-                    guard let self = self else { return }
-                    self.onComplete?(self)
-                }
-        })
+        viewController.delegate = self
         
         if accountController.isNewAccount {
             viewController.navigationItem.title = "new".combine(with: "account")
@@ -69,5 +59,15 @@ class AccountCoordinator: BaseCoordinator {
             guard let self = self else { return }
             self.onComplete?(self)
         }
+    }
+}
+
+extension AccountCoordinator: AccountViewControllerDelegate {
+    func accountViewController(_ viewController: AccountViewController, didSelectCurrencyCode currencyCode: String?) {
+        showCurrencies(selectedCurrencyCode: currencyCode, delegate: viewController)
+    }
+    
+    func accountViewControllerDidSaveAccount(_ viewController: AccountViewController) {
+        finish()
     }
 }
