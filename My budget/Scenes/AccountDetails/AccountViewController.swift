@@ -235,10 +235,7 @@ private extension AccountViewController {
             cell.detailTextLabel?.textColor = .babyPowder60
             cell.textLabel?.text = "currency".localizeCapitalizingFirstLetter()
             cell.detailTextLabel?.text = accountContoller?.currencyCode
-            
-            let view = UIView()
-            view.backgroundColor = .orangePeel
-            cell.selectedBackgroundView = view
+            cell.selectionColor(.orangePeel)
             
             return cell
         case .type:

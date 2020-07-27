@@ -49,14 +49,11 @@ class SettingsCoordinator: BaseCoordinator {
     private func showAccounts() {
         let accountsController = AccountsController(repository: repository)
         let viewController = AccountsViewController(accountsController: accountsController)
-        viewController.actions.createOperation = { [weak self] in
-            self?.showCreateAccountScene()
-        }
+        viewController.delegate = self
         navigationConttroller.pushViewController(viewController, animated: true)
     }
     
-    private func showCreateAccountScene() {
-        let account = AccountDTO(account: AccountObject())
+    private func showAccountDetails(_ account: AccountDTO) {
         let accountCoordinator = AccountCoordinator(repository: repository, account: account)
         accountCoordinator.onComplete = { [weak self] childCoordinator in
             self?.remove(childCoordinator)
@@ -86,5 +83,16 @@ class SettingsCoordinator: BaseCoordinator {
             viewController.navigationItem.title = "expenses".localizeCapitalizingFirstLetter()
         }
         return viewController
+    }
+}
+
+extension SettingsCoordinator: AccountsViewControllerDelegate {
+    func accountsViewControllerDidSelectCreateAccount(_ viewController: AccountsViewController) {
+        let account = AccountDTO(account: AccountObject())
+        showAccountDetails(account)
+    }
+    
+    func accountsViewController(_ viewController: AccountsViewController, didSelectAccount account: AccountDTO) {
+        showAccountDetails(account)
     }
 }

@@ -110,6 +110,7 @@ private extension CurrenciesViewController {
             cell.tintColor = .orangePeel
             cell.textLabel?.text = Locale.current.localizedString(forCurrencyCode: currencyCode)
             cell.textLabel?.textColor = .babyPowder
+            cell.selectionColor(.orangePeel)
             
             cell.detailTextLabel?.text = currencyCode
             cell.detailTextLabel?.textColor = .babyPowder60
@@ -117,11 +118,7 @@ private extension CurrenciesViewController {
             if currencyCode == self.selectedCurrencyCode {
                 cell.accessoryType = .checkmark
             }
-            
-            let view = UIView()
-            view.backgroundColor = .orangePeel
-            cell.selectedBackgroundView = view
-            
+ 
             return cell
         }
     }

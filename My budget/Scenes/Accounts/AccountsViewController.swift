@@ -8,13 +8,15 @@
 
 import UIKit
 
+protocol AccountsViewControllerDelegate: AnyObject {
+    func accountsViewControllerDidSelectCreateAccount(_ viewController: AccountsViewController)
+    func accountsViewController(_ viewController: AccountsViewController, didSelectAccount account: AccountDTO)
+}
+
 class AccountsViewController: UIViewController {
-    struct Actions {
-        var createOperation: (() -> Void)?
-    }
-    
-    var actions: Actions = Actions()
-    
+   
+    weak var delegate: AccountsViewControllerDelegate?
+
     var accountsController: AccountsControllerProtocol!
     
     private let cellReuseIdentifier = "AccountCell"
@@ -51,7 +53,7 @@ class AccountsViewController: UIViewController {
         configureViews()
         configureNavigationBar()
         
-        tableView.delegate = dataSource
+        tableView.delegate = self
         tableView.dataSource = dataSource
         
         accountsController?.handlers = FetchDataHandlers(
@@ -66,7 +68,7 @@ class AccountsViewController: UIViewController {
     }
     
     @objc private func addButtonTapped(_ sender: UIButton) {
-        actions.createOperation?()
+        delegate?.accountsViewControllerDidSelectCreateAccount(self)
     }
     
     private func configureNavigationBar() {
@@ -116,5 +118,13 @@ private extension AccountsViewController {
         snapshot.appendItems(accounts, toSection: .main)
       
         dataSource.apply(snapshot, animatingDifferences: animated)
+    }
+}
+
+extension AccountsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let account = dataSource.itemIdentifier(for: indexPath) else { return }
+        tableView.deselectRow(at: indexPath, animated: true)
+        delegate?.accountsViewController(self, didSelectAccount: account)
     }
 }

@@ -25,9 +25,6 @@ class AccountsDataSource: UITableViewDiffableDataSource<AccountsDataSource.Secti
     convenience init(tableView: UITableView,
                      cellReuseIdentifier: String,
                      accountsController: AccountsControllerProtocol?) {
-         
-        
-        
         self.init(tableView: tableView) { tableView, indexPath, account in
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier)
             var text = account.name
@@ -39,12 +36,12 @@ class AccountsDataSource: UITableViewDiffableDataSource<AccountsDataSource.Secti
             cell.textLabel?.text  = text
         
             if let type = account.kind.description() {
-                cell.detailTextLabel?.text = "type".localized() + ": \(type)" 
+                cell.detailTextLabel?.text = "\(type)"
             }
             
             cell.backgroundColor = .clear
-            cell.selectionStyle = .none
-            
+            cell.selectionColor(.orangePeel)
+
             cell.textLabel?.textColor = .babyPowder
             cell.detailTextLabel?.textColor = .babyPowder60
             
@@ -63,8 +60,4 @@ class AccountsDataSource: UITableViewDiffableDataSource<AccountsDataSource.Secti
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-}
-
-extension AccountsDataSource: UITableViewDelegate {
-    
 }

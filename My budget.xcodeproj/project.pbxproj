@@ -108,6 +108,7 @@
 		3598145824C0E77100788E84 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145724C0E77100788E84 /* TransactionsViewController.swift */; };
 		3598145A24C0E77C00788E84 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145924C0E77C00788E84 /* SettingsViewController.swift */; };
 		3598145C24C18BEC00788E84 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145B24C18BEC00788E84 /* TransactionCell.swift */; };
+		359AFBFC24CEF0D800744616 /* UITableViewCell+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359AFBFB24CEF0D800744616 /* UITableViewCell+Ext.swift */; };
 		35CCCE8824CDCF530038A0CC /* AccountContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CCCE8724CDCF530038A0CC /* AccountContoller.swift */; };
 		35CCCE8D24CDD7CD0038A0CC /* AccountTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CCCE8C24CDD7CD0038A0CC /* AccountTypeCell.swift */; };
 		35E9E22B24C852020085AA06 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E9E22A24C852020085AA06 /* String+Ext.swift */; };
@@ -227,6 +228,7 @@
 		3598145724C0E77100788E84 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		3598145924C0E77C00788E84 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3598145B24C18BEC00788E84 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		359AFBFB24CEF0D800744616 /* UITableViewCell+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Ext.swift"; sourceTree = "<group>"; };
 		35CCCE8724CDCF530038A0CC /* AccountContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountContoller.swift; sourceTree = "<group>"; };
 		35CCCE8C24CDD7CD0038A0CC /* AccountTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypeCell.swift; sourceTree = "<group>"; };
 		35E9E22A24C852020085AA06 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
@@ -653,7 +655,7 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		357CB31D24CDB73700EFE2B8 /* Account */ = {
+		357CB31D24CDB73700EFE2B8 /* AccountDetails */ = {
 			isa = PBXGroup;
 			children = (
 				35CCCE8B24CDD7AA0038A0CC /* Views */,
@@ -661,7 +663,7 @@
 				35CCCE8724CDCF530038A0CC /* AccountContoller.swift */,
 				357CB31E24CDB76700EFE2B8 /* AccountViewController.swift */,
 			);
-			path = Account;
+			path = AccountDetails;
 			sourceTree = "<group>";
 		};
 		3598143324C068F900788E84 /* DataBaseMigration */ = {
@@ -676,9 +678,9 @@
 			isa = PBXGroup;
 			children = (
 				3529E00D24CE076E00900AB7 /* Currencies */,
-				357CB31D24CDB73700EFE2B8 /* Account */,
-				357CB31424C99EB800EFE2B8 /* Categories */,
+				357CB31D24CDB73700EFE2B8 /* AccountDetails */,
 				3513738A24C82338001E7697 /* Accounts */,
+				357CB31424C99EB800EFE2B8 /* Categories */,
 				35F4E67724C2F02700B21151 /* Operations */,
 				3598143724C0BAC200788E84 /* Loading */,
 				3598145224C0E72700788E84 /* Reports */,
@@ -728,6 +730,7 @@
 			children = (
 				3598144B24C0C7BF00788E84 /* UIColor+Ext.swift */,
 				35E9E22A24C852020085AA06 /* String+Ext.swift */,
+				359AFBFB24CEF0D800744616 /* UITableViewCell+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -963,6 +966,7 @@
 				3566A7AF208A89930099BE67 /* IncomeCategoryManager.swift in Sources */,
 				3598144E24C0C7F300788E84 /* AppStyle.swift in Sources */,
 				357E0D2A206E97F100205970 /* BaseVC.swift in Sources */,
+				359AFBFC24CEF0D800744616 /* UITableViewCell+Ext.swift in Sources */,
 				351E3E8A205BDB95004A3414 /* TransactionsVC.swift in Sources */,
 				351EEFD524C1B27100EE5254 /* CategoryDTO.swift in Sources */,
 				3598145A24C0E77C00788E84 /* SettingsViewController.swift in Sources */,

@@ -73,8 +73,7 @@ class CategoriesViewController: UIViewController {
         setupObservers()
         
         tableView.dataSource = dataSource
-        tableView.delegate = self
-        
+       
         let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
         view.addGestureRecognizer(tap)
         
@@ -162,7 +161,7 @@ private extension CategoriesViewController {
             
             cell.textField.text = category.name
             cell.textField.textColor = .babyPowder
-            cell.textField.textColor = .orangePeel
+            cell.textField.tintColor = .orangePeel
             cell.textField.backgroundColor = .clear
             cell.backgroundColor = .clear
             cell.delegate = self
@@ -226,11 +225,5 @@ extension CategoriesViewController: UISearchResultsUpdating {
         let searchBar = searchController.searchBar
         categoryName = searchBar.text
         updateUI(animated: true)
-    }
-}
-
-extension CategoriesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
 }

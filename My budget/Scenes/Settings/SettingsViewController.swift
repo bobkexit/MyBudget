@@ -76,11 +76,8 @@ extension SettingsViewController {
             cell.textLabel?.textColor = .babyPowder
             cell.backgroundColor = .richBlackForga29
             cell.accessoryType = .disclosureIndicator
-  
-            let view = UIView()
-            view.backgroundColor = .orangePeel
-            cell.selectedBackgroundView = view
-            
+            cell.selectionColor(.orangePeel)
+           
             return cell
         }
     }
