@@ -76,8 +76,7 @@ extension SettingsViewController {
             cell.textLabel?.textColor = .babyPowder
             cell.backgroundColor = .richBlackForga29
             cell.accessoryType = .disclosureIndicator
-            cell.selectionColor(.orangePeel)
-           
+            cell.selectionColor(.orangePeel)           
             return cell
         }
     }

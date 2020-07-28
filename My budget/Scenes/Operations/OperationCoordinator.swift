@@ -29,16 +29,42 @@ class OperationCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        showEmptyScene()
+        showOperation()
     }
     
-    private func showEmptyScene() {
-        let title = "new".combine(with: currentOperation.rawValue)
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .richBlackForga30
-        viewController.navigationItem.title = title
-        viewController.navigationItem.largeTitleDisplayMode = .never
-        viewController.navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .close, target: nil, action: nil)
+    private func showOperation() {
+        switch currentOperation {
+        case .expense:
+            showExpenseOperation()
+        case .income:
+            break
+        case .interAccountTransfer:
+            break
+        }
+    }
+    
+    private func showExpenseOperation() {
+        //let accountController = AccountContoller(repository: repository, account: account)
+        let viewController = ExpenseViewController()
+//        viewController.delegate = self
+        
+//        if accountController.isNewAccount {
+             viewController.navigationItem.title =  "new".combine(with: currentOperation.rawValue)
+//            viewController.navigationItem.title = "new".combine(with: "account")
+//        } else {
+//            viewController.navigationItem.title = "account".localizeCapitalizingFirstLetter()
+//        }
+        
+        viewController.navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .close,
+                                                                 target: self, action: #selector(finish))
+        
         navigationConttroller.setViewControllers([viewController], animated: true)
+    }
+    
+    @objc private func finish() {
+        navigationConttroller.dismiss(animated: true) { [weak self] in
+            guard let self = self else { return }
+            self.onComplete?(self)
+        }
     }
 }

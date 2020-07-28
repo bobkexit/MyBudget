@@ -109,6 +109,8 @@
 		3598145A24C0E77C00788E84 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145924C0E77C00788E84 /* SettingsViewController.swift */; };
 		3598145C24C18BEC00788E84 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598145B24C18BEC00788E84 /* TransactionCell.swift */; };
 		359AFBFC24CEF0D800744616 /* UITableViewCell+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359AFBFB24CEF0D800744616 /* UITableViewCell+Ext.swift */; };
+		359AFBFE24CEFC0600744616 /* ExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359AFBFD24CEFC0600744616 /* ExpenseViewController.swift */; };
+		359AFC0124CFFDA000744616 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359AFC0024CFFDA000744616 /* DatePickerCell.swift */; };
 		35CCCE8824CDCF530038A0CC /* AccountContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CCCE8724CDCF530038A0CC /* AccountContoller.swift */; };
 		35CCCE8D24CDD7CD0038A0CC /* AccountTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CCCE8C24CDD7CD0038A0CC /* AccountTypeCell.swift */; };
 		35E9E22B24C852020085AA06 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E9E22A24C852020085AA06 /* String+Ext.swift */; };
@@ -229,6 +231,8 @@
 		3598145924C0E77C00788E84 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3598145B24C18BEC00788E84 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		359AFBFB24CEF0D800744616 /* UITableViewCell+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Ext.swift"; sourceTree = "<group>"; };
+		359AFBFD24CEFC0600744616 /* ExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExpenseViewController.swift; path = "My budget/Utils/Extensions/ExpenseViewController.swift"; sourceTree = SOURCE_ROOT; };
+		359AFC0024CFFDA000744616 /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		35CCCE8724CDCF530038A0CC /* AccountContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountContoller.swift; sourceTree = "<group>"; };
 		35CCCE8C24CDD7CD0038A0CC /* AccountTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypeCell.swift; sourceTree = "<group>"; };
 		35E9E22A24C852020085AA06 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
@@ -771,6 +775,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		359AFBFF24CFFD9300744616 /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				359AFC0024CFFDA000744616 /* DatePickerCell.swift */,
+			);
+			path = CommonViews;
+			sourceTree = "<group>";
+		};
 		35CCCE8B24CDD7AA0038A0CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -803,6 +815,7 @@
 		35F4E67724C2F02700B21151 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				359AFBFF24CFFD9300744616 /* CommonViews */,
 				35F4E67924C2F06000B21151 /* OperationCoordinator.swift */,
 				35F4E67824C2F03800B21151 /* Expense */,
 			);
@@ -812,6 +825,7 @@
 		35F4E67824C2F03800B21151 /* Expense */ = {
 			isa = PBXGroup;
 			children = (
+				359AFBFD24CEFC0600744616 /* ExpenseViewController.swift */,
 			);
 			path = Expense;
 			sourceTree = "<group>";
@@ -968,6 +982,7 @@
 				357E0D2A206E97F100205970 /* BaseVC.swift in Sources */,
 				359AFBFC24CEF0D800744616 /* UITableViewCell+Ext.swift in Sources */,
 				351E3E8A205BDB95004A3414 /* TransactionsVC.swift in Sources */,
+				359AFC0124CFFDA000744616 /* DatePickerCell.swift in Sources */,
 				351EEFD524C1B27100EE5254 /* CategoryDTO.swift in Sources */,
 				3598145A24C0E77C00788E84 /* SettingsViewController.swift in Sources */,
 				35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */,
@@ -1032,6 +1047,7 @@
 				3522B0052093849300D17AAF /* AccountBalanceCell.swift in Sources */,
 				356B12DE208DF6C7007AF145 /* BaseTransactionVC.swift in Sources */,
 				357CB31C24C9C91900EFE2B8 /* TextFieldCell.swift in Sources */,
+				359AFBFE24CEFC0600744616 /* ExpenseViewController.swift in Sources */,
 				3515E0FA2073655900ED0363 /* NotificationNameExt.swift in Sources */,
 				351EEFE424C2402600EE5254 /* TransactionCellConfigurator.swift in Sources */,
 				3598145624C0E76000788E84 /* ReportsViewController.swift in Sources */,

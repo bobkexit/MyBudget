@@ -53,3 +53,7 @@
 "other" = "other";
 "type" = "type";
 "cancel" = "cancel";
+"date" = "date";
+"account" = "account";
+"category" = "category";
+"amount" = "amount";
