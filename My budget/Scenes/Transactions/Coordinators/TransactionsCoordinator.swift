@@ -79,8 +79,8 @@ class TransactionsCoordinator: BaseCoordinator {
     
     private func configure(actions: [UIAlertAction], cancelAction: UIAlertAction, for style: UIUserInterfaceStyle) {
         let isDarkStyle = style == .dark
-        let actionColor: UIColor = isDarkStyle ? .orangePeel : .oxfordBlue
-        let cancelColor: UIColor = isDarkStyle ? .imperialRed : .systemRed
+        let actionColor: UIColor = isDarkStyle ? .actionColor : .tertiaryTextColor
+        let cancelColor: UIColor = isDarkStyle ? .negativeAccentColor : .systemRed
         
         actions.forEach { $0.setValue(actionColor, forKey: "titleTextColor")}
         cancelAction.setValue(cancelColor, forKey: "titleTextColor")

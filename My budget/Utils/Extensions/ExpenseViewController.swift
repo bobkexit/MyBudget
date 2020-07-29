@@ -48,6 +48,7 @@ class ExpenseViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
+        tableView.separatorColor = .clear
         tableView.tableFooterView = UIView(frame: CGRect(origin: .zero,
                                                          size: CGSize(width: tableView.frame.size.width, height: 60.0)))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellIdentifier.basic.rawValue)
@@ -70,8 +71,8 @@ class ExpenseViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("save".localizeCapitalizingFirstLetter(), for: .normal)
-        button.backgroundColor = .orangePeel
-        button.tintColor = .richBlackForga30
+        button.backgroundColor = .actionColor
+        button.tintColor = .primaryBackgroundColor
         button.addTarget(self, action: #selector(saveButtonTapped(_:)), for: .touchUpInside)
         return button
     } ()
@@ -105,11 +106,11 @@ class ExpenseViewController: UIViewController {
     
     private func configureNavigationBar() {
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.rightBarButtonItem?.tintColor = .babyPowder
+        navigationItem.rightBarButtonItem?.tintColor = .primaryTextColor
     }
     
     private func configureViews() {
-        view.backgroundColor = .richBlackForga30
+        view.backgroundColor = .primaryBackgroundColor
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -170,10 +171,10 @@ private extension ExpenseViewController {
             [weak self] tableView, indexPath, section -> UITableViewCell? in
             guard let self = self else { return nil }
             let cell = self.makeCell(for: section, at: indexPath, in: tableView)
-            cell.selectionColor(.orangePeel)
-            cell.backgroundColor = .richBlackForga29
-            cell.textLabel?.textColor = .babyPowder
-            cell.tintColor = .orangePeel
+            cell.selectionColor(.actionColor)
+            cell.backgroundColor = .secondaryBackgroundColor
+            cell.textLabel?.textColor = .primaryTextColor
+            cell.tintColor = .actionColor
             return cell
         }
     }

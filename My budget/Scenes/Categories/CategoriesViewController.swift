@@ -42,8 +42,8 @@ class CategoriesViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(.plus, for: .normal)
-        button.backgroundColor = .orangePeel
-        button.tintColor = .richBlackForga30
+        button.backgroundColor = .actionColor
+        button.tintColor = .primaryBackgroundColor
         button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
         return button
     } ()
@@ -95,7 +95,7 @@ class CategoriesViewController: UIViewController {
     
     private func configureNavigationBar() {
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.rightBarButtonItem?.tintColor = .babyPowder
+        navigationItem.rightBarButtonItem?.tintColor = .primaryTextColor
     }
     
     private func configureSearchController() {
@@ -107,7 +107,7 @@ class CategoriesViewController: UIViewController {
     }
     
     private func configureViews() {
-        view.backgroundColor = .richBlackForga30
+        view.backgroundColor = .primaryBackgroundColor
         view.addSubview(tableView)
         view.addSubview(addButton)
         
@@ -160,8 +160,8 @@ private extension CategoriesViewController {
                 withIdentifier: reuseIdentifier, for: indexPath) as? TextFieldCell else { return nil }
             
             cell.textField.text = category.name
-            cell.textField.textColor = .babyPowder
-            cell.textField.tintColor = .orangePeel
+            cell.textField.textColor = .primaryTextColor
+            cell.textField.tintColor = .actionColor
             cell.textField.backgroundColor = .clear
             cell.backgroundColor = .clear
             cell.delegate = self

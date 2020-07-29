@@ -13,7 +13,7 @@ class ReportsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .richBlackForga30
+        view.backgroundColor = .primaryBackgroundColor
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.title = "reports".localizeCapitalizingFirstLetter()
     }

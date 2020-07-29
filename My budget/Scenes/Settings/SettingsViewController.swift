@@ -55,7 +55,7 @@ class SettingsViewController: UIViewController {
     }
     
     private func configureViews() {
-        view.backgroundColor = .richBlackForga30
+        view.backgroundColor = .primaryBackgroundColor
         view.addSubview(tableView)
        
         NSLayoutConstraint.activate([
@@ -73,10 +73,10 @@ extension SettingsViewController {
         return UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { tableView, indexPath, item -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
             cell.textLabel?.text = item.rawValue.localizeCapitalizingFirstLetter()
-            cell.textLabel?.textColor = .babyPowder
-            cell.backgroundColor = .richBlackForga29
+            cell.textLabel?.textColor = .primaryTextColor
+            cell.backgroundColor = .secondaryBackgroundColor
             cell.accessoryType = .disclosureIndicator
-            cell.selectionColor(.orangePeel)           
+            cell.selectionColor(.actionColor)           
             return cell
         }
     }

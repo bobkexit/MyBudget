@@ -20,7 +20,15 @@ class AppCoordinator: BaseCoordinator {
     
     private lazy var migration = RealmMigration(viewContext: persistentContainer.viewContext, realm: realm)
     
-    private lazy var rootViewController: UITabBarController = UITabBarController()
+    private lazy var rootViewController: UITabBarController = {
+        let viewController = UITabBarController()
+        
+        let tabBar = viewController.tabBar
+        tabBar.barStyle = .black
+        tabBar.isTranslucent = true
+        
+        return viewController
+    } ()
     
     init(window: UIWindow, realm: Realm, persistentContainer: NSPersistentContainer) {
         self.window = window
@@ -69,8 +77,8 @@ class AppCoordinator: BaseCoordinator {
         add(transactionsCoordinator, reportsCoordinator, settingsCoordinator)
         
         rootViewController.setViewControllers(viewControllers, animated: false)
-        rootViewController.tabBar.tintColor = .orangePeel
-        rootViewController.tabBar.barTintColor = .richBlackForga29
+        rootViewController.tabBar.tintColor = .actionColor
+        rootViewController.tabBar.barTintColor = .secondaryBackgroundColor
         rootViewController.selectedIndex = 1
     }
 }

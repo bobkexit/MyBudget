@@ -36,8 +36,8 @@ class AccountsViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(.plus, for: .normal)
-        button.backgroundColor = .orangePeel
-        button.tintColor = .richBlackForga30
+        button.backgroundColor = .actionColor
+        button.tintColor = .primaryBackgroundColor
         button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
         return button
     } ()
@@ -74,11 +74,11 @@ class AccountsViewController: UIViewController {
     private func configureNavigationBar() {
         navigationItem.title = "Accounts"
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.rightBarButtonItem?.tintColor = .babyPowder
+        navigationItem.rightBarButtonItem?.tintColor = .primaryTextColor
     }
     
     private func configureViews() {
-        view.backgroundColor = .richBlackForga30
+        view.backgroundColor = .primaryBackgroundColor
         view.addSubview(tableView)
         view.addSubview(addButton)
         

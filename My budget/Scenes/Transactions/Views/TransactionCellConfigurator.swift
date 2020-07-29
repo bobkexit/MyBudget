@@ -63,7 +63,7 @@ class TransactionCellConfigurator: CellConfigurable {
         
         if let transactionType = transaction.category?.kind {
             sign = transactionType == .expense ? "-" : "+"
-            cell.tertiaryLabel.textColor = sign == "-" ? .imperialRed : .turquoise 
+            cell.tertiaryLabel.textColor = sign == "-" ? .negativeAccentColor : .positiveAccentColor 
         }
         
         if !ammount.isEmpty, let sign = sign {

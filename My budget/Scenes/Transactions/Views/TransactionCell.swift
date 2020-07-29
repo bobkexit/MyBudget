@@ -16,7 +16,7 @@ class TransactionCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 17.0, weight: .regular)
-        label.textColor = .babyPowder
+        label.textColor = .primaryTextColor
         return label
     } ()
     
@@ -24,7 +24,7 @@ class TransactionCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 12, weight: .regular)
-        label.textColor = UIColor.babyPowder.withAlphaComponent(0.6)
+        label.textColor = UIColor.primaryTextColor.withAlphaComponent(0.6)
         return label
     } ()
     
@@ -32,7 +32,7 @@ class TransactionCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 17, weight: .regular)
-        label.textColor = .imperialRed
+        label.textColor = .negativeAccentColor
         label.textAlignment = .right
         label.adjustsFontSizeToFitWidth = true
         return label

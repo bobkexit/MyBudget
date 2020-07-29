@@ -71,7 +71,7 @@ class CurrenciesViewController: UIViewController {
     }
     
     private func configureViews() {
-        view.backgroundColor = .richBlackForga30
+        view.backgroundColor = .primaryBackgroundColor
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -85,7 +85,7 @@ class CurrenciesViewController: UIViewController {
     private func configureNavigationBar() {
         navigationItem.title = "currencies".localizeCapitalizingFirstLetter()
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.rightBarButtonItem?.tintColor = .babyPowder
+        navigationItem.rightBarButtonItem?.tintColor = .primaryTextColor
     }
     
     private func configureSearchController() {
@@ -107,13 +107,13 @@ private extension CurrenciesViewController {
             
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
             cell.backgroundColor = .clear
-            cell.tintColor = .orangePeel
+            cell.tintColor = .actionColor
             cell.textLabel?.text = Locale.current.localizedString(forCurrencyCode: currencyCode)
-            cell.textLabel?.textColor = .babyPowder
-            cell.selectionColor(.orangePeel)
+            cell.textLabel?.textColor = .primaryTextColor
+            cell.selectionColor(.actionColor)
             
             cell.detailTextLabel?.text = currencyCode
-            cell.detailTextLabel?.textColor = .babyPowder60
+            cell.detailTextLabel?.textColor = .secondaryTextColor
             
             if currencyCode == self.selectedCurrencyCode {
                 cell.accessoryType = .checkmark

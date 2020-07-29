@@ -82,7 +82,7 @@ extension TransactionsDataSource: UITableViewDelegate {
     private func makeSectionLabel() -> UILabel {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = UIColor.babyPowder.withAlphaComponent(0.6)
+        label.textColor = UIColor.primaryTextColor.withAlphaComponent(0.6)
         label.font = .systemFont(ofSize: 17.0, weight: .semibold)
         return label
     }

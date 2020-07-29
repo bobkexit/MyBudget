@@ -14,7 +14,7 @@ class AccountTypeCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .babyPowder
+        label.textColor = .primaryTextColor
         label.textAlignment = .center
         return label
     } ()

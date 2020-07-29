@@ -50,7 +50,7 @@ extension BaseCoordinator {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         
-        let textAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.babyPowder]
+        let textAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.primaryTextColor]
         appearance.largeTitleTextAttributes = textAttributes
         appearance.titleTextAttributes = textAttributes
         
@@ -58,7 +58,7 @@ extension BaseCoordinator {
         navigationController.navigationBar.standardAppearance = appearance
         navigationController.navigationBar.compactAppearance = appearance
         navigationController.navigationBar.scrollEdgeAppearance = appearance
-        navigationController.navigationBar.tintColor = .orangePeel
+        navigationController.navigationBar.tintColor = .actionColor
         
         return navigationController
     }

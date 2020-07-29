@@ -35,8 +35,8 @@ class TransactionsViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(.plus, for: .normal)
-        button.backgroundColor = .orangePeel
-        button.tintColor = .richBlackForga30
+        button.backgroundColor = .actionColor
+        button.tintColor = .primaryBackgroundColor
         button.addTarget(self, action: #selector(addTransactionButtonTapped(_:)), for: .touchUpInside)
         return button
     } ()
@@ -81,11 +81,11 @@ class TransactionsViewController: UIViewController {
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(filterButtonTapped(_:)))
-        navigationItem.rightBarButtonItem?.tintColor = .babyPowder
+        navigationItem.rightBarButtonItem?.tintColor = .primaryTextColor
     }
     
     private func configureViews() {
-        view.backgroundColor = .richBlackForga30
+        view.backgroundColor = .primaryBackgroundColor
         view.addSubview(tableView)
         view.addSubview(addTransactionButton)
         

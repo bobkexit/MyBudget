@@ -70,8 +70,8 @@ class AccountViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("save".localizeCapitalizingFirstLetter(), for: .normal)
-        button.backgroundColor = .orangePeel
-        button.tintColor = .richBlackForga30
+        button.backgroundColor = .actionColor
+        button.tintColor = .primaryBackgroundColor
         button.addTarget(self, action: #selector(saveButtonTapped(_:)), for: .touchUpInside)
         return button
     } ()
@@ -116,11 +116,11 @@ class AccountViewController: UIViewController {
     
     private func configureNavigationBar() {
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.rightBarButtonItem?.tintColor = .babyPowder
+        navigationItem.rightBarButtonItem?.tintColor = .primaryTextColor
     }
     
     private func configureViews() {
-        view.backgroundColor = .richBlackForga30
+        view.backgroundColor = .primaryBackgroundColor
         view.addSubview(tableView)
         view.addSubview(saveButton)
         
@@ -186,9 +186,9 @@ private extension AccountViewController {
             cell.isSelected = accountContoller.accountType == accountType
 
             if cell.isSelected {
-                cell.contentView.backgroundColor = .orangePeel
+                cell.contentView.backgroundColor = .actionColor
             } else {
-                cell.contentView.backgroundColor = .babyPowder60
+                cell.contentView.backgroundColor = .secondaryTextColor
             }
 
             return cell
@@ -218,10 +218,10 @@ private extension AccountViewController {
         case .name:
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: section.cellIdentifier, for: indexPath) as? TextFieldCell else { return nil }
-            cell.backgroundColor = .richBlackForga29
-            cell.textField.backgroundColor = .richBlackForga29
-            cell.textField.textColor = .babyPowder
-            cell.textField.tintColor = .orangePeel
+            cell.backgroundColor = .secondaryBackgroundColor
+            cell.textField.backgroundColor = .secondaryBackgroundColor
+            cell.textField.textColor = .primaryTextColor
+            cell.textField.tintColor = .actionColor
             cell.textField.clearButtonMode = .whileEditing
             cell.textField.placeholder = "new account".localizeCapitalizingFirstLetter()
             cell.textField.text = accountContoller?.accountName
@@ -230,13 +230,13 @@ private extension AccountViewController {
             return cell
         case .currency:
             let cell = UITableViewCell(style: .value1, reuseIdentifier: section.cellIdentifier)
-            cell.backgroundColor = .richBlackForga29
-            cell.textLabel?.textColor = .babyPowder
-            cell.detailTextLabel?.textColor = .babyPowder60
+            cell.backgroundColor = .secondaryBackgroundColor
+            cell.textLabel?.textColor = .primaryTextColor
+            cell.detailTextLabel?.textColor = .secondaryTextColor
             cell.textLabel?.text = "currency".localizeCapitalizingFirstLetter()
             cell.detailTextLabel?.text = accountContoller?.currencyCode
             cell.accessoryType = .disclosureIndicator
-            cell.selectionColor(.orangePeel)
+            cell.selectionColor(.actionColor)
             
             return cell
         case .type:

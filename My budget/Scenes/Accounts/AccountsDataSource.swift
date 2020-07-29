@@ -40,10 +40,10 @@ class AccountsDataSource: UITableViewDiffableDataSource<AccountsDataSource.Secti
             }
             
             cell.backgroundColor = .clear
-            cell.selectionColor(.orangePeel)
+            cell.selectionColor(.actionColor)
 
-            cell.textLabel?.textColor = .babyPowder
-            cell.detailTextLabel?.textColor = .babyPowder60
+            cell.textLabel?.textColor = .primaryTextColor
+            cell.detailTextLabel?.textColor = .secondaryTextColor
             
             return cell }
         

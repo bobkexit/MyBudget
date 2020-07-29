@@ -9,14 +9,18 @@
 import UIKit
 
 extension UIColor {
-    public static let orangePeel = UIColor(hex: "#FF9F1C")
-    public static let turquoise = UIColor(hex: "#41EAD4")
-    public static let babyPowder = UIColor(hex: "#FDFFFC")
-    public static let babyPowder60 = UIColor.babyPowder.withAlphaComponent(0.6)
-    public static let imperialRed = UIColor(hex: "#F71735")
-    public static let oxfordBlue = UIColor(hex: "#02223C")
-    public static let richBlackForga29 = UIColor(hex: "#010B14")
-    public static let richBlackForga30 = UIColor(hex: "#011627")
+    public static let actionColor =  UIColor.systemOrange//UIColor(hex: "#FF9F1C") //orangePeel
+    public static let negativeAccentColor = UIColor(hex: "#F71735")
+    public static let positiveAccentColor = UIColor { traitCollection -> UIColor in
+        return traitCollection.userInterfaceStyle == .dark ? UIColor(hex: "#41EAD4") : UIColor(hex: "#14B8A2")
+    } //turquoise
+       
+    public static let primaryTextColor = UIColor(hex: "#FDFFFC") // babyPowder
+    public static let secondaryTextColor = UIColor.primaryTextColor.withAlphaComponent(0.6) // babyPowder60
+    public static let tertiaryTextColor = UIColor(hex: "#02223C") // oxfordBlue
+    
+    public static let primaryBackgroundColor = UIColor(hex: "#011627")
+    public static let secondaryBackgroundColor = UIColor(hex: "#02223C")
 }
 
 extension UIImage {

@@ -29,7 +29,7 @@ class LoadingViewController: UIViewController {
         label.text = "Updating Data..."
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         label.textAlignment = .center
-        label.textColor = .orangePeel
+        label.textColor = .actionColor
         return label
     } ()
     
@@ -56,7 +56,7 @@ class LoadingViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .richBlackForga30
+        view.backgroundColor = .primaryBackgroundColor
         view.addSubview(stackView)
         NSLayoutConstraint.activate([
             animationView.heightAnchor.constraint(equalToConstant: 200),
