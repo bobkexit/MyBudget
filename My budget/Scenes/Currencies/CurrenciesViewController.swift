@@ -110,7 +110,7 @@ private extension CurrenciesViewController {
             cell.tintColor = .actionColor
             cell.textLabel?.text = Locale.current.localizedString(forCurrencyCode: currencyCode)
             cell.textLabel?.textColor = .primaryTextColor
-            cell.selectionColor(.actionColor)
+            cell.setSelectionColor()
             
             cell.detailTextLabel?.text = currencyCode
             cell.detailTextLabel?.textColor = .secondaryTextColor

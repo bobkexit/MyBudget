@@ -67,7 +67,8 @@ class TransactionsCoordinator: BaseCoordinator {
     private func makeAction(_ operation:  OperationCoordinator.Operation, for viewController: UIViewController) -> UIAlertAction {
         return UIAlertAction(title: operation.rawValue.localizeCapitalizingFirstLetter(),
                              style: .default) { [unowned self] _ in
-            let coordinator = OperationCoordinator(currentOperation: operation)
+            let coordinator = OperationCoordinator(currentOperation: operation,
+                                                   repository: self.repository)
             coordinator.onComplete = { [unowned self] child in
                 self.remove(child)
             }

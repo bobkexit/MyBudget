@@ -113,6 +113,7 @@
 		359AFC0124CFFDA000744616 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359AFC0024CFFDA000744616 /* DatePickerCell.swift */; };
 		35CCCE8824CDCF530038A0CC /* AccountContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CCCE8724CDCF530038A0CC /* AccountContoller.swift */; };
 		35CCCE8D24CDD7CD0038A0CC /* AccountTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CCCE8C24CDD7CD0038A0CC /* AccountTypeCell.swift */; };
+		35D5C6CA24D1673F00DD6322 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D5C6C924D1673F00DD6322 /* BaseTableViewController.swift */; };
 		35E9E22B24C852020085AA06 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E9E22A24C852020085AA06 /* String+Ext.swift */; };
 		35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3011206108FE0041F195 /* CategoriesVC.swift */; };
 		35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3015206111230041F195 /* EnumCollectionExt.swift */; };
@@ -235,6 +236,7 @@
 		359AFC0024CFFDA000744616 /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		35CCCE8724CDCF530038A0CC /* AccountContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountContoller.swift; sourceTree = "<group>"; };
 		35CCCE8C24CDD7CD0038A0CC /* AccountTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTypeCell.swift; sourceTree = "<group>"; };
+		35D5C6C924D1673F00DD6322 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		35E9E22A24C852020085AA06 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		35EE3011206108FE0041F195 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		35EE3015206111230041F195 /* EnumCollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollectionExt.swift; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 		3598143624C0BAAB00788E84 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				35D5C6C924D1673F00DD6322 /* BaseTableViewController.swift */,
 				3529E00D24CE076E00900AB7 /* Currencies */,
 				357CB31D24CDB73700EFE2B8 /* AccountDetails */,
 				3513738A24C82338001E7697 /* Accounts */,
@@ -991,6 +994,7 @@
 				35E9E22B24C852020085AA06 /* String+Ext.swift in Sources */,
 				3522AFF32091E5B800D17AAF /* BaseReportVC.swift in Sources */,
 				35EE301E206118BA0041F195 /* BaseCell.swift in Sources */,
+				35D5C6CA24D1673F00DD6322 /* BaseTableViewController.swift in Sources */,
 				3531C595207E76080055D0B4 /* CategoryVM.swift in Sources */,
 				3513738E24C82702001E7697 /* AccountsViewController.swift in Sources */,
 				3598143924C0BAD700788E84 /* LoadingViewController.swift in Sources */,

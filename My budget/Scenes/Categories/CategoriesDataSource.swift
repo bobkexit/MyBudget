@@ -11,7 +11,8 @@ import UIKit
 class CategoriesDataSource: UITableViewDiffableDataSource<CategoriesDataSource.Section, CategoryDTO> {
     
     enum Section: Int, CaseIterable {
-        case main
+        case main = 0
+        case new
     }
     
     struct Actions {

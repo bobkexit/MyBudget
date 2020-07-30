@@ -17,7 +17,7 @@ class AccountsViewController: UIViewController {
    
     weak var delegate: AccountsViewControllerDelegate?
 
-    var accountsController: AccountsControllerProtocol!
+    private var accountsController: AccountsControllerProtocol?
     
     private let cellReuseIdentifier = "AccountCell"
     
@@ -42,9 +42,16 @@ class AccountsViewController: UIViewController {
         return button
     } ()
     
-    convenience init(accountsController: AccountsControllerProtocol) {
+    private var selectedAccount: AccountDTO?
+    
+    convenience init(accountsController: AccountsControllerProtocol, selectedAccount: AccountDTO? = nil) {
         self.init()
         self.accountsController = accountsController
+        self.selectedAccount = selectedAccount
+    }
+    
+    deinit {
+        print(self, #function)
     }
     
     override func viewDidLoad() {
@@ -98,9 +105,37 @@ class AccountsViewController: UIViewController {
 
 private extension AccountsViewController {
     func makeDataSource() -> AccountsDataSource {
-        let dataSource = AccountsDataSource(tableView: tableView,
-                                            cellReuseIdentifier: cellReuseIdentifier,
-                                            accountsController: accountsController)
+        
+        let reuseIdentifier = cellReuseIdentifier
+        let dataSource = AccountsDataSource(tableView: tableView) {
+            [selectedAccount] tableView, indexPath, account in
+            
+            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
+            var text = account.name
+            
+            if let currencyCode = account.currencyCode {
+               text += " → \(currencyCode)"
+            }
+            
+            cell.textLabel?.text  = text
+        
+            if let type = account.kind.description() {
+                cell.detailTextLabel?.text = "\(type)"
+            }
+            
+            cell.backgroundColor = .clear
+            cell.setSelectionColor()
+
+            cell.textLabel?.textColor = .primaryTextColor
+            cell.detailTextLabel?.textColor = .secondaryTextColor
+            
+            if account == selectedAccount {
+                cell.accessoryType = .checkmark
+                cell.tintColor = .actionColor
+            }
+            
+            return cell }
+        
         dataSource.actions = AccountsDataSource.Actions(deleteAccount: { [weak self] (account) in
             guard let controller = self?.accountsController else { return }
             controller.delete(account)

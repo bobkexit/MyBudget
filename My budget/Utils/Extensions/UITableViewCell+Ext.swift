@@ -9,7 +9,7 @@
 import UIKit
 
 extension UITableViewCell {
-    func selectionColor(_ color: UIColor) {
+    func setSelectionColor(_ color: UIColor = UIColor.actionColor.withAlphaComponent(0.5)) {
         let view = UIView()
         view.backgroundColor = color
         self.selectedBackgroundView = view

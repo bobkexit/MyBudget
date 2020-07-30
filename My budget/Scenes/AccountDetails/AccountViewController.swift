@@ -236,7 +236,7 @@ private extension AccountViewController {
             cell.textLabel?.text = "currency".localizeCapitalizingFirstLetter()
             cell.detailTextLabel?.text = accountContoller?.currencyCode
             cell.accessoryType = .disclosureIndicator
-            cell.selectionColor(.actionColor)
+            cell.setSelectionColor()
             
             return cell
         case .type:

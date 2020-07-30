@@ -19,37 +19,7 @@ class AccountsDataSource: UITableViewDiffableDataSource<AccountsDataSource.Secti
     }
     
     var actions: Actions = Actions()
-    
-    var accountsController: AccountsControllerProtocol?
-    
-    convenience init(tableView: UITableView,
-                     cellReuseIdentifier: String,
-                     accountsController: AccountsControllerProtocol?) {
-        self.init(tableView: tableView) { tableView, indexPath, account in
-            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier)
-            var text = account.name
-            
-            if let currencyCode = account.currencyCode {
-               text += " → \(currencyCode)"
-            }
-            
-            cell.textLabel?.text  = text
         
-            if let type = account.kind.description() {
-                cell.detailTextLabel?.text = "\(type)"
-            }
-            
-            cell.backgroundColor = .clear
-            cell.selectionColor(.actionColor)
-
-            cell.textLabel?.textColor = .primaryTextColor
-            cell.detailTextLabel?.textColor = .secondaryTextColor
-            
-            return cell }
-        
-        self.accountsController = accountsController
-    }
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete, let item = itemIdentifier(for: indexPath) {
             defaultRowAnimation = .fade

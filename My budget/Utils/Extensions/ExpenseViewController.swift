@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol ExpenseViewControllerDelegate: AnyObject {
+    func expenseViewController(_ viewController: ExpenseViewController, didSelectAccount account: AccountDTO?)
+    func expenseViewController(_ viewController: ExpenseViewController, didSelectCategory category: CategoryDTO?)
+    func expenseViewControllerDidSaveTransaction(_ viewController: ExpenseViewController)
+}
+
 class ExpenseViewController: UIViewController {
     enum Item: Int, CaseIterable {
         case date
@@ -26,6 +32,11 @@ class ExpenseViewController: UIViewController {
     
     var date = Date()
     var amount: Float = 0.0
+    var account: AccountDTO?
+    var category: CategoryDTO?
+    var comment: String?
+    
+    weak var delegate: ExpenseViewControllerDelegate?
     
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -50,7 +61,7 @@ class ExpenseViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
         tableView.tableFooterView = UIView(frame: CGRect(origin: .zero,
-                                                         size: CGSize(width: tableView.frame.size.width, height: 60.0)))
+                                                         size: CGSize(width: tableView.frame.size.width, height: CGFloat.infinity)))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellIdentifier.basic.rawValue)
         tableView.register(DatePickerCell.self, forCellReuseIdentifier: CellIdentifier.datePicker.rawValue)
 
@@ -65,6 +76,19 @@ class ExpenseViewController: UIViewController {
         textField.addTarget(self, action: #selector(amountDidChange(_:)), for: .editingChanged)
         textField.addTarget(self, action: #selector(amountDidEndEditing(_:)), for: [.editingDidEndOnExit, .editingDidEnd])
         return textField
+    } ()
+    
+    private lazy var textView: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.isScrollEnabled = false
+        textView.textColor = .primaryTextColor
+        textView.backgroundColor = .clear
+        textView.textContainerInset = .zero
+        textView.textContainer.lineFragmentPadding = 0
+        textView.textColor = .orange
+        textView.delegate = self
+        return textView
     } ()
     
     private lazy var saveButton: UIButton = {
@@ -115,8 +139,8 @@ class ExpenseViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
@@ -171,7 +195,7 @@ private extension ExpenseViewController {
             [weak self] tableView, indexPath, section -> UITableViewCell? in
             guard let self = self else { return nil }
             let cell = self.makeCell(for: section, at: indexPath, in: tableView)
-            cell.selectionColor(.actionColor)
+            cell.setSelectionColor()
             cell.backgroundColor = .secondaryBackgroundColor
             cell.textLabel?.textColor = .primaryTextColor
             cell.tintColor = .actionColor
@@ -199,13 +223,13 @@ private extension ExpenseViewController {
         case .account:
             let cell = UITableViewCell(style: .value1, reuseIdentifier: CellIdentifier.basic.rawValue)
             cell.textLabel?.text = "account".localizeCapitalizingFirstLetter()
-            cell.detailTextLabel?.text = "my new account"
+            cell.detailTextLabel?.text = account?.name
             cell.accessoryType = .disclosureIndicator
             return cell
         case .category:
             let cell = UITableViewCell(style: .value1, reuseIdentifier: CellIdentifier.basic.rawValue)
             cell.textLabel?.text = "category".localizeCapitalizingFirstLetter()
-            cell.detailTextLabel?.text = "my long long long category"
+            cell.detailTextLabel?.text = category?.name
             cell.accessoryType = .disclosureIndicator
             return cell
         case .amount:
@@ -218,6 +242,17 @@ private extension ExpenseViewController {
             return cell
         case .comment:
             let cell = UITableViewCell(style: .default, reuseIdentifier: CellIdentifier.basic.rawValue)
+            textView.removeFromSuperview()
+            textView.font = cell.textLabel?.font
+            textView.text = comment ?? "comment".localizeCapitalizingFirstLetter()
+            textView.textColor = .secondaryTextColor
+            cell.contentView.addSubview(textView)
+            NSLayoutConstraint.activate([
+                textView.topAnchor.constraint(equalTo: cell.contentView.layoutMarginsGuide.topAnchor),
+                textView.bottomAnchor.constraint(equalTo: cell.contentView.layoutMarginsGuide.bottomAnchor),
+                textView.leadingAnchor.constraint(equalTo: cell.contentView.layoutMarginsGuide.leadingAnchor),
+                textView.trailingAnchor.constraint(equalTo: cell.contentView.layoutMarginsGuide.trailingAnchor),
+            ])
             return cell
         case .datePicker:
             guard let cell = tableView.dequeueReusableCell(
@@ -258,11 +293,15 @@ extension ExpenseViewController: UITableViewDelegate {
                 return 216.0
             }
         } else if item == .comment {
-            return 60.0
+            return UITableView.automaticDimension//60.0
         } else {
             return 44.0
         }
     }
+    
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIView()
@@ -276,12 +315,16 @@ extension ExpenseViewController: UITableViewDelegate {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         
         tableView.deselectRow(at: indexPath, animated: true)
-       
+        
         switch item {
         case .date:
             isDatePickerVisible ? hideDatePicker() : showDatePicker()
         case .amount:
             textField.becomeFirstResponder()
+        case .account:
+            delegate?.expenseViewController(self, didSelectAccount: account)
+        case .category:
+            delegate?.expenseViewController(self, didSelectCategory: category)
         default:
             break
         }
@@ -302,5 +345,42 @@ extension ExpenseViewController: DatePickerCellDelegate {
 extension ExpenseViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
+    }
+}
+
+extension ExpenseViewController: OperationCoordinatorDelegate {
+    func operationCoordinator(_ coordinator: OperationCoordinator, didSelectAccount account: AccountDTO) {
+        self.account = account
+        reloadItem(.account)
+    }
+    
+    func operationCoordinator(_ coordinator: OperationCoordinator, didSelectCategory category: CategoryDTO) {
+        self.category = category
+        reloadItem(.category)
+    }
+}
+
+extension ExpenseViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .secondaryTextColor {
+            textView.text = nil
+            textView.textColor = .primaryTextColor
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "comment".localizeCapitalizingFirstLetter()
+        }
+        textView.textColor = .secondaryTextColor
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        self.comment = textView.text
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        }
     }
 }

@@ -8,20 +8,33 @@
 
 import UIKit
 
+protocol CategoriesViewControllerDelegate: AnyObject {
+    func categoriesViewController(_ viewController: CategoriesViewController, didSelectCategory category: CategoryDTO)
+}
+
 class CategoriesViewController: UIViewController {
     
     struct Actions {
         var createOperation: (() -> Void)?
     }
     
-    var categoriesController: CategoriesControllerProtocol?
+    enum CellIdentifier: String {
+        case baseCell
+        case editableCell
+    }
     
     var actions: Actions = Actions()
     
+    var canEditRow: Bool = true
+    
+    weak var delegate: CategoriesViewControllerDelegate?
+    
     private var categoryName: String?
     
-    private let cellReuseIdentifier = "CategoryCell"
+    private var selectedCategory: CategoryDTO?
     
+    private var categoriesController: CategoriesControllerProtocol?
+
     private lazy var dataSource: UITableViewDiffableDataSource<CategoriesDataSource.Section, CategoryDTO> = makeDataSource()
     
     private lazy var tableView: UITableView = {
@@ -30,7 +43,8 @@ class CategoriesViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.sectionHeaderHeight = 0.0
         tableView.sectionFooterHeight = 0.0
-        tableView.register(TextFieldCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellIdentifier.baseCell.rawValue)
+        tableView.register(TextFieldCell.self, forCellReuseIdentifier: CellIdentifier.editableCell.rawValue)
         tableView.tableHeaderView = UIView(frame: CGRect(origin: .zero,
                                                          size: CGSize(width: 0, height: CGFloat.leastNormalMagnitude)))
         tableView.tableFooterView = UIView(frame: CGRect(origin: .zero,
@@ -59,9 +73,14 @@ class CategoriesViewController: UIViewController {
         addNewCategory()
     }
     
-    convenience init(categoriesController: CategoriesControllerProtocol) {
+    convenience init(categoriesController: CategoriesControllerProtocol, selectedCategory: CategoryDTO? = nil) {
         self.init()
         self.categoriesController = categoriesController
+        self.selectedCategory = selectedCategory
+    }
+    
+    deinit {
+        print(self, #function)
     }
     
     override func viewDidLoad() {
@@ -73,8 +92,10 @@ class CategoriesViewController: UIViewController {
         setupObservers()
         
         tableView.dataSource = dataSource
+        tableView.delegate = self
        
         let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
+        tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
         categoriesController?.handlers = CategoriesHandlers(
@@ -87,10 +108,6 @@ class CategoriesViewController: UIViewController {
             }, didInsertCategories: { [weak self] in
                 self?.updateUI(animated: false)
             }, didFail: nil)
-    }
-    
-    deinit {
-        print(#function)
     }
     
     private func configureNavigationBar() {
@@ -153,20 +170,37 @@ class CategoriesViewController: UIViewController {
 
 private extension CategoriesViewController {
     func makeDataSource() -> UITableViewDiffableDataSource<CategoriesDataSource.Section, CategoryDTO> {
-        let reuseIdentifier = cellReuseIdentifier
-        let dataSource = CategoriesDataSource(tableView: tableView) { [weak self] tableView, indexPath, category in
+        let dataSource = CategoriesDataSource(tableView: tableView) { [weak self, selectedCategory] tableView, indexPath, category in
             
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: reuseIdentifier, for: indexPath) as? TextFieldCell else { return nil }
+            guard let self = self else { return nil }
             
-            cell.textField.text = category.name
-            cell.textField.textColor = .primaryTextColor
-            cell.textField.tintColor = .actionColor
-            cell.textField.backgroundColor = .clear
+            let isEditableCell = indexPath.section == CategoriesDataSource.Section.new.rawValue || self.canEditRow
+            
+            if isEditableCell,
+                let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.editableCell.rawValue,
+                                                         for: indexPath) as? TextFieldCell {
+                
+                cell.textField.text = category.name
+                cell.textField.textColor = .primaryTextColor
+                cell.textField.tintColor = .actionColor
+                cell.textField.backgroundColor = .clear
+                cell.backgroundColor = .clear
+                cell.delegate = self
+                cell.setSelectionColor()
+                return cell
+            }
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.baseCell.rawValue,
+                                                     for: indexPath)
+            cell.textLabel?.text = category.name
             cell.backgroundColor = .clear
-            cell.delegate = self
-            cell.selectionStyle = .none
+            cell.setSelectionColor()
             
+            if category == selectedCategory {
+                cell.accessoryType = .checkmark
+                cell.tintColor = .actionColor
+            }
+        
             return cell
         }
         
@@ -192,9 +226,11 @@ private extension CategoriesViewController {
         guard let controller = categoriesController else { return }
         
         var snapshot = dataSource.snapshot()
+        guard !snapshot.sectionIdentifiers.contains(.new) else { return }
         
         let category = controller.createCategory(withName: "")
-        snapshot.appendItems([category], toSection: .main)
+        snapshot.appendSections([.new])
+        snapshot.appendItems([category], toSection: .new)
         dataSource.apply(snapshot, animatingDifferences: true)
         
         if let indexPath = dataSource.indexPath(for: category),
@@ -225,5 +261,18 @@ extension CategoriesViewController: UISearchResultsUpdating {
         let searchBar = searchController.searchBar
         categoryName = searchBar.text
         updateUI(animated: true)
+    }
+}
+ 
+extension CategoriesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if let delegate = delegate, let category = dataSource.itemIdentifier(for: indexPath) {
+            delegate.categoriesViewController(self, didSelectCategory: category)
+        } else if let cell = tableView.cellForRow(at: indexPath) as? TextFieldCell {
+            cell.textField.isUserInteractionEnabled = true
+            cell.textField.becomeFirstResponder()
+        }
     }
 }

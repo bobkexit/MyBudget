@@ -76,7 +76,7 @@ extension SettingsViewController {
             cell.textLabel?.textColor = .primaryTextColor
             cell.backgroundColor = .secondaryBackgroundColor
             cell.accessoryType = .disclosureIndicator
-            cell.selectionColor(.actionColor)           
+            cell.setSelectionColor()           
             return cell
         }
     }

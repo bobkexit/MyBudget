@@ -62,5 +62,20 @@ extension BaseCoordinator {
         
         return navigationController
     }
+    
+    func makeCategoriesViewController(for categoryType: CategoryKind,
+                                      repository: Repository,
+                                      selectedCategory: CategoryDTO? = nil) -> CategoriesViewController {
+        let categoriesController = CategoriesController(categoryType: categoryType, repository: repository)
+        let viewController = CategoriesViewController(categoriesController: categoriesController,
+                                                      selectedCategory: selectedCategory)
+        switch categoryType {
+        case .income:
+            viewController.navigationItem.title = "incomes".localizeCapitalizingFirstLetter()
+        case .expense:
+            viewController.navigationItem.title = "expenses".localizeCapitalizingFirstLetter()
+        }
+        return viewController
+    }
 }
 

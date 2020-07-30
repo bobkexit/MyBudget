@@ -64,25 +64,13 @@ class SettingsCoordinator: BaseCoordinator {
     }
     
     private func showIncomes() {
-        let viewController = makeCategoriesViewController(for: .income)
+        let viewController = makeCategoriesViewController(for: .income, repository: repository)
         navigationConttroller.pushViewController(viewController, animated: true)
     }
     
     private func showExpenses() {
-        let viewController = makeCategoriesViewController(for: .expense)
+        let viewController = makeCategoriesViewController(for: .expense, repository: repository)
         navigationConttroller.pushViewController(viewController, animated: true)
-    }
-    
-    private func makeCategoriesViewController(for categoryType: CategoryKind) -> CategoriesViewController {
-        let categoriesController = CategoriesController(categoryType: categoryType, repository: repository)
-        let viewController = CategoriesViewController(categoriesController: categoriesController)
-        switch categoryType {
-        case .income:
-            viewController.navigationItem.title = "incomes".localizeCapitalizingFirstLetter()
-        case .expense:
-            viewController.navigationItem.title = "expenses".localizeCapitalizingFirstLetter()
-        }
-        return viewController
     }
 }
 
