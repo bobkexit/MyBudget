@@ -15,3 +15,12 @@ extension UITableViewCell {
         self.selectedBackgroundView = view
     }
 }
+
+extension UITableView {
+    var emptySpaceHeight: CGFloat? {
+        guard let indexPath = self.indexPathsForVisibleRows?.last else { return nil }
+        let lastRowFrame = rectForRow(at: indexPath)
+        let emptySpaceHeight = frame.size.height - (lastRowFrame.origin.y + lastRowFrame.size.height)
+        return emptySpaceHeight
+    }
+}

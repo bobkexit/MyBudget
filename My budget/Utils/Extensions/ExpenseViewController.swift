@@ -60,6 +60,7 @@ class ExpenseViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
+        tableView.showsVerticalScrollIndicator = false
         tableView.tableFooterView = UIView(frame: CGRect(origin: .zero,
                                                          size: CGSize(width: tableView.frame.size.width, height: CGFloat.infinity)))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellIdentifier.basic.rawValue)
@@ -123,6 +124,13 @@ class ExpenseViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        if UIDevice.current.orientation.isPortrait, let height = tableView.emptySpaceHeight {
+            tableView.tableFooterView?.frame = CGRect(x: 0, y: 0, width: 0, height: height)
+        } else {
+            tableView.tableFooterView?.frame = CGRect(x: 0, y: 0, width: 0, height: 100)
+        }
+        
         tableView.tableFooterView?.setNeedsLayout()
         tableView.tableFooterView?.layoutIfNeeded()
         saveButton.layer.cornerRadius = saveButton.bounds.height / 2
@@ -155,8 +163,8 @@ class ExpenseViewController: UIViewController {
         NSLayoutConstraint.activate([
             saveButton.heightAnchor.constraint(equalToConstant: 48.0),
             saveButton.widthAnchor.constraint(equalToConstant: buttonWidth),
-            saveButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
         
         tableView.tableFooterView = view
@@ -244,7 +252,7 @@ private extension ExpenseViewController {
             let cell = UITableViewCell(style: .default, reuseIdentifier: CellIdentifier.basic.rawValue)
             textView.removeFromSuperview()
             textView.font = cell.textLabel?.font
-            textView.text = comment ?? "comment".localizeCapitalizingFirstLetter()
+            textView.text = comment ?? "tap here to add comment".localizeCapitalizingFirstLetter()
             textView.textColor = .secondaryTextColor
             cell.contentView.addSubview(textView)
             NSLayoutConstraint.activate([

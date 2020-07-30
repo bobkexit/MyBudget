@@ -73,7 +73,7 @@ class OperationCoordinator: BaseCoordinator {
     }
     
     private func showCreateAccount() {
-         let account = AccountDTO(account: AccountObject())
+        let account = AccountDTO(account: AccountObject())
         let accountCoordinator = AccountCoordinator(repository: repository, account: account)
         accountCoordinator.onComplete = { [weak self] childCoordinator in
             self?.remove(childCoordinator)
@@ -87,8 +87,17 @@ class OperationCoordinator: BaseCoordinator {
         let viewController = makeCategoriesViewController(for: categoryType,
                                                           repository: repository,
                                                           selectedCategory: selectedCategory)
+        viewController.isModalInPresentation = true
         viewController.canEditRow = false
         viewController.delegate = self
+        navigationConttroller.pushViewController(viewController, animated: true)
+    }
+    
+    private func showAccounts(selectedAccount: AccountDTO?) {
+        let accountsController = AccountsController(repository: repository)
+        let viewController = AccountsViewController(accountsController: accountsController, selectedAccount: selectedAccount)
+        viewController.delegate = self
+        viewController.isModalInPresentation = true
         navigationConttroller.pushViewController(viewController, animated: true)
     }
        
@@ -103,10 +112,7 @@ class OperationCoordinator: BaseCoordinator {
 
 extension OperationCoordinator: ExpenseViewControllerDelegate {
     func expenseViewController(_ viewController: ExpenseViewController, didSelectAccount account: AccountDTO?) {
-        let accountsController = AccountsController(repository: repository)
-        let viewController = AccountsViewController(accountsController: accountsController, selectedAccount: account)
-        viewController.delegate = self
-        navigationConttroller.pushViewController(viewController, animated: true)
+        showAccounts(selectedAccount: account)
     }
     
     func expenseViewController(_ viewController: ExpenseViewController, didSelectCategory category: CategoryDTO?) {
