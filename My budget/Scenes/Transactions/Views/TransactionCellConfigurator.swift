@@ -57,7 +57,7 @@ class TransactionCellConfigurator: CellConfigurable {
     }
     
     private func updateTertiaryLabel() {
-        let ammount = numberFormatter.string(from: NSNumber(value: transaction.ammount)) ?? ""
+        let ammount = numberFormatter.string(from: NSNumber(value: transaction.amount)) ?? ""
         
         var sign: String? = nil
         

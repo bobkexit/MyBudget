@@ -58,7 +58,8 @@ class TransactionsController: TransactionsControllerProtocol {
     }
     
     func getTransactions(for date: Date) -> [TransactionDTO] {
-        let transactions = Array(results.compactMap { TransactionDTO(transaction: $0) })
+        var transactions = Array(results.compactMap { TransactionDTO(transaction: $0) })
+        transactions.sort(by: {$0.date > $1.date })
         return transactions.filter { Calendar.current.isDate(date, inSameDayAs: $0.date) }
     }
     

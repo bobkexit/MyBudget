@@ -118,8 +118,8 @@ private extension TransactionsViewController {
         let dates = controller.getDates()
         
         var snapshot = NSDiffableDataSourceSnapshot<Date, TransactionDTO>()
-        
         snapshot.appendSections(dates)
+        
         dates.forEach {
             let transactions = controller.getTransactions(for: $0)
             snapshot.appendItems(transactions, toSection: $0)

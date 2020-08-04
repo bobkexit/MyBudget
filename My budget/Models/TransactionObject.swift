@@ -15,7 +15,7 @@ final class TransactionObject: Object {
     dynamic var date: Date = Date()
     dynamic var account: AccountObject?
     dynamic var category: CategoryObject?
-    dynamic var ammount: Float = 0.0
+    dynamic var amount: Float = 0.0
     dynamic var comment: String = ""
     
     override class func primaryKey() -> String? { "id" }

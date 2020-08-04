@@ -144,7 +144,7 @@ class RealmMigration: DataBaseMigration {
                     
                     let newTransaction = TransactionObject()
                     newTransaction.date = date
-                    newTransaction.ammount = abs($0.amount)
+                    newTransaction.amount = abs($0.amount)
                     newTransaction.category = category
                     newTransaction.account = account
                     newTransaction.comment = $0.comment ?? ""

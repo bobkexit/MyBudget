@@ -45,26 +45,28 @@ class OperationCoordinator: BaseCoordinator {
     private func showOperation() {
         switch currentOperation {
         case .expense:
-            showExpenseOperation()
+            showIncomeExpenseOperation()
         case .income:
-            break
+            showIncomeExpenseOperation()
         case .interAccountTransfer:
             break
         }
     }
     
-    private func showExpenseOperation() {
-        //let accountController = AccountContoller(repository: repository, account: account)
-        let viewController = ExpenseViewController()
+    private func showIncomeExpenseOperation(transaction: TransactionDTO? = nil) {
+        
+        let type: CategoryKind = currentOperation == .income ? .income : .expense
+        
+        let operationController = IncomeExpenseOperationController(type: type, repository: repository)
+        let viewController = IncomeExpenseViewController(operationController: operationController)
         viewController.delegate = self
         delegate = viewController
         
-//        if accountController.isNewAccount {
-             viewController.navigationItem.title =  "new".combine(with: currentOperation.rawValue)
-//            viewController.navigationItem.title = "new".combine(with: "account")
-//        } else {
-//            viewController.navigationItem.title = "account".localizeCapitalizingFirstLetter()
-//        }
+        if operationController.isNew {
+            viewController.navigationItem.title =  "new".combine(with: currentOperation.rawValue)
+        } else {
+            viewController.navigationItem.title = currentOperation.rawValue.localizeCapitalizingFirstLetter()
+        }
         
         viewController.navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .close,
                                                                  target: self, action: #selector(finish))
@@ -100,7 +102,6 @@ class OperationCoordinator: BaseCoordinator {
         viewController.isModalInPresentation = true
         navigationConttroller.pushViewController(viewController, animated: true)
     }
-       
     
     @objc private func finish() {
         navigationConttroller.dismiss(animated: true) { [weak self] in
@@ -111,11 +112,11 @@ class OperationCoordinator: BaseCoordinator {
 }
 
 extension OperationCoordinator: ExpenseViewControllerDelegate {
-    func expenseViewController(_ viewController: ExpenseViewController, didSelectAccount account: AccountDTO?) {
+    func expenseViewController(_ viewController: IncomeExpenseViewController, didSelectAccount account: AccountDTO?) {
         showAccounts(selectedAccount: account)
     }
     
-    func expenseViewController(_ viewController: ExpenseViewController, didSelectCategory category: CategoryDTO?) {
+    func expenseViewController(_ viewController: IncomeExpenseViewController, didSelectCategory category: CategoryDTO?) {
         switch currentOperation {
         case .expense:
             showCategories(selectedCategory: category, categoryType: .expense)
@@ -126,7 +127,7 @@ extension OperationCoordinator: ExpenseViewControllerDelegate {
         }
     }
     
-    func expenseViewControllerDidSaveTransaction(_ viewController: ExpenseViewController) {
+    func expenseViewControllerDidSaveTransaction(_ viewController: IncomeExpenseViewController) {
         finish()
     }
 }

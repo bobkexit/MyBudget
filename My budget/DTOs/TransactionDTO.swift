@@ -13,7 +13,7 @@ struct TransactionDTO: Hashable {
     let date: Date
     let account: AccountDTO?
     let category: CategoryDTO?
-    let ammount: Float
+    let amount: Float
     let comment: String
 }
 
@@ -21,13 +21,13 @@ extension TransactionDTO {
     func copy(date: Date? = nil,
               account: AccountDTO? = nil,
               category: CategoryDTO? = nil,
-              ammount: Float? = nil,
+              amount: Float? = nil,
               comment: String? = nil) -> TransactionDTO {
         return TransactionDTO(id: id,
                               date: date ?? self.date,
                               account: account ?? self.account,
                               category: category ?? self.category,
-                              ammount: ammount ?? self.ammount,
+                              amount: amount ?? self.amount,
                               comment: comment ?? self.comment)
     }
     
@@ -36,7 +36,7 @@ extension TransactionDTO {
         self.date = transaction.date
         self.account =  transaction.account != nil ? AccountDTO(account: transaction.account!) : nil
         self.category = transaction.category != nil ? CategoryDTO(category: transaction.category!) : nil
-        self.ammount = transaction.ammount
+        self.amount = transaction.amount
         self.comment = transaction.comment
     }
 }
