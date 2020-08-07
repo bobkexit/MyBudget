@@ -33,7 +33,11 @@ class TransactionsCoordinator: BaseCoordinator {
             },
             showFilters:  { [unowned self] in
                 self.showFilters(for: viewController)
-        })
+            },
+            didSelectTransaction: {[unowned self] transaction in
+                self.showTransactionDetails(transaction)
+            }
+        )
         
         let title = "transactions".localizeCapitalizingFirstLetter()
         viewController.tabBarItem = UITabBarItem(title: title, image: .rubleSign, tag: 2)
@@ -65,17 +69,30 @@ class TransactionsCoordinator: BaseCoordinator {
     }
     
     private func makeAction(_ operation:  OperationCoordinator.Operation, for viewController: UIViewController) -> UIAlertAction {
-        return UIAlertAction(title: operation.rawValue.localizeCapitalizingFirstLetter(),
-                             style: .default) { [unowned self] _ in
-            let coordinator = OperationCoordinator(currentOperation: operation,
-                                                   repository: self.repository)
-            coordinator.onComplete = { [unowned self] child in
-                self.remove(child)
-            }
-            self.add(coordinator)
+        return UIAlertAction(title: operation.rawValue.localizeCapitalizingFirstLetter(), style: .default) {
+            [unowned self] _ in
+            let coordinator = self.makeOperationCoordinator(operation: operation)
             coordinator.start()
             viewController.present(coordinator.navigationConttroller, animated: true)
         }
+    }
+    
+    func makeOperationCoordinator(operation: OperationCoordinator.Operation,
+                                  transaction: TransactionDTO? = nil) -> OperationCoordinator {
+        let coordinator = OperationCoordinator(currentOperation: operation, repository: repository, transaction: transaction)
+        coordinator.onComplete = { [unowned self] child in
+            self.remove(child)
+        }
+        add(coordinator)
+        return coordinator
+    }
+    
+    private func showTransactionDetails(_ transaction: TransactionDTO) {
+        guard let categoryType = transaction.category?.kind else { return }
+        let operation: OperationCoordinator.Operation = categoryType == .income ? .income : .expense
+        let coordinator = self.makeOperationCoordinator(operation: operation, transaction: transaction)
+        coordinator.start()
+        navigationConttroller.present(coordinator.navigationConttroller, animated: true)
     }
     
     private func configure(actions: [UIAlertAction], cancelAction: UIAlertAction, for style: UIUserInterfaceStyle) {
