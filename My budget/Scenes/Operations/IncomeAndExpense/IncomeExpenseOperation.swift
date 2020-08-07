@@ -77,6 +77,7 @@ class IncomeExpenseOperationController: IncomeExpenseOperation {
         guard let category = repository.find(CategoryObject.self, byID: transaction.category?.id ?? ""),
             let account = repository.find(AccountObject.self, byID: transaction.account?.id ?? "") else { return }
         
+        guard transaction.amount != 0 else { return }
         
         if let transactionObject = repository.find(TransactionObject.self, byID: transaction.id) {
             repository.update { [transaction] in

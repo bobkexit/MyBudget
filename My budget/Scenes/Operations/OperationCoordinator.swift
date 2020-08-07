@@ -24,13 +24,16 @@ class OperationCoordinator: BaseCoordinator {
     
     private let currentOperation: Operation
     
+    private let transaction: TransactionDTO?
+    
     private(set) lazy var navigationConttroller: UINavigationController = makeNavigationController()
     
     let repository: Repository
     
-    init(currentOperation: Operation, repository: Repository) {
+    init(currentOperation: Operation, repository: Repository, transaction: TransactionDTO? = nil) {
         self.currentOperation = currentOperation
         self.repository = repository
+        self.transaction = transaction
         super.init()
     }
     
@@ -44,20 +47,18 @@ class OperationCoordinator: BaseCoordinator {
     
     private func showOperation() {
         switch currentOperation {
-        case .expense:
-            showIncomeExpenseOperation()
-        case .income:
+        case .expense, .income:
             showIncomeExpenseOperation()
         case .interAccountTransfer:
             break
         }
     }
     
-    private func showIncomeExpenseOperation(transaction: TransactionDTO? = nil) {
+    private func showIncomeExpenseOperation() {
         
         let type: CategoryKind = currentOperation == .income ? .income : .expense
         
-        let operationController = IncomeExpenseOperationController(type: type, repository: repository)
+        let operationController = IncomeExpenseOperationController(type: type, repository: repository, transaction: transaction)
         let viewController = IncomeExpenseViewController(operationController: operationController)
         viewController.delegate = self
         delegate = viewController

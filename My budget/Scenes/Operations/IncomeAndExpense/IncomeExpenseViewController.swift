@@ -61,10 +61,10 @@ class IncomeExpenseViewController: UIViewController {
                                                          size: CGSize(width: tableView.frame.size.width, height: CGFloat.infinity)))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellIdentifier.basic.rawValue)
         tableView.register(DatePickerCell.self, forCellReuseIdentifier: CellIdentifier.datePicker.rawValue)
-
+        
         return tableView
     } ()
-
+    
     private lazy var textField: UITextField = {
         let textField = UITextField(frame: CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width/2, height: 44.0)))
         textField.textAlignment = .right
@@ -121,6 +121,7 @@ class IncomeExpenseViewController: UIViewController {
         tableView.dataSource = dataSource
         
         updateUI()
+        setupObservers()
     }
     
     override func viewDidLayoutSubviews() {
@@ -135,6 +136,16 @@ class IncomeExpenseViewController: UIViewController {
         tableView.tableFooterView?.setNeedsLayout()
         tableView.tableFooterView?.layoutIfNeeded()
         saveButton.layer.cornerRadius = saveButton.bounds.height / 2
+    }
+    
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(_:)),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(_:)),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func configureNavigationBar() {
@@ -197,6 +208,18 @@ class IncomeExpenseViewController: UIViewController {
         snapshot.reloadItems([item])
         dataSource.apply(snapshot, animatingDifferences: animated)
     }
+    
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
+        guard let keyboardHeight = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight.cgRectValue.size.height, right: 0)
+    }
+    
+    @objc private func keyboardWillHide(_ notification: NSNotification) {
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
 }
 
 private extension IncomeExpenseViewController {
@@ -216,10 +239,10 @@ private extension IncomeExpenseViewController {
     func updateUI(animated: Bool = false) {
         var snapshot = NSDiffableDataSourceSnapshot<Item, Item>()
         let baseForm = Item.allCases.filter { $0 != .datePicker }
-    
+        
         snapshot.appendSections(baseForm)
         baseForm.forEach { snapshot.appendItems([$0], toSection: $0) }
-    
+        
         dataSource.apply(snapshot, animatingDifferences: animated)
     }
     
@@ -269,7 +292,7 @@ private extension IncomeExpenseViewController {
             } else {
                 textView.text = "tap here to add comment".localizeCapitalizingFirstLetter()
             }
-    
+            
             textView.textColor = .secondaryTextColor
             cell.contentView.addSubview(textView)
             NSLayoutConstraint.activate([
