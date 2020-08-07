@@ -68,6 +68,27 @@ class TransactionsCoordinator: BaseCoordinator {
         viewController.present(alert, animated: true)
     }
     
+    private func showTransactionDetails(_ transaction: TransactionDTO) {
+        guard let categoryType = transaction.category?.kind else { return }
+        let operation: OperationCoordinator.Operation = categoryType == .income ? .income : .expense
+        let coordinator = self.makeOperationCoordinator(operation: operation, transaction: transaction)
+        coordinator.start()
+        navigationConttroller.present(coordinator.navigationConttroller, animated: true)
+    }
+
+    private func showFilters(for viewController: TransactionsViewController) {
+        print("select show Fiters")
+    }
+    
+    private func configure(actions: [UIAlertAction], cancelAction: UIAlertAction, for style: UIUserInterfaceStyle) {
+        let isDarkStyle = style == .dark
+        let actionColor: UIColor = isDarkStyle ? .actionColor : .tertiaryTextColor
+        let cancelColor: UIColor = isDarkStyle ? .negativeAccentColor : .systemRed
+        
+        actions.forEach { $0.setValue(actionColor, forKey: "titleTextColor")}
+        cancelAction.setValue(cancelColor, forKey: "titleTextColor")
+    }
+    
     private func makeAction(_ operation:  OperationCoordinator.Operation, for viewController: UIViewController) -> UIAlertAction {
         return UIAlertAction(title: operation.rawValue.localizeCapitalizingFirstLetter(), style: .default) {
             [unowned self] _ in
@@ -85,26 +106,5 @@ class TransactionsCoordinator: BaseCoordinator {
         }
         add(coordinator)
         return coordinator
-    }
-    
-    private func showTransactionDetails(_ transaction: TransactionDTO) {
-        guard let categoryType = transaction.category?.kind else { return }
-        let operation: OperationCoordinator.Operation = categoryType == .income ? .income : .expense
-        let coordinator = self.makeOperationCoordinator(operation: operation, transaction: transaction)
-        coordinator.start()
-        navigationConttroller.present(coordinator.navigationConttroller, animated: true)
-    }
-    
-    private func configure(actions: [UIAlertAction], cancelAction: UIAlertAction, for style: UIUserInterfaceStyle) {
-        let isDarkStyle = style == .dark
-        let actionColor: UIColor = isDarkStyle ? .actionColor : .tertiaryTextColor
-        let cancelColor: UIColor = isDarkStyle ? .negativeAccentColor : .systemRed
-        
-        actions.forEach { $0.setValue(actionColor, forKey: "titleTextColor")}
-        cancelAction.setValue(cancelColor, forKey: "titleTextColor")
-    }
-    
-    private func showFilters(for viewController: TransactionsViewController) {
-        print("select show Fiters")
     }
 }
