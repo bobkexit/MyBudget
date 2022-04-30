@@ -11,7 +11,7 @@ import CoreData
 
 final class ReportManager {
     
-    public static let shared = ReportManager()
+    static let shared = ReportManager()
     
     private let context: NSManagedObjectContext
     

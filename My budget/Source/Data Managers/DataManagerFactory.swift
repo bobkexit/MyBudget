@@ -18,11 +18,9 @@ enum EntityType {
 }
 
 final class DataManagerFactory {
-    public static let shared = DataManagerFactory()
+    static let shared = DataManagerFactory()
     
-    private init() {
-        
-    }
+    private init() { }
     
     func createDataManager<Entity: NSManagedObject>(forEntity entity: EntityType) -> BaseDataManager<Entity>? {
         

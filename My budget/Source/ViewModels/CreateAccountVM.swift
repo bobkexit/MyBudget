@@ -10,8 +10,8 @@ import Foundation
 
 class CreateAccountVM: AccountVM {
     
-    public private(set) var balance: Float?
-    public private(set) var hasBeenSaved: Bool = false
+    private(set) var balance: Float?
+    private(set) var hasBeenSaved: Bool = false
     
     override func set(_ value: Any?, forKey key: String) {
         

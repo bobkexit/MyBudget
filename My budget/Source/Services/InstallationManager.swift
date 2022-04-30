@@ -13,25 +13,21 @@ final class InstallationManager {
     
     typealias Kyes = UserSettings.Keys
     typealias BuildInData = Constants.UserSettings.BuildInData
-    
     typealias CompletionHandler = (_ objectId: URL) -> ()
-    
     
     // MARK: - Properties
     
-    public static let shared = InstallationManager()
+    static let shared = InstallationManager()
     
     private let userDefaults = UserDefaults.standard
     
     // MARK: - Initializer
     
-    private init() {
-    
-    }
+    private init() { }
     
     // MARK: - Public Methods
     
-    public func installDataIfNeeded()  {
+    func installDataIfNeeded()  {
         
         if userDefaults.url(forKey: BuildInData.initialBalanceId) == nil {
             createIncomeCategory(title: NSLocalizedString("Initial account balance", comment: "")) { (objectId) in

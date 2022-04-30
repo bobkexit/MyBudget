@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 class ExpensesReportVC: BaseReportVC {
-
+    
     @IBOutlet weak var pieChart: PieChartView!
     
     override func viewDidLoad() {
@@ -21,9 +21,9 @@ class ExpensesReportVC: BaseReportVC {
     }
     
     func pieChartUpdate () {
-        report.execute { (results) in
+        report.execute { [weak self] results in
             
-            guard let results = results else {
+            guard let strongSelf = self, let results = results else {
                 return
             }
             
@@ -35,7 +35,7 @@ class ExpensesReportVC: BaseReportVC {
                 }
                 
                 if let category = result["category"] as? String, let amount = result["totalAmount"] as? NSNumber {
-                                       
+                    
                     let entry = PieChartDataEntry(value: fabs(amount.doubleValue), label: Helper.shared.trancate(Phrase: category))
                     
                     chartDataEntry.append(entry)
@@ -46,7 +46,7 @@ class ExpensesReportVC: BaseReportVC {
                 let minEntry = chartDataEntry.min {a, b in a.value < b.value}
                 minEntry?.label = NSLocalizedString("etc.", comment: "")
             }
-           
+            
             let dataSet = PieChartDataSet(entries: chartDataEntry, label: nil)
             dataSet.colors = ChartColorTemplates.colorful()
             dataSet.valueColors = [UIColor.white]
@@ -55,39 +55,40 @@ class ExpensesReportVC: BaseReportVC {
             
             
             let formatter = PercentageValueFormatter()
-    
-            let data = PieChartData(dataSet: dataSet)
-            self.pieChart.data = data
-            self.pieChart.data?.setValueFormatter(formatter)
             
-            self.pieChart.animate(yAxisDuration: 1.5)
+            let data = PieChartData(dataSet: dataSet)
+            strongSelf.pieChart.data = data
+            strongSelf.pieChart.data?.setValueFormatter(formatter)
+            
+            strongSelf.pieChart.animate(yAxisDuration: 1.5)
             
             //This must stay at end of function
-            self.pieChart.notifyDataSetChanged()
+            strongSelf.pieChart.notifyDataSetChanged()
         }
     }
     
     func pieChartSetup() {
         
-        self.pieChart.legend.textColor = UIColor.gray
-        self.pieChart.usePercentValuesEnabled = true
-        self.pieChart.chartDescription = nil
-        self.pieChart.holeColor = .clear
+        pieChart.legend.textColor = .gray
+        pieChart.usePercentValuesEnabled = true
+        pieChart.chartDescription = nil
+        pieChart.holeColor = .clear
         
         if UIDevice.current.orientation.isPortrait {
-          
-            let attributes = [ NSAttributedStringKey.foregroundColor : UIColor.white,
-                               NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]
             
-            self.pieChart.centerAttributedText = NSAttributedString(string: NSLocalizedString("Expenses", comment: ""), attributes: attributes)
+            let attributes = [
+                NSAttributedString.Key.foregroundColor : UIColor.white,
+                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)
+            ]
+            
+            pieChart.centerAttributedText = NSAttributedString(string: NSLocalizedString("Expenses", comment: ""), attributes: attributes)
         } else {
-            self.pieChart.centerAttributedText = nil
+            pieChart.centerAttributedText = nil
         }
         
-        self.pieChart.holeRadiusPercent = 0.3
-        self.pieChart.transparentCircleRadiusPercent = 0.4
-        self.pieChart.legend.wordWrapEnabled = true
-        //self.pieChart.drawEntryLabelsEnabled = false
+        pieChart.holeRadiusPercent = 0.3
+        pieChart.transparentCircleRadiusPercent = 0.4
+        pieChart.legend.wordWrapEnabled = true
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -95,15 +96,4 @@ class ExpensesReportVC: BaseReportVC {
         pieChartSetup()
         pieChartUpdate()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -30,7 +30,7 @@ final class UserSettings {
     
     // MARK: - Public Properties
     
-    public static let defaults = UserSettings()
+    static let defaults = UserSettings()
     
     var сurrencyCode: String? {
         return userDefaults.string(forKey: Keys.defaultCurrencyCode)

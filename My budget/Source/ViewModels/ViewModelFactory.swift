@@ -18,7 +18,6 @@ protocol SomeViewModel: AnyObject {
     func delete()
     
     func set(_ value: Any?, forKey key: String)
-    
 }
 
 protocol ViewModel: SomeViewModel {
@@ -33,29 +32,25 @@ protocol ViewModel: SomeViewModel {
 
 final class ViewModelFactory {
     
-    public static let shared = ViewModelFactory()
+    static let shared = ViewModelFactory()
     
     private init() {
         
     }
     
     func create(object: Account, dataManager: BaseDataManager<Account>, isNew: Bool = false) -> AccountVM {
-        if isNew {
-            return CreateAccountVM(object: object, dataManager: dataManager)
-        }
-        
-        return AccountVM(object: object, dataManager: dataManager)
+        isNew
+            ? CreateAccountVM(object: object, dataManager: dataManager)
+            : AccountVM(object: object, dataManager: dataManager)
     }
     
     func create(object: Category, dataManager: BaseDataManager<Category>) -> CategoryVM {
-        return CategoryVM(object: object, dataManager: dataManager)
+        CategoryVM(object: object, dataManager: dataManager)
     }
     
     func create(object: Transaction, dataManager: BaseDataManager<Transaction>) -> TransactionVM {
-        if object.isInserted {
-           return TransactionVM(object: object, dataManager: dataManager)
-        } else {
-            return UpdatedTransactionVM(object: object, dataManager: dataManager)
-        }
+        object.isInserted
+            ? TransactionVM(object: object, dataManager: dataManager)
+            : UpdatedTransactionVM(object: object, dataManager: dataManager)
     }
 }

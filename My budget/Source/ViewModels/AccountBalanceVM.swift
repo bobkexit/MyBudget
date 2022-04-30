@@ -10,7 +10,7 @@ import UIKit
 
 class AccountBalanceVM: AccountVM {
     
-    lazy var balanceWithCurrency: String? = {
+    private(set) lazy var balanceWithCurrency: String? = {
         
         if let balance = object.transactions?.value(forKeyPath: "@sum.amount") as? NSNumber {
             
@@ -23,5 +23,5 @@ class AccountBalanceVM: AccountVM {
         return nil
     }()
     
-    public private(set) var textColor: UIColor?
+    private(set) var textColor: UIColor?
 }

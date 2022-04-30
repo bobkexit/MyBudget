@@ -128,7 +128,7 @@ class TransactionsVC: BaseTableVC {
     
     func reloadTransaction(trnasactionId: URL?) {
         
-        guard let row = transactions.index(where: {($0 as! TransactionVM).id == trnasactionId}) else {
+        guard let row = transactions.firstIndex(where: {($0 as! TransactionVM).id == trnasactionId}) else {
             fatalError("Can't find index of upadted transaction")
         }
         

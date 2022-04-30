@@ -21,7 +21,7 @@ class BalanceReport: BaseReport {
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: self.entityName)
         
-        var accounts: [SomeViewModel]!
+        var accounts: [SomeViewModel] = []
         var total: Float = 0
         
         do {
@@ -39,8 +39,7 @@ class BalanceReport: BaseReport {
             print(error as Any)
         }
         
-        let result  = ["total" : total,
-                       "accounts" : accounts] as [String : Any]
+        let result  = ["total" : total, "accounts" : accounts] as [String : Any]
     
         if let completeion = completeion {
             completeion([result as AnyObject])

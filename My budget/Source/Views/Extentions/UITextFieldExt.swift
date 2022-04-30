@@ -14,7 +14,10 @@ extension UITextField {
             guard let color = newValue else { return }
             
             let placeholderText = self.placeholder ?? ""
-            attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedStringKey.foregroundColor: color.withAlphaComponent(self.alpha)])
+            attributedPlaceholder = NSAttributedString(
+                string: placeholderText,
+                attributes: [NSAttributedString.Key.foregroundColor: color.withAlphaComponent(self.alpha)]
+            )
         }
         get{
             return self.placeholderTextColor

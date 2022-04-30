@@ -59,16 +59,20 @@ class BaseTransactionVC: BaseVC {
     override func updateUI() {
         super.updateUI()
         
-        if let row = accounts.index(where: { $0.objectID.uriRepresentation() == viewModel.accountID }) {
+        if let row = accounts.firstIndex(where: { $0.objectID.uriRepresentation() == viewModel.accountID }) {
             accountPicker.selectRow(row, inComponent: 0, animated: true)
         }
         
-        if let row = categories.index(where: { $0.objectID.uriRepresentation() == viewModel.categoryId }) {
+        if let row = categories.firstIndex(where: { $0.objectID.uriRepresentation() == viewModel.categoryId }) {
             categoryPicker.selectRow(row, inComponent: 0, animated: true)
         }
     }
     
-    override func setupTextField(_ textField: UITextField, withInputView inputView: UIView?, andInputAccessoryView inputAccessoryView: UIView?) {
+    override func setupTextField(
+        _ textField: UITextField,
+        withInputView inputView: UIView?,
+        andInputAccessoryView inputAccessoryView: UIView?
+    ) {
         super.setupTextField(textField, withInputView: inputView, andInputAccessoryView: inputAccessoryView)
         textField.delegate = self
     }
@@ -83,7 +87,11 @@ class BaseTransactionVC: BaseVC {
     }
     
     // MARK: - Data Methods
-    public func configure(viewModel: SomeViewModel, categoryManager: BaseDataManager<Category>, accountManager: BaseDataManager<Account>) {
+    func configure(
+        viewModel: SomeViewModel,
+        categoryManager: BaseDataManager<Category>,
+        accountManager: BaseDataManager<Account>
+    ) {
         
         guard let viewModel = viewModel as? TransactionVM else {
             fatalError("Cant cast SomeViewModel to TransactionViewModel")
@@ -98,8 +106,6 @@ class BaseTransactionVC: BaseVC {
         accounts = accountManager.getObjects()
         categories = categoryManager.getObjects()
     }
-    
-    //
     
     override func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == accountPicker {

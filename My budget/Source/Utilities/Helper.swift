@@ -16,11 +16,9 @@ final class Helper {
         case currency
     }
     
-    public static let shared = Helper()
+    static let shared = Helper()
     
-    private init() {
-        
-    }
+    private init() { }
     
     func trancate(Phrase phrase: String) -> String {
             

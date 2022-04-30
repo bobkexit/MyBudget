@@ -22,11 +22,9 @@ class QRCodeParser: QRCodeParserProtocol {
     
     // MARK: - Singleton Declaration
     
-    public static let shared = QRCodeParser()
+    static let shared = QRCodeParser()
     
-    private init() {
-        
-    }
+    private init() { }
     
     // MARK: - QRCodeParserProtocol Methods
     

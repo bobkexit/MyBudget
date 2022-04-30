@@ -144,13 +144,13 @@ class QRScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
             qrCodeFrameView.layer.borderWidth = 2
             view.addSubview(qrCodeFrameView)
-            view.bringSubview(toFront: qrCodeFrameView)
+            view.bringSubviewToFront(qrCodeFrameView)
         }
     }
     
     func bringSubviewToFront() {
-        view.bringSubview(toFront: tipsLabel)
-        view.bringSubview(toFront: messageLbl)
-        view.bringSubview(toFront: toolbarView)
+        view.bringSubviewToFront(tipsLabel)
+        view.bringSubviewToFront(messageLbl)
+        view.bringSubviewToFront(toolbarView)
     }
 }

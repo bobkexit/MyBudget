@@ -83,7 +83,7 @@ class DefaultsVC: BaseVC {
             
             accountTxtField.text = account.title
             
-            if let row = accounts.index(of: account) {
+            if let row = accounts.firstIndex(of: account) {
                 accountPicker.selectRow(row, inComponent: 0, animated: true)
             }
         }
@@ -92,7 +92,7 @@ class DefaultsVC: BaseVC {
             
             expenseTxtField.text = expenseCategory.title
             
-            if let row = expenses.index(of: expenseCategory) {
+            if let row = expenses.firstIndex(of: expenseCategory) {
                 expensePicker.selectRow(row, inComponent: 0, animated: true)
             }
         }
@@ -102,7 +102,7 @@ class DefaultsVC: BaseVC {
          
             incomeTxtField.text = incomeCategory.title
             
-            if let row = incomes.index(of: incomeCategory) {
+            if let row = incomes.firstIndex(of: incomeCategory) {
                 incomePicker.selectRow(row, inComponent: 0, animated: true)
             }
         }
