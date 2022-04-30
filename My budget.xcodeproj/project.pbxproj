@@ -79,6 +79,7 @@
 		35FC07B1209AE1A800A9D210 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35FC07B3209AE1A800A9D210 /* InfoPlist.strings */; };
 		6855DFA6281D9FB50024F13A /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 6855DFA5281D9FB50024F13A /* Charts */; };
 		6855DFA9281DA0450024F13A /* TableFlip in Frameworks */ = {isa = PBXBuildFile; productRef = 6855DFA8281DA0450024F13A /* TableFlip */; };
+		68FADF1B281DABA80063EB82 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FADF1A281DABA80063EB82 /* Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +160,7 @@
 		35FC07A9209AD60B00A9D210 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35FC07B2209AE1A800A9D210 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		35FC07B4209AE1AD00A9D210 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		68FADF1A281DABA80063EB82 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 		353B47C4205690B3008281B0 /* My budget */ = {
 			isa = PBXGroup;
 			children = (
+				68FADF19281DAAFD0063EB82 /* SwiftUI */,
 				353B47DA205930F8008281B0 /* Application */,
 				353B47D720593084008281B0 /* Source */,
 				353B47D9205930B6008281B0 /* Resources */,
@@ -428,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				3567747B205FA8EC00743FCA /* Constants.swift */,
+				68FADF1A281DABA80063EB82 /* Localization.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -474,6 +478,13 @@
 				351410EF2084890F002F0D9E /* UserSettings.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		68FADF19281DAAFD0063EB82 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -616,6 +627,7 @@
 				3522AFFE2092F7D200D17AAF /* BaseReport.swift in Sources */,
 				35F012132063B9D7008EE633 /* InstallationManager.swift in Sources */,
 				3522AFE72091C3EC00D17AAF /* DatePeriod.swift in Sources */,
+				68FADF1B281DABA80063EB82 /* Localization.swift in Sources */,
 				3567747C205FA8EC00743FCA /* Constants.swift in Sources */,
 				356B12E0208E0DE6007AF145 /* Operation.swift in Sources */,
 				353B47C6205690B3008281B0 /* AppDelegate.swift in Sources */,

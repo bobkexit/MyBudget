@@ -29,7 +29,7 @@ class AccountsVC: BaseTableVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("accounts", comment: "")
+        title = Localization.accounts
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .account, object: nil)
         reloadData()
     }

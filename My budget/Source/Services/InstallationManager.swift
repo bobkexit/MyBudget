@@ -30,7 +30,7 @@ final class InstallationManager {
     func installDataIfNeeded()  {
         
         if userDefaults.url(forKey: BuildInData.initialBalanceId) == nil {
-            createIncomeCategory(title: NSLocalizedString("Initial account balance", comment: "")) { (objectId) in
+            createIncomeCategory(title: Localization.initialAccountBalance) { (objectId) in
                 self.userDefaults.set(objectId, forKey: BuildInData.initialBalanceId)
             }
         }
@@ -44,21 +44,21 @@ final class InstallationManager {
         }
         
         // Create account
-        createAccount(title: NSLocalizedString("Cash", comment: ""), type: .cash, setDefault: true)
+        createAccount(title: Localization.cash.capitalizingFirstLetter, type: .cash, setDefault: true)
     
         // Create income categories
-        createIncomeCategory(title: NSLocalizedString("Salary", comment: "")) { (objectId) in
+        createIncomeCategory(title: Localization.salary) { (objectId) in
             self.userDefaults.set(objectId, forKey: Kyes.defaultIncomeCategoryId)
         }
         
         // Create expense categories
-        createExpenseCategory(title: NSLocalizedString("Products", comment: "")) { (objectId) in
+        createExpenseCategory(title: Localization.products) { (objectId) in
             self.userDefaults.set(objectId, forKey: Kyes.defaultExpenseCategoryId)
         }
         
-        createExpenseCategory(title: NSLocalizedString("Health", comment: ""))
-        createExpenseCategory(title: NSLocalizedString("Utilities", comment: ""))
-        createExpenseCategory(title: NSLocalizedString("Entertainment", comment: ""))
+        createExpenseCategory(title: Localization.health)
+        createExpenseCategory(title: Localization.utilities)
+        createExpenseCategory(title: Localization.entertainment)
         
         userDefaults.set(true, forKey: Kyes.firstLaunch)
     }

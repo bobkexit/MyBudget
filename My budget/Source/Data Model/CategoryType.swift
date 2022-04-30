@@ -12,3 +12,12 @@ enum CategoryType: Int, CaseIterable {
     case debit = 1
     case credit = 2
 }
+
+extension CategoryType {
+    var title: String {
+        switch self {
+        case .debit: return Localization.income
+        case .credit: return Localization.expense
+        }
+    }
+}

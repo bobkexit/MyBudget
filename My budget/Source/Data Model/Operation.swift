@@ -9,16 +9,15 @@
 import Foundation
 
 enum Operation: CustomStringConvertible {
+    case income
+    case expense
     
     var description: String {
         switch self {
         case .expense:
-            return NSLocalizedString("expense", comment: "")
+            return Localization.expense
         case .income:
-            return NSLocalizedString("income", comment: "")
+            return Localization.income
         }
     }
-    
-    case income
-    case expense
 }

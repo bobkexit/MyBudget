@@ -44,7 +44,7 @@ class ExpensesReportVC: BaseReportVC {
             
             if chartDataEntry.count == Constants.Reports.countCategoriesToShow {
                 let minEntry = chartDataEntry.min {a, b in a.value < b.value}
-                minEntry?.label = NSLocalizedString("etc.", comment: "")
+                minEntry?.label = Localization.etc
             }
             
             let dataSet = PieChartDataSet(entries: chartDataEntry, label: nil)
@@ -81,7 +81,7 @@ class ExpensesReportVC: BaseReportVC {
                 NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)
             ]
             
-            pieChart.centerAttributedText = NSAttributedString(string: NSLocalizedString("Expenses", comment: ""), attributes: attributes)
+            pieChart.centerAttributedText = NSAttributedString(string: Localization.expenses, attributes: attributes)
         } else {
             pieChart.centerAttributedText = nil
         }

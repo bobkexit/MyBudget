@@ -15,20 +15,20 @@ class BaseVC: UIViewController {
         setupUI()
     }
     
-    func setupUI() {
-        
-    }
+    func setupUI() { }
     
-    func updateUI() {
-        
-    }
+    func updateUI() { }
     
     func setupPickerView<T: UIPickerViewDataSource & UIPickerViewDelegate>(_ pickerView: UIPickerView, delegate: T) {
         pickerView.delegate = delegate
         pickerView.dataSource = delegate
     }
     
-    func setupTextField(_ textField: UITextField, withInputView inputView: UIView?, andInputAccessoryView inputAccessoryView: UIView?) {
+    func setupTextField(
+        _ textField: UITextField,
+        withInputView inputView: UIView?,
+        andInputAccessoryView inputAccessoryView: UIView?
+    ) {
         textField.inputView = inputView
         textField.inputAccessoryView = inputAccessoryView
     }
@@ -39,7 +39,7 @@ class BaseVC: UIViewController {
         toolBar.barTintColor = .clear
         toolBar.tintColor = .white
         
-        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: selector)
+        let doneButton = UIBarButtonItem(title: Localization.done, style: .done, target: self, action: selector)
         
         toolBar.setItems([doneButton], animated: true)
         toolBar.isUserInteractionEnabled = true
@@ -51,21 +51,13 @@ class BaseVC: UIViewController {
 }
 
 extension BaseVC: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int { 1 }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 0
-    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int { 0 }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return nil
-    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? { nil }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) { }
 }
 
 extension BaseVC: UITextFieldDelegate {

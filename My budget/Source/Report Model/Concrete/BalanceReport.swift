@@ -11,9 +11,7 @@ import CoreData
 
 class BalanceReport: BaseReport {
     
-    override var description: String {
-        return NSLocalizedString("Balance", comment: "")
-    }
+    override var description: String { Localization.balanceReport }
     
     override func execute(_ completeion: Report.comletionHandler?) {
        

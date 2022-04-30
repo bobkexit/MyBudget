@@ -44,15 +44,28 @@ class TransactionsVC: BaseTableVC {
     // MARK: - View Actions
     @IBAction func addBtnPressed(_ sender: Any) {
         
-        let alertController = UIAlertController(title: NSLocalizedString("Select operation", comment: ""), message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(
+            title: Localization.selectOperation,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
         
-        let createIncome = UIAlertAction(title: Operation.income.description, style: .default) { (action) in
-            self.selectedOperation = Operation.income
-            self.performSegue(withIdentifier: Constants.Segues.toCreateTransaction, sender: self)
+        let createIncome = UIAlertAction(
+            title: Operation.income.description,
+            style: .default
+        ) { [weak self] action in
+            guard let strongSelf = self else { return }
+            strongSelf.selectedOperation = Operation.income
+            strongSelf.performSegue(withIdentifier: Constants.Segues.toCreateTransaction, sender: strongSelf)
         }
-        let createExpense = UIAlertAction(title: Operation.expense.description, style: .default) { (action) in
-            self.selectedOperation = Operation.expense
-            self.performSegue(withIdentifier: Constants.Segues.toCreateTransaction, sender: self)
+        
+        let createExpense = UIAlertAction(
+            title: Operation.expense.description,
+            style: .default
+        ) { [weak self] action in
+            guard let strongSelf = self else { return }
+            strongSelf.selectedOperation = Operation.expense
+            strongSelf.performSegue(withIdentifier: Constants.Segues.toCreateTransaction, sender: strongSelf)
         }
         
         alertController.addAction(createIncome)
@@ -64,16 +77,14 @@ class TransactionsVC: BaseTableVC {
             popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.maxX, y: 0, width: 0, height: 0)
         }
         
-       
-        
-        self.present(alertController, animated: true) {
+        present(alertController, animated: true) {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissAlertController))
             alertController.view.superview?.subviews[0].addGestureRecognizer(tapGesture)
         }
     }
     
     @objc func dismissAlertController(){
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Navigation

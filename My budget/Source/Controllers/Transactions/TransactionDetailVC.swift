@@ -54,11 +54,7 @@ class TransactionDetailVC: BaseTransactionVC {
     }
     
     override func setupViewTitle() {
-        if viewModel.operationType == .debit {
-            title = NSLocalizedString("income", comment: "")
-        } else if viewModel.operationType == .credit {
-            title = NSLocalizedString("expense", comment: "")
-        }
+        title = viewModel.operationType.title
     }
     
     override func updateUI() {

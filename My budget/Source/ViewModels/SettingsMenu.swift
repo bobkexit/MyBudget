@@ -9,22 +9,21 @@
 import Foundation
 
 enum SettingsMenu: String, CustomStringConvertible, CaseIterable {
-    
-    var description: String {
-        switch self {
-        case .accounts:
-            return NSLocalizedString("accounts", comment: "")
-        case .incomings:
-            return NSLocalizedString("incomings", comment: "")
-        case .expenses:
-            return NSLocalizedString("expenses", comment: "")
-        case .defaults:
-            return NSLocalizedString("defaults", comment: "")
-        }
-    }
-    
     case accounts
     case incomings
     case expenses
     case defaults
+    
+    var description: String {
+        switch self {
+        case .accounts:
+            return Localization.accounts
+        case .incomings:
+            return Localization.incomings
+        case .expenses:
+            return Localization.expenses
+        case .defaults:
+            return Localization.defaults
+        }
+    }
 }

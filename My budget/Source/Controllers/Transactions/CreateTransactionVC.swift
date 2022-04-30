@@ -36,7 +36,6 @@ class CreateTransactionVC: BaseTransactionVC {
         super.setupUI()
         
         datePicker.addTarget(self, action: #selector(datePickerValueChannged(_:)), for: .valueChanged)
-        //setupDatePickerView(datePicker, action: #selector(datePickerValueChannged(_:)))
         
         setupTextField(accountTxt, withInputView: accountPicker, andInputAccessoryView: toolBarForPicker)
         setupTextField(categoryTxt, withInputView: categoryPicker, andInputAccessoryView: toolBarForPicker)
@@ -71,17 +70,11 @@ class CreateTransactionVC: BaseTransactionVC {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @available(iOS 10.2, *)
     @IBAction func scanQRCodeBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: Constants.Segues.toQRScannerVC, sender: self)
     }
     
     @objc func datePickerValueChannged(_ sender: Any) {
-//        guard let dateFormatter = Helper.shared.createFormatter(for: .date) as? DateFormatter else {
-//            return
-//        }
-//        selectedDate = datePicker.date
-//        dateTxt.text = dateFormatter.string(from: selectedDate!)
         viewModel.set(datePicker.date, forKey: "date")
         updateUI()
     }
@@ -89,10 +82,11 @@ class CreateTransactionVC: BaseTransactionVC {
     // MARK: - View Methods
     
     override func setupViewTitle() {
-        if viewModel.operationType == .debit {
-            title = NSLocalizedString("Create new income", comment: "")
-        } else if viewModel.operationType == .credit {
-            title = NSLocalizedString("Create new expense", comment: "")
+        switch viewModel.operationType {
+        case .debit:
+            title = Localization.newIncome
+        case .credit:
+            title = Localization.newExpense
         }
     }
     
@@ -106,12 +100,8 @@ class CreateTransactionVC: BaseTransactionVC {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segues.toQRScannerVC {
-            if #available(iOS 10.2, *) {
-                guard let destinationVC = segue.destination as? QRScannerVC  else { return }
-                destinationVC.delegate = self
-            } else {
-                // Fallback on earlier versions
-            }
+            guard let destinationVC = segue.destination as? QRScannerVC  else { return }
+            destinationVC.delegate = self
         }
     }
 }

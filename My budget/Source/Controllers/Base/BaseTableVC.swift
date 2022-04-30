@@ -29,7 +29,7 @@ class BaseTableVC: UITableViewController {
     ) -> UISwipeActionsConfiguration? {
         let contextItem = UIContextualAction(
             style: .destructive,
-            title: NSLocalizedString("Delete", comment: "")
+            title: Localization.delete
         ) { [weak self] (contextualAction, view, boolValue) in
             guard let strongSelf = self else { return }
             strongSelf.tableView(tableView, actionsWhenRemoveRowAt: indexPath)
