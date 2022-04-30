@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -78,7 +78,8 @@
 		35EE301E206118BA0041F195 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE301D206118BA0041F195 /* BaseCell.swift */; };
 		35F012132063B9D7008EE633 /* InstallationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F012122063B9D7008EE633 /* InstallationManager.swift */; };
 		35FC07B1209AE1A800A9D210 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35FC07B3209AE1A800A9D210 /* InfoPlist.strings */; };
-		615AA698DB21FF966812962E /* Pods_My_budget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DEC8F5A04C9758775ECEB6 /* Pods_My_budget.framework */; };
+		6855DFA6281D9FB50024F13A /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 6855DFA5281D9FB50024F13A /* Charts */; };
+		6855DFA9281DA0450024F13A /* TableFlip in Frameworks */ = {isa = PBXBuildFile; productRef = 6855DFA8281DA0450024F13A /* TableFlip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,9 +161,6 @@
 		35FC07A9209AD60B00A9D210 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35FC07B2209AE1A800A9D210 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		35FC07B4209AE1AD00A9D210 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4888D73EADFA49F664FD0830 /* Pods-My budget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My budget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My budget/Pods-My budget.debug.xcconfig"; sourceTree = "<group>"; };
-		69DEC8F5A04C9758775ECEB6 /* Pods_My_budget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_budget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE55D91628C8CD8C214428C4 /* Pods-My budget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My budget.release.xcconfig"; path = "Pods/Target Support Files/Pods-My budget/Pods-My budget.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,7 +168,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				615AA698DB21FF966812962E /* Pods_My_budget.framework in Frameworks */,
+				6855DFA9281DA0450024F13A /* TableFlip in Frameworks */,
+				6855DFA6281D9FB50024F13A /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,8 +325,6 @@
 			children = (
 				353B47C4205690B3008281B0 /* My budget */,
 				353B47C3205690B3008281B0 /* Products */,
-				CA933667C665FAE3A1F9FFA2 /* Pods */,
-				BBE7EB3DA86593D62296FA15 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -342,6 +339,7 @@
 		353B47C4205690B3008281B0 /* My budget */ = {
 			isa = PBXGroup;
 			children = (
+				353B47DA205930F8008281B0 /* Application */,
 				353B47D720593084008281B0 /* Source */,
 				353B47D9205930B6008281B0 /* Resources */,
 			);
@@ -360,7 +358,6 @@
 				3531C593207E75CA0055D0B4 /* ViewModels */,
 				353B47DC20593113008281B0 /* Views */,
 				353B47DB20593106008281B0 /* Controllers */,
-				353B47DA205930F8008281B0 /* Application */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -482,23 +479,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		BBE7EB3DA86593D62296FA15 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				69DEC8F5A04C9758775ECEB6 /* Pods_My_budget.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CA933667C665FAE3A1F9FFA2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4888D73EADFA49F664FD0830 /* Pods-My budget.debug.xcconfig */,
-				EE55D91628C8CD8C214428C4 /* Pods-My budget.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -506,17 +486,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 353B47D4205690B3008281B0 /* Build configuration list for PBXNativeTarget "My budget" */;
 			buildPhases = (
-				B81FA6B33ADB550D7132DB4F /* [CP] Check Pods Manifest.lock */,
 				353B47BE205690B3008281B0 /* Sources */,
 				353B47BF205690B3008281B0 /* Frameworks */,
 				353B47C0205690B3008281B0 /* Resources */,
-				10151550EBA8810B03B16E3D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "My budget";
+			packageProductDependencies = (
+				6855DFA5281D9FB50024F13A /* Charts */,
+				6855DFA8281DA0450024F13A /* TableFlip */,
+			);
 			productName = "My budget";
 			productReference = 353B47C2205690B3008281B0 /* My budget.app */;
 			productType = "com.apple.product-type.application";
@@ -528,7 +510,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1330;
 				ORGANIZATIONNAME = "Николай Маторин";
 				TargetAttributes = {
 					353B47C1205690B3008281B0 = {
@@ -547,6 +529,10 @@
 				ru,
 			);
 			mainGroup = 353B47B9205690B3008281B0;
+			packageReferences = (
+				6855DFA4281D9FB50024F13A /* XCRemoteSwiftPackageReference "Charts" */,
+				6855DFA7281DA0450024F13A /* XCRemoteSwiftPackageReference "TableFlip" */,
+			);
 			productRefGroup = 353B47C3205690B3008281B0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -570,47 +556,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		10151550EBA8810B03B16E3D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-My budget/Pods-My budget-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/TableFlip/TableFlip.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TableFlip.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-My budget/Pods-My budget-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B81FA6B33ADB550D7132DB4F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-My budget-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		353B47BE205690B3008281B0 /* Sources */ = {
@@ -755,6 +700,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -780,7 +726,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -815,6 +761,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -834,24 +781,27 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		353B47D5205690B3008281B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4888D73EADFA49F664FD0830 /* Pods-My budget.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M64J2FC2KN;
 				INFOPLIST_FILE = "$(SRCROOT)/My budget/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bobkexit.My-budget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -861,14 +811,16 @@
 		};
 		353B47D6205690B3008281B0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE55D91628C8CD8C214428C4 /* Pods-My budget.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M64J2FC2KN;
 				INFOPLIST_FILE = "$(SRCROOT)/My budget/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bobkexit.My-budget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -898,6 +850,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6855DFA4281D9FB50024F13A /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		6855DFA7281DA0450024F13A /* XCRemoteSwiftPackageReference "TableFlip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mergesort/TableFlip";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6855DFA5281D9FB50024F13A /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6855DFA4281D9FB50024F13A /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+		6855DFA8281DA0450024F13A /* TableFlip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6855DFA7281DA0450024F13A /* XCRemoteSwiftPackageReference "TableFlip" */;
+			productName = TableFlip;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		3566A78F2087413A0099BE67 /* DataModel.xcdatamodeld */ = {
