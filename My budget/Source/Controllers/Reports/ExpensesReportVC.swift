@@ -47,7 +47,7 @@ class ExpensesReportVC: BaseReportVC {
                 minEntry?.label = NSLocalizedString("etc.", comment: "")
             }
            
-            let dataSet = PieChartDataSet(values: chartDataEntry, label: nil)
+            let dataSet = PieChartDataSet(entries: chartDataEntry, label: nil)
             dataSet.colors = ChartColorTemplates.colorful()
             dataSet.valueColors = [UIColor.white]
             dataSet.sliceSpace = 2.0

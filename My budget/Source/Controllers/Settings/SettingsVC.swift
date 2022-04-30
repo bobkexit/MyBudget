@@ -12,7 +12,7 @@ class SettingsVC: BaseTableVC {
     
     // MARK: - Properties
     
-    let settings = Array(SettingsMenu.cases())
+    let settings = SettingsMenu.allCases
     
     var selectedSetting: SettingsMenu?
     
