@@ -40,7 +40,7 @@ class CreateAccountVM: AccountVM {
         initBalance()
     }
     
-    fileprivate func initBalance() {
+    private func initBalance() {
         
         guard let amount = self.balance, amount > 0 else {
             return
@@ -51,7 +51,7 @@ class CreateAccountVM: AccountVM {
         }
         
         let transactionManager = BaseDataManager<Transaction>()
-        let transaction = transactionManager.create()
+        guard let transaction = transactionManager.create() else { return }
         
         let transactionVM = ViewModelFactory.shared.create(object: transaction, dataManager: transactionManager)
         
@@ -65,8 +65,8 @@ class CreateAccountVM: AccountVM {
     }
     
     deinit {
-        if !self.hasBeenSaved {
-            dataManager.context.delete(object)
+        if !hasBeenSaved {
+            dataManager.context?.delete(object)
         }
     }
 }

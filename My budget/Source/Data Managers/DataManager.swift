@@ -17,7 +17,7 @@ protocol DataManager {
     
     func findObject(by url: URL) -> Entity?
     
-    func create() -> Entity
+    func create() -> Entity?
     
     func createArray() -> [Entity]
     

@@ -18,19 +18,9 @@ class AccountVM: BaseViewModel<Account> {
         return url
     }
     
-    var title: String? {
-        return self.object.title
-    }
+    var title: String? { object.title }
     
-    var accountType: AccountType {
-        let typeId = Int(self.object.typeId)
-        
-        guard let value = AccountType(rawValue: typeId) else {
-            fatalError("Incorrect aacount typeId")
-        }
-        
-        return value
-    }
+    var accountType: AccountType? { AccountType(rawValue: Int(object.typeId)) }
     
     // MARK: - Setters
     

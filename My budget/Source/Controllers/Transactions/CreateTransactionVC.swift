@@ -44,30 +44,30 @@ class CreateTransactionVC: BaseTransactionVC {
         
         commentTxtView.delegate = self
         
-        scanQRCodeBtn.isHidden = viewModel.operationType != .credit
+        scanQRCodeBtn.isHidden = viewModel?.operationType != .credit
     }
     
     override func updateUI() {
         super.updateUI()
         
-        dateTxt.text = viewModel.date
-        accountTxt.text = viewModel.account
-        categoryTxt.text = viewModel.category
-        amountTxt.text = viewModel.amountAbs
+        dateTxt.text = viewModel?.date
+        accountTxt.text = viewModel?.account
+        categoryTxt.text = viewModel?.category
+        amountTxt.text = viewModel?.amountAbs
     }
     
     // MARK: - View Actions
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         
-        if let date = dateTxt.text, date != viewModel.date {
-            viewModel.set(date, forKey: "date")
+        if let date = dateTxt.text, date != viewModel?.date {
+            viewModel?.set(date, forKey: "date")
         }
         
-        viewModel.save()
+        viewModel?.save()
         
         
-        self.navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func scanQRCodeBtnPressed(_ sender: Any) {
@@ -75,18 +75,20 @@ class CreateTransactionVC: BaseTransactionVC {
     }
     
     @objc func datePickerValueChannged(_ sender: Any) {
-        viewModel.set(datePicker.date, forKey: "date")
+        viewModel?.set(datePicker.date, forKey: "date")
         updateUI()
     }
     
     // MARK: - View Methods
     
     override func setupViewTitle() {
-        switch viewModel.operationType {
+        switch viewModel?.operationType {
         case .debit:
             title = Localization.newIncome
         case .credit:
             title = Localization.newExpense
+        default:
+            break
         }
     }
     
@@ -118,7 +120,7 @@ extension CreateTransactionVC {
     
     override func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == amountTxt {
-            viewModel.set(textField.text, forKey: "amount")
+            viewModel?.set(textField.text, forKey: "amount")
         }
         updateUI()
     }
@@ -133,7 +135,7 @@ extension CreateTransactionVC: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == commentTxtView {
-            viewModel.set(textView.text, forKey: "comment")
+            viewModel?.set(textView.text, forKey: "comment")
         }
         updateUI()
     }
@@ -143,11 +145,11 @@ extension CreateTransactionVC: QRScannerVCDelegate {
     func qrScanner(found code: String) {
         QRCodeParser.shared.parse(code: code) { (date, sum) in
             if let date = date {
-                viewModel.set(date, forKey: "date")
+                viewModel?.set(date, forKey: "date")
             }
             
             if let amount = sum {
-                viewModel.set(amount, forKey: "amount")
+                viewModel?.set(amount, forKey: "amount")
             }
             updateUI()
         }

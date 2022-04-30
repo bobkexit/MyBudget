@@ -14,19 +14,17 @@ class AccountBalanceCell: BaseCell {
     @IBOutlet weak var accountTitleLbl: UILabel!
     @IBOutlet weak var accountBalanceLbl: UILabel!
     
-    var accountVM: AccountBalanceVM!
+    var accountVM: AccountBalanceVM?
     
     override func configureCell(viewModel: SomeViewModel) {
-       
         guard let viewModel = viewModel as? AccountBalanceVM else {
-            fatalError("Cant cast SomeViewModel to AccountBalanceVM")
+            return
         }
         
         self.accountVM = viewModel
-        self.accountImg.image = accountVM.accountType.image
-        self.accountTitleLbl.text = accountVM.title
-        self.accountBalanceLbl.text = accountVM.balanceWithCurrency
-        self.accountBalanceLbl.textColor = accountVM.textColor
+        accountImg.image = viewModel.accountType?.image
+        accountTitleLbl.text = viewModel.title
+        accountBalanceLbl.text = viewModel.balanceWithCurrency
+        accountBalanceLbl.textColor = viewModel.textColor
     }
-   
 }

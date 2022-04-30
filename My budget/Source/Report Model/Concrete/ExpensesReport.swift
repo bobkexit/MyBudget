@@ -57,7 +57,7 @@ class ExpensesReport: BaseReport {
         }
     }
     
-    fileprivate var categoryColumn: NSExpressionDescription {
+    private var categoryColumn: NSExpressionDescription {
         let expressionDescription = NSExpressionDescription()
         // Name the column
         expressionDescription.name = "category"
@@ -70,7 +70,7 @@ class ExpensesReport: BaseReport {
         return expressionDescription
     }
     
-    fileprivate var totalAmountColumn: NSExpressionDescription {
+    private var totalAmountColumn: NSExpressionDescription {
       
         let expressionDescription = NSExpressionDescription()
         // Name the column

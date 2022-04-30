@@ -22,18 +22,10 @@ class TransactionDetailVC: BaseTransactionVC {
     
     @IBOutlet weak var commentTxtView: UITextView!
     
-    
-    // MARK: - View Life Cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     // MARK: - View Actions
     
     @objc func datePickerValueChannged(_ sender: Any) {
-        viewModel.set(datePicker.date, forKey: "date")
+        viewModel?.set(datePicker.date, forKey: "date")
         updateUI()
     }
     
@@ -54,17 +46,17 @@ class TransactionDetailVC: BaseTransactionVC {
     }
     
     override func setupViewTitle() {
-        title = viewModel.operationType.title
+        title = viewModel?.operationType.title
     }
     
     override func updateUI() {
         super.updateUI()
 
-        dateTxt.text = viewModel.date
-        accountTxt.text = viewModel.account
-        categoryTxt.text = viewModel.category
-        amountTxt.text = viewModel.amountAbs
-        commentTxtView.text = viewModel.comment
+        dateTxt.text = viewModel?.date
+        accountTxt.text = viewModel?.account
+        categoryTxt.text = viewModel?.category
+        amountTxt.text = viewModel?.amountAbs
+        commentTxtView.text = viewModel?.comment
     }
     
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -84,14 +76,15 @@ class TransactionDetailVC: BaseTransactionVC {
     
     override func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == amountTxt {
-            viewModel.set(textField.text, forKey: "amount")
+            viewModel?.set(textField.text, forKey: "amount")
         }
         updateUI()
     }
     
     func saveChanges() {
+        guard let viewModel = viewModel else { return }
         viewModel.save()
-        let userInfo = [ "transactionId" : viewModel.id ]
+        let userInfo = ["transactionId" : viewModel.id]
         NotificationCenter.default.post(name: .transaction, object: nil, userInfo: userInfo)
     }
 }
@@ -107,7 +100,7 @@ extension TransactionDetailVC: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == commentTxtView {
-            viewModel.set(textView.text, forKey: "comment")
+            viewModel?.set(textView.text, forKey: "comment")
         }
         updateUI()
     }

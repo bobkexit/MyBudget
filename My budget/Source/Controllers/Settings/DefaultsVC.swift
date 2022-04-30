@@ -179,24 +179,23 @@ class DefaultsVC: BaseVC {
     
     // MARK: - Private UI Methods
     
-    fileprivate func setupUIPickers() {
+    private func setupUIPickers() {
         setupPickerView(currencyPicker, delegate: self)
         setupPickerView(accountPicker, delegate: self)
         setupPickerView(expensePicker, delegate: self)
         setupPickerView(incomePicker, delegate: self)
     }
     
-    fileprivate func setupTextFields() {
+    private func setupTextFields() {
         setupTextField(currencyTxtField, withInputView: currencyPicker, andInputAccessoryView: toolBar)
         setupTextField(accountTxtField, withInputView: accountPicker, andInputAccessoryView: toolBar)
         setupTextField(expenseTxtField, withInputView: expensePicker, andInputAccessoryView: toolBar)
         setupTextField(incomeTxtField, withInputView: incomePicker, andInputAccessoryView: toolBar)
     }
     
-    
     // MARK: - Data methods
     
-    fileprivate func loadData() {
+    private func loadData() {
         
         let accountManager = BaseDataManager<Account>()
         let incomeCategoryManager = IncomeCategoryManager()

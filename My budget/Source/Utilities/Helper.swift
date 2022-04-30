@@ -35,21 +35,8 @@ final class Helper {
         
         return result
     }
-    
-    func createFormatter(for type: FormatterType) -> Formatter {
         
-        switch type {
-        case .date:
-             return createDateFormatter()
-        case .decimal:
-            return createDecimalFormatter()
-        case .currency:
-            return createCurrencyFormatter()
-        }
-        
-    }
-    
-    fileprivate func createCurrencyFormatter() -> Formatter {
+    func createCurrencyFormatter() -> NumberFormatter {
         
         let formatter = NumberFormatter()
         
@@ -74,7 +61,7 @@ final class Helper {
         return formatter
     }
     
-    fileprivate func createDateFormatter() -> Formatter {
+    func createDateFormatter() -> DateFormatter {
         let formatter = DateFormatter()
         
         formatter.locale = Locale.current
@@ -84,9 +71,9 @@ final class Helper {
         return formatter
     }
     
-    fileprivate func createDecimalFormatter() -> Formatter {
+    func createDecimalFormatter() -> NumberFormatter {
         let formatter = NumberFormatter()
-        
+
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
         

@@ -68,21 +68,15 @@ class SettingsVC: BaseTableVC {
     // MARK: Passing Data Methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.Segues.toCategoriesVC {
+        guard
+            segue.identifier == Constants.Segues.toCategoriesVC,
+            let destinationVC = segue.destination as? CategoriesVC
+        else { return }
             
-            guard let destinationVC = segue.destination as? CategoriesVC else {
-                fatalError("Can't cast destinationVC to \(CategoriesVC.self)")
-            }
-            
-            if selectedSetting == .incomings {
-                
-                destinationVC.categoryType = .debit
-                
-            } else if selectedSetting == .expenses {
-                
-                destinationVC.categoryType = .credit
-                
-            }
+        if selectedSetting == .incomings {
+            destinationVC.categoryType = .debit
+        } else if selectedSetting == .expenses {
+            destinationVC.categoryType = .credit
         }
     }
 }

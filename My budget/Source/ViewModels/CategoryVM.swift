@@ -18,18 +18,9 @@ class CategoryVM: BaseViewModel<Category> {
         return url.absoluteString
     }
     
-    var title: String? {
-        return object.title
-    }
+    var title: String? { object.title }
     
-    var categoryType: CategoryType  {
-        let typeId = Int(self.object.typeId)
-        guard let value = CategoryType(rawValue: typeId) else {
-            fatalError("Incorrect category typeId")
-        }
-        return value
-    }
-    
+    var categoryType: CategoryType?  { CategoryType(rawValue: Int(object.typeId)) }
     
     // MARK: - Setters
 

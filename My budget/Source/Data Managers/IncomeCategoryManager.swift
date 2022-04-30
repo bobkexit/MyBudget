@@ -23,7 +23,7 @@ class IncomeCategoryManager: BaseDataManager<Category> {
         query.predicate = NSPredicate(format: "typeId == \(typeId)")
         
         do {
-            result = try context.fetch(query)
+            result = try context?.fetch(query) ?? []
         } catch  {
             print(error as Any)
         }
@@ -31,12 +31,9 @@ class IncomeCategoryManager: BaseDataManager<Category> {
         return result
     }
     
-    override func create() -> Category {
-        
-        let object = super.create()
-        
+    override func create() -> Category? {
+        guard let object = super.create() else { return nil }
         object.typeId = Int16(categoryType.rawValue)
-        
         return object
     }
 }

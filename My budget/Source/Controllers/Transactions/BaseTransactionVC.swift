@@ -22,11 +22,11 @@ class BaseTransactionVC: BaseVC {
     
     // MARK: - Properties
     
-    var viewModel: TransactionVM!
+    var viewModel: TransactionVM?
     
-    var categoryManager: BaseDataManager<Category>!
+    var categoryManager: BaseDataManager<Category>?
     
-    var accountManager: BaseDataManager<Account>!
+    var accountManager: BaseDataManager<Account>?
     
     var accounts = [Account]()
     
@@ -59,11 +59,13 @@ class BaseTransactionVC: BaseVC {
     override func updateUI() {
         super.updateUI()
         
-        if let row = accounts.firstIndex(where: { $0.objectID.uriRepresentation() == viewModel.accountID }) {
+        if let accountID = viewModel?.accountID,
+           let row = accounts.firstIndex(where: { $0.objectID.uriRepresentation() == accountID }) {
             accountPicker.selectRow(row, inComponent: 0, animated: true)
         }
         
-        if let row = categories.firstIndex(where: { $0.objectID.uriRepresentation() == viewModel.categoryId }) {
+        if let categoryId = viewModel?.categoryId,
+           let row = categories.firstIndex(where: { $0.objectID.uriRepresentation() == categoryId }) {
             categoryPicker.selectRow(row, inComponent: 0, animated: true)
         }
     }
@@ -92,9 +94,9 @@ class BaseTransactionVC: BaseVC {
         categoryManager: BaseDataManager<Category>,
         accountManager: BaseDataManager<Account>
     ) {
-        
+
         guard let viewModel = viewModel as? TransactionVM else {
-            fatalError("Cant cast SomeViewModel to TransactionViewModel")
+            return
         }
         
         self.viewModel = viewModel
@@ -103,8 +105,8 @@ class BaseTransactionVC: BaseVC {
     }
     
     func loadData() {
-        accounts = accountManager.getObjects()
-        categories = categoryManager.getObjects()
+        accounts = accountManager?.getObjects() ?? []
+        categories = categoryManager?.getObjects() ?? []
     }
     
     override func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -133,10 +135,10 @@ class BaseTransactionVC: BaseVC {
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == accountPicker {
             let account = accounts[row]
-            viewModel.set(account, forKey: "account")
+            viewModel?.set(account, forKey: "account")
         } else if pickerView == categoryPicker {
             let category = categories[row]
-            viewModel.set(category, forKey: "category")
+            viewModel?.set(category, forKey: "category")
         }
         updateUI()
     }

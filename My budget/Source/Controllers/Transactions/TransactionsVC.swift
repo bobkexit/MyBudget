@@ -91,9 +91,7 @@ class TransactionsVC: BaseTableVC {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        var categoryManager: BaseDataManager<Category>!
         let accountManager = BaseDataManager<Account>()
-        
         
         if segue.identifier == Constants.Segues.toTransactionDetailVC {
             
@@ -107,21 +105,27 @@ class TransactionsVC: BaseTableVC {
             
             let selectedTransactionVM = transactions[indexPath.row]
             
-            categoryManager = createCategoryManager(forTransaction: selectedTransactionVM)
-            
-            destinationVC.configure(viewModel: selectedTransactionVM, categoryManager: categoryManager, accountManager: accountManager)
-            
+            if let categoryManager = createCategoryManager(forTransaction: selectedTransactionVM) {
+                destinationVC.configure(
+                    viewModel: selectedTransactionVM,
+                    categoryManager: categoryManager,
+                    accountManager: accountManager
+                )
+            }
         } else if segue.identifier == Constants.Segues.toCreateTransaction {
             
-            guard let destinationVC = segue.destination as? CreateTransactionVC else {
-                return
+            guard
+                let destinationVC = segue.destination as? CreateTransactionVC,
+                let newTransactionVM = createViewModel()
+            else { return }
+            
+            if let categoryManager = createCategoryManager(forTransaction: newTransactionVM) {
+                destinationVC.configure(
+                    viewModel: newTransactionVM,
+                    categoryManager: categoryManager,
+                    accountManager: accountManager
+                )
             }
-            
-            let newTransactionVM = createViewModel()
-            
-            categoryManager = createCategoryManager(forTransaction: newTransactionVM)
-            
-             destinationVC.configure(viewModel: newTransactionVM, categoryManager: categoryManager, accountManager: accountManager)
         }
     }
     
@@ -138,9 +142,8 @@ class TransactionsVC: BaseTableVC {
     }
     
     func reloadTransaction(trnasactionId: URL?) {
-        
-        guard let row = transactions.firstIndex(where: {($0 as! TransactionVM).id == trnasactionId}) else {
-            fatalError("Can't find index of upadted transaction")
+        guard let row = transactions.firstIndex(where: {($0 as? TransactionVM)?.id == trnasactionId}) else {
+            return
         }
         
         let indexPath = IndexPath(row: row, section: 0)
@@ -167,9 +170,9 @@ class TransactionsVC: BaseTableVC {
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
-    func createViewModel() -> SomeViewModel {
+    func createViewModel() -> SomeViewModel? {
         
-        let transaction = dataManager.create()
+        guard let transaction = dataManager.create() else { return nil }
         
         let viewModel = viewModelFactory.create(object: transaction, dataManager: dataManager)
         viewModel.isNew = true
@@ -190,25 +193,19 @@ class TransactionsVC: BaseTableVC {
             viewModel.set(category, forKey: "category")
         }
         
-        
         return viewModel
     }
     
-    func createCategoryManager(forTransaction transaction: SomeViewModel) -> BaseDataManager<Category> {
-        
+    func createCategoryManager(forTransaction transaction: SomeViewModel) -> BaseDataManager<Category>? {
         guard let transaction = transaction as? TransactionVM else {
-            fatalError("Cant cast SomeViewModel to TransactionViewModel")
+           return nil
         }
         
-        var categoryManager: BaseDataManager<Category>!
-      
-        if transaction.categoryType == .debit {
-            categoryManager = IncomeCategoryManager()
-        } else if transaction.categoryType == .credit {
-            categoryManager = ExpenseCategoryManager()
+        switch transaction.categoryType {
+        case .debit: return IncomeCategoryManager()
+        case .credit: return ExpenseCategoryManager()
+        case .none: return nil
         }
-        
-        return categoryManager
     }
 }
 

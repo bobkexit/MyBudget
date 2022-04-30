@@ -12,30 +12,21 @@ import CoreData
 final class ReportManager {
     
     static let shared = ReportManager()
-    
-    private let context: NSManagedObjectContext
-    
-    private init() {
-        
-        guard let appDelegate = (UIApplication.shared.delegate as? AppDelegate) else {
-            fatalError("can't find AppDelegate")
-        }
-        
-        self.context = appDelegate.persistentContainer.viewContext
-    }
+
+    private init() { }
     
     func getAvailableReports() -> [Report] {
+        guard let appDelegate = (UIApplication.shared.delegate as? AppDelegate) else { return [] }
         
-        var reports = [Report]()
+        let context = appDelegate.persistentContainer.viewContext
         
-        reports.append(ExpensesReport(entityName: "Transaction", context: self.context))
-        reports.append(BalanceReport(entityName: "Account", context: self.context))
-        
-        return reports
+        return [
+            ExpensesReport(entityName: "Transaction", context: context),
+            BalanceReport(entityName: "Account", context: context)
+        ]
     }
     
     func segueIdentifier(forReport report: Report) -> String? {
-    
         switch report {
         case is ExpensesReport:
             return Constants.Segues.toExpensesReport

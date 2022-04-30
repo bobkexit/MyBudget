@@ -105,9 +105,9 @@ class TransactionVM: BaseViewModel<Transaction> {
         
         var rawValue = value
         
-        if key == "date" && value is String {
+        if key == "date", let value = value as? String {
             
-            guard let date = self.dateFormatter.date(from: value as! String) else {
+            guard let date = dateFormatter.date(from: value) else {
                 return
             }
             
@@ -152,7 +152,7 @@ class TransactionVM: BaseViewModel<Transaction> {
     
     deinit {
         if self.isNew {
-            dataManager.context.delete(object)
+            dataManager.context?.delete(object)
         }
     }
 }

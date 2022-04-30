@@ -15,20 +15,12 @@ class CategoryCell: BaseCell {
     var categoryViewModel: CategoryVM!
     
     override func configureCell(viewModel: SomeViewModel) {
-        
-        guard let viewModel = viewModel as? CategoryVM else {
-            fatalError("Cant cast SomeViewModel to CategoryViewModel")
-        }
-        
-        setup()
-        
+        guard let viewModel = viewModel as? CategoryVM else { return }
         self.categoryViewModel = viewModel
-        self.categoryName.text = categoryViewModel.title
-    }
-    
-    fileprivate func setup() {
+        
         categoryName.delegate = self
         categoryName.contentVerticalAlignment = .center
+        categoryName.text = categoryViewModel.title
     }
 }
 

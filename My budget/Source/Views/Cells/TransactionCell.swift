@@ -15,24 +15,21 @@ class TransactionCell: BaseCell {
     @IBOutlet weak var amountLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
     
-    var transactionViewModel: TransactionVM!
+    var transactionViewModel: TransactionVM?
     
     override func configureCell(viewModel: SomeViewModel) {
-      
-        guard let viewModel = viewModel as? TransactionVM else {
-            fatalError("Cant cast SomeViewModel to CategoryViewModel")
-        }
+        guard let viewModel = viewModel as? TransactionVM else { return }
         
         self.transactionViewModel = viewModel
         
-        accountImg.image = transactionViewModel.accountType?.image
+        accountImg.image = viewModel.accountType?.image
         
-        if let categoryName = transactionViewModel.category {
+        if let categoryName = viewModel.category {
               categoryLbl.text = Helper.shared.trancate(Phrase: categoryName)
         }
         
-        amountLbl.text =  transactionViewModel.currencyAmount
-        amountLbl.textColor = transactionViewModel.color
-        dateLbl.text = transactionViewModel.date
+        amountLbl.text =  viewModel.currencyAmount
+        amountLbl.textColor = viewModel.color
+        dateLbl.text = viewModel.date
     }
 }

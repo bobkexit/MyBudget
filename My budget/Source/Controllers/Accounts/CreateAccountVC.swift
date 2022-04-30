@@ -23,15 +23,14 @@ class CreateAccountVC: BaseVC {
     
     @IBOutlet weak var balanceTxtField: UITextField!
     
-    fileprivate let toolBar = UIToolbar()
-    fileprivate let accountTypePicker = UIPickerView()
+    private let toolBar = UIToolbar()
+    private let accountTypePicker = UIPickerView()
     
     // MARK: - Properties
     
-    var viewModel: ViewModel!
+    var viewModel: ViewModel?
     
-    fileprivate let accountTypes = AccountType.allCases
-    
+    private let accountTypes = AccountType.allCases
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +52,10 @@ class CreateAccountVC: BaseVC {
     }
 
     @objc override func updateUI() {
-        titleTxtField.text = viewModel.title
-        accountTypeTxtField.text = viewModel.accountType.description
+        titleTxtField.text = viewModel?.title
+        accountTypeTxtField.text = viewModel?.accountType?.description
         
-        if let row = accountTypes.firstIndex(of: viewModel.accountType) {
+        if let accountType = viewModel?.accountType, let row = accountTypes.firstIndex(of: accountType) {
              accountTypePicker.selectRow(row, inComponent: 0, animated: true)
         }
     }
@@ -67,9 +66,9 @@ class CreateAccountVC: BaseVC {
             return
         }
         
-        self.dismissKeyboard()
+        dismissKeyboard()
         
-        viewModel.save()
+        viewModel?.save()
         
         NotificationCenter.default.post(name: .account, object: nil)
         
@@ -98,7 +97,7 @@ class CreateAccountVC: BaseVC {
     override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == accountTypePicker {
             let accountType = accountTypes[row]
-            viewModel.set(accountType, forKey: "accountType")
+            viewModel?.set(accountType, forKey: "accountType")
         }
         updateUI()
     }
@@ -111,20 +110,20 @@ class CreateAccountVC: BaseVC {
             guard let title = textField.text,!title.isEmpty else {
                 return
             }
-            viewModel.set(title, forKey: "title")
+            viewModel?.set(title, forKey: "title")
         } else if textField == balanceTxtField {
             guard let balance = textField.text,!balance.isEmpty else {
                 return
             }
-            viewModel.set(balance, forKey: "balance")
+            viewModel?.set(balance, forKey: "balance")
         }
         updateUI()
     }
     
-    fileprivate func validateForm() -> Bool {
-        if viewModel.title?.isEmpty ?? true {
-            UIView.animate(withDuration: 1) {
-                self.titleTxtField.backgroundColor = Constants.DefaultColors.red
+    private func validateForm() -> Bool {
+        if viewModel?.title?.isEmpty == true {
+            UIView.animate(withDuration: 1) { [weak self] in
+                self?.titleTxtField.backgroundColor = Constants.DefaultColors.red
             }
             return false
         }

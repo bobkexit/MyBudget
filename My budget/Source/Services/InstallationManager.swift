@@ -69,7 +69,7 @@ final class InstallationManager {
         
         let dataManager = BaseDataManager<Account>()
         
-        let account = dataManager.create()
+        guard let account = dataManager.create() else { return }
         account.title = title
         account.typeId = Int16(type.rawValue)
         
@@ -85,7 +85,7 @@ final class InstallationManager {
         
         let dataManager = IncomeCategoryManager()
         
-        let category = dataManager.create()
+        guard let category = dataManager.create() else { return }
         category.title = title
         
         dataManager.saveContext()
@@ -97,10 +97,8 @@ final class InstallationManager {
     }
     
     private func createExpenseCategory(title: String, _ completion: CompletionHandler? = nil) {
-        
         let dataManager = ExpenseCategoryManager()
-        
-        let category = dataManager.create()
+        guard let category = dataManager.create() else { return }
         category.title = title
         
         dataManager.saveContext()

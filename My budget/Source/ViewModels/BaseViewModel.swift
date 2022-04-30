@@ -15,11 +15,11 @@ class BaseViewModel<Entity: NSManagedObject>: ViewModel {
     
     let dataManager: BaseDataManager<Entity>
     
-    let dateFormatter = Helper.shared.createFormatter(for: .date) as! DateFormatter
+    let dateFormatter = Helper.shared.createDateFormatter()
 
-    let currencyFormatter = Helper.shared.createFormatter(for: .currency) as! NumberFormatter
+    let currencyFormatter = Helper.shared.createCurrencyFormatter()
     
-    let decimalFormatter = Helper.shared.createFormatter(for: .decimal) as! NumberFormatter
+    let decimalFormatter = Helper.shared.createDecimalFormatter()
   
     required init(object: Entity, dataManager: BaseDataManager<Entity>) {
         self.object = object
@@ -41,6 +41,4 @@ class BaseViewModel<Entity: NSManagedObject>: ViewModel {
     func delete() {
         dataManager.delete(object: object)
     }
-    
-   
 }

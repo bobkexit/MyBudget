@@ -18,6 +18,8 @@ class BalanceReportVC: BaseReportVC {
     
     var accounts = [SomeViewModel]()
     
+    private lazy var currencyFormatter = Helper.shared.createCurrencyFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,48 +29,41 @@ class BalanceReportVC: BaseReportVC {
         loadDataAsync()
     }
     
-    fileprivate func loadData() {
-        
-      
-        self.report.execute { (results) in
+    private func loadData() {
+        report.execute { [weak self] results in
             
-            guard let result = results?.first as? [String : Any] else {
+            guard let strongSelf = self, let result = results?.first as? [String : Any] else {
                 return
             }
             
             if let total = result["total"] as? Float {
-                
-                if let currencyFormatter = Helper.shared.createFormatter(for: .currency) as? NumberFormatter {
-                    
-                    let value = NSNumber(value: total)
-                    self.totalAmountLbl.text = currencyFormatter.string(from: value)
-                }
-                
-                self.totalAmountLbl.textColor = total < 0 ? Constants.DefaultColors.red : Constants.DefaultColors.green
+                let value = NSNumber(value: total)
+                strongSelf.totalAmountLbl.text = strongSelf.currencyFormatter.string(from: value)
+                strongSelf.totalAmountLbl.textColor = total < 0 ? Constants.DefaultColors.red : Constants.DefaultColors.green
             }
             
             if let accounts = result["accounts"] as? [SomeViewModel] {
-                self.accounts = accounts
+                strongSelf.accounts = accounts
             }
         
-            self.tableView.reloadData()
-            self.animateView()
+            strongSelf.tableView.reloadData()
+            strongSelf.animateView()
         }
     }
     
-    fileprivate func loadDataAsync() {
-        DispatchQueue.main.async {
-            self.loadData()
+    private func loadDataAsync() {
+        DispatchQueue.main.async { [weak self] in
+            self?.loadData()
         }
     }
     
-    fileprivate func animateView() {
+    private func animateView() {
         let cellAnimation = TableViewAnimation.Cell.fade(duration: 1.3)
-        self.tableView.animate(animation: cellAnimation)
-        self.totalAmountView.alpha = 0
-        UIView.animate(withDuration: 1.3, animations: {
-            self.totalAmountView.alpha = 1
-        })
+        tableView.animate(animation: cellAnimation)
+        totalAmountView.alpha = 0
+        UIView.animate(withDuration: 1.3) { [weak self] in
+            self?.totalAmountView.alpha = 1
+        }
     }
 }
 
@@ -80,7 +75,10 @@ extension BalanceReportVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.accountBalanceCell, for: indexPath) as? AccountBalanceCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: Constants.CellIdentifiers.accountBalanceCell,
+            for: indexPath
+        ) as? AccountBalanceCell else { return UITableViewCell() }
         
         let accountBalanceVM = accounts[indexPath.row]
         cell.configureCell(viewModel: accountBalanceVM)

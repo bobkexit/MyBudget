@@ -38,28 +38,23 @@ class CategoriesVC: BaseTableVC {
     // MARK: - View Actions
     
     @IBAction func addButtonPressed(_ sender: Any) {
-        
-        guard let dataManager = dataManager else {
-            fatalError("Can't get propper data manager")
-        }
-        
-        let category = dataManager.create()
+    
+        guard let dataManager = dataManager, let category = dataManager.create() else { return }
+    
         let viewModel = viewModelFactory.create(object: category, dataManager: dataManager)
         viewModel.save()
         
         reloadData()
         
-        guard let visibleCells = tableView.visibleCells as? [CategoryCell] else {
-            fatalError("Can't get visible category cells")
+        if let visibleCells = tableView.visibleCells as? [CategoryCell],
+           let cell = visibleCells.first(where: {$0.categoryViewModel?.id == viewModel.id }) {
+            cell.categoryName.becomeFirstResponder()
         }
-        
-        let cell = visibleCells.first(where: {$0.categoryViewModel?.id == viewModel.id })
-        cell?.categoryName.becomeFirstResponder()
     }
     
     // MARK: - View Methods
     
-    fileprivate func setTitle() {
+    private func setTitle() {
         switch categoryType {
         case .debit:
             title = SettingsMenu.incomings.description
@@ -74,7 +69,7 @@ class CategoriesVC: BaseTableVC {
         view.endEditing(true)
     }
     
-    fileprivate func reloadData() {
+    private func reloadData() {
     
         if self.categoryType == .credit {
             dataManager = ExpenseCategoryManager()

@@ -41,19 +41,19 @@ class AccountsVC: BaseTableVC {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.Segues.toCreateAccountVC {
-            guard let destinationVC = segue.destination as? CreateAccountVC else {
-                fatalError("Can't find CreateAccountVC")
-            }
+        guard
+            segue.identifier == Constants.Segues.toCreateAccountVC,
+            let destinationVC = segue.destination as? CreateAccountVC,
             let account = dataManager.create()
-            let viewModel = viewModelFactory.create(object: account, dataManager: dataManager, isNew: true)
-            destinationVC.viewModel = viewModel
-        }
+        else { return }
+        
+        let viewModel = viewModelFactory.create(object: account, dataManager: dataManager, isNew: true)
+        destinationVC.viewModel = viewModel
     }
     
     // MARK: - View Methods
     
-    @objc fileprivate func reloadData() {
+    @objc private func reloadData() {
         let data = dataManager.getObjects()
         accounts = data.map{ viewModelFactory.create(object: $0, dataManager: dataManager) }
         tableView.reloadData()
