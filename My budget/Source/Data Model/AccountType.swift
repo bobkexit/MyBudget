@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum AccountType: Int, EnumCollection, CustomStringConvertible {
+enum AccountType: Int, CaseIterable, CustomStringConvertible {
     case cash = 1
     case paymentCard = 2
     case bankAccont = 3

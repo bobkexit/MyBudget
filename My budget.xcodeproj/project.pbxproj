@@ -72,7 +72,6 @@
 		357E0D2C206E9F2B00205970 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E0D2B206E9F2B00205970 /* Helper.swift */; };
 		3595DA6E209D777C008DFFA7 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3595DA6D209D777C008DFFA7 /* StringExt.swift */; };
 		35EE3012206108FF0041F195 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3011206108FE0041F195 /* CategoriesVC.swift */; };
-		35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE3015206111230041F195 /* EnumCollectionExt.swift */; };
 		35EE301A2061188A0041F195 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE30192061188A0041F195 /* CategoryCell.swift */; };
 		35EE301C206118AC0041F195 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE301B206118AC0041F195 /* AccountCell.swift */; };
 		35EE301E206118BA0041F195 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE301D206118BA0041F195 /* BaseCell.swift */; };
@@ -153,7 +152,6 @@
 		357E0D2B206E9F2B00205970 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		3595DA6D209D777C008DFFA7 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		35EE3011206108FE0041F195 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
-		35EE3015206111230041F195 /* EnumCollectionExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollectionExt.swift; sourceTree = "<group>"; };
 		35EE30192061188A0041F195 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		35EE301B206118AC0041F195 /* AccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 		35EE301D206118BA0041F195 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
@@ -462,7 +460,6 @@
 			isa = PBXGroup;
 			children = (
 				3531C5A22081105C0055D0B4 /* QRCodeParser.swift */,
-				35EE3015206111230041F195 /* EnumCollectionExt.swift */,
 				3515E0F92073655900ED0363 /* NotificationNameExt.swift */,
 				357E0D2B206E9F2B00205970 /* Helper.swift */,
 				3595DA6D209D777C008DFFA7 /* StringExt.swift */,
@@ -583,7 +580,6 @@
 				3522AFED2091C60200D17AAF /* ExpensesReport.swift in Sources */,
 				3522AFF12091E4DB00D17AAF /* ExpensesReportVC.swift in Sources */,
 				3522E120208FCA480096E57C /* UpdatedTransactionVM.swift in Sources */,
-				35EE3016206111230041F195 /* EnumCollectionExt.swift in Sources */,
 				351410F220850698002F0D9E /* DefaultsVC.swift in Sources */,
 				353B47C8205690B3008281B0 /* ReportsVC.swift in Sources */,
 				3531C5A32081105C0055D0B4 /* QRCodeParser.swift in Sources */,

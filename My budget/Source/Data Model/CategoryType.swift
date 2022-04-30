@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CategoryType: Int, EnumCollection {
+enum CategoryType: Int, CaseIterable {
     case debit = 1
     case credit = 2
 }

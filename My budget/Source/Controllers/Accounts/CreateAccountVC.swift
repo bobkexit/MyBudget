@@ -30,7 +30,7 @@ class CreateAccountVC: BaseVC {
     
     var viewModel: ViewModel!
     
-    fileprivate let accountTypes = Array(AccountType.cases())
+    fileprivate let accountTypes = AccountType.allCases
     
 
     override func viewDidLoad() {

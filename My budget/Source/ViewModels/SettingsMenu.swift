@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SettingsMenu: String, EnumCollection, CustomStringConvertible, CaseIterable {
+enum SettingsMenu: String, CustomStringConvertible, CaseIterable {
     
     var description: String {
         switch self {
